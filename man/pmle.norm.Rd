@@ -16,7 +16,8 @@ pmle.norm(
 )
 }
 \arguments{
-\item{x}{The data that can either be a vector or a matrix with the 1st column being the observed values}
+\item{x}{The data that can either be a vector or a matrix with the 1st column being the observed values
+and the 2nd column being the corresponding frequencies.}
 
 \item{m0}{The order of the finite normal mixture model.}
 

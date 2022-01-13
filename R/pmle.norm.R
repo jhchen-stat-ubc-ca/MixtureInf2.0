@@ -2,7 +2,7 @@
 #'
 #' @description This function computes the PMLE or MLE of the parameters under a mixture of normals with unequal variance.
 #' @param x The data that can either be a vector or a matrix with the 1st column being the observed values
-#       		and the 2nd column being the corresponding frequencies.
+#'       		and the 2nd column being the corresponding frequencies.
 #' @param m0 The order of the finite normal mixture model.
 #' @param lambda The size of the penalized function of the mixing distribution.
 #' @param inival The initial values chosen for the EM-algorithm.
