@@ -2,18 +2,22 @@
 #'
 #' @description This function computes the PMLE or MLE of the parameters under a mixture of normals with unequal variance.
 #' @param x The data that can either be a vector or a matrix with the 1st column being the observed values
-#'       		and the 2nd column being the corresponding frequencies.
-#' @param m0 The order of the finite normal mixture model.
-#' @param lambda The size of the penalized function of the mixing distribution.
-#' @param inival The initial values chosen for the EM-algorithm.
-#' @param len The number of initial values chosen for the EM-algorithm.
-#' @param niter The smallest number of iterations required for all initial values in the EM-algorithm.
-#' @param tol The tolerance value for the convergence of the EM-algorithm.
+#' and the 2nd column being the corresponding frequencies.
+#' @param m0 The order of the finite mixture model, default value: m0 = 1.
+#' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 0.
+#' @param inival The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
+#' m0 component means and m0 component variances, or a matrix with 3m0 columns, default value: inival = NULL. (if not provided, random initial values are used.)
+#' @param len The number of initial values chosen for the EM-algorithm, default value: len = 10.
+#' @param niter The smallest number of iterations required for all initial values in the EM-algorithm. 
+#' The algorithm runs EM-iteration niter times from each initial value. 
+#' The iteration will restart from the parameter value with the highest likelihood value at the point and run until convergence. default value: niter = 50.
+#' @param tol The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.
 #' @param rformat The format of the output. If rformat=T, 
 #' it means the output format is determined by R software. 
 #' If rformat=F, it means the output format is determined by our default setting. 
 #' When the output is larger than 0.001, it is determined by round(output,3); 
 #' When the output is less than 0.001, it is determined by signif(output,3).
+#' The default value of rformat is F.
 #'
 #' @return  The PMLE or MLE of the parameters with order = m0 (mixing proportions, mixing means
 #           and mixing variances), log-likelihood value at the PMLE or MLE and the penalized log-likelihood
