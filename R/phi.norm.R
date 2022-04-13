@@ -16,14 +16,6 @@
 phi.norm <-
   function(x,m0,lambda,inival,len,niter,tol)
   {
-    #x: 		data, can be either a vector or a matrix with the 1st column being the observed values
-    #       		and the 2nd column being the corresponding frequencies. 
-    #m0:	 	order of finite normal mixture model.
-    #lambda:	size of penalized function of mixing distribution
-    #inival:	initial values chosen for the EM-algorithm
-    #len:		number of initial values chosen for the EM-algorithm.	
-    #niter:     least number of iterations for all initial values in the EM-algorithm.
-    #tol:		tolerance value for the convergence of the EM-algorithm.
     if (m0>1)
     {
       sn=var(x)
