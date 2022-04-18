@@ -15,7 +15,7 @@ dmix.norm(x, alpha, mu, sigma, tol = 1e-08)
 
 \item{sigma}{A vector of the component's standard deviations.}
 
-\item{tol}{Fixed value at 1e-8}
+\item{tol}{A fixed value at 1e-8}
 }
 \value{
 

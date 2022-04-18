@@ -4,7 +4,7 @@
 #' @param alpha A vector of the mixing proportions.
 #' @param mu A vector of the component's means.
 #' @param sigma A vector of the component's standard deviations.
-#' @param tol Fixed value at 1e-8
+#' @param tol A fixed value at 1e-8
 #'
 #' @return
 #' @export
