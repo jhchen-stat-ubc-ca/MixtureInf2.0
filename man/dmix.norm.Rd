@@ -11,9 +11,9 @@ dmix.norm(x, alpha, mu, sigma, tol = 1e-08)
 
 \item{alpha}{A vector of the mixing proportions.}
 
-\item{mu}{A vector of the component's means.}
+\item{mu}{A vector of the component means.}
 
-\item{sigma}{A vector of the component's standard deviations.}
+\item{sigma}{A vector of the component standard deviations.}
 
 \item{tol}{A fixed value at 1e-8}
 }

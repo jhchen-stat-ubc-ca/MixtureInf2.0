@@ -2,8 +2,8 @@
 #'
 #' @param x mixture density at x.
 #' @param alpha A vector of the mixing proportions.
-#' @param mu A vector of the component's means.
-#' @param sigma A vector of the component's standard deviations.
+#' @param mu A vector of the component means.
+#' @param sigma A vector of the component standard deviations.
 #' @param tol A fixed value at 1e-8
 #'
 #' @return
