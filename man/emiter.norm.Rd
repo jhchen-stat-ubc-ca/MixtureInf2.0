@@ -7,17 +7,19 @@
 emiter.norm(x, para, beta, pens, para0, k)
 }
 \arguments{
-\item{x}{}
+\item{x}{The input data that can be either a vector or a matrix with the 1st column being the observed values
+and the 2nd column being the corresponding frequency.}
 
 \item{para}{}
 
 \item{beta}{}
 
-\item{pens}{}
+\item{pens}{A 2-dimensions vector being the size of the penalized functions for 
+the mixing propotion and the variance.}
 
 \item{para0}{}
 
-\item{k}{}
+\item{k}{The amount of EM iterations in order to obtain the EM-test statistic.}
 }
 \value{
 

@@ -1,0 +1,51 @@
+#' iter1.norm
+#'
+#' @param x The input data that can be either a vector or a matrix with the 1st column being the observed values
+#'          and the 2nd column being the corresponding frequency.
+#' @param para0 
+#' @param lambda The level of penalty, default value is 0.
+#'
+#' @return
+#' @export
+#'
+#' @examples
+iter1.norm <-
+  function(x,para0,lambda)
+  {
+    sn=var(x)
+    n=length(x)
+    m=length(para0)/3
+    xx=c()
+    pdf.component=c()
+    
+    alpha=para0[1:m]
+    mu=para0[(m+1):(2*m)]
+    sigma=para0[(2*m+1):(3*m)]
+    ###E-step of EM-algorithm
+    for (j in 1:m)
+    {	
+      pdf.component=cbind(pdf.component,dnorm(x,mu[j],sqrt(sigma[j]))*alpha[j]+1e-100/m)
+      xx=cbind(xx,(x-mu[j])^2)
+      ## iter1.norm line17, xx=cbind(xx,(x-mu[j])^2) is wrong, should be moved after the M step update of mu; Qiong's comment. To be updated.
+    }
+    pdf=apply(pdf.component,1,sum)
+    w=pdf.component/pdf
+    ###M-step of EM-algorithm
+    alpha=(apply(w,2,sum)+lambda)/(n+m*lambda)
+    mu=apply(w*x,2,sum)/apply(w,2,sum)
+    sigma=(apply(w*xx,2,sum)+2*sn/n)/(apply(w,2,sum)+2/n)
+    
+    ###compute the log-likelihood and penalized log-likelihood value
+    pdf.component=c()
+    for (j in 1:m)
+      pdf.component=cbind(pdf.component,dnorm(x,mu[j],sqrt(sigma[j]))*alpha[j]+1e-100/m)
+    pdf=apply(pdf.component,1,sum)
+    ln1=sum(log(pdf))
+    pln1=ln1+sum(pn(sigma,sn,1/n))+lambda*sum(log(alpha))
+    ###output
+    index=sort(mu,index.return = TRUE)$ix
+    alpha=alpha[index]
+    mu=mu[index]
+    sigma=sigma[index]
+    outpara=c(alpha,mu,sigma,ln1,pln1)
+  }

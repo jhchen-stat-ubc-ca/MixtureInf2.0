@@ -1,11 +1,13 @@
 #' emiter.norm
 #'
-#' @param x 
+#' @param x The input data that can be either a vector or a matrix with the 1st column being the observed values
+#'          and the 2nd column being the corresponding frequency.
 #' @param para 
 #' @param beta 
-#' @param pens 
+#' @param pens A 2-dimensions vector being the size of the penalized functions for 
+#'             the mixing propotion and the variance.
 #' @param para0 
-#' @param k 
+#' @param k The amount of EM iterations in order to obtain the EM-test statistic.
 #'
 #' @return
 #' @export
