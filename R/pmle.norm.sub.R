@@ -27,7 +27,7 @@ pmle.norm.sub <-
     output=c()
     for (i in 1:n.init) {
       if (is.null(init.val)) {
-        ## randomly generate initial values
+        ## generate random initial values if ot provided.
         mu = sort(sample(x, m0))
         tmp = (mu[-1] + mu[-m0])/2
         alpha = rep(1, m0)
@@ -43,10 +43,10 @@ pmle.norm.sub <-
       }
       para0 = c(alpha, mu, sigma)
       for (j in 1:n.iter) {
-        outpara = pmle.norm.sub.a(x, para0, lambda, an)
-        para0 = outpara[1:3*m0]
+        outpara = pmle.norm.sub.a(x, m0, para0, lambda, an)
+        para0 = outpara[1:(3*m0)]
       }  ###run n.iter EM-iterations first
-      output=rbind(output,outpara[1:(3*m0)])	
+      output=rbind(output,outpara[1:(3*m0+2)])	
     }
     index = which.max(output[,(3*m0+2)])
     para0 = output[index,1:(3*m0)]
@@ -56,7 +56,7 @@ pmle.norm.sub <-
     ### restart EM-iteration with the initial value 
     ### that achieved the largest penalized log-likelihood
     while (increment > tol & t < max.iter) {
-      outpara = pmle.norm.sub.a(x, para0, lambda, an)
+      outpara = pmle.norm.sub.a(x, m0, para0, lambda, an)
       para0 = outpara[1:(3*m0)]
       ploglike1 = outpara[3*m0+2]
       increment = ploglike1 - ploglike0
@@ -67,5 +67,6 @@ pmle.norm.sub <-
          'means' = outpara[(m0+1):(2*m0)],
          'variances'= outpara[(2*m0+1):(3*m0)],
          'loglik'=outpara[3*m0+1],
-         'ploglik'=outpara[3*m0+2])
+         'ploglik'=outpara[3*m0+2],
+         'iter.n'=t)
   }

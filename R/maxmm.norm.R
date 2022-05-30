@@ -56,7 +56,8 @@ maxmm.norm <-
     pln0=output[index,(6*m+1)]
     err=1
     t=0
-    while (err>tol & t<2000)###EM-iteration with the initial value with the largest penalized log-likelihood
+    while (err>tol & t<2000)
+      ###EM-iteration with the initial value with the largest penalized log-likelihood
     {
       outpara=iter2.norm(x,para,beta,an,para0)
       para=outpara[1:(6*m)]

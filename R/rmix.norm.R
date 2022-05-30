@@ -16,22 +16,22 @@
 #' hist(x)
 rmix.norm <-
   function (n,alpha,mu,sigma=rep(1,length(alpha))) 
-    #n:      sample size.
-    #alpha:  vector of mixing proportion.
-    #mu:     vector of means of each component.
-    #sigma:  vector of standard deviation of each component.
   {
-    if(any(alpha)<0)
-      stop("error:mixing proportion must be positive")
-    m=length(alpha)
-    alpha=alpha/sum(alpha)
-    data=c()
-    
-    nindex=rmultinom(1,n,alpha)
-    
-    foreach ( i = 1:m) %dopar%
-      data=c(data,rnorm(nindex[i],mu[i],sigma[i]))
-    data
+    if(any(alpha<0))
+      stop("error: negative mixing proportion")
+    if(any(sigma<0))
+      stop("error: negative standard deviation")
+    m1 = length(alpha)
+    m2 = length(mu)
+    m3 = length(sigma)
+    if((m1-m2)^2+(m1-m3)^2 > 0)
+      stop("error: differ lengths of alpha, mu and sigma")
+    alpha = alpha/sum(alpha)
+    data = c()
+    nindex = rmultinom(1, n, alpha)
+    for(i in 1:m1)
+      data=c(data, rnorm(nindex[i], mu[i], sigma[i]))
+    sample(data)   ### avoid separation of clusters.
   }
 # Note: add checking option
 # check length(mu)=length(sd)=length(alpha)

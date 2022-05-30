@@ -12,20 +12,20 @@
 #'
 #' @examples
 pmle.norm.sub.a <- function(x, m, para0, lambda, an)  {
-  sn=var(x)
+  sn = var(x)
   n = length(x)
-  pdf.sub = matrix(0, m, n);
+  pdf.sub = matrix(0, m0, n);
   ww = x*0
   
-  alpha = para0[1:m]
-  mu = para0[(m+1):(2*m)]
-  sigma = para0[(2*m+1):(3*m)]
+  alpha = para0[1:m0]
+  mu = para0[(m0+1):(2*m0)]
+  sigma = para0[(2*m0+1):(3*m0)]
   
   ## E-step
-  for(j in 1:m) pdf.sub[j,] = dnorm(x,mu[j],sqrt(sigma[j]))*alpha[j]+1e-50
+  for(j in 1:m0) pdf.sub[j,] = dnorm(x, mu[j], sqrt(sigma[j]))*alpha[j]+1e-50
   pdf.mixture = apply(pdf.sub,2,sum)
   ## M-step
-  for(j in 1:m) {
+  for(j in 1:m0) {
     ww = pdf.sub[j,]/pdf.mixture;  
     ww.total = sum(ww)
     alpha[j] = (ww.total+lambda)/(n+m*lambda)

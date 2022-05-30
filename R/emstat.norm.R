@@ -17,8 +17,8 @@
 emstat.norm <-
   function(x,outnull,C,len,niter,tol,k)
   {
-    theta0=outnull$theta
-    m0=length(theta0)	
+    theta0 = outnull$theta
+    m0 = length(theta0)	
     
     ###Calculate eta_h's
     eta=rep(0,m0+1)

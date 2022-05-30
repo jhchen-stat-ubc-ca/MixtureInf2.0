@@ -16,6 +16,8 @@
 emiter.norm <-
   function(x,para,beta,pens,para0,k)
   {
+    ## x: data in vector form
+    ## ??
     m=length(beta)
     n=length(x)
     sigma0=para0[[3]]

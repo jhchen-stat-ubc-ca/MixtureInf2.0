@@ -1,6 +1,6 @@
 #' dmix.norm
 #'
-#' @param x mixture density at x.
+#' @param x uni-variate mixture density at x.
 #' @param alpha A vector of the mixing proportions.
 #' @param mu A vector of the component means.
 #' @param sigma A vector of the component standard deviations.

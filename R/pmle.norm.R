@@ -40,50 +40,41 @@
 pmle.norm <-
   function(x,m0=1,lambda=0,inival=NULL,len=10,niter=50,tol=1e-6,rformat=FALSE)
   {
-    if (is.data.frame(x))
-    {
-      if (ncol(x)==2)
-        x=as.matrix(x)
-      if (ncol(x)==1 | ncol(x)>2)
-        x=x[,1]
-    }
-    if (is.matrix(x))
-    {
+    if(m0==1) stop("You do not need this function for MLE")
+    
+    if (is.vector(x)) xx = x
+    ## plain vector case
+    
+    if (is.matrix(x)) {
       xx=c()
-      for (i in 1:nrow(x))
-        xx=c(xx,rep(x[i,1],x[i,2]))
-      x=xx
+      for (i in 1:nrow(x)) xx=c(xx, rep(x[i,1],x[i,2]))
+    }       
+    ## it translate the frequency into a plain vector.
+    
+    if(is.null(an)) an = length(xx)^(-0.5)
+    ## If not given, use the default penalty n^{-1/2}
+    
+    out = pmle.norm.sub(xx, m0, lambda, an, init.val, n.init, 
+                        n.iter, max.iter, tol, iter.n)
+    ## leave the computation to the other function.
+    alpha = out[[1]]
+    mean.mix = out[[2]]
+    var.mix = out[[3]]
+    loglik = out[[4]]
+    ploglik = out[[5]]
+    
+    if (rformat==F) {
+      alpha.mix = rousignif(alpha)
+      mean.mix = rousignif(mean.mix)
+      var.mix = rousignif(var.mix)
+      loglik = rousignif(loglik)
+      ploglik = rousignif(ploglik)
     }
     
-    out=phi.norm(x,m0,lambda,inival,len,niter,tol)
-    alpha=out[[1]]
-    mean=out[[2]]
-    var=out[[3]]
-    loglik=out[[4]]
-    ploglik=out[[5]]
-    
-    if (rformat==F)
-    {
-      alpha=rousignif(alpha)
-      mean=rousignif(mean)
-      var=rousignif(var)
-      loglik=rousignif(loglik)
-      ploglik=rousignif(ploglik)
-    }
-    
-    if (m0>1)
-    {
-      list('PMLE of mixing proportions'=alpha,
-           'PMLE of means'=mean,
-           'PMLE of variances'=var,
-           'log-likelihood'=loglik,
-           'Penalized log-likelihood'=ploglik)
-    }
-    else
-    {
-      list('MLE of mixing proportions'=alpha,
-           'MLE of means'=mean,
-           'MLE of variances'=var,
-           'log-likelihood:'=loglik)
-    }
+    list('PMLE of mixing proportions' = alpha,
+         'PMLE of means' = mean.mix,
+         'PMLE of variances' = var.mix,
+         'log-likelihood' = loglik,
+         'Penalized log-likelihood'= ploglik,
+         'iter.n' = out[[6]])
   }

@@ -35,28 +35,29 @@
 pmle.norm0 <-
   function(x,var,m0=1,lambda=0,inival=NULL,len=10,niter=50,tol=1e-6,rformat=FALSE)
   {
-    if (is.data.frame(x))
-    {	
-      if (ncol(x)==2)
-        x=as.matrix(x)
-      if (ncol(x)==1 | ncol(x)>2)
-        x=x[,1]
-    }
-    if (is.matrix(x))
-    {
-      xx=c()
-      for (i in 1:nrow(x))
-        xx=c(xx,rep(x[i,1],x[i,2]))
-      x=xx
+    if(m0==1) stop("You do not need this function for MLE")
+    
+    if (is.vector(x)) xx = x     ## plain vector
+    if (is.matrix(x)) { xx=c()
+    for (i in 1:nrow(x)) xx=c(xx, rep(x[i,1],x[i,2]))  }       
+    ## translate the frequency into a plain vector.
+    xx=x/sqrt(var);   ###standardize with known var 
+    min.x = min(xx); max.x = max(xx)
+    
+    if (is.null(init.val)) {
+      init.val = matrix(0, nrow = n.init, ncol = 2*m0)
+      for(i in 1:n.init) {
+        alpha = runif(m0)
+        init.val[i,] = c(alpha/sum(alpha), runif(m0, min.x, max.x))
+      }	
     }
     
-    x=x/sqrt(var)
-    n=length(x)
-    out=phi0.norm(x,m0,lambda,inival,len,niter,tol)
-    alpha=out$alpha
-    theta=out$theta*sqrt(var)
-    loglik=out$loglik-n/2*log(var)
-    ploglik=out$ploglik-n/2*log(var)
+    out = pmle.norm0.sub(xx, m0, lambda, init.val, n.init, n.iter, max.iter, tol)
+    alpha = out$alpha
+    theta = out$theta*sqrt(var)
+    loglik = out$loglik-n/2*log(var)
+    ploglik = out$ploglik-n/2*log(var)
+    iter.n = out$iter.n
     
     if (rformat==F)
     {
@@ -67,12 +68,14 @@ pmle.norm0 <-
     }
     
     if (lambda==0 | m0==1)
-      list('MLE of mixing proportions:'=alpha,
-           'MLE of component parameters:'=theta,
-           'log-likelihood:'=loglik)
-    else
-      list('PMLE of mixing proportions:'=alpha,
-           'PMLE of component parameters:'=theta,
+      list('MLE of mixing proportions:'= alpha,
+           'MLE of component parameters:'= theta,
            'log-likelihood:'=loglik,
-           'Penalized log-likelihood:'=ploglik)
+           'iter.n'= iter.n)
+    else
+      list('PMLE of mixing proportions:'= alpha,
+           'PMLE of component parameters:'= theta,
+           'log-likelihood:'= loglik,
+           'Penalized log-likelihood:'= ploglik,
+           'iter.n'= iter.n)
   }

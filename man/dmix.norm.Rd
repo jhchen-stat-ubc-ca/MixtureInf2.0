@@ -7,7 +7,7 @@
 dmix.norm(x, alpha, mu, sigma, tol = 1e-08)
 }
 \arguments{
-\item{x}{mixture density at x.}
+\item{x}{uni-variate mixture density at x.}
 
 \item{alpha}{A vector of the mixing proportions.}
 
