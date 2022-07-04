@@ -20,9 +20,6 @@ and the 2nd column being the corresponding frequency.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 }
-\value{
-
-}
 \description{
 maxmm.norm0
 }

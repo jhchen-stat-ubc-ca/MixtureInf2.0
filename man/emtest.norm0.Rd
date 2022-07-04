@@ -41,9 +41,6 @@ and the 2nd column being the corresponding frequency.}
 larger than 0.001, it is determined by round(output,3); When the output is less than 0.001,
 it is determined by signif(output,3).}
 }
-\value{
-
-}
 \description{
 This function computes the EM-test statistic and the p-value for the hypothesis H0:m=m0.
 }

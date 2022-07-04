@@ -11,9 +11,6 @@ tb2.norm(alpha, theta)
 
 \item{theta}{A vector of the means of each component.}
 }
-\value{
-
-}
 \description{
 This function computes \tilde B_{22} under the normal mixture.
 \tilde B_{22} has been standardized into a correlation matrix.

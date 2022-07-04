@@ -21,9 +21,6 @@ phi0.norm(x, m0, lambda, inival, len, niter, tol)
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 }
-\value{
-
-}
 \description{
 This function computes the PMLE of mixing distribution under the null hypothesis for normal mixture.
 }

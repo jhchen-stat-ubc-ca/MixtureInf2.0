@@ -22,9 +22,6 @@ and the 2nd column being the corresponding frequency.}
 
 \item{k}{The amount of EM iterations in order to obtain the EM-test statistic.}
 }
-\value{
-
-}
 \description{
 This function computes the EM-test statistics for the normal mixture.
 }

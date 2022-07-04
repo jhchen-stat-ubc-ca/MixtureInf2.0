@@ -23,9 +23,6 @@ phi0.binom(x, size, m0, lambda, inival, len, niter, tol)
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 }
-\value{
-
-}
 \description{
 phi0.binom
 }

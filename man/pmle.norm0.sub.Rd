@@ -23,9 +23,6 @@ pmle.norm0.sub(x, m0, lambda, init.val, n.init, n.iter, max.iter, tol)
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 }
-\value{
-
-}
 \description{
 pmle.norm0.sub
 }

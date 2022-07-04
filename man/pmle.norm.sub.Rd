@@ -4,7 +4,18 @@
 \alias{pmle.norm.sub}
 \title{pmle.norm.sub}
 \usage{
-pmle.norm.sub(x, m0, lambda, an, init.val, n.init, n.iter, max.iter, tol)
+pmle.norm.sub(
+  x,
+  m0,
+  lambda,
+  an,
+  init.val,
+  n.init,
+  n.iter,
+  max.iter,
+  tol,
+  iter.n
+)
 }
 \arguments{
 \item{x}{The data that can either be a vector or a matrix with the 1st column being the observed values
@@ -27,9 +38,6 @@ default value: inival = NULL. (if not provided, random initial values are used.)
 \item{max.iter}{The maximum amount of iterations.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.}
-}
-\value{
-
 }
 \description{
 pmle.norm.sub

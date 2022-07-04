@@ -1,16 +1,39 @@
-#' qmixnorm
+#' qmix.norm
 #'
-#' @description This function computes the alp0-quantile of Normal mixture.
-#' @param alpha A vector of the mixture probabilities. 
-#' @param theta A vector of means from each component.
-#' @param alp0 A given probability.	
+#' @param pp 
+#' @param alpha A vector of the mixing proportions.
+#' @param mu A vector of the component means.
+#' @param sigma A vector of the component standard deviations.
+#' @param tol 
 #'
 #' @return
 #' @export
 #'
 #' @examples
-qmixnorm <-
-  function(alpha,theta,alp0)
-  {
-    uniroot(pmixnorm,c(qnorm(alp0,min(theta)),qnorm(alp0,max(theta))),alpha=alpha,theta=theta,alp0=alp0)$root 
+qmix.norm <-
+  function(pp, alpha, mu, sigma, tol=1e-8) {
+    if(any(alpha<0))
+      stop("error: negative mixing proportion")
+    if(any(sigma<0))
+      stop("error: negative standard deviation")
+    if(length(pp) > 1)
+      stop("compute one quantile at a time")
+    if(pp < 0| pp> 1)
+      stop("pp out of (0, 1)")
+    m1 = length(alpha)
+    m2 = length(mu)
+    m3 = length(sigma)
+    if((m1-m2)^2+(m1-m3)^2 > 0)
+      stop("error: differ lengths of alpha, mu and sigma")
+    alpha = alpha/sum(alpha)
+    tt = rep(0, m1)
+    for(i in 1:m1) tt[i] = qnorm(pp, mu[i], sigma[i])
+    low = min(tt);  high = max(tt)
+    n.iter = (log(1/tol)*(high-low))
+    for(i in 1:n.iter) {
+      tmp = (low+high)/2
+      if(pmix.norm(tmp, alpha, mu, sigma) > pp) {
+        high = tmp} else {low = tmp}
+    }
+    return((low+high)/2)
   }

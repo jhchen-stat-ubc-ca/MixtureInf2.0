@@ -9,9 +9,6 @@ rousignif(x)
 \arguments{
 \item{x}{A single numeric or a numeric vector or matrix.}
 }
-\value{
-
-}
 \description{
 This function return the output combining round and signif functions.
 }

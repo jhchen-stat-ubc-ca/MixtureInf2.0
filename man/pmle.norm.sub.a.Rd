@@ -18,9 +18,6 @@ and the 2nd column being the corresponding frequencies.}
 
 \item{an}{}
 }
-\value{
-
-}
 \description{
 pmle.norm.sub.a
 }

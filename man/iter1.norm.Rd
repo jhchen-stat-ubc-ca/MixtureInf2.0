@@ -14,9 +14,6 @@ and the 2nd column being the corresponding frequency.}
 
 \item{lambda}{The level of penalty, default value is 0.}
 }
-\value{
-
-}
 \description{
 iter1.norm
 }

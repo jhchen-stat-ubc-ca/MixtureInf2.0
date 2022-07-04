@@ -18,9 +18,6 @@ and the 2nd column being the corresponding frequency.}
 
 \item{para0}{}
 }
-\value{
-
-}
 \description{
 iter2.norm
 }

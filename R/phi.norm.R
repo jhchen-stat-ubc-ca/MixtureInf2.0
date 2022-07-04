@@ -14,20 +14,16 @@
 #'
 #' @examples
 phi.norm <-
-  function(x,m0,lambda,inival,len,niter,tol)
+  function(x, m0, lambda, inival, len, n.iter, tol)
   {
     if (m0>1)
     {
-      sn=var(x)
-      dn=sd(x)
-      maxx=max(x)
-      minx=min(x)
-      n=length(x)
+      sn=var(x);     dn=sd(x)
+      maxx=max(x);   minx=min(x);   n=length(x)
       
-      if (is.vector(inival))
-        inival=t(inival)
-      if (is.null(inival)==F)
-        len=nrow(inival)
+      if (is.vector(inival)) inival = t(inival)
+      if (is.null(inival)==F) len = nrow(inival)
+      
       output=c()
       for (i in 1:len)
       {
@@ -49,7 +45,8 @@ phi.norm <-
         }
         para0=c(alpha,mu,sigma)
         
-        foreach (j = 1:niter) %dopar% ###run niter EM-iterations first
+        foreach (j = 1:niter) %dopar% 
+          ###run niter EM-iterations first
           {
             outpara=iter1.norm(x,para0,lambda)
             para0=outpara[1:(3*m0)]
@@ -61,7 +58,9 @@ phi.norm <-
       pln0=output[index,(3*m0+2)]
       err=1
       t=0
-      while (err>tol & t<2000)###EM-iteration with the initial value with the largest penalized log-likelihood
+      while (err>tol & t<2000)
+        ###EM-iteration with the initial value 
+        ## with the largest penalized log-likelihood
       {
         outpara=iter1.norm(x,para0,lambda)
         para0=outpara[1:(3*m0)]
@@ -80,7 +79,8 @@ phi.norm <-
     {
       mu0=mean(x)
       sig0=var(x)
-      ln=sum(log(dnorm(x,mu0,sqrt(sig0))))
-      list('alpha'=1,'means'=mu0,'variances'=sig0,'loglik:'=ln,'ploglik:'=ln)
+      loglike=sum(log(dnorm(x,mu0,sqrt(sig0))))
+      list('alpha'=1,'means'=mu0,'variances'=sig0,
+           'loglik:'=loglike,'ploglik:'=ln)
     }
   }

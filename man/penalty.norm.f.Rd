@@ -17,9 +17,6 @@ penalty.norm.f(alpha, sigma, sigma0, an, lambda)
 
 \item{lambda}{The level of penalty, default value is 0.}
 }
-\value{
-
-}
 \description{
 penalty.norm.f
 }

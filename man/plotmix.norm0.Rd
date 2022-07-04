@@ -41,9 +41,6 @@ value is 1 (complete density function).}
 
 \item{ylab}{The label for the y-axis}
 }
-\value{
-
-}
 \description{
 plotmix.norm0
 }

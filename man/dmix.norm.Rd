@@ -4,22 +4,19 @@
 \alias{dmix.norm}
 \title{dmix.norm}
 \usage{
-dmix.norm(x, alpha, mu, sigma, tol = 1e-08)
+dmix.norm(xx, alpha, mu, sigma)
 }
 \arguments{
-\item{x}{uni-variate mixture density at x.}
-
 \item{alpha}{A vector of the mixing proportions.}
 
 \item{mu}{A vector of the component means.}
 
 \item{sigma}{A vector of the component standard deviations.}
 
+\item{x}{uni-variate mixture density at x.}
+
 \item{tol}{A fixed value at 1e-8}
 }
-\value{
-
-}
 \description{
-dmix.norm
+A function that computes the density of the univariate normal mixture
 }

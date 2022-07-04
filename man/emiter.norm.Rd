@@ -21,9 +21,6 @@ the mixing propotion and the variance.}
 
 \item{k}{The amount of EM iterations in order to obtain the EM-test statistic.}
 }
-\value{
-
-}
 \description{
 emiter.norm
 }

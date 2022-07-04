@@ -39,9 +39,6 @@ the mixing propotion and the variance.}
 larger than 0.001, it is determined by round(output,3); When the output is less than 0.001,
 it is determined by signif(output,3).}
 }
-\value{
-
-}
 \description{
 emtest.norm
 }

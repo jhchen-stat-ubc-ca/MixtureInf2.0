@@ -38,8 +38,26 @@
 #'
 #'# End(Not run)
 pmle.norm <-
-  function(x,m0=1,lambda=0,inival=NULL,len=10,niter=50,tol=1e-6,rformat=FALSE)
-  {
+  function(x, m0, lambda = 1, an = NULL, init.val = NULL,
+           n.init = 10, n.iter=50, max.iter = 5000,
+           tol=1e-8, rformat = FALSE) {
+    # x: 		data, either a plain vector or 
+    #            a matrix with two columns:
+    #            col 1: observed, col 2: frequency 
+    # m0:	 the order of mixture to be fitted.
+    # lambda: modification of chen, chen, Kalbfleish (2001 JRSSB)
+    # an: penalty on variance(ChenTanZhangSinica2008); recommended n^{-1/2}
+    # init.val:	NULL or a 3 X m0 matrix with rows made of
+    #          mixing probability, component means, and variances.
+    # n.init:	leave it to compute to generate n.init initials values.	
+    # n.iter: the number of EM iterations for each initial values.
+    #         the one gained most in likelihood will be iterative further. 
+    # tol:		EM concludes when the increment in p-likelihood is below.
+    # rformat:	format for output, 
+    # rformat=T: default of R-cran.
+    #	rformat=F: if output > 0.001, report round(output,3);
+    #            otherwise, report signif(output,3).
+    
     if(m0==1) stop("You do not need this function for MLE")
     
     if (is.vector(x)) xx = x
@@ -53,6 +71,9 @@ pmle.norm <-
     
     if(is.null(an)) an = length(xx)^(-0.5)
     ## If not given, use the default penalty n^{-1/2}
+    
+    if(lambda < tol) lambda = tol
+    ## avoid 0 mixing probability.
     
     out = pmle.norm.sub(xx, m0, lambda, an, init.val, n.init, 
                         n.iter, max.iter, tol, iter.n)

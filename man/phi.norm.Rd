@@ -4,7 +4,7 @@
 \alias{phi.norm}
 \title{phi.norm}
 \usage{
-phi.norm(x, m0, lambda, inival, len, niter, tol)
+phi.norm(x, m0, lambda, inival, len, n.iter, tol)
 }
 \arguments{
 \item{x}{The data that can be either a vector or a matrix with the 1st column being the observed values}
@@ -17,12 +17,9 @@ phi.norm(x, m0, lambda, inival, len, niter, tol)
 
 \item{len}{The number of initial values chosen for the EM-algorithm.}
 
-\item{niter}{The smallest number of iterations required for all initial values in the EM-algorithm.}
-
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
-}
-\value{
 
+\item{niter}{The smallest number of iterations required for all initial values in the EM-algorithm.}
 }
 \description{
 phi.norm
