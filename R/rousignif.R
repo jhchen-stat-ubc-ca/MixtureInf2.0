@@ -1,6 +1,6 @@
 #' rousignif
 #'
-#' @description This function return the output combining round and signif functions.
+#' @description This function returns the output combining round and signif functions.
 #' @param x A single numeric or a numeric vector or matrix.
 #'
 #' @return

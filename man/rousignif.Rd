@@ -10,5 +10,5 @@ rousignif(x)
 \item{x}{A single numeric or a numeric vector or matrix.}
 }
 \description{
-This function return the output combining round and signif functions.
+This function returns the output combining round and signif functions.
 }
