@@ -9,11 +9,11 @@ rmix.norm(n, alpha, mu, sigma = rep(1, length(alpha)))
 \arguments{
 \item{n}{The sample size.}
 
-\item{alpha}{Vector of mixture proportions of length m, the order of the mixture.}
+\item{alpha}{A Vector of mixture proportions of length m, the order of the mixture.}
 
-\item{mu}{Vector of means of component distributions.}
+\item{mu}{A Vector of means of component distributions.}
 
-\item{sigma}{vector of standard deviations of component distributions, default value: sigma =
+\item{sigma}{A vector of standard deviations of component distributions, default value: sigma =
 rep(1,length(alpha)).}
 }
 \value{

@@ -1,4 +1,3 @@
-# Compute probability mass function of Poisson mixture
 #' dmix.pois
 #'
 #' @description This function computes the probability mass function of the Poisson mixture
@@ -9,7 +8,10 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples #Compute a density function from a 2 component poisson mixture
+#'           theta = c(9, 10)
+#'           alpha = c(.4, .6)
+#'           dmix.pois(1:20, alpha, theta)
 dmix.pois <- function(xx, alpha, theta) {
   pmf = xx*0
   for(i in 1:length(alpha)) {

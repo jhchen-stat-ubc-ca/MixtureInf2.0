@@ -7,13 +7,13 @@
 dmix.norm(xx, alpha, mu, sigma)
 }
 \arguments{
+\item{xx}{The uni-variate mixture density at x.}
+
 \item{alpha}{A vector of the mixing proportions.}
 
 \item{mu}{A vector of the component means.}
 
 \item{sigma}{A vector of the component standard deviations.}
-
-\item{x}{uni-variate mixture density at x.}
 
 \item{tol}{A fixed value at 1e-8}
 }

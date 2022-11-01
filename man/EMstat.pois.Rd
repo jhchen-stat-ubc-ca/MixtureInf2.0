@@ -42,7 +42,7 @@ EMstat.pois(
 
 \item{k}{The number of EM iterations required in order to obtain EM-test statistic.}
 
-\item{max.iter}{Maximum amount of iterations.}
+\item{max.iter}{The Maximum amount of iterations.}
 }
 \description{
 This function computes the EM-test statistics for Poisson mixture.

@@ -1,13 +1,13 @@
 #' dmix.norm
 #'
 #' @description A function that computes the density of the univariate normal mixture
-#' @param x uni-variate mixture density at x.
+#' @param xx The uni-variate mixture density at x.
 #' @param alpha A vector of the mixing proportions.
 #' @param mu A vector of the component means.
 #' @param sigma A vector of the component standard deviations.
 #' @param tol A fixed value at 1e-8
 #'
-#' @return
+#' @return 
 #' @export
 #'
 #' @examples

@@ -12,7 +12,7 @@
 #' @param n.iter Least amount of iterations for all initial values in the EM-algorithm.
 #' @param tol The tolerance value for the convergence of the EM-algorithm. 
 #' @param k The number of EM iterations required in order to obtain EM-test statistic.
-#' @param max.iter Maximum amount of iterations.
+#' @param max.iter The Maximum amount of iterations.
 #'
 #' @return
 #' @export

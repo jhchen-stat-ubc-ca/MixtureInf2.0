@@ -16,3 +16,9 @@ dmix.pois(xx, alpha, theta)
 \description{
 This function computes the probability mass function of the Poisson mixture
 }
+\examples{
+#Compute a density function from a 2 component poisson mixture
+          theta = c(9, 10)
+          alpha = c(.4, .6)
+          dmix.pois(1:20, alpha, theta)
+}

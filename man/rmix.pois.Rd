@@ -14,5 +14,12 @@ rmix.pois(n, alpha, theta)
 \item{theta}{A vector of the subpopulation means.}
 }
 \description{
-This function generates samples from the finite Poisson mixture
+This function generates a random sample from a finite Poisson mixture
+}
+\examples{
+#Generate a random sample from a 2 component Poisson mixture,
+and computes the sample mean and variance. 
+x <- rmix.pois(200,c(0.3,0.7),c(2,5))
+mean(x)
+var(x)
 }

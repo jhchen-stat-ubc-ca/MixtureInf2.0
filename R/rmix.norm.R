@@ -2,9 +2,9 @@
 #'
 #' @description Generate a random sample from a mixture of normals.
 #' @param n The sample size.
-#' @param alpha Vector of mixture proportions of length m, the order of the mixture.
-#' @param mu Vector of means of component distributions.
-#' @param sigma vector of standard deviations of component distributions, default value: sigma =
+#' @param alpha A Vector of mixture proportions of length m, the order of the mixture.
+#' @param mu A Vector of means of component distributions.
+#' @param sigma A vector of standard deviations of component distributions, default value: sigma =
 #' rep(1,length(alpha)).
 #'
 #' @return It returns a samples of size n from an m-component normal mixture.
