@@ -24,7 +24,11 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples n = 1000
+#' mu = c(9, 10)
+#' alpha = c(.4, .6)
+#' x = rmix.pois(200, alpha, mu)
+#' plotmix.pois(x, alpha=alpha, mu = mu)
 plotmix.pois = function(x = NULL, x.max= NULL, alpha, mu, 
                         sub.pmf = T, nclass=NULL, main="", 
                         xlab="Counts", ylab="Prob") {

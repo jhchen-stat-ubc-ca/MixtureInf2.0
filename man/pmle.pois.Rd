@@ -39,3 +39,7 @@ compute the PMLE under the null model.}
 \description{
 This function computes the PMLE of parameters under a Poisson mixture
 }
+\examples{
+x = rmix.pois(200, alpha, mu)
+pmle.pois (x, m0=2, lambda = 1, init.val = NULL, n.init=10, n.iter=50, tol=1e-6, max.iter=5000, rformat=FALSE)
+}

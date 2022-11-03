@@ -47,3 +47,6 @@ EMstat.pois(
 \description{
 This function computes the EM-test statistics for Poisson mixture.
 }
+\examples{
+A function used in the emtest.pois function
+}

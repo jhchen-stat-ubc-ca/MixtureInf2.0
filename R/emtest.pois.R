@@ -17,7 +17,16 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples n = 1000
+#' mu = c(9, 10)
+#' alpha = c(.4, .6)
+#' if(is.vector(x)) 
+#' {min.x = min(x); max.x = max(x)
+#' count = min.x:max.x
+#' freq = count*0
+#' for(i in count) freq[i- min.x + 1]= sum(x==i)
+#' xx = cbind(count, freq)} 
+#' emtest.pois(x, m0 = 2, CC = NULL, init.val = NULL, n.init = 10, n.iter = 50, tol = 1e-6, k = 3, rformat = F, max.iter = 5000)
 emtest.pois <- function(x, m0 = 1, CC = NULL, init.val=NULL, n.init = 10, 
                         n.iter = 50, tol = 1e-6, k=3, rformat = F, max.iter = 5000)
 {

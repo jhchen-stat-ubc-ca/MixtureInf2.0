@@ -17,7 +17,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples A function used in the emtest.pois function
 EMstat.pois <- function(count, freq, alpha0, theta0, m0, ln0, 
                         CC, n.init, n.iter, tol, k, max.iter)
   # n.init:      number of initial values chosen for the EM-algorithm.

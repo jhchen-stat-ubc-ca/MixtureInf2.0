@@ -41,3 +41,10 @@ This function plots the data in histogram with
              or the mixture pmf only, for Poisson mixture. 
              The pmf is given as if it is a continuous curve.
 }
+\examples{
+n = 1000
+mu = c(9, 10)
+alpha = c(.4, .6)
+x = rmix.pois(200, alpha, mu)
+plotmix.pois(x, alpha=alpha, mu = mu)
+}

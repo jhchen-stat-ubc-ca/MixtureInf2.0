@@ -31,7 +31,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples A sub function used in the pmle.pois function.
 pmle.pois.sub <-
   function(x, m0, lambda, init.val, n.init, n.iter, 
            tol, max.iter=5000) {

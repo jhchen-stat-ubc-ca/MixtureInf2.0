@@ -29,3 +29,6 @@ compute the PMLE under the null model.}
 \description{
 This function is used by pmle.pois. It does the real work but not stand alone.
 }
+\examples{
+A sub function used in the pmle.pois function.
+}
