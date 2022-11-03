@@ -6,13 +6,14 @@
 \usage{
 pmle.norm0(
   x,
-  var,
-  m0 = 1,
-  lambda = 0,
-  inival = NULL,
-  len = 10,
-  niter = 50,
-  tol = 1e-06,
+  var.sub = 1,
+  m0,
+  lambda = 1,
+  init.val = NULL,
+  n.init = 10,
+  n.iter = 50,
+  max.iter = 5000,
+  tol = 1e-08,
   rformat = FALSE
 )
 }
@@ -20,22 +21,19 @@ pmle.norm0(
 \item{x}{The data that can either be a vector or a matrix with the 1st column being the observed values
 and the 2nd column being the corresponding frequencies.}
 
-\item{var}{A known component variance.}
+\item{var.sub}{A known subpopulation variance, default 1.}
 
-\item{m0}{The order of the finite mixture model, default value: m0 = 1.}
+\item{m0}{The order of the finite mixture model.}
 
-\item{lambda}{The size of the penalized function of the mixing distribution, default value: lambda = 0.}
+\item{lambda}{The size of the penalty function of the mixing proportions.}
 
-\item{inival}{The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
-m0 component means and m0 component variances, or a matrix with 3m0 columns, default value: inival = NULL. (if not provided, random initial values are used.)}
+\item{n.init}{The    number of initial values for the EM-algorithm.}
 
-\item{len}{The number of initial values chosen for the EM-algorithm, default value: len = 10.}
+\item{n.iter}{The number of EM iterations for all initial values.}
 
-\item{niter}{The smallest number of iterations required for all initial values in the EM-algorithm. 
-The algorithm runs EM-iteration niter times from each initial value. 
-The iteration will restart from the parameter value with the highest likelihood value at the point and run until convergence. default value: niter = 50.}
+\item{max.iter}{Maximum amount of EM iterations, stops at 5000.}
 
-\item{tol}{The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.}
+\item{tol}{The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-8.}
 
 \item{rformat}{The format of the output. If rformat=T, 
 it means the output format is determined by R software. 
@@ -43,6 +41,11 @@ If rformat=F, it means the output format is determined by our default setting.
 When the output is larger than 0.001, it is determined by round(output,3); 
 When the output is less than 0.001, it is determined by signif(output,3).
 The default value of rformat is F.}
+
+\item{ini.val}{The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
+m0 component means and m0 component variances, or a matrix with 3m0 columns, default value: inival = NULL. (if not provided, random initial values are used.)}
+
+\item{iter.n}{This reports the number of EM-iteration employed.}
 }
 \value{
 It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions, mixing means
