@@ -10,7 +10,12 @@
 #' @return 
 #' @export
 #'
-#' @examples
+#' @examples mu = c(8, 9)
+#' alpha = c(.2, .8)
+#' sigma = rep(1,length(alpha))
+#' n = 1000
+#' x = rmix.norm(n,alpha,mu)
+#' dmix.norm(1:10,alpha,mu,sigma)
 dmix.norm <- function(xx, alpha, mu, sigma) {
   if(any(alpha<0)) stop("error: negative mixing proportion")
   if(any(sigma<0)) stop("error: negative standard deviation")

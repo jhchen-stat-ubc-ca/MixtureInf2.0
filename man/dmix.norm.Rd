@@ -20,3 +20,11 @@ dmix.norm(xx, alpha, mu, sigma)
 \description{
 A function that computes the density of the univariate normal mixture
 }
+\examples{
+mu = c(8, 9)
+alpha = c(.2, .8)
+sigma = rep(1,length(alpha))
+n = 1000
+x = rmix.norm(n,alpha,mu)
+dmix.norm(1:10,alpha,mu,sigma)
+}

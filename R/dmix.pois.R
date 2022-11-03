@@ -9,9 +9,9 @@
 #' @export
 #'
 #' @examples #Compute a density function from a 2 component poisson mixture
-#'           theta = c(9, 10)
-#'           alpha = c(.4, .6)
-#'           dmix.pois(1:20, alpha, theta)
+#' theta = c(9, 10)
+#' alpha = c(.4, .6)
+#' dmix.pois(1:20, alpha, theta)
 dmix.pois <- function(xx, alpha, theta) {
   pmf = xx*0
   for(i in 1:length(alpha)) {

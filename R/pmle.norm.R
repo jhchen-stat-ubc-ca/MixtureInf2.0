@@ -25,18 +25,7 @@
 
 #' @export 
 #'
-#' @examples #load the pearson's crab data, fit the 2 and 3 component normal mixture models,
-#'plot the histgorams of the observations and the fitted densities.
-#'data(pearson)
-#'out1 <- pmle.norm(pearson,2,1)
-#'plotmix.norm(pearson,out1)
-#'
-#'# Not run:
-#'out2 <- pmle.norm(pearson,3,1)
-#'plotmix.norm(pearson,out2)
-#'par(mfrow=c(1,1))
-#'
-#'# End(Not run)
+#' @examples 
 pmle.norm <-
   function(x, m0, lambda = 1, an = NULL, init.val = NULL,
            n.init = 10, n.iter=50, max.iter = 5000,

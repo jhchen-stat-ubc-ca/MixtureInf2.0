@@ -12,3 +12,6 @@ rousignif(x)
 \description{
 This function returns the output combining round and signif functions.
 }
+\examples{
+A function used in the pmle.pois function.
+}

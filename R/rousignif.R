@@ -6,7 +6,7 @@
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples A function used in the pmle.pois function.
 rousignif <-
   function(x)
   {
