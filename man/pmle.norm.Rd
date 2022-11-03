@@ -50,16 +50,10 @@ The PMLE or MLE of the parameters with order = m0 (mixing proportions, mixing me
 This function computes the PMLE or MLE of the parameters under a mixture of normals with unequal variance.
 }
 \examples{
-#load the pearson's crab data, fit the 2 and 3 component normal mixture models,
-plot the histgorams of the observations and the fitted densities.
-data(pearson)
-out1 <- pmle.norm(pearson,2,1)
-plotmix.norm(pearson,out1)
-
-# Not run:
-out2 <- pmle.norm(pearson,3,1)
-plotmix.norm(pearson,out2)
-par(mfrow=c(1,1))
-
-# End(Not run)
+ n=100
+alpha=c(.2,.8)
+mu=c(8,9)
+x=rmix.norm(n,alpha,mu)
+pmle.norm(x, m0=2, lambda = 1, an = NULL, init.val = NULL, n.init = 10, 
+n.iter=50, max.iter = 5000,tol=1e-8, rformat = FALSE)
 }

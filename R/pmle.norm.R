@@ -25,7 +25,12 @@
 
 #' @export 
 #'
-#' @examples 
+#' @examples  n=100
+#' alpha=c(.2,.8)
+#' mu=c(8,9)
+#' x=rmix.norm(n,alpha,mu)
+#' pmle.norm(x, m0=2, lambda = 1, an = NULL, init.val = NULL, n.init = 10, 
+#' n.iter=50, max.iter = 5000,tol=1e-8, rformat = FALSE)
 pmle.norm <-
   function(x, m0, lambda = 1, an = NULL, init.val = NULL,
            n.init = 10, n.iter=50, max.iter = 5000,
