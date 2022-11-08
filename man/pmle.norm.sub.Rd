@@ -4,18 +4,7 @@
 \alias{pmle.norm.sub}
 \title{pmle.norm.sub}
 \usage{
-pmle.norm.sub(
-  x,
-  m0,
-  lambda,
-  an,
-  init.val,
-  n.init,
-  n.iter,
-  max.iter,
-  tol,
-  iter.n
-)
+pmle.norm.sub(x, m0, lambda, an, init.val, n.init, n.iter, max.iter, tol)
 }
 \arguments{
 \item{x}{The data that can either be a vector or a matrix with the 1st column being the observed values

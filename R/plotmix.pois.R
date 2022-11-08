@@ -29,15 +29,15 @@
 #' alpha = c(.4, .6)
 #' x = rmix.pois(200, alpha, mu)
 #' plotmix.pois(x, alpha=alpha, mu = mu)
-plotmix.pois = function(x = NULL, x.max= NULL, alpha, mu, 
+plotmix.pois = function(alpha, mu, x = NULL, x.max= NULL,
                         sub.pmf = T, nclass=NULL, main="", 
                         xlab="Counts", ylab="Prob") {
   if(is.null(x)) {
     pmf.x = dmix.pois(0:x.max, alpha, mu)
-    plot(0:x.max, pmf.x, type="l", main=main, xlab = xlab, ylab = ylab)
+    plot(0:x.max, pmf.x, type="l", main=main, xlab = xlab, ylab = ylab, col="red")
     for(i in 1:length(alpha)) {
       pmf.x = dpois(0:x.max, mu[i])*alpha[i]
-      lines(0:x.max, pmf.x, lty = 2) }
+      lines(0:x.max, pmf.x, lty = 2, col="blue") }
   }
   
   if(is.matrix(x)) {

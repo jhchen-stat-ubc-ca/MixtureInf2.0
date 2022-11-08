@@ -23,6 +23,6 @@ dmix.norm <- function(xx, alpha, mu, sigma) {
   if((m1-m2)^2+(m1-m3)^2 > 0) 
     stop("error: differ lengths of alpha, mu and sigma")
   dd = xx*0
-  for(i in 1:m1) dd = dd+alpha[i]*dnorm(x, mu[i], sigma[i])
+  for(i in 1:m1) dd = dd+alpha[i]*dnorm(xx, mu[i], sigma[i])
   return(dd)
 }
