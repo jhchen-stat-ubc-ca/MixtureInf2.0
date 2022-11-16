@@ -32,7 +32,8 @@
 #' pmle.norm(x, m0=2, lambda = 1, an = NULL, init.val = NULL, n.init = 10, 
 #' n.iter=50, max.iter = 5000,tol=1e-8, rformat = FALSE)
 pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
-                      n.init = 10, n.iter=50, max.iter = 5000, tol=1e-8, rformat = T) {
+                      n.init = 10, n.iter=50, max.iter = 5000, tol=1e-8, rformat = F) {
+  
   if(m0==1) stop("You do not need this function for MLE")
   
   if(is.data.frame(x)) stop("data format must be vector or matrix")
@@ -54,14 +55,14 @@ pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
   out = pmle.norm.sub(xx, m0, lambda, an, init.val, n.init, 
                       n.iter, max.iter, tol)
   ## leave the computation to the other function.
-  alpha = out[[1]]
+  alpha.mix = out[[1]]
   mean.mix = out[[2]]
   var.mix = out[[3]]
   loglik = out[[4]]
   ploglik = out[[5]]
   
-  if (rformat) {
-    alpha.mix = rousignif(alpha)
+  if (!rformat) {
+    alpha.mix = rousignif(alpha.mix)
     mean.mix = rousignif(mean.mix)
     var.mix = rousignif(var.mix)
     loglik = rousignif(loglik)

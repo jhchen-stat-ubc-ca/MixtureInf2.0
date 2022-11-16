@@ -4,19 +4,19 @@
 \alias{pmle.norm.sub.a}
 \title{pmle.norm.sub.a}
 \usage{
-pmle.norm.sub.a(x, m, para0, lambda, an)
+pmle.norm.sub.a(xx, sample.var, m0, para0, lambda, an)
 }
 \arguments{
-\item{x}{The data that can either be a vector or a matrix with the 1st column being the observed values
-and the 2nd column being the corresponding frequencies.}
-
-\item{m}{The order of the mixture}
-
 \item{para0}{}
 
 \item{lambda}{The size of the penalized function of the mixing distribution, default value: lambda = 0.}
 
 \item{an}{}
+
+\item{x}{The data that can either be a vector or a matrix with the 1st column being the observed values
+and the 2nd column being the corresponding frequencies.}
+
+\item{m}{The order of the mixture}
 }
 \description{
 pmle.norm.sub.a

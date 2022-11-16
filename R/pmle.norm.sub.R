@@ -19,13 +19,15 @@
 #' @examples
 pmle.norm.sub <- function(x, m0, lambda, an, init.val, n.init, 
                           n.iter, max.iter, tol) {
+  # inputs are from pmle.norm, no need of checking.
+  #  iter.n report the number of EM-iterations
   sample.var = var(x);  n=length(x)
-  if (is.null(init.val)) n.init = 1
+  if (!is.null(init.val)) n.init = 1
   
   output=c()
   for (i in 1:n.init) {
     if (is.null(init.val)) {
-      ## generate random initial values if ot provided.
+      ## generate random initial values if not provided.
       mu = sort(sample(x, m0))
       tmp = (mu[-1] + mu[-m0])/2
       alpha = rep(1, m0)
@@ -51,8 +53,8 @@ pmle.norm.sub <- function(x, m0, lambda, an, init.val, n.init,
   index = which.max(output[,(3*m0+2)])
   para0 = output[index,1:(3*m0)]
   ploglike0 = output[index,(3*m0+2)]
-  increment =1
-  tt=0
+  increment = 1
+  tt = 0
   ### restart EM-iteration with the winner.
   while (increment > tol & tt < max.iter) {
     outpara = pmle.norm.sub.a(x, sample.var, m0, para0, lambda, an)
