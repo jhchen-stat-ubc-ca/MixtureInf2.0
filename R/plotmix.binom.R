@@ -5,7 +5,7 @@
 #' @param size The number of trials.
 #' @param alpha A vector of the mixing probabilities.
 #' @param theta vector of probabilities of success of each component.
-#' @param sub.pmf 
+#' @param sub.pmf logical, draw subpopulation pmf's.
 #' @param nclass The number of classes for a histogram.
 #' @param main The main title of the output graph.
 #' @param xlab The label name for the x-axis.

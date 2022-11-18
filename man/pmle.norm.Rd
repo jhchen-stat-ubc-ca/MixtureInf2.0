@@ -23,7 +23,7 @@ and the 2nd column being the corresponding frequencies.}
 
 \item{m0}{The order of the finite mixture model, default value: m0 = 1.}
 
-\item{lambda}{The size of the penalized function of the mixing distribution, default value: lambda = 0.}
+\item{lambda}{The size of the penalized function of the mixing distribution, default value: lambda = 1.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.}
 

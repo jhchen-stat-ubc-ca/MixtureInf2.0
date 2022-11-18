@@ -25,7 +25,7 @@ plotmix.binom(
 
 \item{theta}{vector of probabilities of success of each component.}
 
-\item{sub.pmf}{}
+\item{sub.pmf}{logical, draw subpopulation pmf's.}
 
 \item{nclass}{The number of classes for a histogram.}
 

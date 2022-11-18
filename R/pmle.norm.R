@@ -4,7 +4,7 @@
 #' @param x The data that can either be a vector or a matrix with the 1st column being the observed values
 #' and the 2nd column being the corresponding frequencies.
 #' @param m0 The order of the finite mixture model, default value: m0 = 1.
-#' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 0.
+#' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 1.
 #' @param inival The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
 #' m0 component means and m0 component variances, or a matrix with 3m0 columns, default value: inival = NULL. (if not provided, random initial values are used.)
 #' @param len The number of initial values chosen for the EM-algorithm, default value: len = 10.
