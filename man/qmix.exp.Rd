@@ -4,14 +4,14 @@
 \alias{qmix.exp}
 \title{qmix.exp}
 \usage{
-qmix.exp(alpha, theta, qq)
+qmix.exp(qq, alpha, mu)
 }
 \arguments{
+\item{qq}{The level of the quantile to be computed.}
+
 \item{alpha}{A vector of the mixing probabilities.}
 
-\item{theta}{A vector of the subpopulation means.}
-
-\item{qq}{The level of the quantile to be computed.}
+\item{mu}{A vector of the subpopulation means.}
 }
 \description{
 This function computes the quantile of the finite exponential mixture distribution

@@ -17,11 +17,11 @@
 #'
 #' @examples Part of the pmle.binom function
 pmle.binom.sub <- function(count, freq, size, m0, lambda,
-                           init.val, n.init, max.iter, n.iter, tol)
-{
+                           init.val, n.init, max.iter, n.iter, tol)  {
   if(m0 > 1)	{
     if (is.matrix(init.val))  n.init = nrow(init.val)
-    if (is.vector(init.val)) { init.val = t(as.matrix(init.val)); n.init = 1}
+    if (is.vector(init.val)) { 
+      init.val = t(as.matrix(init.val)); n.init = 1}
     output=c()
     for(i in 1:n.init) {
       if (is.null(init.val))   {

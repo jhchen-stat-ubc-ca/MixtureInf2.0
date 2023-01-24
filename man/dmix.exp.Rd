@@ -4,14 +4,16 @@
 \alias{dmix.exp}
 \title{dmix.exp}
 \usage{
-dmix.exp(x, alpha, theta)
+dmix.exp(x, alpha, mu, logObs = F)
 }
 \arguments{
 \item{x}{The value at which we computed the cdf.}
 
 \item{alpha}{A vector of the mixing probabilities.}
 
-\item{theta}{A vector of the subpopulation means.}
+\item{mu}{A vector of the subpopulation means.}
+
+\item{logObs}{logObs=T if the data is in logarithm}
 }
 \description{
 This function computes the pdf of the finite exponential mixture distribution.

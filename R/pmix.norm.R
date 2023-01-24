@@ -9,8 +9,7 @@
 #' @export
 #'
 #' @examples
-pmix.norm <- function(x, alpha, mu, sigma)
-{
+pmix.norm <- function(x, alpha, mu, sigma) {
   if(any(alpha<0))
     stop("error: negative mixing proportion")
   if(any(sigma<0))
@@ -23,7 +22,7 @@ pmix.norm <- function(x, alpha, mu, sigma)
   alpha = alpha/sum(alpha)
   mixture.cdf = x*0
   for(i in 1:m1) {
-    mixture.cdf = mixture.cdf+alpha[i]*pnorm(x,mu[i],sigma[i])
+    mixture.cdf = mixture.cdf+alpha[i]*pnorm(x, mu[i], sigma[i])
   }
   return(mixture.cdf)
 }

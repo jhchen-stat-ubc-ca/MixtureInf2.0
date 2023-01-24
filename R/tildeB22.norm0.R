@@ -15,11 +15,9 @@
 #'       \tilde B_{22} in this R-function is the correlation matrix.
 #'       Renamed from tb2.
 tildeB22.norm0 <- function(alpha, theta, N=10000) {
-  #alpha:  vector of mixture probabilities.
-  #theta:  vector of means of each component.
   m0 = length(alpha)
-  quan=matrix((0:(N-1)+0.5)/N,ncol=1)
-  qq.x = as.numeric(apply(quan,1,qmix.norm,alpha,theta,rep(1, m0)))
+  quan=matrix((0:(N-1)+0.5)/N, ncol=1)
+  qq.x = as.numeric(apply(quan, 1, qmix.norm, alpha, theta, rep(1, m0)))
   ## qq.x contain quantiles of the given normal mixture.
   delta = y = z = c()
   
@@ -39,7 +37,7 @@ tildeB22.norm0 <- function(alpha, theta, N=10000) {
   eigen.BB = eigen(B11)[[1]]
   if(eigen.BB[1] >= eigen.BB[2*m0-1]*10^8) {
     err = T; corr = 0
-    ## corr is computed only if the matrix does not degnerate.
+    ## corr is computed only if the matrix does not degenerate.
   } else {
     err = F
     B12 = BB[1:(2*m0-1),(2*m0):(3*m0-1)]

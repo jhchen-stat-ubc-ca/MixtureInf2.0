@@ -7,12 +7,13 @@
 emtest.exp(
   x,
   m0 = 1,
-  C = NULL,
-  inival = NULL,
-  len = 10,
-  niter = 50,
+  CC = NULL,
+  init.val = NULL,
+  n.init = 10,
+  n.iter = 50,
   tol = 1e-06,
   k = 3,
+  max.iter = 2000,
   rformat = FALSE
 )
 }
@@ -22,17 +23,19 @@ and the 2nd column being the corresponding frequency.}
 
 \item{m0}{The order under null hypothesis.}
 
-\item{C}{A optional tuning parameter for the EM-test procedure.}
+\item{CC}{A optional tuning parameter for the EM-test procedure.}
 
-\item{inival}{The initial values chosen for the EM-algorithm in order to compute the PMLE under the null model.}
+\item{init.val}{The initial values chosen for the EM-algorithm in order to compute the PMLE under the null model.}
 
-\item{len}{The number of initial values chosen for the EM-algorithm.}
+\item{n.init}{The number of initial values chosen for the EM-algorithm.}
 
-\item{niter}{The least amount of iterations for all initial values in the EM-algorithm.}
+\item{n.iter}{The least amount of iterations for all initial values in the EM-algorithm.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 
 \item{k}{The number of EM iterations needed to obtain the EM-test statistic.}
+
+\item{max.iter}{The maximum number of iterations.}
 
 \item{rformat}{The format of the output, rformat=T means the format is determined by R.
 rformat=F means the format is determined by our default setting. When the output is

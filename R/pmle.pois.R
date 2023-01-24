@@ -21,23 +21,11 @@
 #' x = rmix.pois(200, alpha, mu)
 #' pmle.pois (x, m0=2, lambda = 1, init.val = NULL, n.init=10, n.iter=50, tol=1e-6, max.iter=5000, rformat=FALSE)
 pmle.pois <- function(x, m0, lambda = 1, init.val = NULL, n.init=10, 
-                      n.iter=50, tol=1e-6, max.iter=5000, rformat=FALSE)
-  #init,val:	a matrix with two rows: 
-  #      mixing proportion, subpopulation means.
-  #lambda:	size of penalty function of mixing proportions.
-  #n.init: 	number of initial values chosen for the EM-algorithm.
-  #n.iter:    the number of iterations for initial values.
-  #tol: 	tolerance value for the convergence of the EM-algorithm.
-{
-  if(is.matrix(init.val)) {  dim.init = dim(init.val)
-  if( dim.init[1]!=2 | dim.init[2]!=m0) 
-    stop("dimension of initial value shoudl be 2, m0")
-  }
+                      n.iter=50, tol=1e-6, max.iter=5000, rformat=FALSE) {
   if(is.vector(x)) {
-    min.x = min(x); max.x = max(x)
-    count = min.x:max.x
-    freq = count*0
-    for(i in count) freq[i- min.x + 1]= sum(x==i)
+    y=as.matrix(table(x))
+    count = as.numeric(rownames(y))
+    freq=y[,1]
     xx = cbind(count, freq)
   }  ## unify the format for subsequent calculation.
   

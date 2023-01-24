@@ -18,8 +18,7 @@
 #'
 #' @examples A sub function used in the emtest.binom function.
 emstat.binom <- function(count, freq, outnull, size, m0, CC, 
-                         n.init, max.iter, n.iter, tol, k)
-{
+                         n.init, max.iter, n.iter, tol, k) {
   bbeta=c()
   for(h in 1:m0)  {
     bbeta=rbind(cbind(bbeta, rep(0.1,3^{h-1})),

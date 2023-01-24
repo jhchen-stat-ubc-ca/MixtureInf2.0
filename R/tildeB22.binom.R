@@ -14,9 +14,7 @@
 tildeB22.binom <- function(alpha, theta, size) {
   m0=length(alpha)
   x=0:size
-  delta=c()
-  y=c()
-  z=c()
+  delta = y = z =c()
   
   temp.m0 = dbinom(x,size,theta[m0])
   for(i in 1:m0)  {

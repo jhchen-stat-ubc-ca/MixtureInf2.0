@@ -31,7 +31,7 @@ emtest.binom <- function(x, size, m0, CC=NULL, lambda = 0, init.val=NULL,
 {
   if(is.vector(x)) {
     y = as.matrix(table(x))
-    count=as.numeric(rownames(y))
+    count = as.numeric(rownames(y))
     freq = y[,1]
   }
   if(is.matrix(x)) {

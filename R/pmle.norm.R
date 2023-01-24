@@ -5,12 +5,10 @@
 #' and the 2nd column being the corresponding frequencies.
 #' @param m0 The order of the finite mixture model, default value: m0 = 1.
 #' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 1.
-#' @param inival The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
-#' m0 component means and m0 component variances, or a matrix with 3m0 columns, default value: inival = NULL. (if not provided, random initial values are used.)
-#' @param len The number of initial values chosen for the EM-algorithm, default value: len = 10.
-#' @param niter The smallest number of iterations required for all initial values in the EM-algorithm. 
-#' The algorithm runs EM-iteration niter times from each initial value. 
-#' The iteration will restart from the parameter value with the highest likelihood value at the point and run until convergence. default value: niter = 50.
+#' @param an
+#' @param init.val NULL or a 3 X m0 matrix with rows made of mixing probability, component means, and variances.
+#' @param n.init A computer generated n.init initials value.
+#' @param n.iter The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further. 
 #' @param tol The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.
 #' @param rformat The format of the output. If rformat=T, 
 #' it means the output format is determined by R software. 
@@ -33,7 +31,6 @@
 #' n.iter=50, max.iter = 5000,tol=1e-8, rformat = FALSE)
 pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
                       n.init = 10, n.iter=50, max.iter = 5000, tol=1e-8, rformat = F) {
-  
   if(m0==1) stop("You do not need this function for MLE")
   
   if(is.data.frame(x)) stop("data format must be vector or matrix")

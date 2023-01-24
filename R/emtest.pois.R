@@ -42,6 +42,7 @@ emtest.pois <- function(x, m0 = 1, CC = NULL, init.val=NULL, n.init = 10,
     xx = x
   }
   n = sum(freq)	
+  ## summarize data into count + freq if not so in the first place.
   
   ###MLE of parameters under the null model	
   if(m0 > 1) {
@@ -58,7 +59,7 @@ emtest.pois <- function(x, m0 = 1, CC = NULL, init.val=NULL, n.init = 10,
     theta0 = sum(count*freq)/sum(freq)
     t0  = rbind(alpha0, theta0)
     ln0 = sum(freq*log(dpois(count, theta0)))
-    print(c("m0=1", ln0))
+    degenerate = F
     tb2 = 1
   }
   

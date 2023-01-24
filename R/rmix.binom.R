@@ -18,10 +18,6 @@
 #' mean(x)
 #' var(x)
 rmix.binom <- function(n, size, alpha, theta) {
-  #n:      sample size.
-  #alpha:  vector of mixing probabilities.
-  #theta:  vector of probabilities of success of each component.
-  #size:   number of trials.
   if(any(alpha<0)) stop("negative mixing probabilities")
   if(any(theta<0)) stop("negative subpopulation probabilities")
   m = length(alpha)

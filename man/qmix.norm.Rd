@@ -15,7 +15,7 @@ qmix.norm(pp, alpha, mu, sigma, tol = 1e-08)
 
 \item{sigma}{A vector of the component standard deviations.}
 
-\item{tol}{}
+\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 }
 \description{
 qmix.norm

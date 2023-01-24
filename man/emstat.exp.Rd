@@ -4,7 +4,7 @@
 \alias{emstat.exp}
 \title{emstat.exp}
 \usage{
-emstat.exp(x, outnull, C, len, niter, tol, k)
+emstat.exp(x, outnull, CC, n.init, n.iter, tol, k, max.iter)
 }
 \arguments{
 \item{x}{The input data that can be either a vector or a matrix with the 1st column being the observed values
@@ -12,15 +12,17 @@ and the 2nd column being the corresponding frequency.}
 
 \item{outnull}{The output from the phi0.pois function.}
 
-\item{C}{A optional tuning parameter for the EM-test procedure.}
+\item{CC}{A optional tuning parameter for the EM-test procedure.}
 
-\item{len}{The number of initial values chosen for the EM-algorithm.}
+\item{n.init}{The number of initial values chosen for the EM-algorithm.}
 
-\item{niter}{The least amount of iterations for all initial values in the EM-algorithm.}
+\item{n.iter}{The initial number of EM iterations.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 
 \item{k}{The number of EM iterations needed to obtain the EM-test statistic.}
+
+\item{max.iter}{The maximum number of iterations.}
 }
 \description{
 This function computes the EM-test statistics for the exponential mixture.

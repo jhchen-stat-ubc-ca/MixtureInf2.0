@@ -6,13 +6,13 @@
 \usage{
 plotmix.exp(
   alpha,
-  theta,
+  mu,
   qq = 0.995,
   x = NULL,
+  logObs = F,
   sub.pdf = T,
   h = 1.1,
   nclass = NULL,
-  ss = 30,
   main = "",
   xlab = "Observations scaled",
   ylab = "Density",
@@ -22,19 +22,19 @@ plotmix.exp(
 \arguments{
 \item{alpha}{A vector of the mixing probabilities.}
 
-\item{theta}{A vector of the subpopulation means.}
+\item{mu}{A vector of the subpopulation means.}
 
 \item{qq}{The range of the plot, which is the qq th quantile.}
 
 \item{x}{The data whose histogram is to be drawn, can either be a vector or a matrix.}
+
+\item{logObs}{logObs=T if data is in logarithm}
 
 \item{sub.pdf}{logical, draw subpopulation pdf's if True.}
 
 \item{h}{A scale value used by ylim.}
 
 \item{nclass}{The number of bars for the histogram if specified.}
-
-\item{ss}{}
 
 \item{main}{The title for the histogram.}
 

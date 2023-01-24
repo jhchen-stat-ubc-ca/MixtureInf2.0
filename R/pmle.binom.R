@@ -19,8 +19,7 @@
 #' x = rmix.binom(1000, size, alpha, theta)
 #' pmle.binom(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,n.iter = 50, max.iter = 5000, tol = 1e-6, rformat=FALSE)
 pmle.binom <- function(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,
-                       n.iter = 50, max.iter = 5000, tol = 1e-6, rformat=FALSE)
-{
+                       n.iter = 50, max.iter = 5000, tol = 1e-6, rformat=FALSE) {
   if(is.vector(x)) {
     y=as.matrix(table(x))
     count = as.numeric(rownames(y))
@@ -49,11 +48,11 @@ pmle.binom <- function(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,
     list('MLE of mixing proportions:'=alpha,
          'MLE of component parameters:'=theta,
          'log-likelihood:'=loglik,
-         'number of EM iterations:'= out$iter.n)
+         'number of additional EM iterations:'= out$iter.n)
   else
     list('PMLE of mixing proportions:'=alpha,
          'PMLE of component parameters:'=theta,
          'log-likelihood:'=loglik,
          'Penalized log-likelihood:'=ploglik,
-         'number of EM iterations:'= out$iter.n)
+         'number of additional EM iterations:'= out$iter.n)
 }

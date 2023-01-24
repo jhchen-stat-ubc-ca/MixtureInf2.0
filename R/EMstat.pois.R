@@ -20,11 +20,10 @@
 #' @examples A function used in the emtest.pois function
 EMstat.pois <- function(count, freq, alpha0, theta0, m0, ln0, 
                         CC, n.init, n.iter, tol, k, max.iter)
-  # n.init:      number of initial values chosen for the EM-algorithm.
-  # n.iter:    least number of iterations for all initial values in the EM-algorithm.
-  # tol:      tolerance value for the convergence of the EM-algorithm. 
-# k:	     number of EM iterations to obtain EM-test statistic.
 {
+  ### all possible mixing proportions combinations from
+  ###    {0.1, 0.3, 0.5}  Li and Chen (JASA 2010)
+  ###   Total is 3^m0.
   bbeta=c()
   for(h in 1:m0)  {
     bbeta=rbind(cbind(bbeta,rep(0.1,3^{h-1})),
