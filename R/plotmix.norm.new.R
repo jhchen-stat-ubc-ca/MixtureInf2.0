@@ -5,37 +5,21 @@ plotmix.norm.new <-
     if(hist.ind & is.null(x)) stop("data needed for histogram")
     
     if(hist.ind) {
-      if (is.vector(x)) { 
-        xx = x
-        nn = length(xx);   xx = sort(xx)
-        rr = (xx[nn]-xx[1])/k
-        aa = xx[1] + (0:k)*rr
-        bb = rep(0, k+1)
-        for (i in 1:(k+1)) bb[i] = sum(xx >= aa[i]-rr/2 & xx < aa[i]+rr/2)
-        bb = bb/nn/rr
-        xx.grid = seq(aa[1]-rr , aa[k+1]+rr, rr/50) 
-      }  ## aa: grid for histogram; bb: height, rr: width
-      
-      if (is.matrix(x)) {  ## handle frequency data
-        k = dim(x)[1]-1
-        aa = x[,1] 
-        rr = (aa[2]-aa[1])
-        bb = x[,2]/sum(x[,2])/rr
-        xx.grid = seq(aa[1]-rr , aa[k+1]+rr, rr/50)
+      if(is.matrix(x)) {
+        xx = c()
+        for(i in 1:dim(x)[1]) xx = c(xx, rep(x[i,1], x[i,2]))
+        x = as.numeric(xx)
       }
-      
+      if (is.vector(x)) {
+      hist(x, freq= F, nclass = k, main=main, xlab = xlab, ylab = ylab)
+      xx.grid = seq(min(x), max(x), (diff(range(yy))/20)/50)
       sub.density = c(); sig = sigma^.5
       for (j in 1:m0) {
         sub.density = rbind(sub.density, alpha[j]*dnorm(xx.grid, mu[j], sig[j])) }
-      mixture.density = colSums(sub.density)
-      density.height = max(bb) * extra.height
-      ### mixture and subpop densities.
-
-      hist(x, prob=T, nclass = k, main=main, xlab = xlab, ylab = ylab)
-      
-      ### add densities
-      lines(xx.grid, mixture.density, lty=1)
-      if (comp) for (j in 1:m0) lines(xx.grid, sub.density[j,], lty=2)
+        mixture.density = colSums(sub.density) 
+        lines(xx.grid, mixture.density, lty=1)
+        if (comp) for (j in 1:m0) lines(xx.grid, sub.density[j,], lty=2)
+      }
     }
     
     if(hist.ind==F) {
