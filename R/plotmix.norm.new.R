@@ -12,7 +12,7 @@ plotmix.norm.new <-
       }
       if (is.vector(x)) {
       hist(x, freq= F, nclass = k, main=main, xlab = xlab, ylab = ylab)
-      xx.grid = seq(min(x), max(x), (diff(range(yy))/20)/50)
+      xx.grid = seq(min(x), max(x), (diff(range(yy))/k)/50)
       sub.density = c(); sig = sigma^.5
       for (j in 1:m0) {
         sub.density = rbind(sub.density, alpha[j]*dnorm(xx.grid, mu[j], sig[j])) }
