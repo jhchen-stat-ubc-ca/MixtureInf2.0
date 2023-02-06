@@ -5,32 +5,43 @@
 \title{plotmix.norm}
 \usage{
 plotmix.norm(
-  x,
-  theta,
-  hist = 1,
-  comp = TRUE,
+  x = NULL,
+  xx.grid = NULL,
+  alpha,
+  mu,
+  sigma,
+  m0,
   k = 20,
-  h = 1,
+  extra.height = 1.05,
+  comp = T,
+  hist.ind = T,
   main = "",
-  xlab = "Observations",
-  ylab = ""
+  xlab = "Observed values",
+  ylab = "Density/Histogram"
 )
 }
 \arguments{
 \item{x}{The input data that can be either a vector or a matrix with the 1st column being the observed values
 and the 2nd column being the corresponding frequency.}
 
-\item{theta}{The output of pmle.norm, emtest.norm or the parameter values. This includes the emixing proportions and the mixing parameters.}
+\item{xx.grid}{The grid of the histogram.}
 
-\item{hist}{The style of the histogram. We can choose to obtain two styles of histogram (hist=1 or 2). hist=0 means no histogram.}
+\item{alpha}{A vector of the mixing proportions.}
+
+\item{mu}{A vector of the component means.}
+
+\item{sigma}{A vector of the component standard deviations.}
+
+\item{m0}{The order of the finite mixture model.}
+
+\item{k}{The number of bars for the histogram.}
+
+\item{extra.height}{Additional height multiplier used to enlarge the plot vertically.}
 
 \item{comp}{A parameter for the compontent fitted density. 
 comp=T means component fitted densities are drawn, and comp=F means no component fitted densities.}
 
-\item{k}{A single number giving the number of cells for the histogram.}
-
-\item{h}{A number between 0 and 1, specifying the height of the density function, default 
-value is 1 (complete density function).}
+\item{hist.ind}{It is ture if there's data to be used to plot the histogram.}
 
 \item{main}{The title of the graph.}
 
@@ -40,4 +51,14 @@ value is 1 (complete density function).}
 }
 \description{
 plotmix.norm
+}
+\examples{
+n=2000
+alpha = c(.2, .5, .3)
+mu = c(-1, 2, 5)
+sigma = c(1, .5, 1.1)
+yy = rmix.norm(n, alpha, mu, sigma)
+plotmix.norm(yy, xx.grid = NULL, alpha, mu, sigma, m0=3,
+k = 20, extra.height = 1.05, comp = T, hist.ind = T,
+main="", xlab="Observed values", ylab="Density/Histogram")
 }
