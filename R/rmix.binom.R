@@ -4,7 +4,7 @@
 #' @param n The sample size.
 #' @param size The number of trials.
 #' @param alpha A vector of the mixing proportions.
-#' @param theta A vector of the probabilities of success of each component..
+#' @param theta A vector of the probabilities of success of each component.
 #'
 #' @return
 #' @export

@@ -39,7 +39,7 @@ maxmm.binom(
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 }
 \description{
-This function is meant for em-test. It gets the PMLE under a restrict alternative given a beta.j value.
+This function is meant for em-test. It gets the PMLE under a restricted alternative given a beta.j value.
 }
 \examples{
 A sub function used in the emstat.binom function

@@ -17,15 +17,16 @@
 #' @return
 #' @export
 #'
-#' @examples alpha = c(.5, .1, .4)
-#' theta = c(.1, .35, .8)
-#' size = 25
-#' x = rmix.binom(1000, size, alpha, theta)
-#' y = as.matrix(table(x))
+#' @examples theta = c(.3, .3, .6)
+#' alpha = c(.5, .3, .2)
+#' size = 20; n = 1000
+#' xx=rmix.binom(n, size, alpha, theta)
+#' y=as.matrix(table(xx))
 #' count = as.numeric(rownames(y))
-#' freq = y[,1]
-#' emtest.binom(x, size, m0=2, CC=NULL, lambda = 0, init.val=NULL,
-#' n.init=10, n.iter=50, max.iter=200, tol=1e-6, k=3, rformat=FALSE)
+#' freq=y[,1]
+#' init.val = c(.2, .7, .2, .8)
+#' emtest.binom(cbind(count, freq), size, m0=2, CC=NULL, lambda = 0, init.val,
+#'              n.init=10, n.iter=50, max.iter = 2000, tol=1e-6, k=5, rformat=FALSE)
 emtest.binom <- function(x, size, m0, CC=NULL, lambda = 0, init.val=NULL,
                          n.init=10, n.iter=50, max.iter = 2000, tol=1e-6, k=3, rformat=FALSE)
 {

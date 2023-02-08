@@ -1,6 +1,6 @@
 #' maxmm.binom
 #'
-#' @description This function is meant for em-test. It gets the PMLE under a restrict alternative given a beta.j value.
+#' @description This function is meant for em-test. It gets the PMLE under a restricted alternative given a beta.j value.
 #' @param count The observed values for the binomial count data.
 #' @param freq The corresponding frequency of the above counts.
 #' @param size The number of trials of the binomial distribution.

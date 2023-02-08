@@ -13,7 +13,7 @@ rmix.binom(n, size, alpha, theta)
 
 \item{alpha}{A vector of the mixing proportions.}
 
-\item{theta}{A vector of the probabilities of success of each component..}
+\item{theta}{A vector of the probabilities of success of each component.}
 }
 \description{
 This function generates a random sample from the finite binomial mixture distributions.
