@@ -3,8 +3,8 @@
 #' @description This function computes the PMLE of parameters under the alternative model given a beta value. 
 #' @param x The input data that can be either a vector or a matrix with the 1st column being the observed values
 #' and the 2nd column being the corresponding frequency.
-#' @param bbeta 
-#' @param theta0 
+#' @param bbeta The fixed mixing proportions.
+#' @param theta0 The subpopulations mean fitted under the null hypothesis.
 #' @param n.init The number of initial values chosen for the EM-algorithm.
 #' @param n.iter The initial number of EM iterations.
 #' @param tol The tolerance value for the convergence of the EM-algorithm.

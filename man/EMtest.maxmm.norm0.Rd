@@ -7,13 +7,14 @@
 EMtest.maxmm.norm0(xx, bbeta, mle0, m0, n.init, n.iter, tol)
 }
 \arguments{
-\item{xx}{}
+\item{xx}{The input data that can be either a vector or a matrix with the 1st column being the observed values
+and the 2nd column being the corresponding frequency.}
 
 \item{bbeta}{The fixed mixing proportions.}
 
 \item{mle0}{The subpopulation means fitted under the null hypothesis}
 
-\item{m0}{}
+\item{m0}{The order of the finite normal mixture model.}
 
 \item{n.init}{The number of initial values used.}
 

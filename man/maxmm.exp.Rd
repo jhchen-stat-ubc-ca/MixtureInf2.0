@@ -10,9 +10,9 @@ maxmm.exp(x, bbeta, theta0, n.init, n.iter, tol, max.iter)
 \item{x}{The input data that can be either a vector or a matrix with the 1st column being the observed values
 and the 2nd column being the corresponding frequency.}
 
-\item{bbeta}{}
+\item{bbeta}{The fixed mixing proportions.}
 
-\item{theta0}{}
+\item{theta0}{The subpopulations mean fitted under the null hypothesis.}
 
 \item{n.init}{The number of initial values chosen for the EM-algorithm.}
 
