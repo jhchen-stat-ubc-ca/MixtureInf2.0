@@ -3,8 +3,8 @@
 #' @description This function computes \tilde B_{22} matrix in the
 #'              EM-test for one-parameter subpopulation distributions
 #'              including normal with known variance.
-#' @param alpha 
-#' @param theta 
+#' @param alpha A vector of the mixing proportions.
+#' @param theta A vector of the subpopulation means.
 #' @param N 
 #'
 #' @return

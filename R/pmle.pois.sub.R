@@ -1,18 +1,3 @@
-# This function is used by pmle.pois. 
-# It does the real work but not stand alone.
-# x is a matrix with two columns: observed counts and frequency.
-# m0: order of the mixture
-# init.val: if provided, it must be a vector made of
-#          m0 mixing proportions and m0 subpopulation means.
-# n.init: if init.val is not provided, n.init random 
-#          initial values will be generated here.
-# n.iter: each initial value will be feed to EM-iterations
-#         the one ends with the high penalized likelihood
-#         will be selected as winner, and used as initial
-#         value for the EM-iteration until convergence.
-# tol: minimum increment of ploglikelihood for EM to continue.
-# max.iter: the maximum EM-iteration allowed.
-
 #' pmle.pois.sub
 #'
 #' @description This function is used by pmle.pois. It does the real work but not stand alone.

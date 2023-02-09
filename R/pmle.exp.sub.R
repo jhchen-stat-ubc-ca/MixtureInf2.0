@@ -1,7 +1,8 @@
 #' pmle.exp.sub
 #'
 #' @description This function does the real work of computing the PMLE of the mixing distribution under the exponential mixture model. 
-#' @param xx 
+#' @param xx The input data that can be either a vector or a matrix with the 1st column being the observed values
+#' and the 2nd column being the corresponding frequency.
 #' @param m0 The order under null hypothesis.
 #' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 1.
 #' @param init.val NULL or a 2 X m0 matrix with rows made of the mixing probabilities and component means.

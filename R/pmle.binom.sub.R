@@ -1,8 +1,8 @@
 #' pmle.binom.sub
 #'
 #' @description A sub function for pmle.binom, does the actual work of PMLE binomial mixture. 
-#' @param count Data
-#' @param freq Frequency 
+#' @param count The observed values for the binomial count data.
+#' @param freq The corresponding frequency of the above counts.
 #' @param size The size parameter of the Binomial.
 #' @param m0 The order being fitted.
 #' @param lambda The level of the penalty on mixing proportions.

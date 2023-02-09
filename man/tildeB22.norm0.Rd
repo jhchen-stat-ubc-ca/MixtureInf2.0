@@ -7,9 +7,9 @@
 tildeB22.norm0(alpha, theta, N = 10000)
 }
 \arguments{
-\item{alpha}{}
+\item{alpha}{A vector of the mixing proportions.}
 
-\item{theta}{}
+\item{theta}{A vector of the subpopulation means.}
 
 \item{N}{}
 }

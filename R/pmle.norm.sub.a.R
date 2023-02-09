@@ -3,7 +3,7 @@
 #' @param x The data that can either be a vector or a matrix with the 1st column being the observed values
 #' and the 2nd column being the corresponding frequencies.
 #' @param m The order of the mixture
-#' @param para0 
+#' @param para0 The paramters of the subpopulations.
 #' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 0.
 #' @param an 
 #'

@@ -18,9 +18,9 @@ pmle.binom.sub(
 )
 }
 \arguments{
-\item{count}{Data}
+\item{count}{The observed values for the binomial count data.}
 
-\item{freq}{Frequency}
+\item{freq}{The corresponding frequency of the above counts.}
 
 \item{size}{The size parameter of the Binomial.}
 

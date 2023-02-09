@@ -1,10 +1,3 @@
-## x: a vector of data whose histogram is to be drawn.
-## x.max: if x is null, 0:x.max is the range of pmf to be plotted.
-##  alpha: a vector of mixing proportions
-##  mu : a vector of subpopulation means
-## sub.pmf: logical, draw subpopulation pmf's.
-## nclass: number of bars for histogram.
-
 #' plotmix.pois
 #'
 #' @description This function plots the data in histogram with 

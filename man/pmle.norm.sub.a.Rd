@@ -7,7 +7,7 @@
 pmle.norm.sub.a(xx, sample.var, m0, para0, lambda, an)
 }
 \arguments{
-\item{para0}{}
+\item{para0}{The paramters of the subpopulations.}
 
 \item{lambda}{The size of the penalized function of the mixing distribution, default value: lambda = 0.}
 

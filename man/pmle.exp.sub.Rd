@@ -7,7 +7,8 @@
 pmle.exp.sub(xx, m0, lambda, init.val, n.init, n.iter, max.iter, tol)
 }
 \arguments{
-\item{xx}{}
+\item{xx}{The input data that can be either a vector or a matrix with the 1st column being the observed values
+and the 2nd column being the corresponding frequency.}
 
 \item{m0}{The order under null hypothesis.}
 
