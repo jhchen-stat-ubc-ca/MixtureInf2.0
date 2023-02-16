@@ -17,30 +17,7 @@ pmle.binom.sub(
   tol
 )
 }
-\arguments{
-\item{count}{The observed values for the binomial count data.}
-
-\item{freq}{The corresponding frequency of the above counts.}
-
-\item{size}{The size parameter of the Binomial.}
-
-\item{m0}{The order being fitted.}
-
-\item{lambda}{The level of the penalty on mixing proportions.}
-
-\item{init.val}{The vector of the mixing proportions plus the probabilities of success.}
-
-\item{n.init}{The number of the initial values chosen for the EM-algorithm.}
-
-\item{max.iter}{The maximum amount of iterations allowed.}
-
-\item{n.iter}{The actual number of em-iterations}
-
-\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
-}
 \description{
 A sub function for pmle.binom, does the actual work of PMLE binomial mixture.
-}
-\examples{
-Part of the pmle.binom function
+It is used in the pmle.binom function.
 }

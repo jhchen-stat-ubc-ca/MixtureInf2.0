@@ -39,6 +39,20 @@ rformat=F means the format is determined by our default setting. When the output
 larger than 0.001, it is determined by round(output,3); When the output is less than 0.001,
 it is determined by signif(output,3).}
 }
+\value{
+It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component
+parameters), log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
+}
 \description{
 This function computes the penalized MLE, given iid observations under the finite exponential mixture model.
+}
+\examples{
+n = 4000
+mu = c(3, 9, 18)
+alpha = c(.5, .3, .2)
+x = rmix.exp(n, alpha, mu) 
+pmle.exp(x, 3)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

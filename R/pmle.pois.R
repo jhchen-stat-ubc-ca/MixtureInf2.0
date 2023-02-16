@@ -12,8 +12,10 @@
 #' @param n.iter Least amount of iterations for all initial values in the EM-algorithm.
 #' @param max.iter Maximum amount of iterations.
 #' @param rformat A specific format, please see rousignif.R function. 
-#' @return
-#' @export
+#' 
+#' @return It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component
+#' parameters), log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
 #' @examples n = 1000
 #' mu = c(9, 10)

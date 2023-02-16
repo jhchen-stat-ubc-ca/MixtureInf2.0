@@ -35,6 +35,9 @@ plotmix.binom(
 
 \item{ylab}{The label name for the y-axis.}
 }
+\value{
+It returns the histogram of the observations and the plot of the fitted probability mass function.
+}
 \description{
 This function plots a histogram together with a suggested mixture pmf.
 }
@@ -43,8 +46,8 @@ alpha = c(.5, .1, .4)
 theta = c(.1, .35, .8)
 size = 25
 x = rmix.binom(1000, size, alpha, theta)
-y = as.matrix(table(x))
-count = as.numeric(rownames(y))
-freq = y[,1]
 plotmix.binom(x, size, alpha, theta, sub.pmf = T, nclass=size, main="", xlab="Counts", ylab="Prob")
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

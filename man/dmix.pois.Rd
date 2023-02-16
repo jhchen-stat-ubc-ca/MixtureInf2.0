@@ -6,19 +6,7 @@
 \usage{
 dmix.pois(xx, alpha, theta)
 }
-\arguments{
-\item{xx}{A vector of x at which the probability is computed.}
-
-\item{alpha}{A vector of the mixing proportions.}
-
-\item{theta}{A vector of the subpopulation means.}
-}
 \description{
-This function computes the probability mass function of the Poisson mixture
-}
-\examples{
-#Compute a density function from a 2 component poisson mixture
-theta = c(9, 10)
-alpha = c(.4, .6)
-dmix.pois(1:20, alpha, theta)
+This function computes the probability mass function of the Poisson mixture.
+It is used in the emstat.pois function.
 }

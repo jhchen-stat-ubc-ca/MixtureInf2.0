@@ -1,20 +1,7 @@
 #' emstat.exp
 #'
 #' @description This function computes the EM-test statistics for the exponential mixture.
-#' @param x The input data that can be either a vector or a matrix with the 1st column being the observed values
-#' and the 2nd column being the corresponding frequency. 
-#' @param outnull The output from the phi0.pois function. 
-#' @param CC A optional tuning parameter for the EM-test procedure.
-#' @param n.init The number of initial values chosen for the EM-algorithm.
-#' @param n.iter The initial number of EM iterations.
-#' @param tol The tolerance value for the convergence of the EM-algorithm.
-#' @param k The number of EM iterations needed to obtain the EM-test statistic.
-#' @param max.iter The maximum number of iterations.
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' It is used in the emtest.exp function.
 emstat.exp <- function(x, outnull, CC, n.init, n.iter, tol, k, 
                        max.iter) {
   theta0 = outnull$theta

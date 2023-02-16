@@ -7,22 +7,22 @@
 #' @param x A vector of data whose histogram is to be drawn from.
 #' @param x.max If x is null, 0:x.max is the range of pmf to be plotted.
 #' @param alpha A vector of the mixing proportions.
-#' @param theta A vector of the subpopulation means.
+#' @param mu A vector of the subpopulation means.
 #' @param sub.pmf logical, draw subpopulation pmf's.
 #' @param nclass The number of bars for the histogram.
 #' @param main The title for the histogram.
 #' @param xlab The name of the x-axis label.
 #' @param ylab The name of the y-axis label.
 #'
-#' @return
-#' @export
+#' @return It returns the histogram of the observations and the plot of the fitted probability mass function.
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples n = 1000
-#' mu = c(9, 10)
-#' alpha = c(.4, .6)
-#' x = rmix.pois(200, alpha, mu)
-#' plotmix.pois(x, alpha=alpha, mu = mu)
-plotmix.pois = function(alpha, mu, x = NULL, x.max= NULL,
+#' @examples n = 2000
+#' mu = c(2, 9, 11)
+#' alpha = c(.2, .3, .5)
+#' xx = rmix.pois(n, alpha, mu)
+#' plotmix.pois(xx, alpha, mu)
+plotmix.pois = function(x = NULL, alpha, mu, x.max= NULL,
                         sub.pmf = T, nclass=NULL, main="", 
                         xlab="Counts", ylab="Prob") {
   if(is.null(x)) {

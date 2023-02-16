@@ -13,7 +13,10 @@ rmix.binom(n, size, alpha, theta)
 
 \item{alpha}{A vector of the mixing proportions.}
 
-\item{theta}{A vector of the probabilities of success of each component.}
+\item{theta}{A vector of the probability of success of each component.}
+}
+\value{
+It returns the sample of size n from an m-component binomial mixture.
 }
 \description{
 This function generates a random sample from the finite binomial mixture distributions.
@@ -27,4 +30,7 @@ size = 25
 x = rmix.binom(1000, size, alpha, theta)
 mean(x)
 var(x)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

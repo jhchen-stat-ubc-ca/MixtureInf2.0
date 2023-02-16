@@ -4,20 +4,24 @@
 #' @param alpha A vector of the mixing probabilities.
 #' @param mu A vector of the subpopulation means.
 #' @param qq The range of the plot, which is the qq th quantile.
-#' @param x The data whose histogram is to be drawn, can either be a vector or a matrix.
-#' @param logObs logObs=T if data is in logarithm
+#' @param x The data whose histogram is to be drawn from, can either be a vector or a matrix.
+#' @param logObs logObs=T if data is in logarithm transformation form.
 #' @param sub.pdf logical, draw subpopulation pdf's if True.
 #' @param h A scale value used by ylim.
 #' @param nclass The number of bars for the histogram if specified.
 #' @param main The title for the histogram.
 #' @param xlab The name of the x-axis label.
 #' @param ylab The name of the y-axis label.
-#' @param ylim Used only for the histogram if specified.
+#' @param ylim The range of the y-axis, used only for the histogram if specified.
 #'
-#' @return
-#' @export
+#' @return It returns the histogram of observations and the plot of the fitted density
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples
+#' @examples n = 4000
+#' mu = c(3, 9, 18)
+#' alpha = c(.5, .3, .2)
+#' x = rmix.exp(n, alpha, mu) 
+#' plotmix.exp(alpha, mu, qq = 0.995, x) 
 plotmix.exp <- function(alpha, mu, qq = 0.995, x = NULL, logObs=F,
                         sub.pdf = T, h=1.1, nclass = NULL, main="", 
                         xlab = "Observations scaled", ylab = "Density", ylim=NULL) 

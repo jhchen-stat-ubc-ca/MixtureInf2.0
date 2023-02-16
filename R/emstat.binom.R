@@ -1,22 +1,7 @@
 #' emstat.binom
 #'
-#' @description This function computes the EM-test statistics for a binomial mixture. 
-#' @param count The observed values for the binomial count data.
-#' @param freq The corresponding frequency of the above counts.
-#' @param outnull The fit of the null model. (output obtained from the phi0.binom (pmle.binom) function.) 
-#' @param size The number of trials of the binomial distribution.
-#' @param m0 The order under the null hypothesis.
-#' @param CC A optional tuning parameter for the EM-test procedure. 
-#' @param n.init The number of initial values chosen for the EM-algorithm.
-#' @param max.iter The maximum amount of iterations allowed.
-#' @param n.iter The least amount of iterations for the initial values.
-#' @param tol The tolerance value for the convergence of the EM-algorithm. 
-#' @param k The number of EM iterations to obtain EM-test statistic.
-#'
-#' @return
-#' @export
-#'
-#' @examples A sub function used in the emtest.binom function.
+#' @description This function computes the EM-test statistics for a binomial mixture.
+#' It is used in the emtest.binom function.
 emstat.binom <- function(count, freq, outnull, size, m0, CC, 
                          n.init, max.iter, n.iter, tol, k) {
   bbeta=c()

@@ -21,7 +21,7 @@ emtest.exp(
 \item{x}{The input data that can be either a vector or a matrix with the 1st column being the observed values
 and the 2nd column being the corresponding frequency.}
 
-\item{m0}{The order under null hypothesis.}
+\item{m0}{The order under the null hypothesis.}
 
 \item{CC}{A optional tuning parameter for the EM-test procedure.}
 
@@ -42,6 +42,32 @@ rformat=F means the format is determined by our default setting. When the output
 larger than 0.001, it is determined by round(output,3); When the output is less than 0.001,
 it is determined by signif(output,3).}
 }
+\value{
+Return an object of class EM-test with the following elements:
+The MLE of the parameters under the null hypothesis (order = m0)
+The PMLE of the parameters under the specific alternative hypothesis whose order is 2m0
+EM-test statistic
+P-value
+Level of penalty
+The number of iterations
+}
 \description{
 This function computes the EM-test statistic and the p-value for the null hypothesis H0:m=m0.
+}
+\examples{
+n = 4000
+mu = c(3, 9, 18)
+alpha = c(.5, .3, .2)
+x = rmix.exp(n, alpha, mu) 
+n.init = 10; n.iter =50
+max.iter = 2000
+emtest.exp(x, m0 = 2, CC = NULL, init.val = NULL, n.init=10, n.iter=50, tol = 1e-6, k=3, rformat = FALSE)
+}
+\references{
+Chen, J. and Li, P. (2011). Tuning the EM-test for the order of finite mixture models. The Canadian Journal of Statistics. 39, 389-404.
+Li, P. and Chen, J. (2010). Testing the order of a finite mixture model. JASA. 105, 1084-1092.
+Li, P., Chen, J. and Marriott, P. (2009). Non-finite Fisher information and homogeneity: The EM approach. Biometrika. 96, 411-426.
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

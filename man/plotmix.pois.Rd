@@ -5,9 +5,9 @@
 \title{plotmix.pois}
 \usage{
 plotmix.pois(
+  x = NULL,
   alpha,
   mu,
-  x = NULL,
   x.max = NULL,
   sub.pmf = T,
   nclass = NULL,
@@ -17,9 +17,11 @@ plotmix.pois(
 )
 }
 \arguments{
+\item{x}{A vector of data whose histogram is to be drawn from.}
+
 \item{alpha}{A vector of the mixing proportions.}
 
-\item{x}{A vector of data whose histogram is to be drawn from.}
+\item{mu}{A vector of the subpopulation means.}
 
 \item{x.max}{If x is null, 0:x.max is the range of pmf to be plotted.}
 
@@ -32,8 +34,9 @@ plotmix.pois(
 \item{xlab}{The name of the x-axis label.}
 
 \item{ylab}{The name of the y-axis label.}
-
-\item{theta}{A vector of the subpopulation means.}
+}
+\value{
+It returns the histogram of the observations and the plot of the fitted probability mass function.
 }
 \description{
 This function plots the data in histogram with 
@@ -42,9 +45,12 @@ This function plots the data in histogram with
              The pmf is given as if it is a continuous curve.
 }
 \examples{
-n = 1000
-mu = c(9, 10)
-alpha = c(.4, .6)
-x = rmix.pois(200, alpha, mu)
-plotmix.pois(x, alpha=alpha, mu = mu)
+n = 2000
+mu = c(2, 9, 11)
+alpha = c(.2, .3, .5)
+xx = rmix.pois(n, alpha, mu)
+plotmix.pois(xx, alpha, mu)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

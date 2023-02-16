@@ -6,29 +6,6 @@
 \usage{
 pmle.pois.sub(x, m0, lambda, init.val, n.init, n.iter, tol, max.iter = 5000)
 }
-\arguments{
-\item{x}{Data that can be either a vector or a matrix of observations. 
-1st column: counts 
-2nd column: frequencies.}
-
-\item{m0}{The order of the finite mixture model.}
-
-\item{lambda}{The size of the penalty function of the mixing proportions.}
-
-\item{init.val}{A user provided initial values for the EM-algorithm to 
-compute the PMLE under the null model.}
-
-\item{n.init}{The number of initial values chosen for the EM-algorithm.}
-
-\item{n.iter}{Least amount of iterations for all initial values in the EM-algorithm.}
-
-\item{max.iter}{Maximum amount of iterations.}
-
-\item{rformat}{A specific format, please see rousignif.R function.}
-}
 \description{
 This function is used by pmle.pois. It does the real work but not stand alone.
-}
-\examples{
-A sub function used in the pmle.pois function.
 }

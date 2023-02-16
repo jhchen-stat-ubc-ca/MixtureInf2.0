@@ -36,6 +36,10 @@ compute the PMLE under the null model.}
 
 \item{rformat}{A specific format, please see rousignif.R function.}
 }
+\value{
+It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component
+parameters), log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
+}
 \description{
 This function computes the PMLE of parameters under a Poisson mixture
 }
@@ -45,4 +49,7 @@ mu = c(9, 10)
 alpha = c(.4, .6)
 x = rmix.pois(200, alpha, mu)
 pmle.pois (x, m0=2, lambda = 1, init.val = NULL, n.init=10, n.iter=50, tol=1e-6, max.iter=5000, rformat=FALSE)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

@@ -2,15 +2,8 @@
 #'
 #' @description This function computes the \tilde B_{22} matrix in the
 #' EM-test for one-parameter subpopulation distributions,
-#' including binomial. See Chen and Li (2010JASA)
-#' @param alpha A vector of the mixing probabilities.
-#' @param theta A vector of the probabilities of success for each subpopulation.
-#' @param size The number of trials in the binomial subpopulation.
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' including binomial. See Chen and Li (2010JASA). 
+#' It is used in the emtest.binom function.
 tildeB22.binom <- function(alpha, theta, size) {
   m0=length(alpha)
   x=0:size

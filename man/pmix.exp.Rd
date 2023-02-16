@@ -7,7 +7,7 @@
 pmix.exp(x, alpha, theta)
 }
 \arguments{
-\item{x}{The value at which we compute the cdf.}
+\item{x}{The value at which we computed the cdf.}
 
 \item{alpha}{A vector of the mixing probabilities.}
 
@@ -15,4 +15,14 @@ pmix.exp(x, alpha, theta)
 }
 \description{
 This function computes the cdf of the finite exponential mixture distribution
+}
+\examples{
+n = 4000
+theta = c(3, 9, 18)
+alpha = c(.5, .3, .2)
+x = rmix.exp(n, alpha, mu)
+pmix.exp(x, alpha, theta)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

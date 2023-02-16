@@ -1,21 +1,22 @@
 #' pmle.binom
 #'
-#' @description This function computes the PMLE under a binomial mixture
-#' @param x The input data, either a vector or a matrix columns with two columns: count and freq.
+#' @description This function computes the PMLE under a binomial mixture.
+#' @param x The input data, either a vector or a matrix with two columns: count and freq.
 #' @param size The number of trials of the subpopulation binomial distribution.
 #' @param m0 The order of the finite mixture model to be fitted.
 #' @param lambda The size of the penalty function of the mixing proportions.
-#' @param init.val The initial values for the EM-algorithm. Usually a matrix with 2 rows: mixing proportions and probs of success.
-#' @param n.init The number of the initial values for the EM-algorithm.
+#' @param init.val The initial values for the EM-algorithm. Usually a matrix with 2 rows: mixing proportions and the probability of success.
+#' @param n.init The number of initial values chosen for the EM-algorithm.
 #' @param n.iter The number of the initial EM iterations for all initial values.
 #' @param max.iter The maximum amount of iterations allowed. Set to 5000.
 #' @param tol The tolerance value for the convergence of the EM-algorithm.
-#' @param rformat The format of the output
+#' @param rformat The format of the output.
 #'
-#' @return
-#' @export
+#' @return It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component parameters), 
+#' log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples > size = 25
+#' @examples size = 25
 #' x = rmix.binom(1000, size, alpha, theta)
 #' pmle.binom(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,n.iter = 50, max.iter = 5000, tol = 1e-6, rformat=FALSE)
 pmle.binom <- function(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,

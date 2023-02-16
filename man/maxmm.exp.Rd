@@ -6,22 +6,7 @@
 \usage{
 maxmm.exp(x, bbeta, theta0, n.init, n.iter, tol, max.iter)
 }
-\arguments{
-\item{x}{The input data that can be either a vector or a matrix with the 1st column being the observed values
-and the 2nd column being the corresponding frequency.}
-
-\item{bbeta}{The fixed mixing proportions.}
-
-\item{theta0}{The subpopulations mean fitted under the null hypothesis.}
-
-\item{n.init}{The number of initial values chosen for the EM-algorithm.}
-
-\item{n.iter}{The initial number of EM iterations.}
-
-\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
-
-\item{max.iter}{The maximum number of iterations.}
-}
 \description{
-This function computes the PMLE of parameters under the alternative model given a beta value.
+This function computes the PMLE under the alternative model given a beta value. 
+It is used in the emstat.exp function.
 }

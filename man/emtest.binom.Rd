@@ -20,7 +20,7 @@ emtest.binom(
 )
 }
 \arguments{
-\item{x}{The input data, either a vector or a matrix columns with two columns: count and freq.}
+\item{x}{The input data, either a vector or a matrix with two columns: count and freq.}
 
 \item{size}{The number of trials of the binomial.}
 
@@ -28,7 +28,7 @@ emtest.binom(
 
 \item{CC}{A optional tuning parameter for the EM-test procedure.}
 
-\item{lambda}{A tuning for the fitting null model.}
+\item{lambda}{A tuning parameter for the fitted null model.}
 
 \item{init.val}{The initial values for the PMLE under the null model.}
 
@@ -36,13 +36,22 @@ emtest.binom(
 
 \item{n.iter}{The least amount of iterations for all initial values.}
 
-\item{max.iter}{The maximum amount of iterations allowed.}
+\item{max.iter}{The maximum number of iterations allowed.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 
 \item{k}{The number of EM iterations in order to obtain the EM-test statistic.}
 
 \item{rformat}{The format of the output. See rforma().}
+}
+\value{
+Return an object of class EM-test with the following elements:
+The MLE of the parameters under the null hypothesis (order = m0)
+The PMLE of the parameters under the specific alternative hypothesis whose order is 2m0
+EM-test statistic
+P-value
+Level of penalty
+The number of iterations
 }
 \description{
 This function computes the EM-test statistic and the p-value for H0: m=m0.
@@ -58,4 +67,12 @@ freq=y[,1]
 init.val = c(.2, .7, .2, .8)
 emtest.binom(cbind(count, freq), size, m0=2, CC=NULL, lambda = 0, init.val,
              n.init=10, n.iter=50, max.iter = 2000, tol=1e-6, k=5, rformat=FALSE)
+}
+\references{
+Chen, J. and Li, P. (2011). Tuning the EM-test for the order of finite mixture models. The Canadian Journal of Statistics. 39, 389-404.
+Li, P. and Chen, J. (2010). Testing the order of a finite mixture model. JASA. 105, 1084-1092.
+Li, P., Chen, J. and Marriott, P. (2009). Non-finite Fisher information and homogeneity: The EM approach. Biometrika. 96, 411-426.
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

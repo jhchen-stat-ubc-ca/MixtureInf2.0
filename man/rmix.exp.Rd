@@ -13,6 +13,18 @@ rmix.exp(n, alpha, theta)
 
 \item{theta}{A vector of the subpopulation means.}
 }
+\value{
+It returns a sample of size n from an m-component exponential mixture.
+}
 \description{
 This function generates the iid samples from the finite exponential mixture
+}
+\examples{
+n = 4000
+mu = c(3, 9, 18)
+alpha = c(.5, .3, .2)
+rmix.exp(n, alpha, mu)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

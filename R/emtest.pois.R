@@ -14,19 +14,23 @@
 #' @param rformat A specific format, please see rousignif.R function. 
 #' @param max.iter Maximum amount of iterations.
 #'
-#' @return
-#' @export
+#' @return Return an object of class EM-test with the following elements:
+#' The MLE of the parameters under the null hypothesis (order = m0)
+#' The PMLE of the parameters under the specific alternative hypothesis whose order is 2m0
+#' EM-test statistic
+#' P-value
+#' Level of penalty
+#' The number of iterations
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
+#' @references Chen, J. and Li, P. (2011). Tuning the EM-test for the order of finite mixture models. The Canadian Journal of Statistics. 39, 389-404.
+#' Li, P. and Chen, J. (2010). Testing the order of a finite mixture model. JASA. 105, 1084-1092.
+#' Li, P., Chen, J. and Marriott, P. (2009). Non-finite Fisher information and homogeneity: The EM approach. Biometrika. 96, 411-426.
 #'
-#' @examples n = 1000
-#' mu = c(9, 10)
-#' alpha = c(.4, .6)
-#' if(is.vector(x)) 
-#' {min.x = min(x); max.x = max(x)
-#' count = min.x:max.x
-#' freq = count*0
-#' for(i in count) freq[i- min.x + 1]= sum(x==i)
-#' xx = cbind(count, freq)} 
-#' emtest.pois(x, m0 = 2, CC = NULL, init.val = NULL, n.init = 10, n.iter = 50, tol = 1e-6, k = 3, rformat = F, max.iter = 5000)
+#' @examples n = 3000
+#' mu = c(3, 9, 15)
+#' alpha = c(.2, .3, .5)
+#' xx = rmix.pois(n, alpha, mu)
+#' emtest.pois(xx, m0 = 3, CC = NULL, init.val=NULL, n.init = 10, n.iter = 50, tol = 1e-6, k=3, rformat = F, max.iter = 5000)
 emtest.pois <- function(x, m0 = 1, CC = NULL, init.val=NULL, n.init = 10, 
                         n.iter = 50, tol = 1e-6, k=3, rformat = F, max.iter = 5000)
 {

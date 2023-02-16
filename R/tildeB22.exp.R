@@ -1,13 +1,7 @@
 #' tildeB22.exp
 #'
 #' @description This function computes \tilde B_{22} under the Exponential mixture.
-#' @param alpha A vector of the mixing probabilities.
-#' @param mu A vector of the means of each component.
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' It is used in the emtest.exp function.
 tildeB22.exp <- function(alpha, mu) {
   m0 = length(alpha)
   alpha = alpha/sum(alpha)

@@ -6,12 +6,8 @@
 \usage{
 tildeB22.pois(alpha, theta)
 }
-\arguments{
-\item{alpha}{A vector of the mixing proportions.}
-
-\item{theta}{A vector of the subpopulation means.}
-}
 \description{
 This function computes \tilde B_{22} under the Poisson mixture.
              \tilde B_{22} is standardized to the correlation matrix.
+             It is used in the emtest.pois function.
 }

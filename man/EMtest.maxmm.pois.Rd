@@ -17,44 +17,8 @@ EMtest.maxmm.pois(
   max.iter
 )
 }
-\arguments{
-\item{count}{The observed values for the Poisson count data.}
-
-\item{freq}{The corresponding frequency of the above counts.}
-
-\item{alpha0}{The mixing proportion fitted under the null model.}
-
-\item{theta0}{The subpopulation means fitted under the null model.}
-
-\item{m0}{The order of the mixture to be fitted.}
-
-\item{n.init}{The number of initial values chosen for the EM-algorithm.}
-
-\item{n.iter}{Least amount of iterations for all initial values in the EM-algorithm.}
-
-\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
-
-\item{max.iter}{Maximum amount of iterations.}
-
-\item{ln0}{The log likelihood of the best null model obtained from previous function.}
-
-\item{CC}{The optional tuning parameter for EM-test procedure.}
-
-\item{k}{The number of EM iterations required in order to obtain EM-test statistic.}
-}
 \description{
 This function computes the PMLE of parameters under the alternative model 
              for EM-test given a beta.i value.
-}
-\examples{
-n = 1000
-mu = c(9, 10)
-alpha = c(.4, .6)
-if(is.vector(x)) 
-{min.x = min(x); max.x = max(x)
-count = min.x:max.x
-freq = count*0
-for(i in count) freq[i- min.x + 1]= sum(x==i)
-xx = cbind(count, freq)} 
-EMtest.maxmm.pois(count, freq, beta.i=c(.5, .5), alpha0= alpha, theta0=mu, m0=2, n.init=20, n.iter=50, tol=1e-4, max.iter=1000)
+             It is used in the EMstat.pois function.
 }

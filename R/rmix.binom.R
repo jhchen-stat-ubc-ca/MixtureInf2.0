@@ -4,10 +4,10 @@
 #' @param n The sample size.
 #' @param size The number of trials.
 #' @param alpha A vector of the mixing proportions.
-#' @param theta A vector of the probabilities of success of each component.
+#' @param theta A vector of the probability of success of each component.
 #'
-#' @return
-#' @export
+#' @return It returns the sample of size n from an m-component binomial mixture.
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
 #' @examples #Generate a random sample from a 3 component binomial mixture,
 #' and computes the sample mean and variance. 

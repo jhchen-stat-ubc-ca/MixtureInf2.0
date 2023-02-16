@@ -2,32 +2,7 @@
 #'
 #' @description This function computes the PMLE of parameters under the alternative model 
 #'              for EM-test given a beta.i value.
-#' @param count The observed values for the Poisson count data.
-#' @param freq The corresponding frequency of the above counts.
-#' @param alpha0 The mixing proportion fitted under the null model.
-#' @param theta0 The subpopulation means fitted under the null model.
-#' @param m0 The order of the mixture to be fitted.
-#' @param ln0 The log likelihood of the best null model obtained from previous function.
-#' @param CC The optional tuning parameter for EM-test procedure.
-#' @param n.init The number of initial values chosen for the EM-algorithm.
-#' @param n.iter Least amount of iterations for all initial values in the EM-algorithm.
-#' @param tol The tolerance value for the convergence of the EM-algorithm. 
-#' @param k The number of EM iterations required in order to obtain EM-test statistic.
-#' @param max.iter Maximum amount of iterations.
-#'
-#' @return
-#' @export
-#'
-#' @examples n = 1000
-#' mu = c(9, 10)
-#' alpha = c(.4, .6)
-#' if(is.vector(x)) 
-#' {min.x = min(x); max.x = max(x)
-#' count = min.x:max.x
-#' freq = count*0
-#' for(i in count) freq[i- min.x + 1]= sum(x==i)
-#' xx = cbind(count, freq)} 
-#' EMtest.maxmm.pois(count, freq, beta.i=c(.5, .5), alpha0= alpha, theta0=mu, m0=2, n.init=20, n.iter=50, tol=1e-4, max.iter=1000)
+#'              It is used in the EMstat.pois function.
 EMtest.maxmm.pois <- function(count, freq, beta.i, alpha0, theta0, 
                              m0, n.init, n.iter, tol, max.iter)
 {	

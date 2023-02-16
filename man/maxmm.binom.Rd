@@ -17,30 +17,7 @@ maxmm.binom(
   tol
 )
 }
-\arguments{
-\item{count}{The observed values for the binomial count data.}
-
-\item{freq}{The corresponding frequency of the above counts.}
-
-\item{size}{The number of trials of the binomial distribution.}
-
-\item{m0}{The order under the null hypothesis.}
-
-\item{beta.j}{}
-
-\item{theta0}{}
-
-\item{n.init}{The number of initial values chosen for the EM-algorithm.}
-
-\item{max.iter}{The maximum amount of iterations allowed.}
-
-\item{n.iter}{The least amount of iterations for the initial values.}
-
-\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
-}
 \description{
 This function is meant for em-test. It gets the PMLE under a restricted alternative given a beta.j value.
-}
-\examples{
-A sub function used in the emstat.binom function
+It is used in the emtest.binom function.
 }

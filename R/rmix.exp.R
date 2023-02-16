@@ -5,10 +5,13 @@
 #' @param alpha A vector of the mixing probabilities.
 #' @param theta A vector of the subpopulation means.
 #'
-#' @return
-#' @export
+#' @return It returns a sample of size n from an m-component exponential mixture.
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples
+#' @examples n = 4000
+#' mu = c(3, 9, 18)
+#' alpha = c(.5, .3, .2)
+#' rmix.exp(n, alpha, mu)
 rmix.exp <- function (n, alpha, theta)  {
   m = length(alpha)
   alpha = alpha/sum(alpha)

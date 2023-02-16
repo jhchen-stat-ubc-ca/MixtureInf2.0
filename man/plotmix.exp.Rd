@@ -26,9 +26,9 @@ plotmix.exp(
 
 \item{qq}{The range of the plot, which is the qq th quantile.}
 
-\item{x}{The data whose histogram is to be drawn, can either be a vector or a matrix.}
+\item{x}{The data whose histogram is to be drawn from, can either be a vector or a matrix.}
 
-\item{logObs}{logObs=T if data is in logarithm}
+\item{logObs}{logObs=T if data is in logarithm transformation form.}
 
 \item{sub.pdf}{logical, draw subpopulation pdf's if True.}
 
@@ -42,8 +42,21 @@ plotmix.exp(
 
 \item{ylab}{The name of the y-axis label.}
 
-\item{ylim}{Used only for the histogram if specified.}
+\item{ylim}{The range of the y-axis, used only for the histogram if specified.}
+}
+\value{
+It returns the histogram of observations and the plot of the fitted density
 }
 \description{
 This function plots a histogram plus the corresponding fitted mixture pdf or the mixture pdf only, for exponential mixture.
+}
+\examples{
+n = 4000
+mu = c(3, 9, 18)
+alpha = c(.5, .3, .2)
+x = rmix.exp(n, alpha, mu) 
+plotmix.exp(alpha, mu, qq = 0.995, x) 
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

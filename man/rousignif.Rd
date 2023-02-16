@@ -6,12 +6,7 @@
 \usage{
 rousignif(x)
 }
-\arguments{
-\item{x}{A single numeric or a numeric vector or matrix.}
-}
 \description{
 This function returns the output combining round and signif functions.
-}
-\examples{
-A function used in the pmle.pois function.
+It is used in various main functions in the package.
 }

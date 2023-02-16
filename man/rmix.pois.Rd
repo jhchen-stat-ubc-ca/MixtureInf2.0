@@ -13,13 +13,18 @@ rmix.pois(n, alpha, theta)
 
 \item{theta}{A vector of the subpopulation means.}
 }
+\value{
+It returns a sample of size n from an m-component Poisson mixture.
+}
 \description{
 This function generates a random sample from a finite Poisson mixture
 }
 \examples{
-#Generate a random sample from a 2 component Poisson mixture,
-and computes the sample mean and variance. 
-x <- rmix.pois(200,c(0.3,0.7),c(2,5))
-mean(x)
-var(x)
+n = 3000
+mu = c(3, 9, 15)
+alpha = c(.2, .3, .5)
+xx = rmix.pois(n, alpha, mu)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

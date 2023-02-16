@@ -1,19 +1,7 @@
 #' maxmm.exp
 #'
-#' @description This function computes the PMLE of parameters under the alternative model given a beta value. 
-#' @param x The input data that can be either a vector or a matrix with the 1st column being the observed values
-#' and the 2nd column being the corresponding frequency.
-#' @param bbeta The fixed mixing proportions.
-#' @param theta0 The subpopulations mean fitted under the null hypothesis.
-#' @param n.init The number of initial values chosen for the EM-algorithm.
-#' @param n.iter The initial number of EM iterations.
-#' @param tol The tolerance value for the convergence of the EM-algorithm.
-#' @param max.iter The maximum number of iterations.
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' @description This function computes the PMLE under the alternative model given a beta value. 
+#' It is used in the emstat.exp function.
 maxmm.exp <- function(x, bbeta, theta0, n.init, n.iter, tol, max.iter) {
   ### Divide the parameter space of subpop mean)
   m0 = length(bbeta)

@@ -2,13 +2,7 @@
 #'
 #' @description This function computes \tilde B_{22} under the Poisson mixture.
 #'              \tilde B_{22} is standardized to the correlation matrix.
-#' @param alpha A vector of the mixing proportions.
-#' @param theta A vector of the subpopulation means.
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#'              It is used in the emtest.pois function.
 tildeB22.pois <- function(alpha, theta) {
   m0 = length(alpha)
   x = qpois(0.0001, min(theta)):qpois(0.9999, max(theta))

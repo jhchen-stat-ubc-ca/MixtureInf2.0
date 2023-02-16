@@ -18,7 +18,7 @@ pmle.binom(
 )
 }
 \arguments{
-\item{x}{The input data, either a vector or a matrix columns with two columns: count and freq.}
+\item{x}{The input data, either a vector or a matrix with two columns: count and freq.}
 
 \item{size}{The number of trials of the subpopulation binomial distribution.}
 
@@ -26,9 +26,9 @@ pmle.binom(
 
 \item{lambda}{The size of the penalty function of the mixing proportions.}
 
-\item{init.val}{The initial values for the EM-algorithm. Usually a matrix with 2 rows: mixing proportions and probs of success.}
+\item{init.val}{The initial values for the EM-algorithm. Usually a matrix with 2 rows: mixing proportions and the probability of success.}
 
-\item{n.init}{The number of the initial values for the EM-algorithm.}
+\item{n.init}{The number of initial values chosen for the EM-algorithm.}
 
 \item{n.iter}{The number of the initial EM iterations for all initial values.}
 
@@ -36,13 +36,20 @@ pmle.binom(
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 
-\item{rformat}{The format of the output}
+\item{rformat}{The format of the output.}
+}
+\value{
+It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component parameters), 
+log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
 }
 \description{
-This function computes the PMLE under a binomial mixture
+This function computes the PMLE under a binomial mixture.
 }
 \examples{
-> size = 25
+size = 25
 x = rmix.binom(1000, size, alpha, theta)
 pmle.binom(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,n.iter = 50, max.iter = 5000, tol = 1e-6, rformat=FALSE)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

@@ -1,23 +1,7 @@
 #' EMstat.pois
 #'
 #' @description This function computes the EM-test statistics for Poisson mixture. 
-#' @param count The observed values for the Poisson count data.
-#' @param freq The corresponding frequency of the above counts.
-#' @param alpha0 The mixing proportion fitted under the null model.
-#' @param theta0 The subpopulation means fitted under the null model.
-#' @param m0 The order of the mixture to be fitted.
-#' @param ln0 The log likelihood of the best null model obtained from previous function.
-#' @param CC The optional tuning parameter for EM-test procedure.
-#' @param n.init The number of initial values chosen for the EM-algorithm.
-#' @param n.iter Least amount of iterations for all initial values in the EM-algorithm.
-#' @param tol The tolerance value for the convergence of the EM-algorithm. 
-#' @param k The number of EM iterations required in order to obtain EM-test statistic.
-#' @param max.iter The Maximum amount of iterations.
-#'
-#' @return
-#' @export
-#'
-#' @examples A function used in the emtest.pois function
+#' It is used in the emtest.pois function.
 EMstat.pois <- function(count, freq, alpha0, theta0, m0, ln0, 
                         CC, n.init, n.iter, tol, k, max.iter)
 {

@@ -5,10 +5,13 @@
 #' @param mu A vector of the subpopulation means.
 #' @param qq The level of the quantile to be computed.
 #'
-#' @return
-#' @export
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples
+#' @examples n = 4000
+#' theta = c(3, 9, 18)
+#' alpha = c(.5, .3, .2)
+#' x = rmix.exp(n, alpha, mu)
+#' qmix.exp(.99, alpha, theta)
 qmix.exp <- function(qq, alpha, mu) {
   #alpha:  vector of mixture probabilities.
   #mu:  vector of subpopulation means.

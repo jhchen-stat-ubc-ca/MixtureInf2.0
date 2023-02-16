@@ -18,32 +18,7 @@ emstat.binom(
   k
 )
 }
-\arguments{
-\item{count}{The observed values for the binomial count data.}
-
-\item{freq}{The corresponding frequency of the above counts.}
-
-\item{outnull}{The fit of the null model. (output obtained from the phi0.binom (pmle.binom) function.)}
-
-\item{size}{The number of trials of the binomial distribution.}
-
-\item{m0}{The order under the null hypothesis.}
-
-\item{CC}{A optional tuning parameter for the EM-test procedure.}
-
-\item{n.init}{The number of initial values chosen for the EM-algorithm.}
-
-\item{max.iter}{The maximum amount of iterations allowed.}
-
-\item{n.iter}{The least amount of iterations for the initial values.}
-
-\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
-
-\item{k}{The number of EM iterations to obtain EM-test statistic.}
-}
 \description{
 This function computes the EM-test statistics for a binomial mixture.
-}
-\examples{
-A sub function used in the emtest.binom function.
+It is used in the emtest.binom function.
 }

@@ -1,21 +1,31 @@
 #' emtest.binom
 #'
 #' @description This function computes the EM-test statistic and the p-value for H0: m=m0.
-#' @param x The input data, either a vector or a matrix columns with two columns: count and freq. 
+#' @param x The input data, either a vector or a matrix with two columns: count and freq. 
 #' @param size The number of trials of the binomial.
 #' @param m0 The order under the null hypothesis.
 #' @param CC A optional tuning parameter for the EM-test procedure. 
-#' @param lambda A tuning for the fitting null model.
+#' @param lambda A tuning parameter for the fitted null model.
 #' @param init.val The initial values for the PMLE under the null model. 
 #' @param n.init The number of initial values chosen for the EM-algorithm.
 #' @param n.iter The least amount of iterations for all initial values.
-#' @param max.iter The maximum amount of iterations allowed.
+#' @param max.iter The maximum number of iterations allowed.
 #' @param tol The tolerance value for the convergence of the EM-algorithm.
 #' @param k The number of EM iterations in order to obtain the EM-test statistic.
 #' @param rformat The format of the output. See rforma().
 #'
-#' @return
-#' @export
+#' @return Return an object of class EM-test with the following elements:
+#' The MLE of the parameters under the null hypothesis (order = m0)
+#' The PMLE of the parameters under the specific alternative hypothesis whose order is 2m0
+#' EM-test statistic
+#' P-value
+#' Level of penalty
+#' The number of iterations
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
+#' @references Chen, J. and Li, P. (2011). Tuning the EM-test for the order of finite mixture models. The Canadian Journal of Statistics. 39, 389-404.
+#' Li, P. and Chen, J. (2010). Testing the order of a finite mixture model. JASA. 105, 1084-1092.
+#' Li, P., Chen, J. and Marriott, P. (2009). Non-finite Fisher information and homogeneity: The EM approach. Biometrika. 96, 411-426.
+
 #'
 #' @examples theta = c(.3, .3, .6)
 #' alpha = c(.5, .3, .2)

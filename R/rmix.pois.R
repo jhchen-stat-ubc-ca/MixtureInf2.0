@@ -5,15 +5,13 @@
 #' @param alpha A vector of the mixing proportions.
 #' @param theta A vector of the subpopulation means.
 #'
-#' @return
-#' @export
+#' @return It returns a sample of size n from an m-component Poisson mixture.
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples #Generate a random sample from a 2 component Poisson mixture,
-#'and computes the sample mean and variance. 
-#'x <- rmix.pois(200,c(0.3,0.7),c(2,5))
-#'mean(x)
-#'var(x)
-
+#' @examples n = 3000
+#' mu = c(3, 9, 15)
+#' alpha = c(.2, .3, .5)
+#' xx = rmix.pois(n, alpha, mu)
 rmix.pois <- function(n, alpha, theta) {
   #n:      sample size.
   #alpha:  vector of mixing proportions.
