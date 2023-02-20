@@ -1,19 +1,6 @@
 #' EMtest.norm.iter
 #'
-#' @param xx The input data that can be either a vector or a matrix with the 1st column being the observed values
-#'          and the 2nd column being the corresponding frequency.
-#' @param nn 
-#' @param m0 The order of the finite mixture model.
-#' @param para 
-#' @param sigma0 
-#' @param beta.i 
-#' @param pen.size 
-#' @param k 
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' @description This function computes the EM-algorithm in the emtest.norm function.
 EMtest.norm.iter <- function(xx, nn, m0, para, sigma0, beta.i, pen.size, k) {
   alpha = para[1:(2*m0)]
   mu = para[(2*m0+1):(4*m0)]

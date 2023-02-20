@@ -22,7 +22,7 @@
 #' alpha = c(.2, .3, .5)
 #' xx = rmix.pois(n, alpha, mu)
 #' plotmix.pois(xx, alpha, mu)
-plotmix.pois = function(x = NULL, alpha, mu, x.max= NULL,
+plotmix.pois = function(alpha, mu, x = NULL, x.max= NULL,
                         sub.pmf = T, nclass=NULL, main="", 
                         xlab="Counts", ylab="Prob") {
   if(is.null(x)) {

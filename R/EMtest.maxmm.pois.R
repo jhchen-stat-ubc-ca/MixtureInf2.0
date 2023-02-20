@@ -4,18 +4,17 @@
 #'              for EM-test given a beta.i value.
 #'              It is used in the EMstat.pois function.
 EMtest.maxmm.pois <- function(count, freq, beta.i, alpha0, theta0, 
-                             m0, n.init, n.iter, tol, max.iter)
-{	
-  ###Calculate eta_h's (the cut points of parameter space of theta)
+                              m0, n.init, n.iter, tol, max.iter) {	
   eta = rep(0, m0+1)
   eta[m0+1] = max(count)
   if(m0>1) { for(i in 2:m0) eta[i]=(theta0[i-1]+theta0[i])/2 }
+  ### divide the parameter space of theta
   
   output=c()
   for (i in 0:n.init) {
     ###create initial values for EM-algorithm
     if(i < 1) {
-      alpha = runif(m0 )
+      alpha = runif(m0)
       alpha = alpha/sum(alpha)
       alpha1= alpha*beta.i
       alpha2= alpha*(1-beta.i)
@@ -25,11 +24,11 @@ EMtest.maxmm.pois <- function(count, freq, beta.i, alpha0, theta0,
         theta2[l]=runif(1, eta[l], eta[l+1]) 
       }
     } else {
-      alpha1 = alpha0*beta.i;   alpha2=alpha0*(1-beta.i)
+      alpha1 = alpha0*beta.i;   alpha2 = alpha0*(1-beta.i)
       for (l in 1:m0) {
         theta1[l] = (4*theta0[l]+runif(1, eta[l], eta[l+1]))/5 
         theta2[l] = (4*theta0[l]+runif(1, eta[l], eta[l+1]))/5 }
-      ## added extra one with the null mixing proportion
+      ## added extra initial with the null mixing proportion
     }
     
     ###run n.iter EM-iterations to find a winner.
@@ -52,13 +51,8 @@ EMtest.maxmm.pois <- function(count, freq, beta.i, alpha0, theta0,
     }  ### enforce the restriction on the subpop means.
     ### completed the fixed number of iterations.
     
-    #pdf.part1 =apply(as.matrix(theta1,ncol=1),1,dpois,x=count)
-    #pdf.part2 =apply(as.matrix(theta2,ncol=1),1,dpois,x=count)
-    #pdf.sub1 = t(t(pdf.part1)*alpha1)+1e-50/m0
-    #pdf.sub2 = t(t(pdf.part2)*alpha2)+1e-50/m0
-    #pdf = apply(pdf.sub1, 1, sum)+apply(pdf.sub2, 1, sum)
     pdf = dmix.pois(count, c(alpha1, alpha2), c(theta1, theta2))
-    ln = sum(freq*log(pdf))
+    ln = sum(freq*log(pdf))   ## log likelihood value
     output=rbind(output, c(alpha1, alpha2, theta1, theta2, ln))
   }
   
@@ -90,16 +84,14 @@ EMtest.maxmm.pois <- function(count, freq, beta.i, alpha0, theta0,
       theta2[l]=max(min(theta2[l],eta[l+1]),eta[l]) 
       ### pull back to intervals defined by eta.
     }
-    #pdf.part1 =apply(as.matrix(theta1,ncol=1),1,dpois,x=count)
-    #pdf.part2 =apply(as.matrix(theta2,ncol=1),1,dpois,x=count)
-    #pdf.sub1 =t(t(pdf.part1)*alpha1)+1e-50/m0
-    #pdf.sub2 =t(t(pdf.part2)*alpha2)+1e-50/m0
-    #pdf = apply(pdf.sub1,1,sum)+apply(pdf.sub2,1,sum)
     pdf = dmix.pois(count, c(alpha1, alpha2), c(theta1, theta2))
     ln1 = sum(freq*log(pdf))
     err = ln1-ln0
     ln0 = ln1
     tt = tt+1
   }
-  list("alpha1"=alpha1, "alpha2"=alpha2, "theta1"=theta1,"theta2"=theta2)
+  list("alpha1"=alpha1, 
+       "alpha2"=alpha2, 
+       "theta1"=theta1,
+       "theta2"=theta2)
 }

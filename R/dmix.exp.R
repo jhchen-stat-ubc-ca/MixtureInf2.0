@@ -1,7 +1,7 @@
 #' dmix.exp
 #'
 #' @description This function computes the pdf of the finite exponential mixture distribution.
-#' It is used in the emstat.exp function.
+#' It is used in various functions within the Exponential folder.
 dmix.exp <- function(x, alpha, mu, logObs = F) {
   dmix = 0
   for(i in 1:length(alpha)) {

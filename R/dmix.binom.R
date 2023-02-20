@@ -1,7 +1,7 @@
 #' dmix.binom
 #'
 #' @description This function computes the probability mass function points for vector x.
-#' It is used in the emstat.binom function.
+#' It is used in various functions within the Binomial folder.
 dmix.binom <- function(x, size, alpha, theta) {
   pmf.x = x*0
   m0 = length(alpha)

@@ -19,8 +19,6 @@
 #' @examples
 pmle.norm.sub <- function(x, m0, lambda, an, init.val, n.init, 
                           n.iter, max.iter, tol) {
-  # inputs are from pmle.norm, no need of checking.
-  #  iter.n report the number of EM-iterations
   sample.var = var(x);  n=length(x)
   if (!is.null(init.val)) n.init = 1
   

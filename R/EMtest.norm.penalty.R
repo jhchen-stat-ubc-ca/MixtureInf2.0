@@ -1,13 +1,7 @@
 #' EMtest.norm.penalty
 #'
-#' @param m0 The order
-#' @param para The list of mixing proportion and its mean and var
-#' @param nn The sample size
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' @description This function produces the recommended size of penalty of EMtest under the Gaussian mixture.
+#' It is used in the emtest.norm function.  
 EMtest.norm.penalty <- function(m0, para, nn) {
   if(m0 ==1) an = 0.25
   if(m0 > 3) an = 0.2
@@ -42,3 +36,28 @@ EMtest.norm.penalty <- function(m0, para, nn) {
   
   return(an)
 }
+
+### Compute overlapping probability of two subpopulations
+###         of Gaussian mixture.
+###   Chen, Li and Fu (2012 Jasa). Section 3.1
+###   replace over1() in the previous package.
+
+EMtest.norm.omega <-
+  function(alpi, mui, sigi, alpj, muj, sigj, tol=1e-5)
+  {
+    sigi=sqrt(sigi); sigj=sqrt(sigj)
+    
+    if(abs(sigi/sigj-1) < tol) {
+      delta = abs(mui-muj)/sigi
+      if(delta < tol) delta = tol
+      omega = pnorm(-delta/2 + log( alpj / alpi)/delta)
+    } else {
+      ncp=(mui-muj)*sigi/(sigi^2-sigj^2)
+      temp1 = sigj^2*(mui-muj)^2/(sigj^2-sigi^2)^2
+      temp2 = 2*sigj^2/(sigi^2-sigj^2)*log(alpi*sigj/alpj/sigi)
+      sqrt.value = sqrt(max(temp1 - temp2,0))
+      omega = pnorm(sqrt.value-ncp)-pnorm(-sqrt.value-ncp)
+      if(sigi<sigj) omega = 1 - omega
+    }
+    return(omega)
+  }

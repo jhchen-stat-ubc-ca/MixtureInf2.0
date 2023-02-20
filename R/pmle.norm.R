@@ -70,5 +70,5 @@ pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
          rbind(alpha.mix, mean.mix, var.mix),
        'log-likelihood' = loglik,
        'Penalized log-likelihood'= ploglik,
-       'iter.n' = out[[6]])
+       'iter.n' = out[[6]] )
 }

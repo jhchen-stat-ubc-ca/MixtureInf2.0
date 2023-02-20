@@ -1,24 +1,7 @@
 #' emstat.norm0
 #'
 #' @description The function computes the EM-test statistics for univariate normal mixture
-#' with known variance.
-#' @param xx The input data that can be either a vector or a matrix with the 1st column being the observed values
-#'          and the 2nd column being the corresponding frequency.
-#' @param mle0 The output from the pmle.norm0 function without the penalty. 
-#' The output contains one row of mixing proportions and one row of subpopulation means.
-#' @param ln0 The penalized log likelihood fitted under the null hypothesis.
-#' @param m0 The order of the finite mixture model.
-#' @param CC The tuning parameter for the EM-test procedure. 
-#' @param n.init A computer generated n.init initials value.
-#' @param n.iter The number of EM iterations for each initial values. 
-#' The one gained the most in likelihood will be iterative further. 
-#' @param tol The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.
-#' @param k The number of iterations for the EM-test statistic.
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' with known variance. It is used in the emtest.norm0 function.
 emstat.norm0 <-
   function(xx, mle0, ln0, m0, CC, n.init, n.iter, tol, k=3)
     # xx:        data as a plain vector. 
