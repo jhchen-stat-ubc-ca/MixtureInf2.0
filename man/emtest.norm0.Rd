@@ -41,6 +41,22 @@ it is determined by signif(output,3).}
 
 \item{var}{The known component variance.}
 }
+\value{
+Return an object of class EM-test with the following elements:
+The MLE of the parameters under the null hypothesis (order = m0)
+The PMLE of the parameters under the specific alternative hypothesis whose order is 2m0
+EM-test statistic
+P-value
+Level of penalty
+The number of iterations
+}
 \description{
 This function computes the EM-test statistic and the p-value for the hypothesis H0:m=m0.
+}
+\references{
+Chen, J. and Li, P. (2009). Hypothesis test for normal mixture models: The EM approach. The Annals of Statistics. 37, 2523-2542.
+Chen, J., Li, P. and Fu, Y. (2012). Inference on the order of a normal mixture. JASA. 107, 1096-1105.
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

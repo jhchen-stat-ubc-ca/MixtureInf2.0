@@ -49,6 +49,9 @@ comp=T means component fitted densities are drawn, and comp=F means no component
 
 \item{ylab}{The label for the y-axis}
 }
+\value{
+It returns the histogram of observations and the plot of the fitted density
+}
 \description{
 plotmix.norm
 }
@@ -61,4 +64,7 @@ yy = rmix.norm(n, alpha, mu, sigma)
 plotmix.norm(yy, xx.grid = NULL, alpha, mu, sigma, m0=3,
 k = 20, extra.height = 1.05, comp = T, hist.ind = T,
 main="", xlab="Observed values", ylab="Density/Histogram")
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

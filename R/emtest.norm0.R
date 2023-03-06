@@ -15,27 +15,21 @@
 #'                larger than 0.001, it is determined by round(output,3); When the output is less than 0.001,
 #'                it is determined by signif(output,3).
 #'
-#' @return
-#' @export
+#' @return Return an object of class EM-test with the following elements:
+#' The MLE of the parameters under the null hypothesis (order = m0)
+#' The PMLE of the parameters under the specific alternative hypothesis whose order is 2m0
+#' EM-test statistic
+#' P-value
+#' Level of penalty
+#' The number of iterations
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
+#' @references Chen, J. and Li, P. (2009). Hypothesis test for normal mixture models: The EM approach. The Annals of Statistics. 37, 2523-2542.
+#' Chen, J., Li, P. and Fu, Y. (2012). Inference on the order of a normal mixture. JASA. 107, 1096-1105.
 #'
 #' @examples
 emtest.norm0 <-
   function(x, var.sub=1, m0=1, init.val=NULL, n.init=10, n.iter=50, 
            max.iter = 5000, tol = 1e-6, k=3, rformat=FALSE)  {
-    #x: 		data, can be either a vector or a matrix 
-    #         1st column being the observed values 
-    #       	2nd column being the corresponding frequencies. 
-    #var.sub:		known component variance.
-    #m0: 		order of the null mixture.
-    #lambda: 		optional tuning parameter for EM-test procedure.
-    #init.val:	initial values chosen for the EM-algorithm to 
-    #           compute the PMLE0 under the null model.
-    #n.iter:  number of iterations for each initial value
-    #n.init: 	number of initial values for the EM-algorithm.
-    #tol: 	tolerance value for the convergence of the EM-algorithm.
-    #k:  number of EM iterations in the EM-test statistic definition.
-    #rformat	See iformat()
-    
     nn = length(x)
     xx = x
     if (is.matrix(x)) {

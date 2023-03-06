@@ -6,25 +6,7 @@
 \usage{
 dmix.norm(xx, alpha, mu, sigma)
 }
-\arguments{
-\item{xx}{The uni-variate mixture density at x.}
-
-\item{alpha}{A vector of the mixing proportions.}
-
-\item{mu}{A vector of the component means.}
-
-\item{sigma}{A vector of the component standard deviations.}
-
-\item{tol}{A fixed value at 1e-8}
-}
 \description{
-A function that computes the density of the univariate normal mixture
-}
-\examples{
-mu = c(8, 9)
-alpha = c(.2, .8)
-sigma = rep(1,length(alpha))
-n = 1000
-x = rmix.norm(n,alpha,mu)
-dmix.norm(1:10,alpha,mu,sigma)
+A function that computes the density of the univariate normal mixture.
+It is used in various functions within the Gaussian folder.
 }

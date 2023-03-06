@@ -9,22 +9,25 @@ rmix.norm(n, alpha, mu, sigma = rep(1, length(alpha)))
 \arguments{
 \item{n}{The sample size.}
 
-\item{alpha}{A Vector of mixture proportions of length m, the order of the mixture.}
+\item{alpha}{A vector of the mixture proportions of length m, also the order of the mixture.}
 
-\item{mu}{A Vector of means of component distributions.}
+\item{mu}{A vector of the component distributions' mean.}
 
-\item{sigma}{A vector of standard deviations of component distributions, default value: sigma =
+\item{sigma}{A vector of the component distributions' standard deviation, default value: sigma =
 rep(1,length(alpha)).}
 }
 \value{
 It returns a samples of size n from an m-component normal mixture.
 }
 \description{
-Generate a random sample from a mixture of normals.
+This function generates a random sample from a mixture of normal.
 }
 \examples{
 #generate a random sample from a 2 component normal mixture,
 plot the histogram of the data.
 x <- rmix.norm(200,c(0.3,0.7),c(-1,2),c(1,2))
 hist(x)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

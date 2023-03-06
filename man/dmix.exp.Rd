@@ -8,5 +8,5 @@ dmix.exp(x, alpha, mu, logObs = F)
 }
 \description{
 This function computes the pdf of the finite exponential mixture distribution.
-It is used in the emstat.exp function.
+It is used in various functions within the Exponential folder.
 }

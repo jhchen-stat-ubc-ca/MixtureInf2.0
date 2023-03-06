@@ -18,3 +18,13 @@ pmix.norm(x, alpha, mu, sigma)
 \description{
 pmix.norm
 }
+\examples{
+n=3000
+alpha = c(.2, .5, .3); mu = c(-2, 4, 5); 
+sigma = c(1, .8, 1.1)*2
+x = rmix.norm(n, alpha, mu, sigma)
+pmix.norm(x,alpha,mu,sigma)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
+}

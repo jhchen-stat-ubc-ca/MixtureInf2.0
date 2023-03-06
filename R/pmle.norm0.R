@@ -21,71 +21,68 @@
 #' When the output is less than 0.001, it is determined by signif(output,3).
 #' The default value of rformat is F.
 #'
-#' @return It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions, mixing means
-#'and mixing variances), log-likelihood value at the PMLE or MLE and the penalized log-likelihood
-#'value at the PMLE.
-
-#' @export
+#' @return It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component parameters), 
+#' log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples 
-pmle.norm0 <- 
-  function(x, var.sub = 1, m0, lambda=1, init.val = NULL, 
-           n.init = 10, n.iter=50, max.iter = 5000,
-           tol=1e-8, rformat = FALSE)
-  {
-    if(m0==1) stop("You do not need this function for MLE")
-    
-    if (is.vector(x)) xx = x     ## plain vector
-    if (is.matrix(x)) { xx=c()
-    for (i in 1:nrow(x)) xx=c(xx, rep(x[i,1],x[i,2]))  } 
-    xx = xx/sqrt(var.sub);   ###standardize with known var 
-    ## translate the frequency into a plain vector.
-    nn = length(xx)
-    min.x = min(xx); max.x = max(xx)
-    
-    if (is.null(init.val)) {
-      init.val = list()
-      for(i in 1:n.init) {
-        alpha = runif(m0)
-        alpha = alpha/sum(alpha)
-        theta = runif(m0, min.x, max.x)
-        init.val[[i]] = rbind(alpha, theta)
-      }	
-    } else { n.init = 1; 
-    temp = init.val
+#' @examples x <- rmix.norm(200,c(0.3,0.7),c(-1,2))
+#' pmle.norm0(x,m0=2)
+pmle.norm0 <- function(x, var.sub = 1, m0, lambda=1, 
+                       init.val = NULL, n.init = 10, n.iter=50, 
+                       max.iter = 5000, tol=1e-8, rformat = FALSE) {
+  if(m0==1) stop("You do not need this function for MLE")
+  
+  if (is.vector(x)) xx = x     ## plain vector
+  if (is.matrix(x)) { xx=c()
+  for (i in 1:nrow(x)) xx=c(xx, rep(x[i,1],x[i,2]))  } 
+  xx = xx/sqrt(var.sub);   
+  ###standardize data with known var 
+  ## transform the frequency into a plain vector.
+  nn = length(xx)
+  min.x = min(xx); max.x = max(xx)
+  
+  if (is.null(init.val)) {
     init.val = list()
-    init.val[[1]]= temp
-    init.val[[1]][2,] = init.val[[1]][2,]/sqrt(var.sub)
-    }
-    
-    out = pmle.norm0.sub(xx, m0, lambda=1, 
-                         init.val, n.init, n.iter, max.iter, tol)
-    
-    alpha = out$alpha
-    theta = out$theta*sqrt(var.sub)
-    loglik = out$loglik-nn/2*log(var.sub)
-    ploglik = out$ploglik-nn/2*log(var.sub)
-    iter.n = out$iter.n
-    
-    if (rformat==F)
-    {
-      alpha=rousignif(alpha)
-      theta=rousignif(theta)
-      loglik=rousignif(loglik)
-      ploglik=rousignif(ploglik)
-    }
-    
-    if (lambda==0)
-      list('MLE of mixing proportions:'= alpha,
-           'MLE of subpop means:'= theta,
-           'log-likelihood:'=loglik,
-           'Penalized log-likelihood:'= loglik,
-           'iter.n'= iter.n,
-      )
-    else
-      list('PMLE of mixing proportions:'= alpha,
-           'PMLE of subpop means:'= theta,
-           'log-likelihood:'= loglik,
-           'Penalized log-likelihood:'= ploglik,
-           'iter.n'= iter.n)
+    for(i in 1:n.init) {
+      alpha = runif(m0)
+      alpha = alpha/sum(alpha)
+      theta = runif(m0, min.x, max.x)
+      init.val[[i]] = rbind(alpha, theta)
+    }	
+  } else { n.init = 1; 
+  temp = init.val
+  init.val = list()
+  init.val[[1]]= temp
+  init.val[[1]][2,] = init.val[[1]][2,]/sqrt(var.sub)
   }
+  
+  out = pmle.norm0.sub(xx, m0, lambda=1, 
+                       init.val, n.init, n.iter, max.iter, tol)
+  
+  alpha = out$alpha
+  theta = out$theta*sqrt(var.sub)
+  loglik = out$loglik-nn/2*log(var.sub)
+  ploglik = out$ploglik-nn/2*log(var.sub)
+  iter.n = out$iter.n
+  
+  if (rformat==F) {
+    alpha=rousignif(alpha)
+    theta=rousignif(theta)
+    loglik=rousignif(loglik)
+    ploglik=rousignif(ploglik)
+  }
+  
+  if (lambda==0)
+    list('MLE of mixing proportions:'= alpha,
+         'MLE of subpop means:'= theta,
+         'log-likelihood:'=loglik,
+         'Penalized log-likelihood:'= loglik,
+         'iter.n'= iter.n,
+    )
+  else
+    list('PMLE of mixing proportions:'= alpha,
+         'PMLE of subpop means:'= theta,
+         'log-likelihood:'= loglik,
+         'Penalized log-likelihood:'= ploglik,
+         'iter.n'= iter.n)
+}

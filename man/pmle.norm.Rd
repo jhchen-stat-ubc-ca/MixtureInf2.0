@@ -42,15 +42,20 @@ The default value of rformat is F.}
 }
 \value{
 The PMLE or MLE of the parameters with order = m0 (mixing proportions, mixing means
+         and mixing variances), log-likelihood value at the PMLE or MLE and the penalized log-likelihood
+         value at the PMLE.
+
+It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component parameters), 
+log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
 }
 \description{
 This function computes the PMLE or MLE of the parameters under a mixture of normals with unequal variance.
 }
 \examples{
- n=100
-alpha=c(.2,.8)
-mu=c(8,9)
-x=rmix.norm(n,alpha,mu)
-pmle.norm(x, m0=2, lambda = 1, an = NULL, init.val = NULL, n.init = 10, 
-n.iter=50, max.iter = 5000,tol=1e-8, rformat = FALSE)
+ 
+data(grains)
+pmle.norm(unlist(grains),2)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

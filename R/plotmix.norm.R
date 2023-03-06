@@ -16,8 +16,8 @@
 #' @param xlab The label for the x-axis
 #' @param ylab The label for the y-axis
 #'
-#' @return
-#' @export
+#' @return It returns the histogram of observations and the plot of the fitted density
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
 #' @examples n=2000
 #' alpha = c(.2, .5, .3)

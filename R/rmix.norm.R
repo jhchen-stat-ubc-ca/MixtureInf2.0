@@ -1,14 +1,14 @@
 #' rmix.norm
 #'
-#' @description Generate a random sample from a mixture of normals.
+#' @description This function generates a random sample from a mixture of normal.
 #' @param n The sample size.
-#' @param alpha A Vector of mixture proportions of length m, the order of the mixture.
-#' @param mu A Vector of means of component distributions.
-#' @param sigma A vector of standard deviations of component distributions, default value: sigma =
+#' @param alpha A vector of the mixture proportions of length m, also the order of the mixture.
+#' @param mu A vector of the component distributions' mean.
+#' @param sigma A vector of the component distributions' standard deviation, default value: sigma =
 #' rep(1,length(alpha)).
 #'
 #' @return It returns a samples of size n from an m-component normal mixture.
-#' @export
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
 #' @examples #generate a random sample from a 2 component normal mixture,
 #' plot the histogram of the data.

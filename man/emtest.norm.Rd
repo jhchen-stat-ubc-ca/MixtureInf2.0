@@ -7,10 +7,10 @@
 emtest.norm(
   x,
   m0 = 1,
-  pens = NULL,
-  inival = NULL,
-  len = 10,
-  niter = 50,
+  pen.size = NULL,
+  init.val = NULL,
+  n.init = 10,
+  n.iter = 50,
   tol = 1e-06,
   k = 3,
   rformat = FALSE
@@ -22,6 +22,14 @@ and the 2nd column being the corresponding frequency.}
 
 \item{m0}{The order of the finite normal mixture model under the null hypothesis.}
 
+\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
+
+\item{k}{The amount of EM iterations in order to obtain the EM-test statistic.}
+
+\item{rformat}{F means the format of output is determined by our default setting. When the output is
+larger than 0.001, it is determined by round(output,3); When the output is less than 0.001,
+it is determined by signif(output,3).}
+
 \item{pens}{A 2-dimensions vector being the size of the penalized functions for 
 the mixing propotion and the variance.}
 
@@ -30,15 +38,23 @@ the mixing propotion and the variance.}
 \item{len}{The amount of initial values chosen for the EM-algorithm.}
 
 \item{niter}{The least number of iterations for all initial values in the EM-algorithm.}
-
-\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
-
-\item{k}{The amount of EM iterations in order to obtain the EM-test statistic.}
-
-\item{rformat}{F means the format of output is determined by our default setting. When the output is
-larger than 0.001, it is determined by round(output,3); When the output is less than 0.001,
-it is determined by signif(output,3).}
+}
+\value{
+Return an object of class EM-test with the following elements:
+The MLE of the parameters under the null hypothesis (order = m0)
+The PMLE of the parameters under the specific alternative hypothesis whose order is 2m0
+EM-test statistic
+P-value
+Level of penalty
+The number of iterations
 }
 \description{
 emtest.norm
+}
+\references{
+Chen, J. and Li, P. (2009). Hypothesis test for normal mixture models: The EM approach. The Annals of Statistics. 37, 2523-2542.
+Chen, J., Li, P. and Fu, Y. (2012). Inference on the order of a normal mixture. JASA. 107, 1096-1105.
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

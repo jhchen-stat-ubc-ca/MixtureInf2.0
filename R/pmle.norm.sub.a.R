@@ -1,16 +1,6 @@
 #' pmle.norm.sub.a
 #'
-#' @param x The data that can either be a vector or a matrix with the 1st column being the observed values
-#' and the 2nd column being the corresponding frequencies.
-#' @param m The order of the mixture
-#' @param para0 The paramters of the subpopulations.
-#' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 0.
-#' @param an 
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' @description It is used in the pmle.norm.sub function, it computes a single EM iteration for the univariate Gaussian mixture.
 pmle.norm.sub.a <- 
   function(xx, sample.var, m0, para0, lambda, an)  {
     nn = length(xx)

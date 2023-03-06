@@ -18,17 +18,16 @@
 #' The default value of rformat is F.
 #'
 #' @return  The PMLE or MLE of the parameters with order = m0 (mixing proportions, mixing means
-#           and mixing variances), log-likelihood value at the PMLE or MLE and the penalized log-likelihood
-#           value at the PMLE.
-
-#' @export 
+#'          and mixing variances), log-likelihood value at the PMLE or MLE and the penalized log-likelihood
+#'          value at the PMLE.
+#' 
+#' @return It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component parameters), 
+#' log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples  n=100
-#' alpha=c(.2,.8)
-#' mu=c(8,9)
-#' x=rmix.norm(n,alpha,mu)
-#' pmle.norm(x, m0=2, lambda = 1, an = NULL, init.val = NULL, n.init = 10, 
-#' n.iter=50, max.iter = 5000,tol=1e-8, rformat = FALSE)
+#' @examples  
+#' data(grains)
+#' pmle.norm(unlist(grains),2)
 pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
                       n.init = 10, n.iter=50, max.iter = 5000, tol=1e-8, rformat = F) {
   if(m0==1) stop("You do not need this function for MLE")

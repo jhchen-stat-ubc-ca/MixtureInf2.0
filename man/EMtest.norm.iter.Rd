@@ -6,24 +6,6 @@
 \usage{
 EMtest.norm.iter(xx, nn, m0, para, sigma0, beta.i, pen.size, k)
 }
-\arguments{
-\item{xx}{The input data that can be either a vector or a matrix with the 1st column being the observed values
-and the 2nd column being the corresponding frequency.}
-
-\item{nn}{}
-
-\item{m0}{The order of the finite mixture model.}
-
-\item{para}{}
-
-\item{sigma0}{}
-
-\item{beta.i}{}
-
-\item{pen.size}{}
-
-\item{k}{}
-}
 \description{
-EMtest.norm.iter
+This function computes the EM-algorithm in the emtest.norm function.
 }

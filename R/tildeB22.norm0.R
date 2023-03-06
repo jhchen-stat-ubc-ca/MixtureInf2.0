@@ -1,19 +1,8 @@
 #' tildeB22.norm0
 #'
 #' @description This function computes \tilde B_{22} matrix in the
-#'              EM-test for one-parameter subpopulation distributions
-#'              including normal with known variance.
-#' @param alpha A vector of the mixing proportions.
-#' @param theta A vector of the subpopulation means.
-#' @param N 
-#'
-#' @return
-#' @export
-#'
-#' @examples
-#' @note See Chen and Li (2010JASA).
-#'       \tilde B_{22} in this R-function is the correlation matrix.
-#'       Renamed from tb2.
+#'              EM-test for one-parameter subpopulation distributions including normal with known variance.
+#'              It is used in the emtest.norm0 function.
 tildeB22.norm0 <- function(alpha, theta, N=10000) {
   m0 = length(alpha)
   quan=matrix((0:(N-1)+0.5)/N, ncol=1)

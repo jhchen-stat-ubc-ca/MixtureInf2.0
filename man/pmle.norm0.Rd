@@ -48,11 +48,17 @@ m0 component means and m0 component variances, or a matrix with 3m0 columns, def
 \item{iter.n}{This reports the number of EM-iteration employed.}
 }
 \value{
-It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions, mixing means
-and mixing variances), log-likelihood value at the PMLE or MLE and the penalized log-likelihood
-value at the PMLE.
+It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component parameters), 
+log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
 }
 \description{
 This function computes the PMLE or MLE of the parameters under a mixture of normals with equal and known
 variance. When the level of penalty is 0, PMLE reduces to MLE.
+}
+\examples{
+x <- rmix.norm(200,c(0.3,0.7),c(-1,2))
+pmle.norm0(x,m0=2)
+}
+\author{
+Shaoting Li, Jiahua Chen and Pengfei Li
 }

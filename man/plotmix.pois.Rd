@@ -5,9 +5,9 @@
 \title{plotmix.pois}
 \usage{
 plotmix.pois(
-  x = NULL,
   alpha,
   mu,
+  x = NULL,
   x.max = NULL,
   sub.pmf = T,
   nclass = NULL,
@@ -17,11 +17,11 @@ plotmix.pois(
 )
 }
 \arguments{
-\item{x}{A vector of data whose histogram is to be drawn from.}
-
 \item{alpha}{A vector of the mixing proportions.}
 
 \item{mu}{A vector of the subpopulation means.}
+
+\item{x}{A vector of data whose histogram is to be drawn from.}
 
 \item{x.max}{If x is null, 0:x.max is the range of pmf to be plotted.}
 

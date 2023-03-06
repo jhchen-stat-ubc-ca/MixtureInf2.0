@@ -6,13 +6,7 @@
 \usage{
 EMtest.norm.penalty(m0, para, nn)
 }
-\arguments{
-\item{m0}{The order}
-
-\item{para}{The list of mixing proportion and its mean and var}
-
-\item{nn}{The sample size}
-}
 \description{
-EMtest.norm.penalty
+This function produces the recommended size of penalty of EMtest under the Gaussian mixture.
+It is used in the emtest.norm function.
 }

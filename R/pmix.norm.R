@@ -5,10 +5,13 @@
 #' @param mu A vector of the component means.
 #' @param sigma A vector of the component standard deviations.
 #'
-#' @return
-#' @export
+#' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples
+#' @examples n=3000
+#' alpha = c(.2, .5, .3); mu = c(-2, 4, 5); 
+#' sigma = c(1, .8, 1.1)*2
+#' x = rmix.norm(n, alpha, mu, sigma)
+#' pmix.norm(x,alpha,mu,sigma)
 pmix.norm <- function(x, alpha, mu, sigma) {
   if(any(alpha<0))
     stop("error: negative mixing proportion")

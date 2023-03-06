@@ -8,5 +8,5 @@ dmix.pois(xx, alpha, theta)
 }
 \description{
 This function computes the probability mass function of the Poisson mixture.
-It is used in the emstat.pois function.
+It is used in various functions within the Poisson folder.
 }

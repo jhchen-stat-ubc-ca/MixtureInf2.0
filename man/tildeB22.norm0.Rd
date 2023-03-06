@@ -6,20 +6,8 @@
 \usage{
 tildeB22.norm0(alpha, theta, N = 10000)
 }
-\arguments{
-\item{alpha}{A vector of the mixing proportions.}
-
-\item{theta}{A vector of the subpopulation means.}
-
-\item{N}{}
-}
 \description{
 This function computes \tilde B_{22} matrix in the
-             EM-test for one-parameter subpopulation distributions
-             including normal with known variance.
-}
-\note{
-See Chen and Li (2010JASA).
-      \tilde B_{22} in this R-function is the correlation matrix.
-      Renamed from tb2.
+             EM-test for one-parameter subpopulation distributions including normal with known variance.
+             It is used in the emtest.norm0 function.
 }

@@ -6,23 +6,6 @@
 \usage{
 pmle.norm0.sub(x, m0, lambda, init.val, n.init, n.iter, max.iter, tol)
 }
-\arguments{
-\item{x}{Input data as a plain vector.}
-
-\item{m0}{The order of the normal mixture to be fitted.}
-
-\item{lambda}{The size of penalty function on mixing proportions.}
-
-\item{init.val}{The initial values for the EM-algorithm in matrix form. Each row = c(alpha, mu).}
-
-\item{n.init}{The number of initial values for the EM-algorithm.}
-
-\item{n.iter}{The number of EM-iterations for each initial value.}
-
-\item{max.iter}{The subsequent number of EM-iterations allowed.}
-
-\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
-}
 \description{
-pmle.norm0.sub
+It is used in the pmle.norm0 function, It does the actual computing for the EM-algorithm.
 }

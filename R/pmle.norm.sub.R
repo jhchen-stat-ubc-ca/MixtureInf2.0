@@ -1,22 +1,6 @@
 #' pmle.norm.sub
 #'
-#' @param x The data that can either be a vector or a matrix with the 1st column being the observed values
-#' and the 2nd column being the corresponding frequencies.
-#' @param m0 The order of the finite mixture model, default value: m0 = 1
-#' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 0.
-#' @param an 
-#' @param init.val The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
-#' m0 component means and m0 component variances, or a matrix with 3m0 columns, 
-#' default value: inival = NULL. (if not provided, random initial values are used.)
-#' @param n.init 
-#' @param n.iter The smallest number of iterations required for all initial values in the EM-algorithm. 
-#' @param max.iter The maximum amount of iterations.
-#' @param tol The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.
-#'
-#' @return
-#' @export
-#'
-#' @examples
+#' @description It is used in the pmle.norm function, it does the actual EM-algorithm and computes the penalized MLE. 
 pmle.norm.sub <- function(x, m0, lambda, an, init.val, n.init, 
                           n.iter, max.iter, tol) {
   sample.var = var(x);  n=length(x)
