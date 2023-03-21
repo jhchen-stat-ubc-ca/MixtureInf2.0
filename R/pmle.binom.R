@@ -1,9 +1,9 @@
 #' pmle.binom
 #'
 #' @description This function computes the PMLE under a binomial mixture.
-#' @param x The input data, either a vector or a matrix with two columns: count and freq.
+#' @param x The input data that can either be a vector or a matrix with two columns: count and freq.
 #' @param size The number of trials of the subpopulation binomial distribution.
-#' @param m0 The order of the finite mixture model to be fitted.
+#' @param m0 The order of the finite mixture model.
 #' @param lambda The size of the penalty function of the mixing proportions.
 #' @param init.val The initial values for the EM-algorithm. Usually a matrix with 2 rows: mixing proportions and the probability of success.
 #' @param n.init The number of initial values chosen for the EM-algorithm.

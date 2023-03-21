@@ -18,29 +18,27 @@ emtest.pois(
 )
 }
 \arguments{
-\item{x}{Data that can be either a vector or a matrix of observations. 
-1st column: counts 
-2nd column: frequencies.}
+\item{x}{The input data that can either be a vector or a matrix of observations with its 1st column being counts and 2nd column being frequencies.}
 
-\item{CC}{The optional tuning parameter for EM-test procedure.}
+\item{CC}{The optional tuning parameter for the EM-test procedure.}
 
 \item{init.val}{A user provided initial values for the EM-algorithm to 
 compute the PMLE under the null model.}
 
 \item{n.init}{The number of initial values chosen for the EM-algorithm.}
 
-\item{n.iter}{Least amount of iterations for all initial values in the EM-algorithm.}
+\item{n.iter}{The least amount of iterations for all initial values in the EM-algorithm.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 
-\item{k}{The number of EM iterations required in order to obtain EM-test statistic.}
+\item{k}{The number of EM iterations required in order to obtain the EM-test statistic.}
 
 \item{rformat}{A specific format, please see rousignif.R function.}
 
-\item{max.iter}{Maximum amount of iterations.}
+\item{max.iter}{The maximum amount of iterations.}
 }
 \value{
-Return an object of class EM-test with the following elements:
+The function returns an object of class EM-test with the following elements:
 The MLE of the parameters under the null hypothesis (order = m0)
 The PMLE of the parameters under the specific alternative hypothesis whose order is 2m0
 EM-test statistic
@@ -49,7 +47,7 @@ Level of penalty
 The number of iterations
 }
 \description{
-This function computes the EM-test statistic and p-value for the null hypothesis that the order is m = m0.
+This function computes the EM-test statistic and the p-value under the null hypothesis with order m = m0.
 }
 \examples{
 n = 3000

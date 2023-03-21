@@ -1,6 +1,6 @@
 #' plotmix.norm0
 #'
-#' @param x The input data that can be either a vector or a matrix with the 1st column being the observed values
+#' @param x The input data that can either be a vector or a matrix with the 1st column being the observed values
 #'          and the 2nd column being the corresponding frequency.
 #' @param xx.grid The grid of the histogram.
 #' @param alpha A vector of the mixing proportions.
@@ -9,12 +9,12 @@
 #' @param m0 The order of the finite mixture model.
 #' @param k The number of bars for the histogram.
 #' @param extra.height Additional height multiplier used to enlarge the plot vertically.  
-#' @param comp A parameter for the compontent fitted density. 
+#' @param comp A parameter for the component fitted density. 
 #'             comp=T means component fitted densities are drawn, and comp=F means no component fitted densities.
-#' @param hist.ind It is ture if there's data to be used to plot the histogram.
+#' @param hist.ind It is true if there's data to be used to plot the histogram.
 #' @param main The title of the graph.
-#' @param xlab The label for the x-axis
-#' @param ylab The label for the y-axis
+#' @param xlab The label for the x-axis.
+#' @param ylab The label for the y-axis.
 #'
 #' @return It returns the histogram of observations and the plot of the fitted density
 #' @author Shaoting Li, Jiahua Chen and Pengfei Li

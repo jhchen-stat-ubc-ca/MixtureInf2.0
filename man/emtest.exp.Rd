@@ -18,7 +18,7 @@ emtest.exp(
 )
 }
 \arguments{
-\item{x}{The input data that can be either a vector or a matrix with the 1st column being the observed values
+\item{x}{The input data that can either be a vector or a matrix with the 1st column being the observed values
 and the 2nd column being the corresponding frequency.}
 
 \item{m0}{The order under the null hypothesis.}
@@ -52,7 +52,7 @@ Level of penalty
 The number of iterations
 }
 \description{
-This function computes the EM-test statistic and the p-value for the null hypothesis H0:m=m0.
+This function computes the EM-test statistic and the p-value under the null hypothesis H0:m=m0.
 }
 \examples{
 n = 4000

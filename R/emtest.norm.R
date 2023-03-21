@@ -1,16 +1,16 @@
 #' emtest.norm
 #'
-#' @param x The input data that can be either a vector or a matrix with the 1st column being the observed values
+#' @param x The input data that can either be a vector or a matrix with the 1st column being the observed values
 #'          and the 2nd column being the corresponding frequency.
 #' @param m0 The order of the finite normal mixture model under the null hypothesis. 
 #' @param pens A 2-dimensions vector being the size of the penalized functions for 
-#'             the mixing propotion and the variance.
-#' @param inival The initial values chosen for the EM-algorithm to compute the PMLE under the null model
-#' @param len The amount of initial values chosen for the EM-algorithm.
-#' @param niter The least number of iterations for all initial values in the EM-algorithm. 
+#'             the mixing proportion and the variance.
+#' @param inival The initial value chosen for the EM-algorithm to compute the PMLE under the null model.
+#' @param len The number of initial values chosen for the EM-algorithm.
+#' @param niter The least amount of iterations for all initial values in the EM-algorithm. 
 #' @param tol The tolerance value for the convergence of the EM-algorithm.
 #' @param k The amount of EM iterations in order to obtain the EM-test statistic. 
-#' @param rformat F means the format of output is determined by our default setting. When the output is
+#' @param rformat F means the format of the output is determined by our default setting. When the output is
 #'                larger than 0.001, it is determined by round(output,3); When the output is less than 0.001,
 #'                it is determined by signif(output,3).
 #'

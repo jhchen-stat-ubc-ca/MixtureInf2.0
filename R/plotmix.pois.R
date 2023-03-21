@@ -1,6 +1,6 @@
 #' plotmix.pois
 #'
-#' @description This function plots the data in histogram with 
+#' @description This function plots the data in a histogram with 
 #'              the corresponding fitted mixture pmf
 #'              or the mixture pmf only, for Poisson mixture. 
 #'              The pmf is given as if it is a continuous curve.

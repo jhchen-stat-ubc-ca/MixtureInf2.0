@@ -7,6 +7,6 @@
 dmix.binom(x, size, alpha, theta)
 }
 \description{
-This function computes the probability mass function points for vector x.
+This function computes the probability mass function points for the vector x.
 It is used in various functions within the Binomial folder.
 }

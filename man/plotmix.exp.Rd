@@ -48,7 +48,7 @@ plotmix.exp(
 It returns the histogram of observations and the plot of the fitted density
 }
 \description{
-This function plots a histogram plus the corresponding fitted mixture pdf or the mixture pdf only, for exponential mixture.
+This function plots a histogram plus the corresponding fitted mixture pdf or the mixture pdf only, for a exponential mixture.
 }
 \examples{
 n = 4000

@@ -18,11 +18,11 @@ pmle.binom(
 )
 }
 \arguments{
-\item{x}{The input data, either a vector or a matrix with two columns: count and freq.}
+\item{x}{The input data that can either be a vector or a matrix with two columns: count and freq.}
 
 \item{size}{The number of trials of the subpopulation binomial distribution.}
 
-\item{m0}{The order of the finite mixture model to be fitted.}
+\item{m0}{The order of the finite mixture model.}
 
 \item{lambda}{The size of the penalty function of the mixing proportions.}
 

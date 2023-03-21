@@ -1,9 +1,7 @@
 #' pmle.pois
 #'
 #' @description This function computes the PMLE of parameters under a Poisson mixture
-#' @param x Data that can be either a vector or a matrix of observations. 
-#'          1st column: counts 
-#'          2nd column: frequencies.
+#' @param x The input data that can either be a vector or a matrix of observations with its 1st column being counts and 2nd column being frequencies.
 #' @param m0 The order of the finite mixture model.
 #' @param lambda The size of the penalty function of the mixing proportions.
 #' @param init.val A user provided initial values for the EM-algorithm to 

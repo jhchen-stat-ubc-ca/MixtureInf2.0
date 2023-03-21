@@ -18,10 +18,10 @@ pmle.norm0(
 )
 }
 \arguments{
-\item{x}{The data that can either be a vector or a matrix with the 1st column being the observed values
+\item{x}{The input data that can either be a vector or a matrix with the 1st column being the observed values
 and the 2nd column being the corresponding frequencies.}
 
-\item{var.sub}{A known subpopulation variance, default 1.}
+\item{var.sub}{A known subpopulation variance, default at 1.}
 
 \item{m0}{The order of the finite mixture model.}
 
@@ -31,7 +31,7 @@ and the 2nd column being the corresponding frequencies.}
 
 \item{n.iter}{The number of EM iterations for all initial values.}
 
-\item{max.iter}{Maximum amount of EM iterations, stops at 5000.}
+\item{max.iter}{Maximum amount of EM iterations, it stops at 5000.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-8.}
 

@@ -1,7 +1,7 @@
 #' emtest.binom
 #'
 #' @description This function computes the EM-test statistic and the p-value for H0: m=m0.
-#' @param x The input data, either a vector or a matrix with two columns: count and freq. 
+#' @param x The input data that can either be a vector or a matrix with two columns: count and freq. 
 #' @param size The number of trials of the binomial.
 #' @param m0 The order under the null hypothesis.
 #' @param CC A optional tuning parameter for the EM-test procedure. 

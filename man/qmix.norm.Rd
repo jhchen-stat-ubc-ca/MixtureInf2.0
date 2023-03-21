@@ -6,17 +6,7 @@
 \usage{
 qmix.norm(pp, alpha, mu, sigma, tol = 1e-08)
 }
-\arguments{
-\item{pp}{}
-
-\item{alpha}{A vector of the mixing proportions.}
-
-\item{mu}{A vector of the component means.}
-
-\item{sigma}{A vector of the component standard deviations.}
-
-\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
-}
 \description{
-qmix.norm
+This function computes the quantile of the univariate finite normal mixture one by one.
+It is used in the tildeB22.norm0 function.
 }

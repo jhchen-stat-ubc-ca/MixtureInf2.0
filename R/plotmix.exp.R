@@ -1,6 +1,6 @@
 #' plotmix.exp
 #'
-#' @description This function plots a histogram plus the corresponding fitted mixture pdf or the mixture pdf only, for exponential mixture.
+#' @description This function plots a histogram plus the corresponding fitted mixture pdf or the mixture pdf only, for a exponential mixture.
 #' @param alpha A vector of the mixing probabilities.
 #' @param mu A vector of the subpopulation means.
 #' @param qq The range of the plot, which is the qq th quantile.

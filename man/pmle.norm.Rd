@@ -25,11 +25,13 @@ and the 2nd column being the corresponding frequencies.}
 
 \item{lambda}{The size of the penalized function of the mixing distribution, default value: lambda = 1.}
 
+\item{an}{A penalty on the variance(ChenTanZhangSinica2008). The recommended value is n^{-1/2}.}
+
 \item{init.val}{NULL or a 3 X m0 matrix with rows made of mixing probability, component means, and variances.}
 
 \item{n.init}{A computer generated n.init initials value.}
 
-\item{n.iter}{The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.}
+\item{n.iter}{The number of EM iterations for each initial value. The one that gained the most in likelihood will be iterative further.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.}
 

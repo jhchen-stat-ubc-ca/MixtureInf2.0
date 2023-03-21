@@ -1,7 +1,7 @@
 #' plotmix.binom
 #'
 #' @description This function plots a histogram together with a suggested mixture pmf.
-#' @param x The input data, either a vector or a matrix columns with two columns: count and freq. 
+#' @param x The input data, either a vector or a matrix with two columns: count and freq. 
 #' @param size The number of trials.
 #' @param alpha A vector of the mixing probabilities.
 #' @param theta vector of probabilities of success of each component.

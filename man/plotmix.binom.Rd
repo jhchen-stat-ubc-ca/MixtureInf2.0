@@ -17,7 +17,7 @@ plotmix.binom(
 )
 }
 \arguments{
-\item{x}{The input data, either a vector or a matrix columns with two columns: count and freq.}
+\item{x}{The input data, either a vector or a matrix with two columns: count and freq.}
 
 \item{size}{The number of trials.}
 

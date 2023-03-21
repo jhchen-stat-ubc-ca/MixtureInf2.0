@@ -1,20 +1,18 @@
 #' emtest.pois
 #'
-#' @description This function computes the EM-test statistic and p-value for the null hypothesis that the order is m = m0.
-#' @param x Data that can be either a vector or a matrix of observations. 
-#'          1st column: counts 
-#'          2nd column: frequencies.
-#' @param CC The optional tuning parameter for EM-test procedure.
+#' @description This function computes the EM-test statistic and the p-value under the null hypothesis with order m = m0.
+#' @param x The input data that can either be a vector or a matrix of observations with its 1st column being counts and 2nd column being frequencies.
+#' @param CC The optional tuning parameter for the EM-test procedure.
 #' @param init.val A user provided initial values for the EM-algorithm to 
 #'                 compute the PMLE under the null model.
 #' @param n.init The number of initial values chosen for the EM-algorithm.
-#' @param n.iter Least amount of iterations for all initial values in the EM-algorithm.
+#' @param n.iter The least amount of iterations for all initial values in the EM-algorithm.
 #' @param tol The tolerance value for the convergence of the EM-algorithm. 
-#' @param k The number of EM iterations required in order to obtain EM-test statistic.
+#' @param k The number of EM iterations required in order to obtain the EM-test statistic.
 #' @param rformat A specific format, please see rousignif.R function. 
-#' @param max.iter Maximum amount of iterations.
+#' @param max.iter The maximum amount of iterations.
 #'
-#' @return Return an object of class EM-test with the following elements:
+#' @return The function returns an object of class EM-test with the following elements:
 #' The MLE of the parameters under the null hypothesis (order = m0)
 #' The PMLE of the parameters under the specific alternative hypothesis whose order is 2m0
 #' EM-test statistic

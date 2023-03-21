@@ -1,7 +1,7 @@
 #' emtest.exp
 #'
-#' @description This function computes the EM-test statistic and the p-value for the null hypothesis H0:m=m0.
-#' @param x The input data that can be either a vector or a matrix with the 1st column being the observed values
+#' @description This function computes the EM-test statistic and the p-value under the null hypothesis H0:m=m0.
+#' @param x The input data that can either be a vector or a matrix with the 1st column being the observed values
 #' and the 2nd column being the corresponding frequency. 
 #' @param m0 The order under the null hypothesis.
 #' @param CC A optional tuning parameter for the EM-test procedure.

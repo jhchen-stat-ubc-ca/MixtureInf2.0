@@ -20,7 +20,7 @@ emtest.binom(
 )
 }
 \arguments{
-\item{x}{The input data, either a vector or a matrix with two columns: count and freq.}
+\item{x}{The input data that can either be a vector or a matrix with two columns: count and freq.}
 
 \item{size}{The number of trials of the binomial.}
 

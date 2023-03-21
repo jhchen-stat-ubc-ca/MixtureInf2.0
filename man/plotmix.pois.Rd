@@ -39,7 +39,7 @@ plotmix.pois(
 It returns the histogram of the observations and the plot of the fitted probability mass function.
 }
 \description{
-This function plots the data in histogram with 
+This function plots the data in a histogram with 
              the corresponding fitted mixture pmf
              or the mixture pmf only, for Poisson mixture. 
              The pmf is given as if it is a continuous curve.

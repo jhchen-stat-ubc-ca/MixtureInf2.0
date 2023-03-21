@@ -5,10 +5,10 @@
 #' and the 2nd column being the corresponding frequencies.
 #' @param m0 The order of the finite mixture model, default value: m0 = 1.
 #' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 1.
-#' @param an
+#' @param an A penalty on the variance(ChenTanZhangSinica2008). The recommended value is n^{-1/2}.
 #' @param init.val NULL or a 3 X m0 matrix with rows made of mixing probability, component means, and variances.
 #' @param n.init A computer generated n.init initials value.
-#' @param n.iter The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further. 
+#' @param n.iter The number of EM iterations for each initial value. The one that gained the most in likelihood will be iterative further. 
 #' @param tol The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.
 #' @param rformat The format of the output. If rformat=T, 
 #' it means the output format is determined by R software. 
@@ -30,7 +30,7 @@
 #' pmle.norm(unlist(grains),2)
 pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
                       n.init = 10, n.iter=50, max.iter = 5000, tol=1e-8, rformat = F) {
-  if(m0==1) stop("You do not need this function for MLE")
+  #if(m0==1) stop("You do not need this function for MLE")
   
   if(is.data.frame(x)) stop("data format must be vector or matrix")
   
@@ -48,14 +48,24 @@ pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
   if(lambda < tol) lambda = tol
   ## avoid 0 mixing probability.
   
-  out = pmle.norm.sub(xx, m0, lambda, an, init.val, n.init, 
-                      n.iter, max.iter, tol)
-  ## leave the computation to the other function.
-  alpha.mix = out[[1]]
-  mean.mix = out[[2]]
-  var.mix = out[[3]]
-  loglik = out[[4]]
-  ploglik = out[[5]]
+  if(m0>1) {
+    out = pmle.norm.sub(xx, m0, lambda, an, init.val, n.init, 
+                        n.iter, max.iter, tol)
+    ## leave the computation to the other function.
+    alpha.mix = out[[1]]
+    mean.mix = out[[2]]
+    var.mix = out[[3]]
+    loglik = out[[4]]
+    ploglik = out[[5]]
+    iter.n = out[[6]]
+  } else {
+    alpha.mix = 1
+    mean.mix = mean(xx)
+    var.mix = var(xx)
+    loglik = sum(log(dnorm(xx, mean.mix, var.mix^.5)))
+    ploglik = loglik
+    iter.n = 1
+  }
   
   if (!rformat) {
     alpha.mix = rousignif(alpha.mix)
@@ -65,9 +75,8 @@ pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
     ploglik = rousignif(ploglik)
   }
   
-  list('PMLE of mixing distribution' = 
-         rbind(alpha.mix, mean.mix, var.mix),
+  list('PMLE of mixing distribution' = rbind(alpha.mix, mean.mix, var.mix),
        'log-likelihood' = loglik,
        'Penalized log-likelihood'= ploglik,
-       'iter.n' = out[[6]] )
+       'iter.n' = iter.n )
 }
