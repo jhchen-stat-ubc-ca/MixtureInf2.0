@@ -25,22 +25,23 @@
 #' @references Chen, J. and Li, P. (2009). Hypothesis test for normal mixture models: The EM approach. The Annals of Statistics. 37, 2523-2542.
 #' Chen, J., Li, P. and Fu, Y. (2012). Inference on the order of a normal mixture. JASA. 107, 1096-1105.
 #'
-#' @examples
+#' @examples data(grains)
+#' emtest.norm(unlist(grains))
+
 emtest.norm <-
   function(x, m0=1, pen.size=NULL, init.val=NULL, n.init = 10, 
            n.iter=50, tol=1e-6, k=3, rformat=FALSE) {
-    nn = length(x)
     xx = x
     if (is.matrix(x)) {
       xx=c()
-      for (i in 1:nrow(x)) xx=c(xx, rep(x[i,1], x[i,2]))
-    }
-    ## Always work with re-organized data xx.
+      for (i in 1:nrow(x)) xx=c(xx, rep(x[i,1], x[i,2]))   }
+    nn = length(xx)
     
     ## PMLE and log-likelihood value under the null model	
-    para0 = pmle.norm(xx, m0, lambda=0, an = NULL, init.val, 
-                      n.init, n.iter=50, tol)
-    ln0 = para0[[4]]     ## likelihood under null, penalty excluded.
+    para0 = pmle.norm(x, m0, lambda=0, an = NULL, init.val, 
+                      n.init, n.iter, tol)
+    ln0 = para0[[2]]     ## likelihood under null, penalty excluded.
+    sigma0 = para0[[1]][3,]
     
     ###Size of penalties: revised.
     if (is.null(pen.size)) {
@@ -50,20 +51,16 @@ emtest.norm <-
     
     ###create beta vectors for EM-test
     bbeta=c()
-    for(h in 1:m0) 
+    for(h in 1:m0) {
       bbeta = rbind(cbind(bbeta,rep(0.1,3^{h-1})),
                     cbind(bbeta,rep(0.3,3^{h-1})),
                     cbind(bbeta,rep(0.5,3^{h-1})))
-    ### Smart
+    }
     
     output=c()
     for (i in 1:(3^m0)) {
-      ###PMLE given beta; para0 is in list format
       para1 = EMtest.maxmm.norm(xx, bbeta[i,], m0, an = pen.size[2], 
                                 para0, n.init, n.iter, tol)
-      
-      ###k iterations of EM-algorithm
-      ## out = emiter.norm(xx, para1, beta.i, pen.size, para0, k)
       out = EMtest.norm.iter(xx, nn, m0, para1, sigma0, bbeta[i,], pen.size, k)
       output = rbind(output, out)  }
     
@@ -73,11 +70,12 @@ emtest.norm <-
     
     ###EM-test statistic
     EM.stat = 2*(ln1 - ln0)
+    names(EM.stat) <- NULL
     p.value = pchisq(EM.stat, (2*m0), lower.tail=F)	
     
     ###output
-    null.para = rbind(para0[[1]], para0[[2]], para0[[3]])
-    full.para = rbind(outpara[1:(2*m0)], outpara[(2*m0+1):(4*m0)], 
+    null.para = para0[[1]]
+    full.para = rbind(out.para[1:(2*m0)], out.para[(2*m0+1):(4*m0)], 
                       out.para[(4*m0+1):(6*m0)])
     
     if (rformat==F) {

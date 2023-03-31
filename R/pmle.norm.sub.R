@@ -3,7 +3,7 @@
 #' @description It is used in the pmle.norm function, it does the actual EM-algorithm and computes the penalized MLE. 
 pmle.norm.sub <- function(x, m0, lambda, an, init.val, n.init, 
                           n.iter, max.iter, tol) {
-  sample.var = var(x);  n=length(x)
+  sample.var = var(x);  n = length(x)
   if (!is.null(init.val)) n.init = 1
   
   output=c()
@@ -18,7 +18,8 @@ pmle.norm.sub <- function(x, m0, lambda, an, init.val, n.init,
       sigma = c(mu, max(x))-c(min(x), mu)
       sigma = (sigma[-1]+sigma[-m0])/4
       sigma = sigma^2
-    }	else {	### if initial mixing distribution is provided
+    }	else {	
+      ### if initial mixing distribution is provided
       alpha = init.val[1,]
       mu = init.val[2,]
       sigma = init.val[3,]
@@ -29,7 +30,7 @@ pmle.norm.sub <- function(x, m0, lambda, an, init.val, n.init,
       outpara = pmle.norm.sub.a(x, sample.var, m0, para0, lambda, an)
       para0 = outpara[1:(3*m0)]
     }  ###run n.iter EM-iterations first
-    output = rbind(output, outpara[1:(3*m0+2)])	
+    output = rbind(output, outpara)	
   }
   ## pick up the winner
   index = which.max(output[,(3*m0+2)])

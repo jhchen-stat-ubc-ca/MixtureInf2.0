@@ -14,7 +14,7 @@ pmle.norm0(
   n.iter = 50,
   max.iter = 5000,
   tol = 1e-08,
-  rformat = FALSE
+  rformat = F
 )
 }
 \arguments{

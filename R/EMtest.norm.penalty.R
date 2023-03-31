@@ -2,12 +2,15 @@
 #'
 #' @description This function produces the recommended size of penalty of EMtest under the Gaussian mixture.
 #' It is used in the emtest.norm function.  
-EMtest.norm.penalty <- function(m0, para, nn) {
+EMtest.norm.penalty <- function(m0, para0, nn) {
   if(m0 ==1) an = 0.25
   if(m0 > 3) an = 0.2
   
+  alpha = para0[[1]][1,] 
+  mu = para0[[1]][2,]
+  sig = para0[[1]][3,]
+  
   if(m0==2) {
-    alpha = para[[1]]; mu = para[[2]]; sig = para[[3]]
     omega12 = EMtest.norm.omega(alpha[1],mu[1],sig[1], 
                                 alpha[2],mu[2],sig[2])
     omega21 = EMtest.norm.omega(alpha[2],mu[2],sig[2],
@@ -18,7 +21,6 @@ EMtest.norm.penalty <- function(m0, para, nn) {
   }
   
   if(m0==3) {
-    alpha = para[[1]]; mu = para[[2]]; sig = para[[3]]
     omega12 = EMtest.norm.omega(alpha[1],mu[1],sig[1], 
                                 alpha[2],mu[2],sig[2])
     omega21 = EMtest.norm.omega(alpha[2],mu[2],sig[2],
@@ -43,8 +45,7 @@ EMtest.norm.penalty <- function(m0, para, nn) {
 ###   replace over1() in the previous package.
 
 EMtest.norm.omega <-
-  function(alpi, mui, sigi, alpj, muj, sigj, tol=1e-5)
-  {
+  function(alpi, mui, sigi, alpj, muj, sigj, tol=1e-5) {
     sigi=sqrt(sigi); sigj=sqrt(sigj)
     
     if(abs(sigi/sigj-1) < tol) {

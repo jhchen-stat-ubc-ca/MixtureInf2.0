@@ -27,9 +27,9 @@
 #'
 #' @examples x <- rmix.norm(200,c(0.3,0.7),c(-1,2))
 #' pmle.norm0(x,m0=2)
-pmle.norm0 <- function(x, var.sub = 1, m0, lambda=1, 
+pmle.norm0 <- function(x, var.sub = 1, m0, lambda = 1, 
                        init.val = NULL, n.init = 10, n.iter=50, 
-                       max.iter = 5000, tol=1e-8, rformat = FALSE) {
+                       max.iter = 5000, tol=1e-8, rformat = F) {
   if(m0==1) stop("You do not need this function for MLE")
   
   if (is.vector(x)) xx = x     ## plain vector
@@ -56,7 +56,7 @@ pmle.norm0 <- function(x, var.sub = 1, m0, lambda=1,
   init.val[[1]][2,] = init.val[[1]][2,]/sqrt(var.sub)
   }
   
-  out = pmle.norm0.sub(xx, m0, lambda=1, 
+  out = pmle.norm0.sub(xx, m0, lambda, 
                        init.val, n.init, n.iter, max.iter, tol)
   
   alpha = out$alpha
@@ -72,17 +72,9 @@ pmle.norm0 <- function(x, var.sub = 1, m0, lambda=1,
     ploglik=rousignif(ploglik)
   }
   
-  if (lambda==0)
-    list('MLE of mixing proportions:'= alpha,
-         'MLE of subpop means:'= theta,
-         'log-likelihood:'=loglik,
-         'Penalized log-likelihood:'= loglik,
-         'iter.n'= iter.n,
-    )
-  else
-    list('PMLE of mixing proportions:'= alpha,
-         'PMLE of subpop means:'= theta,
-         'log-likelihood:'= loglik,
-         'Penalized log-likelihood:'= ploglik,
-         'iter.n'= iter.n)
+  list('PMLE of mixing proportions:'= alpha,
+       'PMLE of subpop means:'= theta,
+       'log-likelihood:'= loglik,
+       'Penalized log-likelihood:'= ploglik,
+       'iter.n'= iter.n)
 }

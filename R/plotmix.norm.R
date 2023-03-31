@@ -1,5 +1,7 @@
 #' plotmix.norm
 #'
+#' @description This function plots the mixture density, together with the histogram of the data
+#' when the data generated from this density is given.
 #' @param x The input data that can either be a vector or a matrix with the 1st column being the observed values
 #'          and the 2nd column being the corresponding frequency.
 #' @param xx.grid The grid of the histogram.
@@ -41,7 +43,7 @@ plotmix.norm <-
       }
       if (is.vector(x)) {
         hist(x, freq= F, ylim = c(0,max((hist(x, freq = F, nclass = k))$density)*extra.height), nclass = k, main=main, xlab = xlab, ylab = ylab)
-        xx.grid = seq(min(x), max(x), (diff(range(yy))/k)/50)
+        xx.grid = seq(min(x), max(x), (diff(range(x))/k)/50)
         sub.density = c(); sig = sigma^.5
         for (j in 1:m0) {
           sub.density = rbind(sub.density, alpha[j]*dnorm(xx.grid, mu[j], sig[j])) }

@@ -4,7 +4,7 @@
 #' It is used in the emtest.norm function.
 EMtest.maxmm.norm <- 
   function(xx, beta.i, m0, an, para0, n.init, n.iter, tol) {
-    alpha0 = para0[[1]];  mu0 = para0[[2]]; sigma0 = para0[[3]]
+    alpha0 = para0[[1]][1,];  mu0 = para0[[1]][2,]; sigma0 = para0[[1]][3,]
     output=c()
     
     ### divide the real line
@@ -24,9 +24,11 @@ EMtest.maxmm.norm <-
         for (j in 1:m0) {	
           alpha = c(alpha, alpha0[j]*beta.i[j], alpha0[j]*(1-beta.i[j]))
           mu = c(mu, (4*mu0[j]+runif(2, eta[j], eta[j+1]))/5)
-          sigma = c(sigma, runif(2, 0.9*sigma0[j], 1.1*sigma0[j])) }
-        para = c(alpha, mu, sigma)
-      }		## added an extra one with the null subpop parameter values. 
+          sigma = c(sigma, runif(2, 0.9*sigma0[j], 1.1*sigma0[j])) 
+        }
+      }
+      para = c(alpha, mu, sigma)
+      ## added an extra one with the null subpop parameter values. 
       
       ###run n.iter specfic EM-iterations first
       for (j in 1:n.iter) {

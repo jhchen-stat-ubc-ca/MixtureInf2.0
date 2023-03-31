@@ -4,7 +4,7 @@
 \alias{EMtest.norm.penalty}
 \title{EMtest.norm.penalty}
 \usage{
-EMtest.norm.penalty(m0, para, nn)
+EMtest.norm.penalty(m0, para0, nn)
 }
 \description{
 This function produces the recommended size of penalty of EMtest under the Gaussian mixture.

@@ -34,8 +34,7 @@ pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
   
   if(is.data.frame(x)) stop("data format must be vector or matrix")
   
-  if (is.vector(x)) xx = x
-  ## plain vector case
+  if (is.vector(x)) xx = x        ## plain vector case
   
   if (is.matrix(x)) {
     xx=c()
@@ -48,7 +47,7 @@ pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
   if(lambda < tol) lambda = tol
   ## avoid 0 mixing probability.
   
-  if(m0>1) {
+  if(m0 > 1) {
     out = pmle.norm.sub(xx, m0, lambda, an, init.val, n.init, 
                         n.iter, max.iter, tol)
     ## leave the computation to the other function.

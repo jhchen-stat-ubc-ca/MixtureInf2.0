@@ -25,16 +25,17 @@
 #' @references Chen, J. and Li, P. (2009). Hypothesis test for normal mixture models: The EM approach. The Annals of Statistics. 37, 2523-2542.
 #' Chen, J., Li, P. and Fu, Y. (2012). Inference on the order of a normal mixture. JASA. 107, 1096-1105.
 #'
-#' @examples
+#' @examples x <- rmix.norm(200,c(0.3,0.7),c(-1,2),c(1,1))
+#' emtest.norm0(x)
 emtest.norm0 <-
   function(x, var.sub=1, m0=1, init.val=NULL, n.init=10, n.iter=50, 
            max.iter = 5000, tol = 1e-6, k=3, rformat=FALSE)  {
-    nn = length(x)
     xx = x
     if (is.matrix(x)) {
       xx=c()
       for (i in 1:nrow(x)) xx=c(xx,rep(x[i,1],x[i,2]))
     }
+    nn = length(xx)
     xx = xx/sqrt(var.sub)
     ### data is a plain vector and scaled.
     
@@ -46,12 +47,14 @@ emtest.norm0 <-
       mle0 = rbind(null.output[[1]], null.output[[2]])
       ln0  = null.output[[3]]    ### no penalty.
       temp = tildeB22.norm0(mle0[1,], mle0[2,])
-      degenerate = temp[[2]] 
+      degenerate = temp[[2]]   
+      ### true if B22 degenerates and stops test
       tb2 = temp[[1]]
     } else {
       mle0 = rbind(1, mean(xx))
-      ln0 = sum(log(dnorm(xx, mean(xx), var.sub^.5 )))
+      ln0 = sum(log(dnorm(xx, mean(xx))))
       tb2 = 1
+      degenerate = F
     }
     ## fit null model, evaluate tildeB22 for p-value
     ##    calculation later.
@@ -80,7 +83,7 @@ emtest.norm0 <-
       
       emnk= EM.stat[1]
       alpha=EM.stat[2:(2*m0+1)]
-      theta=EM.stat[(2*m0+2):(4*m0+1)]*sqrt(var)
+      theta=EM.stat[(2*m0+2):(4*m0+1)]*sqrt(var.sub)
       pmle1 = rbind(alpha, theta)
       ###  emstat.norm0 needs double check.
       
