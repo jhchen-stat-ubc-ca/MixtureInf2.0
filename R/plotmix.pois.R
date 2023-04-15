@@ -23,7 +23,7 @@
 #' xx = rmix.pois(n, alpha, mu)
 #' plotmix.pois(xx, alpha, mu)
 plotmix.pois = function(alpha, mu, x = NULL, x.max= NULL,
-                        sub.pmf = T, nclass=NULL, main="", 
+                        sub.pmf = T, nclass=NULL, extra.height = 1.05, main="", 
                         xlab="Counts", ylab="Prob") {
   if(is.null(x)) {
     pmf.x = dmix.pois(0:x.max, alpha, mu)
@@ -40,7 +40,7 @@ plotmix.pois = function(alpha, mu, x = NULL, x.max= NULL,
   }
   
   if(is.vector(x)) {
-    hist(x, nclass = nclass, probability = T,
+    hist(x, nclass = nclass, probability = T, ylim = c(0,max((hist(x, freq = F, nclass = nclass))$density)*extra.height),
          main=main, xlab = xlab, ylab = ylab)
     pmf.x = dmix.pois(1:max(x), alpha, mu)
     lines(x = pmf.x, col = "red")

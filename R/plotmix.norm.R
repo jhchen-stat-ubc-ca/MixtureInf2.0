@@ -25,8 +25,8 @@
 #' alpha = c(.2, .5, .3)
 #' mu = c(-1, 2, 5)
 #' sigma = c(1, .5, 1.1)
-#' yy = rmix.norm(n, alpha, mu, sigma)
-#' plotmix.norm(yy, xx.grid = NULL, alpha, mu, sigma, m0=3,
+#' x = rmix.norm(n, alpha, mu, sigma)
+#' plotmix.norm(x, xx.grid = NULL, alpha, mu, sigma, m0=3,
 #' k = 20, extra.height = 1.05, comp = T, hist.ind = T,
 #' main="", xlab="Observed values", ylab="Density/Histogram")
 plotmix.norm <-

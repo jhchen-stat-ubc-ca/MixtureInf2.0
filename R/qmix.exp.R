@@ -13,10 +13,6 @@
 #' x = rmix.exp(n, alpha, mu)
 #' qmix.exp(.99, alpha, theta)
 qmix.exp <- function(qq, alpha, mu) {
-  #alpha:  vector of mixture probabilities.
-  #mu:  vector of subpopulation means.
-  #  qq :  the level of the quantile to be computed.
-  
   qmix.exp.sub <- function(x, alpha, mu, qq) 
   { sum(alpha*pexp(x, rate=1/mu))-qq }
   

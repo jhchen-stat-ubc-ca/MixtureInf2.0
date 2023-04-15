@@ -11,6 +11,7 @@ plotmix.pois(
   x.max = NULL,
   sub.pmf = T,
   nclass = NULL,
+  extra.height = 1.05,
   main = "",
   xlab = "Counts",
   ylab = "Prob"

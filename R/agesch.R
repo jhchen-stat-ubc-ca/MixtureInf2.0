@@ -1,0 +1,20 @@
+#' agesch
+#'
+#' @description This data set is from a schizophrenia study by Levine (1981), who collacted the results of seven 
+#' studies on the age of onset of schizophrenia of 99 females and 152 males. This data set contains
+#' observed values of only male data. Everitt et al., (2001) fitted the male data using a two-component
+#' normal mixture model. The data frame has 152 rows and 1 column.
+#'
+#' @usage data(agesch)
+#' @format This data frame contains one column:
+#' age: age of onset of schizophrenia of 152 males.
+#'
+#' @references Levine, R. (1981). Sex differences in schizophrenia: Timing or subtypes? Psychological Bulletin,
+#' 90, 432-444.
+#' Everitt, B. S., Landau, S., and Leese, M. (2001). Cluster Analysis (4th ed.). New York, NY: Oxford
+#' University Press, Inc.
+#' 
+#' @example data(agesch)
+#' out <- pmle.norm(unlist(agesch),2,1)
+#' plotmix.norm(unlist(agesch),alpha=out[[1]][1,], mu=out[[1]][2,], sigma=out[[1]][3,],m0=2)
+"agesch"
