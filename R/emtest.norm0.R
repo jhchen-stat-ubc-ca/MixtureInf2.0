@@ -27,6 +27,8 @@
 #'
 #' @examples x <- rmix.norm(200,c(0.3,0.7),c(-1,2),c(1,1))
 #' emtest.norm0(x)
+#' 
+#' @seealso plotmix.norm0, pmle.norm0, rmix.norm
 emtest.norm0 <-
   function(x, var.sub=1, m0=1, init.val=NULL, n.init=10, n.iter=50, 
            max.iter = 5000, tol = 1e-6, k=3, rformat=FALSE)  {

@@ -35,6 +35,8 @@
 #' n.init = 10; n.iter =50
 #' max.iter = 2000
 #' emtest.exp(x, m0 = 2, CC = NULL, init.val = NULL, n.init=10, n.iter=50, tol = 1e-6, k=3, rformat = FALSE)
+#' 
+#' @seealso plotmix.exp, pmle.exp, rmix.exp
 emtest.exp <- function(x, m0 = 1, CC = NULL, init.val = NULL,
                        n.init=10, n.iter=50, tol = 1e-6, k=3, max.iter = 2000, 
                        rformat = FALSE) {

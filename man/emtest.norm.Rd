@@ -55,10 +55,14 @@ emtest.norm
 data(grains)
 out <- emtest.norm(unlist(grains),m0 = 2)
 plotmix.norm(unlist(grains), alpha = out[[1]][1,], mu = out[[1]][2,], sigma = out[[1]][3,], m0 = 2)
+
 }
 \references{
 Chen, J. and Li, P. (2009). Hypothesis test for normal mixture models: The EM approach. The Annals of Statistics. 37, 2523-2542.
 Chen, J., Li, P. and Fu, Y. (2012). Inference on the order of a normal mixture. JASA. 107, 1096-1105.
+}
+\seealso{
+plotmix.norm, plotmix.norm.bin, pmle.norm, rmix.norm
 }
 \author{
 Shaoting Li, Jiahua Chen and Pengfei Li

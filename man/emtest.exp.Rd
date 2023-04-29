@@ -62,11 +62,15 @@ x = rmix.exp(n, alpha, mu)
 n.init = 10; n.iter =50
 max.iter = 2000
 emtest.exp(x, m0 = 2, CC = NULL, init.val = NULL, n.init=10, n.iter=50, tol = 1e-6, k=3, rformat = FALSE)
+
 }
 \references{
 Chen, J. and Li, P. (2011). Tuning the EM-test for the order of finite mixture models. The Canadian Journal of Statistics. 39, 389-404.
 Li, P. and Chen, J. (2010). Testing the order of a finite mixture model. JASA. 105, 1084-1092.
 Li, P., Chen, J. and Marriott, P. (2009). Non-finite Fisher information and homogeneity: The EM approach. Biometrika. 96, 411-426.
+}
+\seealso{
+plotmix.exp, pmle.exp, rmix.exp
 }
 \author{
 Shaoting Li, Jiahua Chen and Pengfei Li
