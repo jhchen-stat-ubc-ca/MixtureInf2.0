@@ -6,7 +6,22 @@
 \usage{
 dmix.exp(x, alpha, mu, logObs = F)
 }
+\arguments{
+\item{x}{The value at which we computed the cdf.}
+
+\item{alpha}{A vector of the mixing probabilities.}
+
+\item{mu}{A vector of the subpopulation means.}
+
+\item{logObs}{logObs=T if the data is in logarithm}
+}
 \description{
 This function computes the pdf of the finite exponential mixture distribution.
-It is used in various functions within the Exponential folder.
+}
+\examples{
+alpha = c(.3, .7)
+mu = c(1.8, 0.9)
+n = 2000
+x = rmix.exp(n, alpha = alpha, theta = mu)
+dmix.exp(x,alpha,mu)
 }

@@ -11,6 +11,7 @@
 #' @references Lindsay, B. G. and Roeder, K. (1992). Residual diagnostics for mixture models. Journal of the
 #' American Statistical Association,87(419), 785-794.
 #' 
-#' @example data(residual1)
-#' pmle.binom(residual1, size = 8, m0 = 2,lambda = 1)
+#' @examples data(residual1)
+#' out <- pmle.binom(as.matrix(residual1), size = 8, m0 = 2,lambda = 1)
+#' plotmix.binom(as.matrix(residual1), size = 8, alpha = out[[1]], theta = out[[2]])
 "residual1"

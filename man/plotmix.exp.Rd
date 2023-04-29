@@ -9,6 +9,7 @@ plotmix.exp(
   mu,
   qq = 0.995,
   x = NULL,
+  extra.height = 1.05,
   logObs = F,
   sub.pdf = T,
   h = 1.1,

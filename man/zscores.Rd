@@ -19,11 +19,15 @@ Efron (2004), if the gene is not differentially expressed, the corresponding z s
 Normal mixture with known variance 1 is suitable to this data set. The data frame has 6033 rows
 and 1 columns.
 }
+\examples{
+data(zscores)
+pmle.norm0(unlist(zscores),m0 = 2)
+}
 \references{
 Efron, B. (2004), Large-Scale Simultaneous Hypothesis Testing: The Choice of a Null Hypothesis,
 Journal of the American Statistical Association, 99, 96-104.
 Singh, D., Febbo, P. G., Ross, K., Jackson, D. G., Manola, J., Ladd, C., Tamayo, P., Renshaw, A.
-A., D’Amico, A. V., Richie, J. P., Lander, E. S., Loda, M., Kantoff, P. W., Golub, T. R., and Sellers,
+A., D'Amico, A. V., Richie, J. P., Lander, E. S., Loda, M., Kantoff, P. W., Golub, T. R., and Sellers,
 W. R. (2002), Gene Expression Correlates of Clinical Prostate Cancer Behavior, Cancer Cell, 1, 203-209.
 }
 \keyword{datasets}

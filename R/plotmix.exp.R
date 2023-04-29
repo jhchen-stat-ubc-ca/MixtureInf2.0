@@ -22,7 +22,7 @@
 #' alpha = c(.5, .3, .2)
 #' x = rmix.exp(n, alpha, mu) 
 #' plotmix.exp(alpha, mu, qq = 0.995, x) 
-plotmix.exp <- function(alpha, mu, qq = 0.995, x = NULL, logObs=F,
+plotmix.exp <- function(alpha, mu, qq = 0.995, x = NULL, extra.height = 1.05, logObs=F,
                         sub.pdf = T, h=1.1, nclass = NULL, main="", 
                         xlab = "Observations scaled", ylab = "Density", ylim=NULL) 
 {
@@ -45,7 +45,7 @@ plotmix.exp <- function(alpha, mu, qq = 0.995, x = NULL, logObs=F,
     }
     
     if(is.vector(x)) {
-      hist(x, freq= F, nclass = nclass, main=main, xlab = xlab, ylab = ylab)
+      hist(x, freq= F, nclass = nclass, ylim = c(0,max((hist(x, freq = F, nclass = nclass))$density)*extra.height), main=main, xlab = xlab, ylab = ylab)
       x.rang = seq(0, max(x), 0.005)
       pdf.x = dmix.exp(x.rang, alpha, mu)
       lines(x.rang, pdf.x, col = "red")
@@ -77,7 +77,7 @@ plotmix.exp <- function(alpha, mu, qq = 0.995, x = NULL, logObs=F,
     }
     
     if(is.vector(x)) {
-      hist(x, freq= F, nclass = nclass, main=main, xlab = xlab, ylab = ylab)
+      hist(x, freq= F, nclass = nclass, ylim = c(0,max((hist(x, freq = F, nclass = nclass))$density)*extra.height), main=main, xlab = xlab, ylab = ylab)
       x.rang = seq(min(x), max(x), 0.005)
       pdf.x = dmix.exp(x.rang, alpha, mu, logObs=T)
       lines(x.rang, pdf.x, col = "red")

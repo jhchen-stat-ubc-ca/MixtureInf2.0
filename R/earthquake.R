@@ -12,7 +12,7 @@
 #' @references Zucchini W, MacDonald IL (2009). Hidden Markov models for time series: an introduction using
 #' R. CRC Press.
 #' 
-#' @example data(earthquake)
+#' @examples data(earthquake)
 #' out <- pmle.pois(unlist(earthquake),2,1)
 #' plotmix.pois(unlist(earthquake), alpha= out[[1]], mu = out[[2]], extra.height=1.6)
 "earthquake"

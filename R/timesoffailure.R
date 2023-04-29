@@ -10,6 +10,9 @@
 #' @references Proschan, F. (1963). Theoretical explanation of observed decreasing failure rate. Technometrics 5,
 #' 375-83.
 #' 
-#' @example data(timesoffailure)
-#' pmle.exp(unlist(timesoffailure),2,1)
+#' @examples data(timesoffailure)
+#' out1 <- pmle.exp(unlist(timesoffailure),2,1)
+#' out2 <- emtest.exp(unlist(timesoffailure),2)
+#' plotmix.exp(alpha = out1[[1]], mu = out1[[2]], qq = 0.995, unlist(timesoffailure))
+#' plotmix.exp(alpha = out2[[1]][1,], mu = out2[[1]][2,], qq = 0.995, unlist(timesoffailure))
 "timesoffailure"

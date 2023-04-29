@@ -50,7 +50,7 @@ n = 2000
 mu = c(2, 9, 11)
 alpha = c(.2, .3, .5)
 xx = rmix.pois(n, alpha, mu)
-plotmix.pois(xx, alpha, mu)
+plotmix.pois(alpha,mu,xx,extra.height = 1.05)
 }
 \author{
 Shaoting Li, Jiahua Chen and Pengfei Li

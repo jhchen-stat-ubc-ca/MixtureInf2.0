@@ -17,6 +17,11 @@ This data set contains the number of major earthquakes (magnitude 7 or greater) 
 MacDonald (2009) suggested using a Poisson mixture model to fit the data. The data frame has 107
 rows and 1 column.
 }
+\examples{
+data(earthquake)
+out <- pmle.pois(unlist(earthquake),2,1)
+plotmix.pois(unlist(earthquake), alpha= out[[1]], mu = out[[2]], extra.height=1.6)
+}
 \references{
 Zucchini W, MacDonald IL (2009). Hidden Markov models for time series: an introduction using
 R. CRC Press.

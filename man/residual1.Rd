@@ -16,6 +16,11 @@ data(residual1)
 This data set is from Lindsay and Roeder (1992). It includes the number of boys in families of size
 8. The number of families is 53680. The data frame has 9 rows and 2 columns.
 }
+\examples{
+data(residual1)
+out <- pmle.binom(as.matrix(residual1), size = 8, m0 = 2,lambda = 1)
+plotmix.binom(as.matrix(residual1), size = 8, alpha = out[[1]], theta = out[[2]])
+}
 \references{
 Lindsay, B. G. and Roeder, K. (1992). Residual diagnostics for mixture models. Journal of the
 American Statistical Association,87(419), 785-794.

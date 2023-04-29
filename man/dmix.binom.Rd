@@ -6,7 +6,22 @@
 \usage{
 dmix.binom(x, size, alpha, theta)
 }
+\arguments{
+\item{x}{A vector at which the probability mass function is evaluated.}
+
+\item{size}{The number of trials.}
+
+\item{alpha}{A vector of the mixing probabilities.}
+
+\item{theta}{A vector of the probabilities of success of each component.}
+}
 \description{
-This function computes the probability mass function points for the vector x.
-It is used in various functions within the Binomial folder.
+This function computes the probability mass function points in x.
+}
+\examples{
+alpha = c(.5, .1, .4)
+theta = c(.1, .35, .8)
+size = 25
+x = rmix.binom(1000, size, alpha, theta)
+dmix.binom(x,size,alpha,theta)
 }

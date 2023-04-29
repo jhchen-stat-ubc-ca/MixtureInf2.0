@@ -14,7 +14,7 @@
 #' Everitt, B. S., Landau, S., and Leese, M. (2001). Cluster Analysis (4th ed.). New York, NY: Oxford
 #' University Press, Inc.
 #' 
-#' @example data(agesch)
+#' @examples data(agesch)
 #' out <- pmle.norm(unlist(agesch),2,1)
 #' plotmix.norm(unlist(agesch),alpha=out[[1]][1,], mu=out[[1]][2,], sigma=out[[1]][3,],m0=2)
 "agesch"

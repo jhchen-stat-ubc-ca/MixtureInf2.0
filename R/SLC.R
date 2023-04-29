@@ -12,8 +12,10 @@
 #' Roeder, K. (1994), A Graphical Technique for Determining the Number of Components in a Mixture of Normals, Journal of the American Statistical Association, 89, 487-500.
 
 #' 
-#' @example data(SLC)
+#' @examples data(SLC)
 #' a <- rbind(c(0.6,0.4),c(0.2,0.3),c(0.01,0.01))
-#' pmle.norm(unlist(SLC),2,1,init.val = a)
-#' emtest.norm(unlist(SLC),m0 = 2,init.val = a)
+#' out1 <- pmle.norm(unlist(SLC),2,1,init.val = a)
+#' out2 <- emtest.norm(unlist(SLC),m0 = 2,init.val = a)
+#' plotmix.norm(unlist(SLC),alpha=out1[[1]][1,], mu=out1[[1]][2,], sigma=out1[[1]][3,],m0=2)
+#' plotmix.norm(unlist(SLC),alpha=out2[[1]][1,], mu=out2[[1]][2,], sigma=out2[[1]][3,],m0=2)
 "SLC"

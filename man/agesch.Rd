@@ -17,6 +17,11 @@ studies on the age of onset of schizophrenia of 99 females and 152 males. This d
 observed values of only male data. Everitt et al., (2001) fitted the male data using a two-component
 normal mixture model. The data frame has 152 rows and 1 column.
 }
+\examples{
+data(agesch)
+out <- pmle.norm(unlist(agesch),2,1)
+plotmix.norm(unlist(agesch),alpha=out[[1]][1,], mu=out[[1]][2,], sigma=out[[1]][3,],m0=2)
+}
 \references{
 Levine, R. (1981). Sex differences in schizophrenia: Timing or subtypes? Psychological Bulletin,
 90, 432-444.
