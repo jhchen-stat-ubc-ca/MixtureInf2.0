@@ -53,7 +53,8 @@ emtest.norm
 }
 \examples{
 data(grains)
-emtest.norm(unlist(grains))
+out <- emtest.norm(unlist(grains),m0 = 2)
+plotmix.norm(unlist(grains), alpha = out[[1]][1,], mu = out[[1]][2,], sigma = out[[1]][3,], m0 = 2)
 }
 \references{
 Chen, J. and Li, P. (2009). Hypothesis test for normal mixture models: The EM approach. The Annals of Statistics. 37, 2523-2542.

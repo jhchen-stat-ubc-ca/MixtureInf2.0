@@ -16,9 +16,13 @@ dmix.pois(xx, alpha, theta)
 \description{
 This function computes the probability mass function of the Poisson mixture
 }
+\note{
+In order to plot the mixture density together with its subpopulation density, one can use the plotmix.pois function.
+}
 \examples{
 #Compute a density function from a 2 component poisson mixture
 theta = c(9, 10)
 alpha = c(.4, .6)
 dmix.pois(1:20, alpha, theta)
+
 }

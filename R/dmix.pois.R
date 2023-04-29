@@ -9,6 +9,8 @@
 #' theta = c(9, 10)
 #' alpha = c(.4, .6)
 #' dmix.pois(1:20, alpha, theta)
+#' 
+#' @note In order to plot the mixture density together with its subpopulation density, one can use the plotmix.pois function.
 dmix.pois <- function(xx, alpha, theta) {
   pmf = xx*0
   for(i in 1:length(alpha)) {

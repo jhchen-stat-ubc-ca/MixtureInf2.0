@@ -18,10 +18,14 @@ dmix.exp(x, alpha, mu, logObs = F)
 \description{
 This function computes the pdf of the finite exponential mixture distribution.
 }
+\note{
+In order to plot the mixture density together with its subpopulation density, one can use the plotmix.exp function.
+}
 \examples{
 alpha = c(.3, .7)
 mu = c(1.8, 0.9)
 n = 2000
 x = rmix.exp(n, alpha = alpha, theta = mu)
 dmix.exp(x,alpha,mu)
+
 }

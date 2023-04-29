@@ -18,6 +18,9 @@ dmix.norm(xx, alpha, mu, sigma)
 \description{
 A function that computes the density of the univariate normal mixture.
 }
+\note{
+In order to plot the mixture density together with its subpopulation density, one can use the plotmix.norm and plotmix.norm.bin functions.
+}
 \examples{
 mu = c(8, 9)
 alpha = c(.2, .8)
@@ -25,4 +28,5 @@ sigma = rep(1,length(alpha))
 n = 1000
 x = rmix.norm(n,alpha,mu)
 dmix.norm(1:10,alpha,mu,sigma)
+
 }

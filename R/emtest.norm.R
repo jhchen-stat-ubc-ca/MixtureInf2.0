@@ -26,8 +26,8 @@
 #' Chen, J., Li, P. and Fu, Y. (2012). Inference on the order of a normal mixture. JASA. 107, 1096-1105.
 #'
 #' @examples data(grains)
-#' emtest.norm(unlist(grains))
-
+#' out <- emtest.norm(unlist(grains),m0 = 2)
+#' plotmix.norm(unlist(grains), alpha = out[[1]][1,], mu = out[[1]][2,], sigma = out[[1]][3,], m0 = 2)
 emtest.norm <-
   function(x, m0=1, pen.size=NULL, init.val=NULL, n.init = 10, 
            n.iter=50, tol=1e-6, k=3, rformat=FALSE) {

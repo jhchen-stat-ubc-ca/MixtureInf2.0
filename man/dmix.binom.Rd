@@ -18,10 +18,14 @@ dmix.binom(x, size, alpha, theta)
 \description{
 This function computes the probability mass function points in x.
 }
+\note{
+In order to plot the mixture density together with its subpopulation density, one can use the plotmix.binom function.
+}
 \examples{
 alpha = c(.5, .1, .4)
 theta = c(.1, .35, .8)
 size = 25
 x = rmix.binom(1000, size, alpha, theta)
 dmix.binom(x,size,alpha,theta)
+
 }
