@@ -25,6 +25,6 @@ plotmix.norm(unlist(grains), alpha = out2[[1]][1,], mu = out2[[1]][2,], sigma = 
 }
 \references{
 Loisel, P., Goffinet, B., Monod, H., and Montes De Oca, G. (1994). Detecting a major gene in an
-F2 population. Biometrics, 50, 512–516.
+F2 population. Biometrics, 50, 512-516.
 }
 \keyword{datasets}

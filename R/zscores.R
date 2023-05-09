@@ -18,5 +18,7 @@
 #' W. R. (2002), Gene Expression Correlates of Clinical Prostate Cancer Behavior, Cancer Cell, 1, 203-209.
 #' 
 #' @examples data(zscores)
-#' pmle.norm0(unlist(zscores),m0 = 2)
+#' out <- pmle.norm0(unlist(zscores),m0 = 2)
+#' sigma <- var(unlist(zscores))
+#' plotmix.norm0(unlist(zscores), xx.grid = NULL, alpha = out[[1]], mu = out[[2]], sigma, m0=2)
 "zscores"

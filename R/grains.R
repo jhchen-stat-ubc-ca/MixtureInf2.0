@@ -9,7 +9,7 @@
 #' x: square root of the total number of grains for each planty.
 #'
 #' @references Loisel, P., Goffinet, B., Monod, H., and Montes De Oca, G. (1994). Detecting a major gene in an
-#' F2 population. Biometrics, 50, 512–516.
+#' F2 population. Biometrics, 50, 512-516.
 #' 
 #' @examples data(grains)
 #' out1 <- pmle.norm(unlist(grains),2,1)

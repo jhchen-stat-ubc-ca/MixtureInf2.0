@@ -21,7 +21,9 @@ and 1 columns.
 }
 \examples{
 data(zscores)
-pmle.norm0(unlist(zscores),m0 = 2)
+out <- pmle.norm0(unlist(zscores),m0 = 2)
+sigma <- var(unlist(zscores))
+plotmix.norm0(unlist(zscores), xx.grid = NULL, alpha = out[[1]], mu = out[[2]], sigma, m0=2)
 }
 \references{
 Efron, B. (2004), Large-Scale Simultaneous Hypothesis Testing: The Choice of a Null Hypothesis,
