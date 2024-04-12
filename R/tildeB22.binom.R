@@ -1,6 +1,6 @@
 #' tildeB22.binom
 #'
-#' @description This function computes the $\tilde B_{22}$ matrix in the
+#' @description This function computes the tilde{B}_{22} matrix in the
 #' EM-test for one-parameter subpopulation distributions,
 #' including binomial. See Chen and Li (2010JASA). 
 #' It is used in the emtest.binom function.
