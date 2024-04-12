@@ -12,6 +12,8 @@
 #' x = rmix.binom(1000, size, alpha, theta)
 #' dmix.binom(x,size,alpha,theta)
 #' 
+#' @export
+#' 
 #' @note In order to plot the mixture density together with its subpopulation density, one can use the plotmix.binom function.
 dmix.binom <- function(x, size, alpha, theta) {
   pmf.x = x*0

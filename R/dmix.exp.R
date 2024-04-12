@@ -12,6 +12,8 @@
 #' x = rmix.exp(n, alpha = alpha, theta = mu)
 #' dmix.exp(x,alpha,mu)
 #' 
+#' @export
+#' 
 #' @note In order to plot the mixture density together with its subpopulation density, one can use the plotmix.exp function.
 dmix.exp <- function(x, alpha, mu, logObs = F) {
   dmix = 0
