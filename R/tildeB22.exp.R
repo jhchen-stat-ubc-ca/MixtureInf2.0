@@ -1,6 +1,6 @@
 #' tildeB22.exp
 #'
-#' @description This function computes \tilde B_{22} under the Exponential mixture.
+#' @description This function computes tilde{B}_{22} under the Exponential mixture.
 #' It is used in the emtest.exp function.
 tildeB22.exp <- function(alpha, mu) {
   m0 = length(alpha)

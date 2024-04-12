@@ -7,6 +7,6 @@
 tildeB22.exp(alpha, mu)
 }
 \description{
-This function computes \tilde B_{22} under the Exponential mixture.
+This function computes tilde{B}_{22} under the Exponential mixture.
 It is used in the emtest.exp function.
 }

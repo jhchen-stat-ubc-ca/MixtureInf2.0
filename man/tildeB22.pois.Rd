@@ -7,7 +7,7 @@
 tildeB22.pois(alpha, theta)
 }
 \description{
-This function computes \tilde B_{22} under the Poisson mixture.
-             \tilde B_{22} is standardized to the correlation matrix.
+This function computes tilde{B}_{22} under the Poisson mixture.
+             tilde{B}_{22} is standardized to the correlation matrix.
              It is used in the emtest.pois function.
 }

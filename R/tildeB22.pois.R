@@ -1,7 +1,7 @@
 #' tildeB22.pois
 #'
-#' @description This function computes \tilde B_{22} under the Poisson mixture.
-#'              \tilde B_{22} is standardized to the correlation matrix.
+#' @description This function computes tilde{B}_{22} under the Poisson mixture.
+#'              tilde{B}_{22} is standardized to the correlation matrix.
 #'              It is used in the emtest.pois function.
 tildeB22.pois <- function(alpha, theta) {
   m0 = length(alpha)

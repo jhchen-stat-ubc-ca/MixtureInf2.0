@@ -7,7 +7,7 @@
 tildeB22.norm0(alpha, theta, N = 10000)
 }
 \description{
-This function computes \tilde B_{22} matrix in the
+This function computes tilde{B}_{22} matrix in the
              EM-test for one-parameter subpopulation distributions including normal with known variance.
              It is used in the emtest.norm0 function.
 }
