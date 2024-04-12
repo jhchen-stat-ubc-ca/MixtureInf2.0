@@ -1,12 +1,12 @@
 Package: Mixturelnf2.0
 Type: Package
 Title: Inference for Finite Mixture Models
-Version: 0.1.0
+Version: 1.0.0
 Author: Jiahua Chen
 Maintainer: Jiahua Chen <jhchen@stat.ubc.ca>
 Description: In
-License: What license is it under?
-URL: https://github.com/tstang99/Mixturelnf2.0
+License: MIT
+URL: https://https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
