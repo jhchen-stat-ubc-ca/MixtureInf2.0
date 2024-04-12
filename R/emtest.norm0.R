@@ -27,6 +27,7 @@
 #'
 #' @examples x <- rmix.norm(200,c(0.3,0.7),c(-1,2),c(1,1))
 #' emtest.norm0(x)
+#' @export
 #' 
 #' @seealso plotmix.norm0, pmle.norm0, rmix.norm
 emtest.norm0 <-

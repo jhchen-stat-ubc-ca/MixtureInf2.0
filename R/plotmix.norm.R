@@ -29,6 +29,7 @@
 #' plotmix.norm(x, xx.grid = NULL, alpha, mu, sigma, m0=3,
 #' k = 20, extra.height = 1.05, comp = T, hist.ind = T,
 #' main="", xlab="Observed values", ylab="Density/Histogram")
+#' @export
 plotmix.norm <-
   function(x = NULL, xx.grid = NULL, alpha, mu, sigma, m0,
            k = 20, extra.height = 1.05, comp = T, hist.ind = T,

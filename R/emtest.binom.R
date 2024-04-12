@@ -37,6 +37,7 @@
 #' init.val = c(.2, .7, .2, .8)
 #' emtest.binom(cbind(count, freq), size, m0=2, CC=NULL, lambda = 0, init.val,
 #'              n.init=10, n.iter=50, max.iter = 2000, tol=1e-6, k=5, rformat=FALSE)
+#' @export
 #'              
 #' @seealso plotmix.binom, pmle.binom, rmix.binom
 emtest.binom <- function(x, size, m0, CC=NULL, lambda = 0, init.val=NULL,

@@ -3,6 +3,7 @@
 #' @description This function computes tilde{B}_{22} under the Poisson mixture.
 #'              tilde{B}_{22} is standardized to the correlation matrix.
 #'              It is used in the emtest.pois function.
+#' @export
 tildeB22.pois <- function(alpha, theta) {
   m0 = length(alpha)
   x = qpois(0.0001, min(theta)):qpois(0.9999, max(theta))

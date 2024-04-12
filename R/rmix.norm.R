@@ -14,6 +14,7 @@
 #' plot the histogram of the data.
 #' x <- rmix.norm(200,c(0.3,0.7),c(-1,2),c(1,2))
 #' hist(x)
+#' @export
 rmix.norm <- function (n, alpha, mu, sigma=rep(1,length(alpha))) 
   #n:      sample size.
   #alpha:  vector of mixing proportions.

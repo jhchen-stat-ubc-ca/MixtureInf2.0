@@ -20,6 +20,7 @@
 #' alpha = c(.4, .6)
 #' x = rmix.pois(200, alpha, mu)
 #' pmle.pois (x, m0=2, lambda = 1, init.val = NULL, n.init=10, n.iter=50, tol=1e-6, max.iter=5000, rformat=FALSE)
+#' @export
 pmle.pois <- function(x, m0, lambda = 1, init.val = NULL, n.init=10, 
                       n.iter=50, tol=1e-6, max.iter=5000, rformat=FALSE) {
   if(is.vector(x)) {

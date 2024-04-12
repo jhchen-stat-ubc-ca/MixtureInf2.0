@@ -2,6 +2,7 @@
 #'
 #' @description This function computes the mixture's PMLE with specific structure. 
 #' It is used in the emtest.norm function.
+#' @export
 EMtest.maxmm.norm <- 
   function(xx, beta.i, m0, an, para0, n.init, n.iter, tol) {
     alpha0 = para0[[1]][1,];  mu0 = para0[[1]][2,]; sigma0 = para0[[1]][3,]

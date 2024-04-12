@@ -28,6 +28,7 @@
 #' @examples  
 #' data(grains)
 #' pmle.norm(unlist(grains),2)
+#' @export
 pmle.norm <- function(x, m0, lambda = 1, an = NULL, init.val = NULL,
                       n.init = 10, n.iter=50, max.iter = 5000, tol=1e-8, rformat = F) {
   #if(m0==1) stop("You do not need this function for MLE")

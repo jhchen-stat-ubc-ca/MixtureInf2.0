@@ -3,6 +3,7 @@
 #' @description This function computes tilde{B}_{22} matrix in the
 #'              EM-test for one-parameter subpopulation distributions including normal with known variance.
 #'              It is used in the emtest.norm0 function.
+#' @export
 tildeB22.norm0 <- function(alpha, theta, N=10000) {
   m0 = length(alpha)
   quan=matrix((0:(N-1)+0.5)/N, ncol=1)

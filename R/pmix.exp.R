@@ -12,6 +12,7 @@
 #' alpha = c(.5, .3, .2)
 #' x = rmix.exp(n, alpha, mu)
 #' pmix.exp(x, alpha, theta)
+#' @export
 pmix.exp <- function(x, alpha, theta) {
   sum(alpha*pexp(x,rate=1/theta))
 }

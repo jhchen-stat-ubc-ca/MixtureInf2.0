@@ -12,6 +12,7 @@
 #' sigma = c(1, .8, 1.1)*2
 #' x = rmix.norm(n, alpha, mu, sigma)
 #' pmix.norm(x,alpha,mu,sigma)
+#' @export
 pmix.norm <- function(x, alpha, mu, sigma) {
   if(any(alpha<0))
     stop("error: negative mixing proportion")

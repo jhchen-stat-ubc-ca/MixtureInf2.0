@@ -2,6 +2,8 @@
 #'
 #' @description This function computes the EM-test statistics for Poisson mixture. 
 #' It is used in the emtest.pois function.
+#' 
+#' @export
 EMstat.pois <- function(count, freq, alpha0, theta0, m0, ln0, 
                         CC, n.init, n.iter, tol, k, max.iter)
 {

@@ -4,6 +4,7 @@
 #' EM-test for one-parameter subpopulation distributions,
 #' including binomial. See Chen and Li (2010JASA). 
 #' It is used in the emtest.binom function.
+#' @export
 tildeB22.binom <- function(alpha, theta, size) {
   m0=length(alpha)
   x=0:size

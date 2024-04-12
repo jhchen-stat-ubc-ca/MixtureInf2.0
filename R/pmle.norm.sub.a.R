@@ -1,6 +1,7 @@
 #' pmle.norm.sub.a
 #'
 #' @description It is used in the pmle.norm.sub function, it computes a single EM iteration for the univariate Gaussian mixture.
+#' @export
 pmle.norm.sub.a <- 
   function(xx, sample.var, m0, para0, lambda, an)  {
     nn = length(xx)

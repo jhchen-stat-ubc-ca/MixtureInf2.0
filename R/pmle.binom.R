@@ -19,6 +19,7 @@
 #' @examples size = 25
 #' x = rmix.binom(1000, size, alpha, theta)
 #' pmle.binom(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,n.iter = 50, max.iter = 5000, tol = 1e-6, rformat=FALSE)
+#' @export
 pmle.binom <- function(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,
                        n.iter = 50, max.iter = 5000, tol = 1e-6, rformat=FALSE) {
   if(is.vector(x)) {

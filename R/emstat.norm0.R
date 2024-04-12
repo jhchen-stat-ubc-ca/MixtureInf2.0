@@ -2,6 +2,8 @@
 #'
 #' @description The function computes the EM-test statistics for univariate normal mixture
 #' with known variance. It is used in the emtest.norm0 function.
+#' 
+#' @export
 emstat.norm0 <-
   function(xx, mle0, ln0, m0, CC, n.init, n.iter, tol, k=3)
     # xx:        data as a plain vector. 

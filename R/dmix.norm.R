@@ -13,6 +13,8 @@
 #' x = rmix.norm(n,alpha,mu)
 #' dmix.norm(1:10,alpha,mu,sigma)
 #' 
+#' @export
+#' 
 #' @note In order to plot the mixture density together with its subpopulation density, one can use the plotmix.norm and plotmix.norm.bin functions.
 dmix.norm <- function(xx, alpha, mu, sigma) {
   if(any(alpha<0)) stop("error: negative mixing proportion")

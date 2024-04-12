@@ -2,6 +2,7 @@
 #'
 #' @description This function computes the quantile of the univariate finite normal mixture one by one.
 #' It is used in the tildeB22.norm0 function.
+#' @export
 qmix.norm <- function(pp, alpha, mu, sigma, tol=1e-8) {
   if(any(alpha<0))
     stop("error: negative mixing proportion")

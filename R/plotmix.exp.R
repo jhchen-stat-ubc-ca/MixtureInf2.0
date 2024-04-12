@@ -22,6 +22,7 @@
 #' alpha = c(.5, .3, .2)
 #' x = rmix.exp(n, alpha, mu) 
 #' plotmix.exp(alpha, mu, qq = 0.995, x) 
+#' @export
 plotmix.exp <- function(alpha, mu, qq = 0.995, x = NULL, extra.height = 1.05, logObs=F,
                         sub.pdf = T, h=1.1, nclass = NULL, main="", 
                         xlab = "Observations scaled", ylab = "Density", ylim=NULL) 

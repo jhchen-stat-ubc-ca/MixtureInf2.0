@@ -1,6 +1,7 @@
 #' EMtest.norm.iter
 #'
 #' @description This function computes the EM-algorithm in the emtest.norm function.
+#' @export
 EMtest.norm.iter <- function(xx, nn, m0, para, sigma0, beta.i, pen.size, k) {
   alpha = para[1:(2*m0)]
   mu = para[(2*m0+1):(4*m0)]

@@ -2,6 +2,7 @@
 #'
 #' @description This function computes the PMLE under the alternative model given a beta value. 
 #' It is used in the emstat.exp function.
+#' @export
 maxmm.exp <- function(x, bbeta, theta0, n.init, n.iter, tol, max.iter) {
   ### Divide the parameter space of subpop mean)
   m0 = length(bbeta)

@@ -1,6 +1,7 @@
 #' pmle.norm0.sub
 #'
-#' @description It is used in the pmle.norm0 function, It does the actual computing for the EM-algorithm.  
+#' @description It is used in the pmle.norm0 function, It does the actual computing for the EM-algorithm. 
+#' @export 
 pmle.norm0.sub <- function(x, m0, lambda, 
                            init.val, n.init, n.iter, max.iter, tol) {
   nn = length(x)

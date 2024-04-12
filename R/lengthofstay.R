@@ -15,4 +15,5 @@
 #' out2 <- emtest.exp(unlist(lengthofstay),m0=2)
 #' plotmix.exp(alpha = out1[[1]],mu = out1[[2]], x = unlist(lengthofstay))
 #' plotmix.exp(alpha = out2[[1]][1,],mu = out2[[1]][2,], x = unlist(lengthofstay))
+#' @export
 "lengthofstay"

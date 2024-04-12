@@ -55,7 +55,6 @@ This function computes the EM-test statistic and the p-value for the hypothesis 
 \examples{
 x <- rmix.norm(200,c(0.3,0.7),c(-1,2),c(1,1))
 emtest.norm0(x)
-
 }
 \references{
 Chen, J. and Li, P. (2009). Hypothesis test for normal mixture models: The EM approach. The Annals of Statistics. 37, 2523-2542.

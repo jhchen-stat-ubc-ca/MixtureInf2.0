@@ -2,6 +2,7 @@
 #'
 #' @description A sub function for pmle.binom, does the actual work of PMLE binomial mixture.
 #' It is used in the pmle.binom function.
+#' @export
 pmle.binom.sub <- function(count, freq, size, m0, lambda,
                            init.val, n.init, max.iter, n.iter, tol)  {
   if(m0 > 1)	{

@@ -14,4 +14,5 @@
 #' @examples data(residual1)
 #' out <- pmle.binom(as.matrix(residual1), size = 8, m0 = 2,lambda = 1)
 #' plotmix.binom(as.matrix(residual1), size = 8, alpha = out[[1]], theta = out[[2]])
+#' @export
 "residual1"

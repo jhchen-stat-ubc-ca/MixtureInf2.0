@@ -27,6 +27,7 @@
 #'
 #' @examples x <- rmix.norm(200,c(0.3,0.7),c(-1,2))
 #' pmle.norm0(x,m0=2)
+#' @export
 pmle.norm0 <- function(x, var.sub = 1, m0, lambda = 1, 
                        init.val = NULL, n.init = 10, n.iter=50, 
                        max.iter = 5000, tol=1e-8, rformat = F) {

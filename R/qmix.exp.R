@@ -12,6 +12,7 @@
 #' alpha = c(.5, .3, .2)
 #' x = rmix.exp(n, alpha, mu)
 #' qmix.exp(.99, alpha, theta)
+#' @export
 qmix.exp <- function(qq, alpha, mu) {
   qmix.exp.sub <- function(x, alpha, mu, qq) 
   { sum(alpha*pexp(x, rate=1/mu))-qq }

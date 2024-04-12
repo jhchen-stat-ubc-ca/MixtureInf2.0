@@ -2,6 +2,8 @@
 #'
 #' @description This function computes the EM-test statistics for the exponential mixture.
 #' It is used in the emtest.exp function.
+#' 
+#' @export
 emstat.exp <- function(x, outnull, CC, n.init, n.iter, tol, k, 
                        max.iter) {
   theta0 = outnull$theta

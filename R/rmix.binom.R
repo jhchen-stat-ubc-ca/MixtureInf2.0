@@ -17,6 +17,7 @@
 #' x = rmix.binom(1000, size, alpha, theta)
 #' mean(x)
 #' var(x)
+#' @export
 rmix.binom <- function(n, size, alpha, theta) {
   if(any(alpha<0)) stop("negative mixing probabilities")
   if(any(theta<0)) stop("negative subpopulation probabilities")

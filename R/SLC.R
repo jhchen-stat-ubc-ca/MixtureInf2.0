@@ -18,4 +18,5 @@
 #' out2 <- emtest.norm(unlist(SLC),m0 = 2,init.val = a)
 #' plotmix.norm(unlist(SLC),alpha=out1[[1]][1,], mu=out1[[1]][2,], sigma=out1[[1]][3,],m0=2)
 #' plotmix.norm(unlist(SLC),alpha=out2[[1]][1,], mu=out2[[1]][2,], sigma=out2[[1]][3,],m0=2)
+#' @export
 "SLC"

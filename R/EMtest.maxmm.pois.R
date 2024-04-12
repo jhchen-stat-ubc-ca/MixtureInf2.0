@@ -3,6 +3,7 @@
 #' @description This function computes the PMLE of parameters under the alternative model 
 #'              for EM-test given a beta.i value.
 #'              It is used in the EMstat.pois function.
+#' @export
 EMtest.maxmm.pois <- function(count, freq, beta.i, alpha0, theta0, 
                               m0, n.init, n.iter, tol, max.iter) {	
   eta = rep(0, m0+1)

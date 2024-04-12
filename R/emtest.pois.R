@@ -29,6 +29,7 @@
 #' alpha = c(.2, .3, .5)
 #' xx = rmix.pois(n, alpha, mu)
 #' emtest.pois(xx, m0 = 3, CC = NULL, init.val=NULL, n.init = 10, n.iter = 50, tol = 1e-6, k=3, rformat = F, max.iter = 5000)
+#' @export
 #' 
 #' @seealso plotmix.pois, pmle.pois, rmix.pois
 emtest.pois <- function(x, m0 = 1, CC = NULL, init.val=NULL, n.init = 10, 

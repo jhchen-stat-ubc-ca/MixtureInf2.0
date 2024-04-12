@@ -1,6 +1,7 @@
 #' pmle.pois.sub
 #'
 #' @description This function is used by pmle.pois. It does the real work but not stand alone.
+#' @export
 pmle.pois.sub <- function(x, m0, lambda, init.val, n.init, n.iter, 
                           tol, max.iter=5000) {
   count = as.numeric(x[,1])  

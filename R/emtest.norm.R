@@ -28,6 +28,7 @@
 #' @examples data(grains)
 #' out <- emtest.norm(unlist(grains),m0 = 2)
 #' plotmix.norm(unlist(grains), alpha = out[[1]][1,], mu = out[[1]][2,], sigma = out[[1]][3,], m0 = 2)
+#' @export
 #' 
 #' @seealso plotmix.norm, plotmix.norm.bin, pmle.norm, rmix.norm
 emtest.norm <-

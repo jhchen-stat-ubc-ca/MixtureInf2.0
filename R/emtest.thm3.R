@@ -3,6 +3,7 @@ library(quadprog)
 #'
 #' @description This function computes a_h as in Theorem 3 of Li and Chen (JASA2009) by MC.
 #' It is used in the emtest.exp function.
+#' @export
 emtest.thm3 <- function(tb, N=10000, tol = 1e-8) {	
   m0 = dim(tb)[1]	
   eig.tb = eigen(tb)

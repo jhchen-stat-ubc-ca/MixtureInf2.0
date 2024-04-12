@@ -2,6 +2,7 @@
 #'
 #' @description This function produces the recommended size of penalty of EMtest under the Gaussian mixture.
 #' It is used in the emtest.norm function.  
+#' @export
 EMtest.norm.penalty <- function(m0, para0, nn) {
   if(m0 ==1) an = 0.25
   if(m0 > 3) an = 0.2

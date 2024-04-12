@@ -25,6 +25,7 @@
 #' alpha = c(.5, .3, .2)
 #' x = rmix.exp(n, alpha, mu) 
 #' pmle.exp(x, 3)
+#' @export
 pmle.exp <- function(x, m0, lambda = 1, init.val = NULL,
                      n.init = 10, n.iter=50, max.iter = 5000, tol=1e-8, rformat = F)
 {

@@ -14,4 +14,5 @@
 #' @examples data(pearson)
 #' out <- pmle.norm(unlist(pearson),2,1)
 #' plotmix.norm(unlist(pearson),alpha=out[[1]][1,], mu=out[[1]][2,], sigma=out[[1]][3,],m0=2)
+#' @export
 "pearson"

@@ -19,4 +19,5 @@
 #' out2 <- emtest.norm(as.matrix(pollen),m0 = 3)
 #' plotmix.norm(as.matrix(pollen), alpha = out1[[1]][1,], mu = out1[[1]][2,], sigma = out1[[1]][3,], m0 = 3)
 #' plotmix.norm(as.matrix(pollen), alpha = out2[[1]][1,], mu = out2[[1]][2,], sigma = out2[[1]][3,], m0 = 3)
+#' @export
 "pollen"

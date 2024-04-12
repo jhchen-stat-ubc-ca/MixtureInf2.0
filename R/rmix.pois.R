@@ -12,6 +12,7 @@
 #' mu = c(3, 9, 15)
 #' alpha = c(.2, .3, .5)
 #' xx = rmix.pois(n, alpha, mu)
+#' @export
 rmix.pois <- function(n, alpha, theta) {
   #n:      sample size.
   #alpha:  vector of mixing proportions.

@@ -2,6 +2,8 @@
 #'
 #' @description This function computes the EM-test statistics for a binomial mixture.
 #' It is used in the emtest.binom function.
+#' 
+#' @export
 emstat.binom <- function(count, freq, outnull, size, m0, CC, 
                          n.init, max.iter, n.iter, tol, k) {
   bbeta=c()

@@ -27,6 +27,7 @@
 #' sigma = c(1, .8, 1.1)
 #' x = rmix.norm(n, alpha, mu, sigma)
 #' plotmix.norm.bin(x,alpha,mu,sigma)
+#' @export
 plotmix.norm.bin <-
   function(x = NULL, alpha, mu, sigma, k = 20, extra.height = 1.05, 
            comp = T, hist.ind = T, main="", xlab="Observed values", 

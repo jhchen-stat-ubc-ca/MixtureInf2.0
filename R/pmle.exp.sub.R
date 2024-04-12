@@ -2,6 +2,7 @@
 #'
 #' @description This function does the real work of computing the PMLE of the mixing distribution under the exponential mixture model. 
 #' It is used in the pmle.exp function.
+#' @export
 pmle.exp.sub <- function(xx, m0, lambda, init.val, n.init, 
                          n.iter, max.iter, tol) {
   n = length(xx)

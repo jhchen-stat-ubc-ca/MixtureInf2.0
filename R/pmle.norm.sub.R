@@ -1,6 +1,7 @@
 #' pmle.norm.sub
 #'
-#' @description It is used in the pmle.norm function, it does the actual EM-algorithm and computes the penalized MLE. 
+#' @description It is used in the pmle.norm function, it does the actual EM-algorithm and computes the penalized MLE.
+#' @export 
 pmle.norm.sub <- function(x, m0, lambda, an, init.val, n.init, 
                           n.iter, max.iter, tol) {
   sample.var = var(x);  n = length(x)

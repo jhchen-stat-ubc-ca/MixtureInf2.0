@@ -12,6 +12,7 @@
 #' mu = c(3, 9, 18)
 #' alpha = c(.5, .3, .2)
 #' rmix.exp(n, alpha, mu)
+#' @export
 rmix.exp <- function (n, alpha, theta)  {
   m = length(alpha)
   alpha = alpha/sum(alpha)

@@ -2,6 +2,7 @@
 #'
 #' @description This function is meant for em-test. It gets the PMLE under a restricted alternative given a beta.j value.
 #' It is used in the emtest.binom function.
+#' @export
 maxmm.binom <- function(count, freq, size, m0, beta.j, theta0, 
                         n.init, max.iter, n.iter, tol)   {
   ### the dividing points of the parameter space of theta)

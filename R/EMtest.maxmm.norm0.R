@@ -2,6 +2,7 @@
 #'
 #' @param xx The input data that can be either a vector or a matrix with the 1st column being the observed values
 #'          and the 2nd column being the corresponding frequency. It is used in the emstat.norm0 function.
+#' @export
 EMtest.maxmm.norm0 <-
   function(xx, bbeta, mle0, m0, n.init, n.iter, tol) {
     eta = rep(0, m0+1);  eta[1] = min(xx);  eta[m0+1] = max(xx)
