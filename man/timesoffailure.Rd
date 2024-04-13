@@ -8,6 +8,9 @@
 This data frame contains one column,
 x: pooled failure times about 213 observations.
 }
+\source{
+<https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
+}
 \usage{
 data(timesoffailure)
 }

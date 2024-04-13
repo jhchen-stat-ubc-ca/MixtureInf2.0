@@ -9,6 +9,9 @@ This data frame contains the 2 columns,
 count: number of boys in family.
 freq: number of families with corresponding.
 }
+\source{
+<https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
+}
 \usage{
 data(residual2)
 }

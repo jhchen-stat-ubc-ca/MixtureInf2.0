@@ -8,6 +8,9 @@
 This data frame contains one column:
 x: square root of the total number of grains for each planty.
 }
+\source{
+<https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
+}
 \usage{
 data(grains)
 }

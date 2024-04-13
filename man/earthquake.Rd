@@ -8,6 +8,9 @@
 This data frame contains one column:
 number: number of major earthquakes in a year.
 }
+\source{
+<https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
+}
 \usage{
 data(earthquake)
 }

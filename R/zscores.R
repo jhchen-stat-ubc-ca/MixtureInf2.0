@@ -21,5 +21,5 @@
 #' out <- pmle.norm0(unlist(zscores),m0 = 2)
 #' sigma <- var(unlist(zscores))
 #' plotmix.norm0(unlist(zscores), xx.grid = NULL, alpha = out[[1]], mu = out[[2]], sigma, m0=2)
-#' @export
+#' @source <https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
 "zscores"

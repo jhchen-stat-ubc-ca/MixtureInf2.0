@@ -12,7 +12,7 @@
 #' @references Zucchini W, MacDonald IL (2009). Hidden Markov models for time series: an introduction using
 #' R. CRC Press.
 #' 
-#' @export
+#' @source <https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
 #' 
 #' @examples data(earthquake)
 #' out <- pmle.pois(unlist(earthquake),2,1)

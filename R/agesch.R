@@ -15,7 +15,7 @@
 #' University Press, Inc.
 #' 
 #' @examples data(agesch)
-#' @export
 #' out <- pmle.norm(unlist(agesch),2,1)
 #' plotmix.norm(unlist(agesch),alpha=out[[1]][1,], mu=out[[1]][2,], sigma=out[[1]][3,],m0=2)
+#' @source <https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
 "agesch"

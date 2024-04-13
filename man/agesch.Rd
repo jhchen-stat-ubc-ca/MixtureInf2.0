@@ -8,6 +8,9 @@
 This data frame contains one column:
 age: age of onset of schizophrenia of 152 males.
 }
+\source{
+<https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
+}
 \usage{
 data(agesch)
 }
@@ -19,6 +22,8 @@ normal mixture model. The data frame has 152 rows and 1 column.
 }
 \examples{
 data(agesch)
+out <- pmle.norm(unlist(agesch),2,1)
+plotmix.norm(unlist(agesch),alpha=out[[1]][1,], mu=out[[1]][2,], sigma=out[[1]][3,],m0=2)
 }
 \references{
 Levine, R. (1981). Sex differences in schizophrenia: Timing or subtypes? Psychological Bulletin,

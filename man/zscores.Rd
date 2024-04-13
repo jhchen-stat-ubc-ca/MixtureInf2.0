@@ -8,6 +8,9 @@
 This data frame contains one column:
 z-scores: 6033 z-scores.
 }
+\source{
+<https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
+}
 \usage{
 data(zscores)
 }

@@ -9,6 +9,9 @@ This data frame contains the following columns:
 ratio: the boundaries of grouping intervals.
 freq: the frequencies of observation falling into each interval.
 }
+\source{
+<https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
+}
 \usage{
 data(pearson)
 }

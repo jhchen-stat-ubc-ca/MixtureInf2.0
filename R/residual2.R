@@ -14,5 +14,5 @@
 #' @examples data(residual2)
 #' out <- pmle.binom(as.matrix(residual2), size = 12, m0 = 2,lambda = 1)
 #' plotmix.binom(as.matrix(residual2), size = 12, alpha = out[[1]], theta = out[[2]])
-#' @export
+#' @source <https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
 "residual2"

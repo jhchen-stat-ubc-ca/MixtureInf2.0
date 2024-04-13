@@ -16,5 +16,5 @@
 #' out2 <- emtest.norm(unlist(grains),m0 = 2)
 #' plotmix.norm(unlist(grains), alpha = out1[[1]][1,], mu = out1[[1]][2,], sigma = out1[[1]][3,], m0 = 2)
 #' plotmix.norm(unlist(grains), alpha = out2[[1]][1,], mu = out2[[1]][2,], sigma = out2[[1]][3,], m0 = 2)
-#' @export
+#' @source <https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
 "grains"

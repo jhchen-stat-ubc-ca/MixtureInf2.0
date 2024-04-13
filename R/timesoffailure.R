@@ -15,5 +15,5 @@
 #' out2 <- emtest.exp(unlist(timesoffailure),2)
 #' plotmix.exp(alpha = out1[[1]], mu = out1[[2]], qq = 0.995, unlist(timesoffailure))
 #' plotmix.exp(alpha = out2[[1]][1,], mu = out2[[1]][2,], qq = 0.995, unlist(timesoffailure))
-#' @export
+#' @source <https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
 "timesoffailure"

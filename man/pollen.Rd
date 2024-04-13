@@ -11,6 +11,9 @@ Abies
 Quercus
 Alnus
 }
+\source{
+<https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
+}
 \usage{
 data(pollen)
 }

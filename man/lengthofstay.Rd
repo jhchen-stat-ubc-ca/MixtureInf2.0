@@ -8,6 +8,9 @@
 This data frame contains one column,
 length: length of stay for 469 geriatric patients in a psychiatric hospital.
 }
+\source{
+<https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
+}
 \usage{
 data(lengthofstay)
 }
