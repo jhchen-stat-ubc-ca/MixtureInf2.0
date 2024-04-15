@@ -15,7 +15,7 @@ drawing histogram of observations and the fitted density or probability mass fun
 # To directly download a package from GitHub to your local R environment, 
 # you need to have the devtools package installed
 library(devtools)
-# Install MixtureInf2.0 from GitHub using the install_github function from the devtools pakcage  
+# Install MixtureInf2.0 from GitHub using the install_github function from the devtools package  
 install_github("jhchen-stat-ubc-ca/MixtureInf2.0")
 ```
 
