@@ -15,7 +15,7 @@ age: age of onset of schizophrenia of 152 males.
 data(agesch)
 }
 \description{
-This data set is from a schizophrenia study by Levine (1981), who collacted the results of seven 
+This data set is from a schizophrenia study by Levine (1981), who collected the results of seven 
 studies on the age of onset of schizophrenia of 99 females and 152 males. This data set contains
 observed values of only male data. Everitt et al., (2001) fitted the male data using a two-component
 normal mixture model. The data frame has 152 rows and 1 column.
