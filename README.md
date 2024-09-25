@@ -4,7 +4,7 @@
 [![R-CMD-check](https://github.com/r-lib/devtools/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/tstang99/MixtureInf2.0/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The aim of MixtureInf2.0 is an updated version of MixtureInf2.0. 
+The aim of MixtureInf2.0 is an updated version of MixtureInf. 
 The package creates functions that compute the penalized maximum likelihood estimate (PMLE) or maximum likelihood estimate (MLE), 
 testing the order of a finite mixture model using EM-test, 
 drawing histogram of observations and the fitted density or probability mass function of the mixture model.
