@@ -21,8 +21,6 @@
 #'          and mixing variances), log-likelihood value at the PMLE or MLE and the penalized log-likelihood
 #'          value at the PMLE.
 #' 
-#' @return It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component parameters), 
-#' log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
 #' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
 #' @examples  

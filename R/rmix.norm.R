@@ -16,10 +16,6 @@
 #' hist(x)
 #' @export
 rmix.norm <- function (n, alpha, mu, sigma=rep(1,length(alpha))) 
-  #n:      sample size.
-  #alpha:  vector of mixing proportions.
-  #mu:     vector of component means.
-  #sigma:  vector of component standard deviations.
 {
   if(any(alpha<0))
     stop("error: negative mixing proportion")
