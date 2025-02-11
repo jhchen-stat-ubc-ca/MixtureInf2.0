@@ -65,7 +65,7 @@ pmle.beta <- function(x, m0, n.iter=10, max.iter=5000, tol=1e-6, epsilon=1,
     pmix_ref = pmix_beta(seq_vals, mix_porp, alpha, beta)
     cdf_list = vector("list", m0 - 1)
     loglike_list = vector("list", m0-1)
-    single_beta_param = beta.mle(x)
+    single_beta_param = Rfast::beta.mle(x)
     if (sum(abs(alpha-single_beta_param$param[[1]]))<(m0*0.1) && 
         sum(abs(beta-single_beta_param$param[[2]]))<(m0*0.1)) {
       cdf_list[[1]]=1e6
