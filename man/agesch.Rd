@@ -5,8 +5,7 @@
 \alias{agesch}
 \title{agesch}
 \format{
-This data frame contains one column:
-age: age of onset of schizophrenia of 152 males.
+This data frame contains one column: age of onset of schizophrenia of 152 males.
 }
 \source{
 <https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>

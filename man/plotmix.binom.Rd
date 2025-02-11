@@ -46,7 +46,7 @@ alpha = c(.5, .1, .4)
 theta = c(.1, .35, .8)
 size = 25
 x = rmix.binom(1000, size, alpha, theta)
-plotmix.binom(x, size, alpha, theta, sub.pmf = T, nclass=size, main="", xlab="Counts", ylab="Prob")
+plotmix.binom(x, size, alpha, theta, sub.pmf = TRUE, nclass=size, main="", xlab="Counts", ylab="Prob")
 }
 \author{
 Shaoting Li, Jiahua Chen and Pengfei Li

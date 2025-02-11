@@ -30,6 +30,8 @@ compute the PMLE under the null model.}
 
 \item{n.iter}{Least amount of iterations for all initial values in the EM-algorithm.}
 
+\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
+
 \item{max.iter}{Maximum amount of iterations.}
 
 \item{rformat}{A specific format, please see rousignif.R function.}

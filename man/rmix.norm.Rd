@@ -23,8 +23,6 @@ It returns a samples of size n from an m-component normal mixture.
 This function generates a random sample from a mixture of normal.
 }
 \examples{
-#generate a random sample from a 2 component normal mixture,
-plot the histogram of the data.
 x <- rmix.norm(200,c(0.3,0.7),c(-1,2),c(1,2))
 hist(x)
 }

@@ -22,9 +22,7 @@ It returns the sample of size n from an m-component binomial mixture.
 This function generates a random sample from the finite binomial mixture distributions.
 }
 \examples{
-#Generate a random sample from a 3 component binomial mixture,
-and computes the sample mean and variance. 
-alpha = c(.5, .1, .4)
+ alpha = c(.5, .1, .4)
 theta = c(.1, .35, .8)
 size = 25
 x = rmix.binom(1000, size, alpha, theta)

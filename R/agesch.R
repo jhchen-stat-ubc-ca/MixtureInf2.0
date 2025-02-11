@@ -6,8 +6,7 @@
 #' normal mixture model. The data frame has 152 rows and 1 column.
 #'
 #' @usage data(agesch)
-#' @format This data frame contains one column:
-#' age: age of onset of schizophrenia of 152 males.
+#' @format This data frame contains one column: age of onset of schizophrenia of 152 males.
 #'
 #' @references Levine, R. (1981). Sex differences in schizophrenia: Timing or subtypes? Psychological Bulletin,
 #' 90, 432-444.

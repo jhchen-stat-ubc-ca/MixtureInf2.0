@@ -18,7 +18,7 @@
 #' theta = c(.1, .35, .8)
 #' size = 25
 #' x = rmix.binom(1000, size, alpha, theta)
-#' plotmix.binom(x, size, alpha, theta, sub.pmf = T, nclass=size, main="", xlab="Counts", ylab="Prob")
+#' plotmix.binom(x, size, alpha, theta, sub.pmf = TRUE, nclass=size, main="", xlab="Counts", ylab="Prob")
 #' @export
 plotmix.binom <- function(x, size, alpha, theta, 
                           sub.pmf = T, nclass=NULL, main="", xlab="Counts", ylab="Prob") {

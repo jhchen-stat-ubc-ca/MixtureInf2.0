@@ -9,6 +9,7 @@
 #' @param n.init The number of initial values chosen for the EM-algorithm.
 #' @param n.iter Least amount of iterations for all initial values in the EM-algorithm.
 #' @param max.iter Maximum amount of iterations.
+#' @param tol The tolerance value for the convergence of the EM-algorithm.
 #' @param rformat A specific format, please see rousignif.R function. 
 #' 
 #' @return It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component
