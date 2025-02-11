@@ -27,7 +27,7 @@ MoM_BMM <- function(x,m0,seed,maxit) {
       return((observed_sample - mm)^2)
     }
     
-    test_result = testnslv(c(mix_porp[1:m0-1], theta), MM_BMM, control = list(maxit = maxit))
+    test_result = nleqslv::testnslv(c(mix_porp[1:m0-1], theta), MM_BMM, control = list(maxit = maxit))
     
     method = test_result$out[as.numeric(rownames(test_result$out)[which(test_result$out$termcd < 4)]),]$Method
     global = test_result$out[as.numeric(rownames(test_result$out)[which(test_result$out$termcd < 4)]),]$Global
@@ -35,7 +35,7 @@ MoM_BMM <- function(x,m0,seed,maxit) {
     rerun <- identical(method, character(0)) || identical(global, character(0))
   }
   possible_soln=sapply(1:length(method), function(i) {
-    nleqslv(c(mix_porp[1:m0-1],theta),MM_BMM, method = method[i],global=global[i],control=list(maxit=maxit)) })
+    nleqslv::nleqslv(c(mix_porp[1:m0-1],theta),MM_BMM, method = method[i],global=global[i],control=list(maxit=maxit)) })
   init_params=possible_soln[,which(sapply(1:ncol(possible_soln), function(i) (sum(possible_soln[,i]$x[1:(m0-1)])<1)&
                                             (sum(possible_soln[, i]$x > 0)==(3*m0-1))))]
   if (is.null(ncol(init_params))==TRUE || ncol(init_params) == 0) {

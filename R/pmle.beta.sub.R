@@ -18,8 +18,8 @@ pmle.beta.sub <- function(x,m0,para0,an,epsilon) {
   theta = Pen_M_Step(x, t(ww), mix_porp, theta, an)
   alpha = theta[1:m0]
   beta = theta[(m0+1):(2*m0)]
-  loglike = sum(log(dmix_beta(x, mix_porp, alpha, beta)+1e-100))
-  ploglik=sum(log(dmix_beta(x, mix_porp, alpha, beta))+1e-100)+
+  loglike = sum(log(dmix.beta(x, mix_porp, alpha, beta)+1e-100))
+  ploglik=sum(log(dmix.beta(x, mix_porp, alpha, beta))+1e-100)+
     sum(log(alpha*exp(-alpha))+log(beta*exp(-beta)))/an
   ind = sort(alpha,index.return = TRUE)$ix
   return(c(mix_porp[ind], alpha[ind],beta[ind], loglike,ploglik))
@@ -37,7 +37,7 @@ Pen_M_Step <- function(x, ww, mix_porp, theta, an) {
     n = length(x)
     alpha = theta[1:length(mix_porp)]
     beta = theta[(length(mix_porp)+1):(2*length(mix_porp))]
-    return(ww*log(dmix_beta(x, mix_porp, alpha, beta))+(log(alpha*exp(-alpha))+log(beta*exp(-beta)))/an)
+    return(ww*log(dmix.beta(x, mix_porp, alpha, beta))+(log(alpha*exp(-alpha))+log(beta*exp(-beta)))/an)
   }
   pgradlik <- function(theta,x) {
     if (any(theta <= 0)) {return(NA)}
@@ -67,7 +67,7 @@ Pen_M_Step <- function(x, ww, mix_porp, theta, an) {
     }
     return(Hess)
   }
-  new_est_param = maxNR(fn=ploglikelihood,grad=pgradlik,hess=phesslik,
+  new_est_param = maxLik::maxNR(fn=ploglikelihood,grad=pgradlik,hess=phesslik,
                         start = theta, x = x)
   return(new_est_param$estimate)
 }
