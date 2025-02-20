@@ -16,8 +16,10 @@
 #' log-likelihood value at the PMLE or MLE and the penalized log-likelihood value at the PMLE.
 #' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples size = 25
-#' x = rmix.binom(1000, size, alpha, theta)
+#' @examples alpha = c(.5, .1, .4)
+#' theta = c(.1, .35, .8)
+#' size = 25
+#' x = rmix.binom(100, size, alpha, theta)
 #' pmle.binom(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,n.iter = 50, max.iter = 5000, tol = 1e-6, rformat=FALSE)
 #' @export
 pmle.binom <- function(x, size, m0=1, lambda=1, init.val = NULL, n.init=10,

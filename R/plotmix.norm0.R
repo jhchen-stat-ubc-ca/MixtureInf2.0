@@ -25,7 +25,7 @@
 #' sigma = c(1, .5, 1.1)
 #' yy = rmix.norm(n, alpha, mu, sigma)
 #' plotmix.norm0(yy, xx.grid = NULL, alpha, mu, sigma, m0=3,
-#' k = 20, extra.height = 1.05, comp = T, hist.ind = T,
+#' k = 20, extra.height = 1.05, comp = TRUE, hist.ind = TRUE,
 #' main="", xlab="Observed values", ylab="Density/Histogram")
 #' @export
 plotmix.norm0 <- function(x = NULL, xx.grid = NULL, alpha, mu, sigma, m0,

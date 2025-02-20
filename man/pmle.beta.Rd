@@ -55,6 +55,3 @@ This function computes the PMLE of the parameters under a mixture of betas.
 data <- c(rbeta(50,10,2),rbeta(50,3,18))
 pmle.beta(data,2)
 }
-\author{
-Jiahua Chen, Daniel McDonald and Tom Tang
-}

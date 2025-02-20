@@ -4,12 +4,12 @@ Title: Inference for Finite Mixture Models
 Version: 1.0.1
 Author: Jiahua Chen
 Maintainer: Jiahua Chen <jhchen@stat.ubc.ca>
-Description: In
-License: MIT
+Description: This is an updated version of MixtureInf
+License: MIT + file LICENSE
 URL: https://https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Depends: 
     R (>= 2.10)
-Imports:maxLik, nleqslv, quadprog, Rfast
+Imports: maxLik, nleqslv, Rfast

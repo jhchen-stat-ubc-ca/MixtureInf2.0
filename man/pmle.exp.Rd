@@ -47,7 +47,7 @@ parameters), log-likelihood value at the PMLE or MLE and the penalized log-likel
 This function computes the penalized MLE, given iid observations under the finite exponential mixture model.
 }
 \examples{
-n = 4000
+n = 400
 mu = c(3, 9, 18)
 alpha = c(.5, .3, .2)
 x = rmix.exp(n, alpha, mu) 

@@ -18,7 +18,6 @@
 #'          and mixing betas), log-likelihood value at the PMLE and the penalized log-likelihood
 #'          value at the PMLE, classification on which subpopulation does the observed value belongs to. 
 #' 
-#' @author Jiahua Chen, Daniel McDonald and Tom Tang
 #'
 #' @examples  
 #' data <- c(rbeta(50,10,2),rbeta(50,3,18))

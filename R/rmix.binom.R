@@ -12,7 +12,7 @@
 #' @examples  alpha = c(.5, .1, .4)
 #' theta = c(.1, .35, .8)
 #' size = 25
-#' x = rmix.binom(1000, size, alpha, theta)
+#' x = rmix.binom(100, size, alpha, theta)
 #' mean(x)
 #' var(x)
 #' @export
