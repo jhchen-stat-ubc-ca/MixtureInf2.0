@@ -19,29 +19,27 @@ emstat.binom(
 )
 }
 \arguments{
-\item{count}{The observed values for the Poisson count data.}
+\item{count}{The observed values for the binomial count data.}
 
 \item{freq}{The corresponding frequency of the above counts.}
 
-\item{m0}{The order of the mixture to be fitted.}
+\item{outnull}{The fit of the null model. (output obtained from the phi0.binom (pmle.binom) function.)}
 
-\item{CC}{The optional tuning parameter for EM-test procedure.}
+\item{size}{The number of trials of the binomial distribution.}
+
+\item{m0}{The order under the null hypothesis.}
+
+\item{CC}{A optional tuning parameter for the EM-test procedure.}
 
 \item{n.init}{The number of initial values chosen for the EM-algorithm.}
 
-\item{max.iter}{The Maximum amount of iterations.}
+\item{max.iter}{The maximum amount of iterations allowed.}
 
-\item{n.iter}{Least amount of iterations for all initial values in the EM-algorithm.}
+\item{n.iter}{The least amount of iterations for the initial values.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 
-\item{k}{The number of EM iterations required in order to obtain EM-test statistic.}
-
-\item{alpha0}{The mixing proportion fitted under the null model.}
-
-\item{theta0}{The subpopulation means fitted under the null model.}
-
-\item{ln0}{The log likelihood of the best null model obtained from previous function.}
+\item{k}{The number of EM iterations to obtain EM-test statistic.}
 }
 \description{
 This function computes the EM-test statistics for a binomial mixture.

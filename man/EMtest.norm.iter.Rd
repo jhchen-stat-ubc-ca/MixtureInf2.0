@@ -10,19 +10,20 @@ EMtest.norm.iter(xx, nn, m0, para, sigma0, beta.i, pen.size, k)
 \item{xx}{The input data that can be either a vector or a matrix with the 1st column being the observed values
 and the 2nd column being the corresponding frequency.}
 
+\item{nn}{The lenght of the input data.}
+
 \item{m0}{The order of the finite normal mixture model.}
+
+\item{para}{The subpopulations estimated parameter.}
+
+\item{sigma0}{The estimated variance under the null model.}
 
 \item{beta.i}{The fixed mixing proportions.}
 
-\item{an}{}
+\item{pen.size}{A 2-dimensions vector being the size of the penalized functions for 
+the mixing proportion and the variance.}
 
-\item{para0}{The subpopulations parameter.}
-
-\item{n.init}{A computer generated n.init initials value.}
-
-\item{n.iter}{The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.}
-
-\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
+\item{k}{The amount of EM iterations in order to obtain the EM-test statistic.}
 }
 \description{
 This function computes the EM-algorithm in the emtest.norm function.

@@ -2,18 +2,17 @@
 #'
 #' @description This function computes the EM-test statistics for a binomial mixture.
 #' It is used in the emtest.binom function.
-#' @param count The observed values for the Poisson count data.
+#' @param count The observed values for the binomial count data.
 #' @param freq The corresponding frequency of the above counts.
-#' @param alpha0 The mixing proportion fitted under the null model.
-#' @param theta0 The subpopulation means fitted under the null model.
-#' @param m0 The order of the mixture to be fitted.
-#' @param ln0 The log likelihood of the best null model obtained from previous function.
-#' @param CC The optional tuning parameter for EM-test procedure.
+#' @param outnull The fit of the null model. (output obtained from the phi0.binom (pmle.binom) function.) 
+#' @param size The number of trials of the binomial distribution.
+#' @param m0 The order under the null hypothesis.
+#' @param CC A optional tuning parameter for the EM-test procedure. 
 #' @param n.init The number of initial values chosen for the EM-algorithm.
-#' @param n.iter Least amount of iterations for all initial values in the EM-algorithm.
+#' @param max.iter The maximum amount of iterations allowed.
+#' @param n.iter The least amount of iterations for the initial values.
 #' @param tol The tolerance value for the convergence of the EM-algorithm. 
-#' @param k The number of EM iterations required in order to obtain EM-test statistic.
-#' @param max.iter The Maximum amount of iterations.
+#' @param k The number of EM iterations to obtain EM-test statistic.
 #' 
 #' 
 #' @export

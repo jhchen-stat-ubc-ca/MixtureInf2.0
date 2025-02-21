@@ -11,6 +11,8 @@ pmle.norm.sub.a(xx, sample.var, m0, para0, lambda, an)
 
 \item{sample.var}{The sample variance of the input data.}
 
+\item{m0}{The order of the finite mixture model.}
+
 \item{para0}{The estimated mixing parameters.}
 
 \item{lambda}{The size of the penalized function of the mixing distribution, default value: lambda = 1.}

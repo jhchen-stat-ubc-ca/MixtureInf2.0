@@ -3,6 +3,7 @@
 #' @description It is used in the pmle.norm.sub function, it computes a single EM iteration for the univariate Gaussian mixture.
 #' @param xx The input data.
 #' @param sample.var The sample variance of the input data.
+#' @param m0 The order of the finite mixture model.
 #' @param para0 The estimated mixing parameters.
 #' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 1.
 #' @param an A penalty on the variance(ChenTanZhangSinica2008). The recommended value is n^{-1/2}.

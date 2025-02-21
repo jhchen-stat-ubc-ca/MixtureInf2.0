@@ -18,22 +18,25 @@ EMtest.maxmm.pois(
 )
 }
 \arguments{
+\item{count}{The observed values for the Poisson count data.}
+
+\item{freq}{The corresponding frequency of the above counts.}
+
 \item{beta.i}{The fixed mixing proportions.}
 
-\item{m0}{The order of the finite normal mixture model.}
+\item{alpha0}{The mixing proportion fitted under the null model.}
 
-\item{n.init}{A computer generated n.init initials value.}
+\item{theta0}{The subpopulation means fitted under the null model.}
 
-\item{n.iter}{The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.}
+\item{m0}{The order of the mixture to be fitted.}
+
+\item{n.init}{The number of initial values chosen for the EM-algorithm.}
+
+\item{n.iter}{Least amount of iterations for all initial values in the EM-algorithm.}
 
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 
-\item{xx}{The input data that can be either a vector or a matrix with the 1st column being the observed values
-and the 2nd column being the corresponding frequency.}
-
-\item{an}{}
-
-\item{para0}{The subpopulations parameter.}
+\item{max.iter}{Maximum amount of iterations.}
 }
 \description{
 This function computes the PMLE of parameters under the alternative model 

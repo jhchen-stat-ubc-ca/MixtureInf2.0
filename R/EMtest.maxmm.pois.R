@@ -2,15 +2,16 @@
 #'
 #' @description This function computes the PMLE of parameters under the alternative model 
 #'              for EM-test given a beta.i value. It is used in the EMstat.pois function.
-#' @param xx The input data that can be either a vector or a matrix with the 1st column being the observed values
-#'          and the 2nd column being the corresponding frequency.
 #' @param beta.i The fixed mixing proportions.
-#' @param m0 The order of the finite normal mixture model.
-#' @param an 
-#' @param para0 The subpopulations parameter.  
-#' @param n.init A computer generated n.init initials value.
-#' @param n.iter The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.
-#' @param tol The tolerance value for the convergence of the EM-algorithm.
+#' @param count The observed values for the Poisson count data.
+#' @param freq The corresponding frequency of the above counts.
+#' @param alpha0 The mixing proportion fitted under the null model.
+#' @param theta0 The subpopulation means fitted under the null model.
+#' @param m0 The order of the mixture to be fitted.
+#' @param n.init The number of initial values chosen for the EM-algorithm.
+#' @param n.iter Least amount of iterations for all initial values in the EM-algorithm.
+#' @param tol The tolerance value for the convergence of the EM-algorithm. 
+#' @param max.iter Maximum amount of iterations.
 #' 
 #' 
 #' @export

@@ -8,7 +8,7 @@ EMtest.maxmm.norm0(xx, bbeta, mle0, m0, n.init, n.iter, tol)
 }
 \arguments{
 \item{xx}{The input data that can be either a vector or a matrix with the 1st column being the observed values
-and the 2nd column being the corresponding frequency.}
+and the 2nd column being the corresponding frequency. It is used in the emstat.norm0 function.}
 
 \item{bbeta}{The fixed mixing proportions.}
 

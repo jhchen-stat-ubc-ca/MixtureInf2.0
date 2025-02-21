@@ -5,11 +5,12 @@
 #'          and the 2nd column being the corresponding frequency.
 #' @param beta.i The fixed mixing proportions.
 #' @param m0 The order of the finite normal mixture model.
-#' @param an 
-#' @param para0 The subpopulations parameter.  
-#' @param n.init A computer generated n.init initials value.
-#' @param n.iter The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.
-#' @param tol The tolerance value for the convergence of the EM-algorithm.
+#' @param para The subpopulations estimated parameter.  
+#' @param k The amount of EM iterations in order to obtain the EM-test statistic. 
+#' @param pen.size A 2-dimensions vector being the size of the penalized functions for 
+#'             the mixing proportion and the variance.
+#' @param nn The lenght of the input data.
+#' @param sigma0 The estimated variance under the null model.
 #' 
 #' @export
 EMtest.norm.iter <- function(xx, nn, m0, para, sigma0, beta.i, pen.size, k) {
