@@ -1,4 +1,3 @@
-library(quadprog)
 #' emtest.thm3
 #'
 #' @description This function computes a_h as in Theorem 3 of Li and Chen (JASA2009) by MC.
@@ -11,7 +10,7 @@ emtest.thm3 <- function(tb, N=10000, tol = 1e-8) {
   
   output = c()
   for(i in 1:N) {
-    out=solve.QP(Dmat=tb, dvec= tb.root%*%rnorm(m0),
+    out=quadprog::solve.QP(Dmat=tb, dvec= tb.root%*%rnorm(m0),
                  Amat= diag(rep(1,m0)), bvec=rep(0,m0))
     output=c(output, sum(out$solution > tol))
   }
