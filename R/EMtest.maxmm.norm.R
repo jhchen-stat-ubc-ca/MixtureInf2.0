@@ -6,7 +6,7 @@
 #'          and the 2nd column being the corresponding frequency.
 #' @param beta.i The fixed mixing proportions.
 #' @param m0 The order of the finite normal mixture model.
-#' @param an 
+#' @param an A penalty on the variance(ChenTanZhangSinica2008). The recommended value is n^{-1/2}.
 #' @param para0 The subpopulations parameter.  
 #' @param n.init A computer generated n.init initials value.
 #' @param n.iter The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.

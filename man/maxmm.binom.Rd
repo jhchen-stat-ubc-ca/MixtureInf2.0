@@ -26,9 +26,9 @@ maxmm.binom(
 
 \item{m0}{The order under the null hypothesis.}
 
-\item{beta.j}{}
+\item{beta.j}{The fixed mixing proportions.}
 
-\item{theta0}{}
+\item{theta0}{The subpopulations mean fitted under the null hypothesis.}
 
 \item{n.init}{The number of initial values chosen for the EM-algorithm.}
 

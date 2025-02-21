@@ -14,7 +14,7 @@ and the 2nd column being the corresponding frequency.}
 
 \item{m0}{The order of the finite normal mixture model.}
 
-\item{an}{}
+\item{an}{A penalty on the variance(ChenTanZhangSinica2008). The recommended value is n^{-1/2}.}
 
 \item{para0}{The subpopulations parameter.}
 

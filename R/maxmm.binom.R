@@ -6,8 +6,8 @@
 #' @param freq The corresponding frequency of the above counts.
 #' @param size The number of trials of the binomial distribution.
 #' @param m0 The order under the null hypothesis.
-#' @param beta.j 
-#' @param theta0 
+#' @param beta.j The fixed mixing proportions.
+#' @param theta0 The subpopulations mean fitted under the null hypothesis.
 #' @param n.init The number of initial values chosen for the EM-algorithm.
 #' @param max.iter The maximum amount of iterations allowed.
 #' @param n.iter The least amount of iterations for the initial values.
