@@ -6,6 +6,9 @@
 \usage{
 MoM_Beta(data)
 }
+\arguments{
+\item{data}{The input data.}
+}
 \description{
 A sub function for MoM_Calculation, calculates the MoM for the beta distribution.
 It is used in the MoM_Calculation function.

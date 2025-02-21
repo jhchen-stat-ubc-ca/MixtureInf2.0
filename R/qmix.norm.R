@@ -2,6 +2,11 @@
 #'
 #' @description This function computes the quantile of the univariate finite normal mixture one by one.
 #' It is used in the tildeB22.norm0 function.
+#' @param pp The level of the quantile to be computed.
+#' @param alpha A vector of the mixing proportions.
+#' @param mu A vector of the component means.
+#' @param sigma A vector of the component standard deviations.
+#' @param tol The tolerance value for the convergence of the EM-algorithm.#' 
 #' @export
 qmix.norm <- function(pp, alpha, mu, sigma, tol=1e-8) {
   if(any(alpha<0))

@@ -2,6 +2,8 @@
 #'
 #' @description This function returns the output combining round and signif functions.
 #' It is used in various main functions in the package.
+#' @param x The input data.
+#' 
 #' @export
 rousignif <-
   function(x)

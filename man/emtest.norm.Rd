@@ -22,6 +22,15 @@ and the 2nd column being the corresponding frequency.}
 
 \item{m0}{The order of the finite normal mixture model under the null hypothesis.}
 
+\item{pen.size}{A 2-dimensions vector being the size of the penalized functions for 
+the mixing proportion and the variance.}
+
+\item{init.val}{The initial value chosen for the EM-algorithm to compute the PMLE under the null model.}
+
+\item{n.init}{The number of initial values chosen for the EM-algorithm.}
+
+\item{n.iter}{The least amount of iterations for all initial values in the EM-algorithm.}
+
 \item{tol}{The tolerance value for the convergence of the EM-algorithm.}
 
 \item{k}{The amount of EM iterations in order to obtain the EM-test statistic.}
@@ -29,15 +38,6 @@ and the 2nd column being the corresponding frequency.}
 \item{rformat}{F means the format of the output is determined by our default setting. When the output is
 larger than 0.001, it is determined by round(output,3); When the output is less than 0.001,
 it is determined by signif(output,3).}
-
-\item{pens}{A 2-dimensions vector being the size of the penalized functions for 
-the mixing proportion and the variance.}
-
-\item{inival}{The initial value chosen for the EM-algorithm to compute the PMLE under the null model.}
-
-\item{len}{The number of initial values chosen for the EM-algorithm.}
-
-\item{niter}{The least amount of iterations for all initial values in the EM-algorithm.}
 }
 \value{
 Return an object of class EM-test with the following elements:

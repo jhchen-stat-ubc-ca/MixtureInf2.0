@@ -7,13 +7,12 @@
 #' @param var.sub A known subpopulation variance, default at 1. 
 #' @param m0 The order of the finite mixture model.
 #' @param lambda The size of the penalty function of the mixing proportions.
-#' @param ini.val The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
+#' @param init.val The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
 #' m0 component means and m0 component variances, or a matrix with 3m0 columns, default value: inival = NULL. (if not provided, random initial values are used.)
 #' @param n.init The	number of initial values for the EM-algorithm.
 #' @param n.iter The number of EM iterations for all initial values.
 #' @param max.iter  Maximum amount of EM iterations, it stops at 5000.
 #' @param tol The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-8.
-#' @param iter.n This reports the number of EM-iteration employed.
 #' @param rformat The format of the output. If rformat=T, 
 #' it means the output format is determined by R software. 
 #' If rformat=F, it means the output format is determined by our default setting. 

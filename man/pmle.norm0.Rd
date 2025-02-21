@@ -27,6 +27,9 @@ and the 2nd column being the corresponding frequencies.}
 
 \item{lambda}{The size of the penalty function of the mixing proportions.}
 
+\item{init.val}{The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
+m0 component means and m0 component variances, or a matrix with 3m0 columns, default value: inival = NULL. (if not provided, random initial values are used.)}
+
 \item{n.init}{The    number of initial values for the EM-algorithm.}
 
 \item{n.iter}{The number of EM iterations for all initial values.}
@@ -41,11 +44,6 @@ If rformat=F, it means the output format is determined by our default setting.
 When the output is larger than 0.001, it is determined by round(output,3); 
 When the output is less than 0.001, it is determined by signif(output,3).
 The default value of rformat is F.}
-
-\item{ini.val}{The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
-m0 component means and m0 component variances, or a matrix with 3m0 columns, default value: inival = NULL. (if not provided, random initial values are used.)}
-
-\item{iter.n}{This reports the number of EM-iteration employed.}
 }
 \value{
 It returns the PMLE or MLE of the parameters with order = m0 (mixing proportions and component parameters), 

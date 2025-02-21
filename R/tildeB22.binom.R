@@ -4,6 +4,10 @@
 #' EM-test for one-parameter subpopulation distributions,
 #' including binomial. See Chen and Li (2010JASA). 
 #' It is used in the emtest.binom function.
+#' @param alpha A vector of the mixing probabilities.
+#' @param theta A vector of the probabilities of success for each subpopulation.
+#' @param size The number of trials in the binomial subpopulation.
+#' 
 #' @export
 tildeB22.binom <- function(alpha, theta, size) {
   m0=length(alpha)

@@ -2,6 +2,11 @@
 #'
 #' @description A sub function for pmle.beta, does the actual work of MoM of the beta mixture.
 #' It is used in the pmle.beta function.
+#' @param x The input data.
+#' @param m0 The order/component number of the mixture model.
+#' @param seed For reproducible results.
+#' @param maxit Maximum amount of iterations.
+#' 
 #' @export
 MoM_BMM <- function(x,m0,seed,maxit) {
   rerun <- TRUE
@@ -57,6 +62,10 @@ MoM_BMM <- function(x,m0,seed,maxit) {
 #'
 #' @description A sub function for MoM_BMM, generate a starting points for the MoM_BMM function.
 #' It is used in the MoM_BMM function.
+#' @param x The input data.
+#' @param mix_porp The mixing proportion for each component/subpopulation.
+#' @param seed For reproducible results.
+#' 
 #' @export
 MoM_Calculation <- function(x, mix_porp, seed) {
   if (is.null(seed)==TRUE) {
@@ -90,6 +99,8 @@ MoM_Calculation <- function(x, mix_porp, seed) {
 #'
 #' @description A sub function for MoM_Calculation, calculates the MoM for the beta distribution.
 #' It is used in the MoM_Calculation function.
+#' @param data The input data.
+#' 
 #' @export
 MoM_Beta <- function(data) {
   alpha = mean(data)*(mean(data)*(1-mean(data))/var(data) - 1)

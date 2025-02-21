@@ -17,8 +17,25 @@ EMtest.maxmm.pois(
   max.iter
 )
 }
+\arguments{
+\item{beta.i}{The fixed mixing proportions.}
+
+\item{m0}{The order of the finite normal mixture model.}
+
+\item{n.init}{A computer generated n.init initials value.}
+
+\item{n.iter}{The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.}
+
+\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
+
+\item{xx}{The input data that can be either a vector or a matrix with the 1st column being the observed values
+and the 2nd column being the corresponding frequency.}
+
+\item{an}{}
+
+\item{para0}{The subpopulations parameter.}
+}
 \description{
 This function computes the PMLE of parameters under the alternative model 
-             for EM-test given a beta.i value.
-             It is used in the EMstat.pois function.
+             for EM-test given a beta.i value. It is used in the EMstat.pois function.
 }

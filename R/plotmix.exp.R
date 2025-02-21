@@ -5,6 +5,7 @@
 #' @param mu A vector of the subpopulation means.
 #' @param qq The range of the plot, which is the qq th quantile.
 #' @param x The data whose histogram is to be drawn from, can either be a vector or a matrix.
+#' @param extra.height Additional height multiplier used to enlarge the plot vertically.  
 #' @param logObs logObs=T if data is in logarithm transformation form.
 #' @param sub.pdf logical, draw subpopulation pdf's if True.
 #' @param h A scale value used by ylim.

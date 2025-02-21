@@ -18,6 +18,31 @@ emstat.binom(
   k
 )
 }
+\arguments{
+\item{count}{The observed values for the Poisson count data.}
+
+\item{freq}{The corresponding frequency of the above counts.}
+
+\item{m0}{The order of the mixture to be fitted.}
+
+\item{CC}{The optional tuning parameter for EM-test procedure.}
+
+\item{n.init}{The number of initial values chosen for the EM-algorithm.}
+
+\item{max.iter}{The Maximum amount of iterations.}
+
+\item{n.iter}{Least amount of iterations for all initial values in the EM-algorithm.}
+
+\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
+
+\item{k}{The number of EM iterations required in order to obtain EM-test statistic.}
+
+\item{alpha0}{The mixing proportion fitted under the null model.}
+
+\item{theta0}{The subpopulation means fitted under the null model.}
+
+\item{ln0}{The log likelihood of the best null model obtained from previous function.}
+}
 \description{
 This function computes the EM-test statistics for a binomial mixture.
 It is used in the emtest.binom function.

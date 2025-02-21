@@ -2,6 +2,12 @@
 #'
 #' @description A sub function for pmle.beta, does the actual work of PMLE of the beta mixture.
 #' It is used in the pmle.beta function.
+#' @param x A vector of the observed values.
+#' @param m0 The order of the finite mixture model.
+#' @param para0 A vector of estimated alpha and beta for every component. 
+#' @param epsilon The size of the penalized function of the mixing distribution, default value: epsilon = 1.
+#' @param an A size control parameter that controls the severity of the penalty. The recommended value is n^{-3/2}.
+#' 
 #' @export
 pmle.beta.sub <- function(x,m0,para0,an,epsilon) {
   mix_porp = para0[1:m0]
@@ -30,6 +36,12 @@ pmle.beta.sub <- function(x,m0,para0,an,epsilon) {
 #'
 #' @description A sub function for pmle.beta.sub, does the actual work of the M step in the EM algorithm.
 #' It is used in the pmle.beta.sub function.
+#' @param x A vector of the observed values.
+#' @param ww The the probability that data point i belongs to component j.
+#' @param mix_porp The mixing proportion for each component/subpopulation. 
+#' @param theta A vector of estimated alpha and beta for every component.
+#' @param an A size control parameter that controls the severity of the penalty. The recommended value is n^{-3/2}.
+#' 
 #' @export
 Pen_M_Step <- function(x, ww, mix_porp, theta, an) {
   ploglikelihood <- function(theta, x) {

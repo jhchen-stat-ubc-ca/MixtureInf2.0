@@ -1,6 +1,12 @@
 #' pmle.norm.sub.a
 #'
 #' @description It is used in the pmle.norm.sub function, it computes a single EM iteration for the univariate Gaussian mixture.
+#' @param xx The input data.
+#' @param sample.var The sample variance of the input data.
+#' @param para0 The estimated mixing parameters.
+#' @param lambda The size of the penalized function of the mixing distribution, default value: lambda = 1.
+#' @param an A penalty on the variance(ChenTanZhangSinica2008). The recommended value is n^{-1/2}.
+#' 
 #' @export
 pmle.norm.sub.a <- 
   function(xx, sample.var, m0, para0, lambda, an)  {

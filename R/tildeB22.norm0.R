@@ -3,6 +3,10 @@
 #' @description This function computes tilde{B}_{22} matrix in the
 #'              EM-test for one-parameter subpopulation distributions including normal with known variance.
 #'              It is used in the emtest.norm0 function.
+#' @param alpha A vector of the mixing proportions.
+#' @param theta A vector of the subpopulation means.
+#' @param N The size of the quantile matrix.
+#'              
 #' @export
 tildeB22.norm0 <- function(alpha, theta, N=10000) {
   m0 = length(alpha)

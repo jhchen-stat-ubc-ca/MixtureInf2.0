@@ -6,6 +6,17 @@
 \usage{
 pmle.beta.sub(x, m0, para0, an, epsilon)
 }
+\arguments{
+\item{x}{A vector of the observed values.}
+
+\item{m0}{The order of the finite mixture model.}
+
+\item{para0}{A vector of estimated alpha and beta for every component.}
+
+\item{an}{A size control parameter that controls the severity of the penalty. The recommended value is n^{-3/2}.}
+
+\item{epsilon}{The size of the penalized function of the mixing distribution, default value: epsilon = 1.}
+}
 \description{
 A sub function for pmle.beta, does the actual work of PMLE of the beta mixture.
 It is used in the pmle.beta function.

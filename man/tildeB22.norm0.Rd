@@ -6,6 +6,13 @@
 \usage{
 tildeB22.norm0(alpha, theta, N = 10000)
 }
+\arguments{
+\item{alpha}{A vector of the mixing proportions.}
+
+\item{theta}{A vector of the subpopulation means.}
+
+\item{N}{The size of the quantile matrix.}
+}
 \description{
 This function computes tilde{B}_{22} matrix in the
              EM-test for one-parameter subpopulation distributions including normal with known variance.

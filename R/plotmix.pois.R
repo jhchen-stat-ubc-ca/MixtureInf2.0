@@ -10,6 +10,7 @@
 #' @param mu A vector of the subpopulation means.
 #' @param sub.pmf logical, draw subpopulation pmf's.
 #' @param nclass The number of bars for the histogram.
+#' @param extra.height Additional height multiplier used to enlarge the plot vertically.  
 #' @param main The title for the histogram.
 #' @param xlab The name of the x-axis label.
 #' @param ylab The name of the y-axis label.

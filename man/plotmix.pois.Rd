@@ -30,6 +30,8 @@ plotmix.pois(
 
 \item{nclass}{The number of bars for the histogram.}
 
+\item{extra.height}{Additional height multiplier used to enlarge the plot vertically.}
+
 \item{main}{The title for the histogram.}
 
 \item{xlab}{The name of the x-axis label.}

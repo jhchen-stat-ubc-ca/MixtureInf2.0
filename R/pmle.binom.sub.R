@@ -2,6 +2,17 @@
 #'
 #' @description A sub function for pmle.binom, does the actual work of PMLE binomial mixture.
 #' It is used in the pmle.binom function.
+#' @param count The observed values for the binomial count data.
+#' @param freq The corresponding frequency of the above counts.
+#' @param size The size parameter of the Binomial.
+#' @param m0 The order being fitted.
+#' @param lambda The level of the penalty on mixing proportions.
+#' @param init.val The vector of the mixing proportions plus the probabilities of success.
+#' @param n.init The number of the initial values chosen for the EM-algorithm.
+#' @param max.iter The maximum amount of iterations allowed.
+#' @param n.iter The actual number of em-iterations
+#' @param tol The tolerance value for the convergence of the EM-algorithm.
+#' 
 #' @export
 pmle.binom.sub <- function(count, freq, size, m0, lambda,
                            init.val, n.init, max.iter, n.iter, tol)  {

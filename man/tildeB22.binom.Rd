@@ -6,6 +6,13 @@
 \usage{
 tildeB22.binom(alpha, theta, size)
 }
+\arguments{
+\item{alpha}{A vector of the mixing probabilities.}
+
+\item{theta}{A vector of the probabilities of success for each subpopulation.}
+
+\item{size}{The number of trials in the binomial subpopulation.}
+}
 \description{
 This function computes the tilde{B}_{22} matrix in the
 EM-test for one-parameter subpopulation distributions,

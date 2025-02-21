@@ -6,6 +6,11 @@
 \usage{
 tildeB22.exp(alpha, mu)
 }
+\arguments{
+\item{alpha}{A vector of the mixing probabilities.}
+
+\item{mu}{A vector of the means of each component.}
+}
 \description{
 This function computes tilde{B}_{22} under the Exponential mixture.
 It is used in the emtest.exp function.

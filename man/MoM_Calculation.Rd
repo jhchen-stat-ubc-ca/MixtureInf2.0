@@ -6,6 +6,13 @@
 \usage{
 MoM_Calculation(x, mix_porp, seed)
 }
+\arguments{
+\item{x}{The input data.}
+
+\item{mix_porp}{The mixing proportion for each component/subpopulation.}
+
+\item{seed}{For reproducible results.}
+}
 \description{
 A sub function for MoM_BMM, generate a starting points for the MoM_BMM function.
 It is used in the MoM_BMM function.

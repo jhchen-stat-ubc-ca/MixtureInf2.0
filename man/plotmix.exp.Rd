@@ -29,6 +29,8 @@ plotmix.exp(
 
 \item{x}{The data whose histogram is to be drawn from, can either be a vector or a matrix.}
 
+\item{extra.height}{Additional height multiplier used to enlarge the plot vertically.}
+
 \item{logObs}{logObs=T if data is in logarithm transformation form.}
 
 \item{sub.pdf}{logical, draw subpopulation pdf's if True.}

@@ -33,6 +33,8 @@ and the 2nd column being the corresponding frequencies.}
 
 \item{n.iter}{The number of EM iterations for each initial value. The one that gained the most in likelihood will be iterative further.}
 
+\item{max.iter}{Maximum number of iterations for the EM algorithm.}
+
 \item{tol}{The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.}
 
 \item{rformat}{The format of the output. If rformat=T, 

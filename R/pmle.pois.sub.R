@@ -1,6 +1,16 @@
 #' pmle.pois.sub
 #'
 #' @description This function is used by pmle.pois. It does the real work but not stand alone.
+#' @param x The input data that can either be a vector or a matrix of observations with its 1st column being counts and 2nd column being frequencies.
+#' @param m0 The order of the finite mixture model.
+#' @param lambda The size of the penalty function of the mixing proportions.
+#' @param init.val A user provided initial values for the EM-algorithm to 
+#'                 compute the PMLE under the null model.
+#' @param n.init The number of initial values chosen for the EM-algorithm.
+#' @param n.iter Least amount of iterations for all initial values in the EM-algorithm.
+#' @param max.iter Maximum amount of iterations.
+#' @param tol The tolerance value for the convergence of the EM-algorithm.
+#' 
 #' @export
 pmle.pois.sub <- function(x, m0, lambda, init.val, n.init, n.iter, 
                           tol, max.iter=5000) {

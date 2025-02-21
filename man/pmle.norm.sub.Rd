@@ -6,6 +6,26 @@
 \usage{
 pmle.norm.sub(x, m0, lambda, an, init.val, n.init, n.iter, max.iter, tol)
 }
+\arguments{
+\item{x}{The data that can either be a vector or a matrix with the 1st column being the observed values
+and the 2nd column being the corresponding frequencies.}
+
+\item{m0}{The order of the finite mixture model, default value: m0 = 1.}
+
+\item{lambda}{The size of the penalized function of the mixing distribution, default value: lambda = 1.}
+
+\item{an}{A penalty on the variance(ChenTanZhangSinica2008). The recommended value is n^{-1/2}.}
+
+\item{init.val}{NULL or a 3 X m0 matrix with rows made of mixing probability, component means, and variances.}
+
+\item{n.init}{A computer generated n.init initials value.}
+
+\item{n.iter}{The number of EM iterations for each initial value. The one that gained the most in likelihood will be iterative further.}
+
+\item{max.iter}{Maximum number of iterations for the EM algorithm.}
+
+\item{tol}{The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.}
+}
 \description{
 It is used in the pmle.norm function, it does the actual EM-algorithm and computes the penalized MLE.
 }

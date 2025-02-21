@@ -3,11 +3,11 @@
 #' @param x The input data that can either be a vector or a matrix with the 1st column being the observed values
 #'          and the 2nd column being the corresponding frequency.
 #' @param m0 The order of the finite normal mixture model under the null hypothesis. 
-#' @param pens A 2-dimensions vector being the size of the penalized functions for 
+#' @param pen.size A 2-dimensions vector being the size of the penalized functions for 
 #'             the mixing proportion and the variance.
-#' @param inival The initial value chosen for the EM-algorithm to compute the PMLE under the null model.
-#' @param len The number of initial values chosen for the EM-algorithm.
-#' @param niter The least amount of iterations for all initial values in the EM-algorithm. 
+#' @param init.val The initial value chosen for the EM-algorithm to compute the PMLE under the null model.
+#' @param n.init The number of initial values chosen for the EM-algorithm.
+#' @param n.iter The least amount of iterations for all initial values in the EM-algorithm. 
 #' @param tol The tolerance value for the convergence of the EM-algorithm.
 #' @param k The amount of EM iterations in order to obtain the EM-test statistic. 
 #' @param rformat F means the format of the output is determined by our default setting. When the output is

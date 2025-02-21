@@ -10,6 +10,7 @@
 #' @param n.init A computer generated n.init initials value.
 #' @param n.iter The number of EM iterations for each initial value. The one that gained the most in likelihood will be iterative further. 
 #' @param tol The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.
+#' @param max.iter Maximum number of iterations for the EM algorithm. 
 #' @param rformat The format of the output. If rformat=T, 
 #' it means the output format is determined by R software. 
 #' If rformat=F, it means the output format is determined by our default setting. 

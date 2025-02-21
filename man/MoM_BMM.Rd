@@ -6,6 +6,15 @@
 \usage{
 MoM_BMM(x, m0, seed, maxit)
 }
+\arguments{
+\item{x}{The input data.}
+
+\item{m0}{The order/component number of the mixture model.}
+
+\item{seed}{For reproducible results.}
+
+\item{maxit}{Maximum amount of iterations.}
+}
 \description{
 A sub function for pmle.beta, does the actual work of MoM of the beta mixture.
 It is used in the pmle.beta function.

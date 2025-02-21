@@ -20,6 +20,8 @@ emtest.pois(
 \arguments{
 \item{x}{The input data that can either be a vector or a matrix of observations with its 1st column being counts and 2nd column being frequencies.}
 
+\item{m0}{The order of the finite mixture model.}
+
 \item{CC}{The optional tuning parameter for the EM-test procedure.}
 
 \item{init.val}{A user provided initial values for the EM-algorithm to 

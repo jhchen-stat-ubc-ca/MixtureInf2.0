@@ -1,6 +1,16 @@
 #' EMtest.norm.iter
 #'
 #' @description This function computes the EM-algorithm in the emtest.norm function.
+#' @param xx The input data that can be either a vector or a matrix with the 1st column being the observed values
+#'          and the 2nd column being the corresponding frequency.
+#' @param beta.i The fixed mixing proportions.
+#' @param m0 The order of the finite normal mixture model.
+#' @param an 
+#' @param para0 The subpopulations parameter.  
+#' @param n.init A computer generated n.init initials value.
+#' @param n.iter The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.
+#' @param tol The tolerance value for the convergence of the EM-algorithm.
+#' 
 #' @export
 EMtest.norm.iter <- function(xx, nn, m0, para, sigma0, beta.i, pen.size, k) {
   alpha = para[1:(2*m0)]

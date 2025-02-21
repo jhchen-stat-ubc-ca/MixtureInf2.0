@@ -2,6 +2,16 @@
 #'
 #' @description This function produces the recommended size of penalty of EMtest under the Gaussian mixture.
 #' It is used in the emtest.norm function.  
+#' @param xx The input data that can be either a vector or a matrix with the 1st column being the observed values
+#'          and the 2nd column being the corresponding frequency.
+#' @param beta.i The fixed mixing proportions.
+#' @param m0 The order of the finite normal mixture model.
+#' @param an 
+#' @param para0 The subpopulations parameter.  
+#' @param n.init A computer generated n.init initials value.
+#' @param n.iter The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.
+#' @param tol The tolerance value for the convergence of the EM-algorithm.
+#' 
 #' @export
 EMtest.norm.penalty <- function(m0, para0, nn) {
   if(m0 ==1) an = 0.25

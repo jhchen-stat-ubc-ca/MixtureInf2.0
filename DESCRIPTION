@@ -4,7 +4,7 @@ Title: Inference for Finite Mixture Models
 Version: 1.0.1
 Author: Jiahua Chen
 Maintainer: Jiahua Chen <jhchen@stat.ubc.ca>
-Description: This is an updated version of MixtureInf
+Description: This is an updated version of MixtureInf.
 License: MIT + file LICENSE
 URL: https://https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0
 Encoding: UTF-8

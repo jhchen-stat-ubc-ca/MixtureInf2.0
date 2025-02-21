@@ -2,6 +2,15 @@
 #'
 #' @param xx The input data that can be either a vector or a matrix with the 1st column being the observed values
 #'          and the 2nd column being the corresponding frequency. It is used in the emstat.norm0 function.
+#' @param xx The input data that can be either a vector or a matrix with the 1st column being the observed values
+#'          and the 2nd column being the corresponding frequency.
+#' @param bbeta The fixed mixing proportions.
+#' @param mle0 The subpopulation means fitted under the null hypothesis
+#' @param m0 The order of the finite normal mixture model.
+#' @param n.init The number of initial values used.
+#' @param n.iter The number of iterations from each initial.
+#' @param tol The tolerance value for the convergence of the EM-algorithm.          
+#'          
 #' @export
 EMtest.maxmm.norm0 <-
   function(xx, bbeta, mle0, m0, n.init, n.iter, tol) {

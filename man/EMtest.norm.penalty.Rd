@@ -6,6 +6,24 @@
 \usage{
 EMtest.norm.penalty(m0, para0, nn)
 }
+\arguments{
+\item{m0}{The order of the finite normal mixture model.}
+
+\item{para0}{The subpopulations parameter.}
+
+\item{xx}{The input data that can be either a vector or a matrix with the 1st column being the observed values
+and the 2nd column being the corresponding frequency.}
+
+\item{beta.i}{The fixed mixing proportions.}
+
+\item{an}{}
+
+\item{n.init}{A computer generated n.init initials value.}
+
+\item{n.iter}{The number of EM iterations for each initial values. The one gained the most in likelihood will be iterative further.}
+
+\item{tol}{The tolerance value for the convergence of the EM-algorithm.}
+}
 \description{
 This function produces the recommended size of penalty of EMtest under the Gaussian mixture.
 It is used in the emtest.norm function.

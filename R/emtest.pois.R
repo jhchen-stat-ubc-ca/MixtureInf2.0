@@ -2,6 +2,7 @@
 #'
 #' @description This function computes the EM-test statistic and the p-value under the null hypothesis with order m = m0.
 #' @param x The input data that can either be a vector or a matrix of observations with its 1st column being counts and 2nd column being frequencies.
+#' @param m0 The order of the finite mixture model.
 #' @param CC The optional tuning parameter for the EM-test procedure.
 #' @param init.val A user provided initial values for the EM-algorithm to 
 #'                 compute the PMLE under the null model.

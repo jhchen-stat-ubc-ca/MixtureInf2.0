@@ -6,6 +6,13 @@
 \usage{
 emtest.thm3(tb, N = 10000, tol = 1e-08)
 }
+\arguments{
+\item{tb}{The input data.}
+
+\item{N}{Number of simulation.}
+
+\item{tol}{The tolerance value.}
+}
 \description{
 This function computes a_h as in Theorem 3 of Li and Chen (JASA2009) by MC.
 It is used in the emtest.exp function.

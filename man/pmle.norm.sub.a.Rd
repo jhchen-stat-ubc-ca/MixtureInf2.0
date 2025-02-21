@@ -6,6 +6,17 @@
 \usage{
 pmle.norm.sub.a(xx, sample.var, m0, para0, lambda, an)
 }
+\arguments{
+\item{xx}{The input data.}
+
+\item{sample.var}{The sample variance of the input data.}
+
+\item{para0}{The estimated mixing parameters.}
+
+\item{lambda}{The size of the penalized function of the mixing distribution, default value: lambda = 1.}
+
+\item{an}{A penalty on the variance(ChenTanZhangSinica2008). The recommended value is n^{-1/2}.}
+}
 \description{
 It is used in the pmle.norm.sub function, it computes a single EM iteration for the univariate Gaussian mixture.
 }

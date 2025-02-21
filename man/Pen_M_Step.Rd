@@ -6,6 +6,17 @@
 \usage{
 Pen_M_Step(x, ww, mix_porp, theta, an)
 }
+\arguments{
+\item{x}{A vector of the observed values.}
+
+\item{ww}{The the probability that data point i belongs to component j.}
+
+\item{mix_porp}{The mixing proportion for each component/subpopulation.}
+
+\item{theta}{A vector of estimated alpha and beta for every component.}
+
+\item{an}{A size control parameter that controls the severity of the penalty. The recommended value is n^{-3/2}.}
+}
 \description{
 A sub function for pmle.beta.sub, does the actual work of the M step in the EM algorithm.
 It is used in the pmle.beta.sub function.

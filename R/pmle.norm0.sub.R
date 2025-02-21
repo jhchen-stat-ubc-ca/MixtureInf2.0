@@ -1,6 +1,17 @@
 #' pmle.norm0.sub
 #'
-#' @description It is used in the pmle.norm0 function, It does the actual computing for the EM-algorithm. 
+#' @description It is used in the pmle.norm0 function, It does the actual computing for the EM-algorithm.
+#' @param x The input data that can either be a vector or a matrix with the 1st column being the observed values
+#' and the 2nd column being the corresponding frequencies.
+#' @param m0 The order of the finite mixture model.
+#' @param lambda The size of the penalty function of the mixing proportions.
+#' @param init.val The initial values chosen for the EM-algorithm, a 3m0-dimension vector including m0 mixing proportions, 
+#' m0 component means and m0 component variances, or a matrix with 3m0 columns, default value: inival = NULL. (if not provided, random initial values are used.)
+#' @param n.init The	number of initial values for the EM-algorithm.
+#' @param n.iter The number of EM iterations for all initial values.
+#' @param max.iter  Maximum amount of EM iterations, it stops at 5000.
+#' @param tol The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-8.
+#'  
 #' @export 
 pmle.norm0.sub <- function(x, m0, lambda, 
                            init.val, n.init, n.iter, max.iter, tol) {

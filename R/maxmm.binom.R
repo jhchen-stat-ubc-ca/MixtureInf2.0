@@ -2,6 +2,17 @@
 #'
 #' @description This function is meant for em-test. It gets the PMLE under a restricted alternative given a beta.j value.
 #' It is used in the emtest.binom function.
+#' @param count The observed values for the binomial count data.
+#' @param freq The corresponding frequency of the above counts.
+#' @param size The number of trials of the binomial distribution.
+#' @param m0 The order under the null hypothesis.
+#' @param beta.j 
+#' @param theta0 
+#' @param n.init The number of initial values chosen for the EM-algorithm.
+#' @param max.iter The maximum amount of iterations allowed.
+#' @param n.iter The least amount of iterations for the initial values.
+#' @param tol The tolerance value for the convergence of the EM-algorithm. 
+#' 
 #' @export
 maxmm.binom <- function(count, freq, size, m0, beta.j, theta0, 
                         n.init, max.iter, n.iter, tol)   {
