@@ -15,9 +15,7 @@
 #' and correlations among proportions". Biometrika, volume 49, numbers 1 and 2, pp65-82.
 #' 
 #' @examples data(pollen)
-#' out1 <- pmle.norm(as.matrix(pollen),3,1)
-#' out2 <- emtest.norm(as.matrix(pollen),m0 = 3)
-#' plotmix.norm(as.matrix(pollen), alpha = out1[[1]][1,], mu = out1[[1]][2,], sigma = out1[[1]][3,], m0 = 3)
-#' plotmix.norm(as.matrix(pollen), alpha = out2[[1]][1,], mu = out2[[1]][2,], sigma = out2[[1]][3,], m0 = 3)
+#' out1 <- pmle.norm(as.matrix(pollen),2,1)
+#' plotmix.norm(as.matrix(pollen), alpha = out1[[1]][1,], mu = out1[[1]][2,], sigma = out1[[1]][3,], m0 = 2)
 #' @source <https://github.com/jhchen-stat-ubc-ca/Mixturelnf2.0>
 "pollen"

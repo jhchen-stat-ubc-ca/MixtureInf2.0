@@ -7,10 +7,10 @@
 #'
 #' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples n = 4000
+#' @examples n = 400
 #' theta = c(3, 9, 18)
 #' alpha = c(.5, .3, .2)
-#' x = rmix.exp(n, alpha, mu)
+#' x = rmix.exp(n, alpha, theta)
 #' qmix.exp(.99, alpha, theta)
 #' @export
 qmix.exp <- function(qq, alpha, mu) {

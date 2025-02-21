@@ -20,10 +20,10 @@ It returns a sample of size n from an m-component exponential mixture.
 This function generates the iid samples from the finite exponential mixture
 }
 \examples{
-n = 4000
+n = 400
 mu = c(3, 9, 18)
 alpha = c(.5, .3, .2)
-rmix.exp(n, alpha, mu)
+rmix.exp(n=n, alpha=alpha, theta=mu)
 }
 \author{
 Shaoting Li, Jiahua Chen and Pengfei Li

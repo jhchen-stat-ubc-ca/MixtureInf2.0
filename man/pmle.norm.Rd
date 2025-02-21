@@ -53,7 +53,7 @@ This function computes the PMLE or MLE of the parameters under a mixture of norm
 \examples{
  
 data(grains)
-pmle.norm(unlist(grains),2)
+pmle.norm(unlist(grains),3)
 }
 \author{
 Shaoting Li, Jiahua Chen and Pengfei Li

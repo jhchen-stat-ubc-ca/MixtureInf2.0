@@ -17,10 +17,10 @@ qmix.exp(qq, alpha, mu)
 This function computes the quantile of the finite exponential mixture distribution
 }
 \examples{
-n = 4000
+n = 400
 theta = c(3, 9, 18)
 alpha = c(.5, .3, .2)
-x = rmix.exp(n, alpha, mu)
+x = rmix.exp(n, alpha, theta)
 qmix.exp(.99, alpha, theta)
 }
 \author{

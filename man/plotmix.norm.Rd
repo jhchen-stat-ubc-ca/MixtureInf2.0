@@ -57,7 +57,7 @@ This function plots the mixture density, together with the histogram of the data
 when the data generated from this density is given.
 }
 \examples{
-n=2000
+n=200
 alpha = c(.2, .5, .3)
 mu = c(-1, 2, 5)
 sigma = c(1, .5, 1.1)

@@ -21,7 +21,7 @@
 #' @return It returns the histogram of observations and the plot of the fitted density
 #' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples n=2000
+#' @examples n=200
 #' alpha = c(.2, .5, .3)
 #' mu = c(-1, 2, 5)
 #' sigma = c(1, .5, 1.1)

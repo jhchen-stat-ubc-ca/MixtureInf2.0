@@ -8,10 +8,10 @@
 #' @return It returns a sample of size n from an m-component exponential mixture.
 #' @author Shaoting Li, Jiahua Chen and Pengfei Li
 #'
-#' @examples n = 4000
+#' @examples n = 400
 #' mu = c(3, 9, 18)
 #' alpha = c(.5, .3, .2)
-#' rmix.exp(n, alpha, mu)
+#' rmix.exp(n=n, alpha=alpha, theta=mu)
 #' @export
 rmix.exp <- function (n, alpha, theta)  {
   m = length(alpha)
