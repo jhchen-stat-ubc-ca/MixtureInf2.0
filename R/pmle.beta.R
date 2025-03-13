@@ -10,9 +10,6 @@
 #' @param an A size control parameter that controls the severity of the penalty. The recommended value is n^{-3/2}.
 #' @param seed Used for reproducing the same sequence of output numbers. Default is NULL.
 #' @param maxit The maximum number of iterations for the Broyden or Newton methods used in the method of moments estimation.
-#' @param check.ident Whether the user wants to check for identifiable issues or not. Default is FALSE.
-#' @param ident.tol The tolerance value for the checking of the difference of the wasserstein distance 
-#' between the current order and the new order, default value 0.01.
 #' 
 #' @return  The PMLE of the parameters with order = m0 (mixing proportions, mixing alphas
 #'          and mixing betas), log-likelihood value at the PMLE and the penalized log-likelihood
@@ -26,7 +23,7 @@
 #' 
 #' 
 pmle.beta <- function(x, m0, n.iter=10, max.iter=5000, tol=1e-6, epsilon=1, 
-                      an=NULL, seed=NULL, maxit=5000, check.ident=F, ident.tol=0.01) {
+                      an=NULL, seed=NULL, maxit=5000) {
   if(is.null(an)) {an = length(x)^(3/2)}
   output = c()
   init_params=MoM_BMM(x,m0,seed,maxit)
@@ -59,71 +56,11 @@ pmle.beta <- function(x, m0, n.iter=10, max.iter=5000, tol=1e-6, epsilon=1,
   pdf.sub = t(mapply(function(pp, aa, bb) pp * dbeta(x, aa, bb), mix_porp, alpha, beta))
   pdf.mixture = apply(pdf.sub,2,sum) +1e-100
   ww = sweep(pdf.sub, 2, pdf.mixture, FUN = "/")
-  if (check.ident) {
-    seq_vals = seq(0, 1, by = 0.01)
-    pmix_ref = pmix_beta(seq_vals, mix_porp, alpha, beta)
-    cdf_list = vector("list", m0 - 1)
-    loglike_list = vector("list", m0-1)
-    single_beta_param = Rfast::beta.mle(x)
-    if (sum(abs(alpha-single_beta_param$param[[1]]))<(m0*0.1) && 
-        sum(abs(beta-single_beta_param$param[[2]]))<(m0*0.1)) {
-      cdf_list[[1]]=1e6
-      loglike_list[[1]] = single_beta_param$loglik
-    }
-    else {
-      loglike_list[[1]] <- single_beta_param$loglik
-      cdf_list[[1]] = wasserstein1d(pmix_ref, pbeta(seq_vals, single_beta_param$param[[1]], single_beta_param$param[[2]]))
-    }
-    
-    if (m0 > 2) {
-      for (i in 2:(m0 - 1)) {
-        est.param <- pmle.beta(x, m0 = i)
-        if (sum(abs(est.param$alpha-single_beta_param$param[[1]])) < (m0 * 0.1) && 
-            sum(abs(est.param$beta-single_beta_param$param[[2]])) < (m0 * 0.1)) {
-          cdf_list[[i]] = 1e6
-        } else {
-          loglike_list[[i]] = est.param$loglik
-          cdf_list[[i]] = wasserstein1d(pmix_ref, 
-                                        pmix_beta(seq_vals, est.param$mix_porp, est.param$alpha, est.param$beta))
-        }
-      }
-    }
-    
-    new_order = which(apply(do.call(rbind, cdf_list), 1, function(row) any(row < ident.tol)))
-    if (length(new_order)==0) {
-      return(list(mix_porp= rousignif(mix_porp),
-                  alpha = rousignif(alpha),
-                  beta= rousignif(beta),
-                  loglik=rousignif(outpara[3*m0+1]),
-                  ploglik=rousignif(outpara[3*m0+2]),
-                  iter.n=tt,
-                  ident_warning=paste("This", m0, "component beta mixture distribution is already at the simplest and cannot be reduced further"),
-                  classification=apply(t(ww), 1, which.max)))
-    }
-    else {
-      cdf_vector = unlist(cdf_list)
-      loglike_vector = unlist(loglike_list)
-      names(cdf_vector) <- paste0(1:length(cdf_vector), " component")
-      names(loglike_vector) <- paste0(1:length(loglike_vector), " component")
-      return(list(mix_porp= rousignif(mix_porp),
-                  alpha = rousignif(alpha),
-                  beta= rousignif(beta),
-                  loglik=rousignif(outpara[3*m0+1]),
-                  ploglik=rousignif(outpara[3*m0+2]),
-                  iter.n=tt,
-                  ident_warning=paste("This", m0, "component beta mixture distribution is identical to a", min(new_order), "component beta mixture distribution"),
-                  wasserstein_distance_between_cdf_comparison=cdf_vector[new_order],
-                  log_likelihood_comparison = loglike_vector[new_order],
-                  classification=apply(t(ww), 1, which.max)))
-    }
-  }
-  else {
-    return(list(mix_porp= rousignif(mix_porp),
-                alpha = rousignif(alpha),
-                beta= rousignif(beta),
-                loglik=rousignif(outpara[3*m0+1]),
-                ploglik=rousignif(outpara[3*m0+2]),
-                iter.n=tt,
-                classification=apply(t(ww), 1, which.max)))
-  }
+  return(list(mix_porp= rousignif(mix_porp),
+              alpha = rousignif(alpha),
+              beta= rousignif(beta),
+              loglik=rousignif(outpara[3*m0+1]),
+              ploglik=rousignif(outpara[3*m0+2]),
+              iter.n=tt,
+              classification=apply(t(ww), 1, which.max)))
 }

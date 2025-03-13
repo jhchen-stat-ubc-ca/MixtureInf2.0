@@ -13,9 +13,7 @@ pmle.beta(
   epsilon = 1,
   an = NULL,
   seed = NULL,
-  maxit = 5000,
-  check.ident = F,
-  ident.tol = 0.01
+  maxit = 5000
 )
 }
 \arguments{
@@ -36,11 +34,6 @@ pmle.beta(
 \item{seed}{Used for reproducing the same sequence of output numbers. Default is NULL.}
 
 \item{maxit}{The maximum number of iterations for the Broyden or Newton methods used in the method of moments estimation.}
-
-\item{check.ident}{Whether the user wants to check for identifiable issues or not. Default is FALSE.}
-
-\item{ident.tol}{The tolerance value for the checking of the difference of the wasserstein distance 
-between the current order and the new order, default value 0.01.}
 }
 \value{
 The PMLE of the parameters with order = m0 (mixing proportions, mixing alphas
