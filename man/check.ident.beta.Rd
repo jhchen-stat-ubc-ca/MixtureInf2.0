@@ -19,6 +19,6 @@ check.ident.beta(mix_porp, alpha, beta, tol = 1e-06)
 # The main function that checks the identifiability of a beta mixture.
 }
 \examples{
-check.ident(c(.03,.4,.04,.03,.25,.25),c(4,5,3,2,5.5,6.5),c(2,5,3,4,6.5,5.5))
+check.ident.beta(c(.03,.4,.04,.03,.25,.25),c(4,5,3,2,5.5,6.5),c(2,5,3,4,6.5,5.5))
 
 }

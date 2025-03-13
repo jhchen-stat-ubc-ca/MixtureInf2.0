@@ -121,7 +121,7 @@ iterative_reduce <- function(mix_porp, alpha, beta, tol = 1e-6) {
 #' @param tol The tolerance value for checking the difference between actual and expected weights.
 #' 
 #' @examples 
-#' check.ident(c(.03,.4,.04,.03,.25,.25),c(4,5,3,2,5.5,6.5),c(2,5,3,4,6.5,5.5))
+#' check.ident.beta(c(.03,.4,.04,.03,.25,.25),c(4,5,3,2,5.5,6.5),c(2,5,3,4,6.5,5.5))
 #' 
 #' @export
 check.ident.beta <- function(mix_porp, alpha, beta, tol = 1e-6) {
