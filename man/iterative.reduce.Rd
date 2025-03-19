@@ -9,14 +9,13 @@ iterative.reduce(mix_porp, alpha, beta, tol = 1e-06)
 \arguments{
 \item{mix_porp}{A vector of mixing proportions.}
 
-\item{alpha}{A vector of subpopulation alphas}
+\item{alpha}{A vector of subpopulation alphas.}
 
-\item{beta}{A vector of subpopulation betas}
+\item{beta}{A vector of subpopulation betas.}
 
 \item{tol}{The tolerance value for checking the difference between actual and expected weights.}
 }
 \description{
-# The sub function that repeatedly search for any mergeable group among the current components.
-When a mergeable group is found, we merge them (keeping track of original indices) and restart.
-It is used in the check.ident.beta function.
+Repeatedly searches for any mergeable group among the current components.
+When a mergeable group is found, they are merged (keeping track of original indices) and the search restarts.
 }

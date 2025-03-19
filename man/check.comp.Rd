@@ -7,17 +7,16 @@
 check.comp(indices, mix_porp, alpha, beta, tol = 1e-06)
 }
 \arguments{
-\item{indices}{The index number of the original input parameters.}
+\item{indices}{The index numbers of the original input parameters.}
 
 \item{mix_porp}{A vector of mixing proportions.}
 
-\item{alpha}{A vector of subpopulation alphas}
+\item{alpha}{A vector of subpopulation alphas.}
 
-\item{beta}{A vector of subpopulation betas}
+\item{beta}{A vector of subpopulation betas.}
 
 \item{tol}{The tolerance value for checking the difference between actual and expected weights.}
 }
 \description{
-# The sub function that actually checks whether a group of components can be merged or not. 
-It is used in the check.ident.beta function.
+The sub function that checks whether a group of components can be merged.
 }

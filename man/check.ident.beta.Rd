@@ -9,16 +9,15 @@ check.ident.beta(mix_porp, alpha, beta, tol = 1e-06)
 \arguments{
 \item{mix_porp}{A vector of mixing proportions.}
 
-\item{alpha}{A vector of subpopulation alphas}
+\item{alpha}{A vector of subpopulation alphas.}
 
-\item{beta}{A vector of subpopulation betas}
+\item{beta}{A vector of subpopulation betas.}
 
 \item{tol}{The tolerance value for checking the difference between actual and expected weights.}
 }
 \description{
-# The main function that checks the identifiability of a beta mixture.
+The main function that checks the identifiability of a beta mixture.
 }
 \examples{
-check.ident.beta(c(.03,.4,.04,.03,.25,.25),c(4,5,3,2,5.5,6.5),c(2,5,3,4,6.5,5.5))
-
+check.ident.beta(c(.03, .4, .04, .03, .25, .25), c(4, 5, 3, 2, 5.5, 6.5), c(2, 5, 3, 4, 6.5, 5.5))
 }
