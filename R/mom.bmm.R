@@ -9,7 +9,6 @@
 #' 
 #' @export
 mom.bmm <- function(x, m0, seed, maxit) {
-  # Keep trying until we get non-empty 'method' and 'global'
   repeat {
     mix_porp <- sort(kmeans(x, m0)$size) / length(x)
     theta <- mom.calculation(x, mix_porp, seed)
@@ -22,11 +21,9 @@ mom.bmm <- function(x, m0, seed, maxit) {
       mm <- numeric(3 * m0 - 1)
       
       for (i in 1:(3 * m0 - 1)) {
-        # Compute contribution from the first (m0-1) components
         for (j in 1:(m0 - 1)) {
           mm[i] <- mm[i] + mix_porp[j] * prod((alpha[j] + 0:(i - 1)) / (alpha[j] + beta[j] + 0:(i - 1)))
         }
-        # Last component (mixing proportion implicitly 1-sum(mix_porp))
         mm[i] <- mm[i] + (1 - sum(mix_porp)) * prod((alpha[m0] + 0:(i - 1)) / (alpha[m0] + beta[m0] + 0:(i - 1)))
       }
       
@@ -42,19 +39,16 @@ mom.bmm <- function(x, m0, seed, maxit) {
     if (length(method) > 0 && length(global) > 0) break
   }
   
-  # Compute candidate solutions using the valid methods and global options
   possible_soln <- lapply(seq_along(method), function(i) {
     nleqslv::nleqslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM,
                      method = method[i], global = global[i],
                      control = list(maxit = maxit))
   })
   
-  # Filter solutions: first (m0-1) parameters sum to <1 and all parameters > 0
   valid_soln <- sapply(possible_soln, function(sol) {
     (sum(sol$x[1:(m0 - 1)]) < 1) && all(sol$x > 0)
   })
   
-  # If no valid solution, re-run until at least one is found
   if (!any(valid_soln)) {
     repeat {
       mix_porp <- sort(kmeans(x, m0)$size) / length(x)
@@ -77,8 +71,8 @@ mom.bmm <- function(x, m0, seed, maxit) {
 
 #' mom.calculation
 #'
-#' @description A sub function for MoM_BMM, generates starting points for the MoM_BMM function.
-#' It is used in the MoM_BMM function.
+#' @description A sub function for mom.bmm, generates starting points for the mom.bmm function.
+#' It is used in the mom.bmm function.
 #' @param x The input data.
 #' @param mix_porp The mixing proportion for each component/subpopulation.
 #' @param seed For reproducible results.
@@ -103,8 +97,8 @@ mom.calculation <- function(x, mix_porp, seed) {
 
 #' mom.beta
 #'
-#' @description A sub function for MoM_Calculation, calculates the MoM for the beta distribution.
-#' It is used in the MoM_Calculation function.
+#' @description A sub function for mom.calculation, calculates the MoM for the beta distribution.
+#' It is used in the mom.calculation function.
 #' @param data The input data.
 #' 
 #' @export

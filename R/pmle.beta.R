@@ -24,17 +24,12 @@ pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6, epsilon =
   
   if (is.null(an)) an <- length(x)^(3/2)
   
-  # Get initial candidate parameters using MoM_BMM
   init_params <- mom.bmm(x, m0, seed, maxit)
   uniq_init_params <- unique(do.call(rbind, lapply(1:ncol(init_params), 
                                                    function(i) init_params[, i]$x)))
   
-  # Run several short EM iterations on each candidate initialization
   output_list <- vector("list", nrow(uniq_init_params))
   for (i in 1:nrow(uniq_init_params)) {
-    # Construct the initial parameter vector:
-    # First m0-1 mixing proportions, the m0-th is 1 minus their sum,
-    # then the corresponding alpha and beta estimates.
     para0 <- c(uniq_init_params[i, 1:(m0 - 1)], 
                1 - sum(uniq_init_params[i, 1:(m0 - 1)]),
                uniq_init_params[i, m0:(3 * m0 - 1)])
@@ -64,7 +59,6 @@ pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6, epsilon =
   alpha <- para0[(m0 + 1):(2 * m0)]
   beta <- para0[(2 * m0 + 1):(3 * m0)]
   
-  # Compute the component density matrix and responsibilities
   pdf.sub <- t(mapply(function(pp, aa, bb) pp * dbeta(x, aa, bb),
                       mix_porp, alpha, beta))
   pdf.mixture <- colSums(pdf.sub) + 1e-100

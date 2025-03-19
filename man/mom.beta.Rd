@@ -10,6 +10,6 @@ mom.beta(data)
 \item{data}{The input data.}
 }
 \description{
-A sub function for MoM_Calculation, calculates the MoM for the beta distribution.
-It is used in the MoM_Calculation function.
+A sub function for mom.calculation, calculates the MoM for the beta distribution.
+It is used in the mom.calculation function.
 }

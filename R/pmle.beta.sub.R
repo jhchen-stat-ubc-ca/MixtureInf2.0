@@ -10,34 +10,30 @@
 #' 
 #' @export
 pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
-  # Extract initial parameters
   mix_porp <- para0[1:m0]
   alpha    <- para0[(m0 + 1):(2 * m0)]
   beta     <- para0[(2 * m0 + 1):(3 * m0)]
-  theta    <- para0[(m0 + 1):(3 * m0)]  # concatenation of alpha and beta
+  theta    <- para0[(m0 + 1):(3 * m0)]  
   
   n <- length(x)
   
-  # E-step: compute component densities and responsibilities
+  # E-step
   pdf.sub     <- t(mapply(function(pp, aa, bb) pp * dbeta(x, aa, bb),
                           mix_porp, alpha, beta))
   pdf.mixture <- colSums(pdf.sub) + 1e-100
   ww          <- sweep(pdf.sub, 2, pdf.mixture, FUN = "/")
   
-  # Update mixing proportions with penalty
   mix_porp <- (rowSums(ww) + epsilon) / (n + m0 * epsilon)
   
-  # M-step: update alpha and beta using penalized maximization
+  # M-step
   theta <- Pen.M.Step(x, t(ww), mix_porp, theta, an)
   alpha <- theta[1:m0]
   beta  <- theta[(m0 + 1):(2 * m0)]
   
-  # Compute log-likelihood and penalized log-likelihood
   dens <- dmix.beta(x, mix_porp, alpha, beta)
   loglike <- sum(log(dens + 1e-100))
   ploglik <- sum(log(dens) + 1e-100) + sum((log(alpha) - alpha) + (log(beta) - beta)) / an
   
-  # Order components by increasing alpha
   ind <- order(alpha)
   
   c(mix_porp[ind], alpha[ind], beta[ind], loglike, ploglik)
@@ -61,7 +57,6 @@ Pen.M.Step <- function(x, ww, mix_porp, theta, an) {
     if (any(theta <= 0)) return(NA)
     alpha <- theta[1:k]
     beta  <- theta[(k + 1):(2 * k)]
-    # Penalized log-likelihood: sum over all data points and components
     ll <- sum(ww * log(dmix.beta(x, mix_porp, alpha, beta))) +
       sum((log(alpha) - alpha) + (log(beta) - beta)) / an
     ll

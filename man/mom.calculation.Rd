@@ -14,6 +14,6 @@ mom.calculation(x, mix_porp, seed)
 \item{seed}{For reproducible results.}
 }
 \description{
-A sub function for MoM_BMM, generates starting points for the MoM_BMM function.
-It is used in the MoM_BMM function.
+A sub function for mom.bmm, generates starting points for the mom.bmm function.
+It is used in the mom.bmm function.
 }
