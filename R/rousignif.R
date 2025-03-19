@@ -5,8 +5,7 @@
 #' @param x The input data.
 #' 
 #' @export
-rousignif <-
-  function(x)
+rousignif <- function(x)
   {
     a=NULL
     if (is.matrix(x))
@@ -25,4 +24,4 @@ rousignif <-
       colnames(x)=b2
     }
     x
-  }
+}

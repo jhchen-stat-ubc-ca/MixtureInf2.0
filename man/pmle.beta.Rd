@@ -38,7 +38,7 @@ pmle.beta(
 \value{
 The PMLE of the parameters with order = m0 (mixing proportions, mixing alphas
          and mixing betas), log-likelihood value at the PMLE and the penalized log-likelihood
-         value at the PMLE, classification on which subpopulation does the observed value belongs to.
+         value at the PMLE, classification on which subpopulation does the observed value belong to.
 }
 \description{
 This function computes the PMLE of the parameters under a mixture of betas.
