@@ -1,4 +1,4 @@
-#' check_candidate
+#' check.comp
 #'
 #' @description # The sub function that actually checks whether a group of components can be merged or not. 
 #' It is used in the check.ident.beta function.
@@ -9,7 +9,7 @@
 #' @param tol The tolerance value for checking the difference between actual and expected weights.
 #' 
 #' @export
-check_candidate <- function(indices, mix_porp, alpha, beta, tol = 1e-6) {
+check.comp <- function(indices, mix_porp, alpha, beta, tol = 1e-6) {
   candidate_alphas  <- alpha[indices]
   candidate_betas   <- beta[indices]
   candidate_weights <- mix_porp[indices]
@@ -54,7 +54,7 @@ check_candidate <- function(indices, mix_porp, alpha, beta, tol = 1e-6) {
   else
     return(NULL)
 }
-#' iterative_reduce
+#' iterative.reduce
 #'
 #' @description # The sub function that repeatedly search for any mergeable group among the current components.
 #' When a mergeable group is found, we merge them (keeping track of original indices) and restart.
@@ -65,7 +65,7 @@ check_candidate <- function(indices, mix_porp, alpha, beta, tol = 1e-6) {
 #' @param tol The tolerance value for checking the difference between actual and expected weights.
 #' 
 #' @export
-iterative_reduce <- function(mix_porp, alpha, beta, tol = 1e-6) {
+iterative.reduce <- function(mix_porp, alpha, beta, tol = 1e-6) {
   comps <- lapply(seq_along(mix_porp), function(i) {
     list(weight = mix_porp[i], alpha = alpha[i], beta = beta[i], indices = i)
   })
@@ -84,7 +84,7 @@ iterative_reduce <- function(mix_porp, alpha, beta, tol = 1e-6) {
     for (r in n:2) {
       comb_list <- combn(n, r, simplify = FALSE)
       for (cmb in comb_list) {
-        candidate <- check_candidate(seq_along(cmb),
+        candidate <- check.comp(seq_along(cmb),
                                      comp_weights[cmb],
                                      comp_alpha[cmb],
                                      comp_beta[cmb],
@@ -125,7 +125,7 @@ iterative_reduce <- function(mix_porp, alpha, beta, tol = 1e-6) {
 #' 
 #' @export
 check.ident.beta <- function(mix_porp, alpha, beta, tol = 1e-6) {
-  final_comps <- iterative_reduce(mix_porp, alpha, beta, tol)
+  final_comps <- iterative.reduce(mix_porp, alpha, beta, tol)
   final_count <- length(final_comps)
   
   if (final_count == length(mix_porp)) {
