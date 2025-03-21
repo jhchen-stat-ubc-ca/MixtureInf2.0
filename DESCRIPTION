@@ -12,4 +12,4 @@ LazyData: true
 RoxygenNote: 7.3.2
 Depends: 
     R (>= 2.10)
-Imports: maxLik, nleqslv, quadprog, Rfast
+Imports: maxLik, nleqslv, quadprog
