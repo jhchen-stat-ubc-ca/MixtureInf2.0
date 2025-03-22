@@ -10,12 +10,13 @@
 #' x = c(rbeta(50,1,10),rbeta(50,9,0.5))
 #' pmix_beta(x,c(.5,.5),c(1,9),c(10,0.5))
 #' @export
-
 pmix_beta <- function(x, mix_porp, alpha, beta) {
+  cdf_matrix <- sapply(seq_along(mix_porp), function(i) {
+    mix_porp[i] * pbeta(x, alpha[i], beta[i])
+  })
   if (length(x) == 1) {
-    cdf <- sum(sapply(1:length(mix_porp), function(i) mix_porp[i] * pbeta(x, alpha[i], beta[i])))
+    sum(cdf_matrix)
   } else {
-    cdf <- rowSums(sapply(1:length(mix_porp), function(i) mix_porp[i] * pbeta(x, alpha[i], beta[i])))
+    rowSums(cdf_matrix)
   }
-  return(cdf)
 }

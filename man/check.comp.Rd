@@ -7,7 +7,7 @@
 check.comp(indices, mix_porp, alpha, beta, tol = 1e-06)
 }
 \arguments{
-\item{indices}{The index numbers of the original input parameters.}
+\item{indices}{The index numbers of the input parameters.}
 
 \item{mix_porp}{A vector of mixing proportions.}
 

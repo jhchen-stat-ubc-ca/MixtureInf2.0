@@ -14,11 +14,8 @@
 #' beta = c(10,0.5,2)
 #' rmix.beta(n, porp, alpha,beta)
 #' @export
-rmix.beta <- function (n, porp, alpha, beta)  {
-  m = length(porp)
-  data=c()
-  
-  nindex=rmultinom(1, n, porp)
-  for( i in 1:m) data=c(data,rbeta(nindex[i],alpha[i],beta[i]))
+rmix.beta <- function(n, porp, alpha, beta) {
+  nindex <- as.vector(rmultinom(1, n, porp))
+  data <- unlist(mapply(rbeta, n = nindex, shape1 = alpha, shape2 = beta, SIMPLIFY = FALSE))
   sample(data)
 }

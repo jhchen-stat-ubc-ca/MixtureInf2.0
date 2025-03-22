@@ -1,7 +1,7 @@
 #' check.comp
 #'
 #' @description The sub function that checks whether a group of components can be merged.
-#' @param indices The index numbers of the original input parameters.
+#' @param indices The index numbers of the input parameters.
 #' @param mix_porp A vector of mixing proportions.
 #' @param alpha A vector of subpopulation alphas.
 #' @param beta A vector of subpopulation betas.
