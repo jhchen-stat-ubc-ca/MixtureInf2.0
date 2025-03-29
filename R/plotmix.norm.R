@@ -30,41 +30,36 @@
 #' k = 20, extra.height = 1.05, comp = TRUE, hist.ind = TRUE,
 #' main="", xlab="Observed values", ylab="Density/Histogram")
 #' @export
-plotmix.norm <-
-  function(x = NULL, xx.grid = NULL, alpha, mu, sigma, m0,
-           k = 20, extra.height = 1.05, comp = T, hist.ind = T,
-           main="", xlab="Observed values", ylab="Density/Histogram") {
-    if(hist.ind & is.null(x)) stop("data needed for histogram")
-    
-    if(hist.ind) {
-      if(is.matrix(x)) {
-        xx = c()
-        for(i in 1:dim(x)[1]) xx = c(xx, rep(x[i,1], x[i,2]))
-        x = as.numeric(xx)
-      }
-      if (is.vector(x)) {
-        hist(x, freq= F, ylim = c(0,max((hist(x, freq = F, nclass = k))$density)*extra.height), nclass = k, main=main, xlab = xlab, ylab = ylab)
-        xx.grid = seq(min(x), max(x), (diff(range(x))/k)/50)
-        sub.density = c(); sig = sigma^.5
-        for (j in 1:m0) {
-          sub.density = rbind(sub.density, alpha[j]*dnorm(xx.grid, mu[j], sig[j])) }
-        mixture.density = colSums(sub.density) 
-        lines(xx.grid, mixture.density, lty=1)
-        if (comp) for (j in 1:m0) lines(xx.grid, sub.density[j,], lty=2)
-      }
+plotmix.norm <- function(x = NULL, xx.grid = NULL, alpha, mu, sigma, m0,
+                         k = 20, extra.height = 1.05, comp = TRUE, hist.ind = TRUE,
+                         main = "", xlab = "Observed values", ylab = "Density/Histogram") {
+  if (hist.ind && is.null(x)) stop("data needed for histogram")
+  if (hist.ind) {
+    if (is.matrix(x)) x <- rep(x[, 1], x[, 2])
+    if (is.vector(x)) {
+      h <- hist(x, breaks = k, plot = FALSE)
+      bin_width <- diff(h$breaks)[1]
+      dens <- h$counts / (length(x) * bin_width)
+      ylim_max <- max(dens) * extra.height
+      hist(x, breaks = k, probability = TRUE, ylim = c(0, ylim_max),
+           main = main, xlab = xlab, ylab = ylab)
+      xx.grid <- seq(min(x), max(x), by = (diff(range(x)) / k) / 50)
+      sig <- sqrt(sigma)
+      sub.density <- t(sapply(1:m0, function(j) alpha[j] * dnorm(xx.grid, mu[j], sig[j])))
+      mixture.density <- colSums(sub.density)
+      lines(xx.grid, mixture.density, lty = 1)
+      if (comp) for (j in 1:m0) lines(xx.grid, sub.density[j, ], lty = 2)
     }
-    
-    if(hist.ind==F) {
-      sig = sigma^.5
-      if(is.null(xx.grid)) {
-        xx.min = min(mu - 2.5*sig[j]); xx.max = max(mu + 2.5*sig[j])
-        xx.grid = seq(xx.min, xx.max, (xx.max-xx.min)/1000) }
-      sub.density = c()
-      for (j in 1:m0) {
-        sub.density = rbind(sub.density, alpha[j]*dnorm(xx.grid, mu[j], sig[j])) }
-      mixture.density = colSums(sub.density)
-      ### mixture and subpop densities.
-      plot(xx.grid, mixture.density, "l", main=main, xlab=xlab, ylab=ylab)
-      for (j in 1:m0) lines(xx.grid, sub.density[j,], lty=2)
+  } else {
+    sig <- sqrt(sigma)
+    if (is.null(xx.grid)) {
+      xx.min <- min(mu - 2.5 * sig)
+      xx.max <- max(mu + 2.5 * sig)
+      xx.grid <- seq(xx.min, xx.max, length.out = 1000)
     }
+    sub.density <- t(sapply(1:m0, function(j) alpha[j] * dnorm(xx.grid, mu[j], sig[j])))
+    mixture.density <- colSums(sub.density)
+    plot(xx.grid, mixture.density, type = "l", main = main, xlab = xlab, ylab = ylab)
+    if (comp) for (j in 1:m0) lines(xx.grid, sub.density[j, ], lty = 2)
   }
+}

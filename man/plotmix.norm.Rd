@@ -13,8 +13,8 @@ plotmix.norm(
   m0,
   k = 20,
   extra.height = 1.05,
-  comp = T,
-  hist.ind = T,
+  comp = TRUE,
+  hist.ind = TRUE,
   main = "",
   xlab = "Observed values",
   ylab = "Density/Histogram"

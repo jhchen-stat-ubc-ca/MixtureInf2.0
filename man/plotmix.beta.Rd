@@ -13,7 +13,7 @@ plotmix.beta(
   m0,
   k = 20,
   extra.height = 1.05,
-  comp = T,
+  comp = TRUE,
   main = "",
   xlab = "Observed values",
   ylab = "Density/Histogram"
@@ -56,7 +56,7 @@ when the data generated from this density is given.
 n=2000
 porp = c(.2, .5, .3)
 alpha = c(3, 2, 5)
-beta = c(1, .5, 1.1)
+beta = c(3, 5.1, 1.1)
 x = rmix.beta(n, porp, alpha, beta)
 plotmix.beta(x, xx.grid=NULL, porp, alpha, beta, m0=3,
 main="", xlab="Observed values", ylab="Density/Histogram")

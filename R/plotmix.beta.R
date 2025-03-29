@@ -21,30 +21,29 @@
 #' @examples n=2000
 #' porp = c(.2, .5, .3)
 #' alpha = c(3, 2, 5)
-#' beta = c(1, .5, 1.1)
+#' beta = c(3, 5.1, 1.1)
 #' x = rmix.beta(n, porp, alpha, beta)
 #' plotmix.beta(x, xx.grid=NULL, porp, alpha, beta, m0=3,
 #' main="", xlab="Observed values", ylab="Density/Histogram")
 #' @export
-plotmix.beta <-
-  function(x, xx.grid = NULL, porp, alpha, beta, m0,
-           k = 20, extra.height = 1.05, comp = T,
-           main="", xlab="Observed values", ylab="Density/Histogram") {
-    if(is.matrix(x)) {
-      xx = c()
-      for(i in 1:dim(x)[1]) xx = c(xx, rep(x[i,1], x[i,2]))
-      x = as.numeric(xx)
-    }
-    if (is.vector(x)) {
-      hist(x, freq= F, ylim = c(0,max((hist(x, freq = F, nclass = k))$density)*extra.height), 
-           nclass = k, main=main, xlab = xlab, ylab = ylab)
-      xx.grid = seq(min(x), max(x), (diff(range(x))/k)/50)
-      sub.density = c()
-      for (j in 1:m0) {
-        sub.density = rbind(sub.density, porp[j]*dbeta(xx.grid, alpha[j], beta[j])) }
-      mixture.density = colSums(sub.density)
-      lines(xx.grid, mixture.density,lwd=2)
-      if (comp==T) { for (j in 1:m0) 
-        lines(xx.grid, sub.density[j,],lwd=1,col=j+1)}
+plotmix.beta <- function(x, xx.grid = NULL, porp, alpha, beta, m0,
+                         k = 20, extra.height = 1.05, comp = TRUE,
+                         main = "", xlab = "Observed values", ylab = "Density/Histogram") {
+  if (is.matrix(x)) x <- rep(x[, 1], x[, 2])
+  if (is.vector(x)) {
+    h <- hist(x, breaks = k, plot = FALSE)
+    bin_width <- diff(h$breaks)[1]
+    h$density <- h$counts / (length(x) * bin_width)
+    ylim_max <- max(h$density) * extra.height
+    hist(x, breaks = k, probability = TRUE, ylim = c(0, ylim_max),
+         main = main, xlab = xlab, ylab = ylab)
+    xx.grid <- seq(min(x), max(x), by = (diff(range(x))/k)/50)
+    sub.density <- t(sapply(1:m0, function(j) porp[j] * dbeta(xx.grid, alpha[j], beta[j])))
+    mixture.density <- colSums(sub.density)
+    lines(xx.grid, mixture.density, lwd = 2)
+    if (comp) {
+      for (j in 1:m0) lines(xx.grid, sub.density[j, ], lwd = 1, lty = 2)
     }
   }
+}
+
