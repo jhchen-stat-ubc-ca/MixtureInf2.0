@@ -120,8 +120,8 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
 #' and recomputing cluster barycenters.
 #'
 #' @param orig_weights A numeric vector of original mixture weights.
-#' @param orig_alphas A numeric vector of \eqn{\alpha} parameters for the original Beta components.
-#' @param orig_betas A numeric vector of \eqn{\beta} parameters for the original Beta components.
+#' @param orig_alphas A numeric vector of \eqn{\alpha} parameters for the original beta components.
+#' @param orig_betas A numeric vector of \eqn{\beta} parameters for the original beta components.
 #' @param M The number of components in the reduced mixture.
 #' @param max_iter Maximum number of iterations for the algorithm. Default is 100.
 #' @param tol Tolerance for convergence based on change in total cost. Default is 1e-6.
@@ -135,6 +135,18 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
 #' \item{assignments}{Cluster assignment for each original component.}
 #' \item{n_iter}{Number of iterations run.}
 #' \item{converged}{Logical indicating whether convergence was achieved.}
+#' 
+#' @examples
+#' orig_weights <- c(0.3, 0.3, 0.3, 0.1)
+#' orig_alphas <- c(3, 4, 3.5, 7)
+#' orig_betas  <- c(5, 6, 5.5, 2)
+#' result <- BMR.CTD(orig_weights, orig_alphas, orig_betas, M = 2,
+#' max_iter = 100, tol = 1e-6, n_sample = 10000)
+#' curve({dmix.beta(x,orig_weights,orig_alphas,orig_betas)}, from = 0, to = 1, col = "blue", lwd = 2,
+#' xlab = "x", ylab = "Density", main = "Original vs Reduced Beta Mixture")
+#' 
+#' curve({dmix.beta(x,result$reduced_weights,result$reduced_alphas,result$reduced_betas)}, 
+#' add = TRUE, col = "red", lwd = 2, lty = 2)
 #' @export
 
 BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M, 
