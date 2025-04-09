@@ -1,14 +1,21 @@
 #' pmle.beta.sub
 #'
-#' @description A sub function for pmle.beta, does the actual work of PMLE of the beta mixture.
-#' It is used in the pmle.beta function.
-#' @param x A vector of the observed values.
-#' @param m0 The order of the finite mixture model.
-#' @param para0 A vector of estimated alpha and beta for every component. 
-#' @param an A size control parameter that controls the severity of the penalty. The recommended value is n^{-3/2}.
-#' @param epsilon The size of the penalized function of the mixing distribution, default value: epsilon = 1.
-#' 
+#' @description A sub-function for \code{pmle.beta}, performs the core computation for 
+#'              penalized maximum likelihood estimation (PMLE) of the beta mixture model.
+#'
+#'
+#' @param x A numeric vector of observed values assumed to follow a beta mixture distribution.
+#' @param m0 The number of components in the finite mixture model.
+#' @param para0 A numeric vector containing initial values for mixing proportions and 
+#'        the \eqn{\alpha} and \eqn{\beta} parameters for all components.
+#' @param an A penalty control parameter, usually chosen as \eqn{n^{-3/2}}, where \eqn{n} is the sample size.
+#' @param epsilon A smoothing parameter for the mixing proportions in the E-step. Default is \code{1}.
+#'
+#' @return A numeric vector containing updated estimates of the mixing proportions, 
+#'         \eqn{\alpha} and \eqn{\beta} values for each component, the log-likelihood, 
+#'         and the penalized log-likelihood.
 #' @export
+
 pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
   mix_porp <- para0[1:m0]
   alpha    <- para0[(m0 + 1):(2 * m0)]
@@ -39,17 +46,24 @@ pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
   c(mix_porp[ind], alpha[ind], beta[ind], loglike, ploglik)
 }
 
-#' Pen_M_Step
+#' Pen.M.Step
 #'
-#' @description A sub function for pmle.beta.sub, does the actual work of the M step in the EM algorithm.
-#' It is used in the pmle.beta.sub function.
-#' @param x A vector of the observed values.
-#' @param ww The probability that data point i belongs to component j (matrix with dimensions n x m0).
-#' @param mix_porp The mixing proportions for each component.
-#' @param theta A vector of estimated alpha and beta for every component.
-#' @param an A size control parameter that controls the severity of the penalty.
-#' 
+#' @description A sub-function for \code{pmle.beta.sub}, performs the M-step in the 
+#'              EM algorithm for beta mixture.
+#'
+#'
+#' @param x A numeric vector of observed values assumed to follow a beta mixture distribution.
+#' @param ww A matrix of posterior probabilities with dimensions \code{n x m0}, representing 
+#'           the probability that each observation belongs to each mixture component.
+#' @param mix_porp A numeric vector of mixing proportions for each component.
+#' @param theta A numeric vector of current estimates for \eqn{\alpha} and \eqn{\beta} 
+#'              parameters for all components.
+#' @param an A penalty control parameter, typically \eqn{n^{-3/2}}, that influences the strength 
+#'           of the regularization.
+#'
+#' @return A numeric vector of updated parameter estimates for \eqn{\alpha} and \eqn{\beta}.
 #' @export
+
 Pen.M.Step <- function(x, ww, mix_porp, theta, an) {
   k <- length(mix_porp)
   

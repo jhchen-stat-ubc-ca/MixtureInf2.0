@@ -2,22 +2,28 @@
 % Please edit documentation in R/pmle.beta.sub.R
 \name{Pen.M.Step}
 \alias{Pen.M.Step}
-\title{Pen_M_Step}
+\title{Pen.M.Step}
 \usage{
 Pen.M.Step(x, ww, mix_porp, theta, an)
 }
 \arguments{
-\item{x}{A vector of the observed values.}
+\item{x}{A numeric vector of observed values assumed to follow a beta mixture distribution.}
 
-\item{ww}{The probability that data point i belongs to component j (matrix with dimensions n x m0).}
+\item{ww}{A matrix of posterior probabilities with dimensions \code{n x m0}, representing 
+the probability that each observation belongs to each mixture component.}
 
-\item{mix_porp}{The mixing proportions for each component.}
+\item{mix_porp}{A numeric vector of mixing proportions for each component.}
 
-\item{theta}{A vector of estimated alpha and beta for every component.}
+\item{theta}{A numeric vector of current estimates for \eqn{\alpha} and \eqn{\beta} 
+parameters for all components.}
 
-\item{an}{A size control parameter that controls the severity of the penalty.}
+\item{an}{A penalty control parameter, typically \eqn{n^{-3/2}}, that influences the strength 
+of the regularization.}
+}
+\value{
+A numeric vector of updated parameter estimates for \eqn{\alpha} and \eqn{\beta}.
 }
 \description{
-A sub function for pmle.beta.sub, does the actual work of the M step in the EM algorithm.
-It is used in the pmle.beta.sub function.
+A sub-function for \code{pmle.beta.sub}, performs the M-step in the 
+             EM algorithm for beta mixture.
 }

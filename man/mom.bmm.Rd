@@ -7,15 +7,22 @@
 mom.bmm(x, m0, seed, maxit)
 }
 \arguments{
-\item{x}{The input data.}
+\item{x}{The input data, assumed to follow a beta mixture distribution.}
 
-\item{m0}{The order/component number of the mixture model.}
+\item{m0}{The number of components in the mixture model.}
 
-\item{seed}{For reproducible results.}
+\item{seed}{An optional integer seed for reproducibility.}
 
-\item{maxit}{Maximum amount of iterations.}
+\item{maxit}{Maximum number of iterations allowed in the nonlinear solver.}
+}
+\value{
+A matrix of estimated initial parameters with valid solutions.
 }
 \description{
-A sub function for pmle.beta, does the actual work of MoM of the beta mixture.
-It is used in the pmle.beta function.
+A sub-function for \code{pmle.beta}, performs the method of moments (MoM) estimation 
+             for the beta mixture model.
+
+This function solves the moment-matching system using nonlinear solvers to obtain valid initial
+estimates for mixture proportions and beta parameters. It attempts multiple configurations until 
+convergence and feasibility are achieved.
 }

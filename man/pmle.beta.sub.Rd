@@ -7,17 +7,23 @@
 pmle.beta.sub(x, m0, para0, an, epsilon)
 }
 \arguments{
-\item{x}{A vector of the observed values.}
+\item{x}{A numeric vector of observed values assumed to follow a beta mixture distribution.}
 
-\item{m0}{The order of the finite mixture model.}
+\item{m0}{The number of components in the finite mixture model.}
 
-\item{para0}{A vector of estimated alpha and beta for every component.}
+\item{para0}{A numeric vector containing initial values for mixing proportions and 
+the \eqn{\alpha} and \eqn{\beta} parameters for all components.}
 
-\item{an}{A size control parameter that controls the severity of the penalty. The recommended value is n^{-3/2}.}
+\item{an}{A penalty control parameter, usually chosen as \eqn{n^{-3/2}}, where \eqn{n} is the sample size.}
 
-\item{epsilon}{The size of the penalized function of the mixing distribution, default value: epsilon = 1.}
+\item{epsilon}{A smoothing parameter for the mixing proportions in the E-step. Default is \code{1}.}
+}
+\value{
+A numeric vector containing updated estimates of the mixing proportions, 
+        \eqn{\alpha} and \eqn{\beta} values for each component, the log-likelihood, 
+        and the penalized log-likelihood.
 }
 \description{
-A sub function for pmle.beta, does the actual work of PMLE of the beta mixture.
-It is used in the pmle.beta function.
+A sub-function for \code{pmle.beta}, performs the core computation for 
+             penalized maximum likelihood estimation (PMLE) of the beta mixture model.
 }

@@ -1,12 +1,18 @@
 #' mom.bmm
 #'
-#' @description A sub function for pmle.beta, does the actual work of MoM of the beta mixture.
-#' It is used in the pmle.beta function.
-#' @param x The input data.
-#' @param m0 The order/component number of the mixture model.
-#' @param seed For reproducible results.
-#' @param maxit Maximum amount of iterations.
-#' 
+#' @description A sub-function for \code{pmle.beta}, performs the method of moments (MoM) estimation 
+#'              for the beta mixture model.
+#'
+#' This function solves the moment-matching system using nonlinear solvers to obtain valid initial
+#' estimates for mixture proportions and beta parameters. It attempts multiple configurations until 
+#' convergence and feasibility are achieved.
+#'
+#' @param x The input data, assumed to follow a beta mixture distribution.
+#' @param m0 The number of components in the mixture model.
+#' @param seed An optional integer seed for reproducibility.
+#' @param maxit Maximum number of iterations allowed in the nonlinear solver.
+#'
+#' @return A matrix of estimated initial parameters with valid solutions.
 #' @export
 mom.bmm <- function(x, m0, seed, maxit) {
   repeat {
@@ -71,13 +77,16 @@ mom.bmm <- function(x, m0, seed, maxit) {
 
 #' mom.calculation
 #'
-#' @description A sub function for mom.bmm, generates starting points for the mom.bmm function.
-#' It is used in the mom.bmm function.
-#' @param x The input data.
-#' @param mix_porp The mixing proportion for each component/subpopulation.
-#' @param seed For reproducible results.
-#' 
+#' @description A sub-function for \code{mom.bmm}, generates starting values for the method 
+#'              of moments estimation of a beta mixture. 
+#'
+#' @param x The input data, assumed to be from a beta mixture.
+#' @param mix_porp A numeric vector of mixing proportions for each component.
+#' @param seed An optional integer seed for reproducibility.
+#'
+#' @return A numeric vector containing concatenated alpha and beta estimates for each component.
 #' @export
+
 mom.calculation <- function(x, mix_porp, seed) {
   if (!is.null(seed)) set.seed(seed)
   
@@ -97,11 +106,17 @@ mom.calculation <- function(x, mix_porp, seed) {
 
 #' mom.beta
 #'
-#' @description A sub function for mom.calculation, calculates the MoM for the beta distribution.
-#' It is used in the mom.calculation function.
-#' @param data The input data.
-#' 
+#' @description A sub-function for \code{mom.calculation}, estimates the parameters of a single beta 
+#'              distribution using the method of moments.
+#'
+#'
+#' @param data A numeric vector assumed to be sampled from a beta distribution.
+#'
+#' @return A list with components:
+#' \item{alpha}{The estimated alpha parameter.}
+#' \item{beta}{The estimated beta parameter.}
 #' @export
+
 mom.beta <- function(data) {
   mu <- mean(data)
   var_data <- var(data)

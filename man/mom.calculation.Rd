@@ -7,13 +7,16 @@
 mom.calculation(x, mix_porp, seed)
 }
 \arguments{
-\item{x}{The input data.}
+\item{x}{The input data, assumed to be from a beta mixture.}
 
-\item{mix_porp}{The mixing proportion for each component/subpopulation.}
+\item{mix_porp}{A numeric vector of mixing proportions for each component.}
 
-\item{seed}{For reproducible results.}
+\item{seed}{An optional integer seed for reproducibility.}
+}
+\value{
+A numeric vector containing concatenated alpha and beta estimates for each component.
 }
 \description{
-A sub function for mom.bmm, generates starting points for the mom.bmm function.
-It is used in the mom.bmm function.
+A sub-function for \code{mom.bmm}, generates starting values for the method 
+             of moments estimation of a beta mixture.
 }

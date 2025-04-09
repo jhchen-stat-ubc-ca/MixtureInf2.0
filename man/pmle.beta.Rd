@@ -17,34 +17,43 @@ pmle.beta(
 )
 }
 \arguments{
-\item{x}{A vector of the observed values.}
+\item{x}{A numeric vector of observed values.}
 
-\item{m0}{The order of the finite mixture model.}
+\item{m0}{The number of components (order) in the beta mixture model.}
 
-\item{n.iter}{The number of EM iterations for each initial value. The one that gained the most in likelihood will be iterative further.}
+\item{n.iter}{The number of EM iterations to perform for each initial value. The initialization 
+yielding the highest penalized log-likelihood will be further optimized.}
 
-\item{max.iter}{The maximum number of iterations for the EM algorithm.}
+\item{max.iter}{The maximum number of iterations allowed in the final EM optimization phase.}
 
-\item{tol}{The tolerance value for the convergence of the EM-algorithm, default value: tol = 1e-6.}
+\item{tol}{The tolerance threshold for convergence based on change in penalized log-likelihood. 
+Default is \code{1e-6}.}
 
-\item{epsilon}{The size of the penalized function of the mixing distribution, default value: epsilon = 1.}
+\item{epsilon}{A regularization parameter controlling the smoothing in the E-step. Default is \code{1}.}
 
-\item{an}{A size control parameter that controls the severity of the penalty. The recommended value is n^{-3/2}.}
+\item{an}{A size control parameter that determines the severity of the penalty. 
+The recommended value is \eqn{n^{-3/2}}. If \code{NULL}, it is set to \code{length(x)^(3/2)}.}
 
-\item{seed}{Used for reproducing the same sequence of output numbers. Default is NULL.}
+\item{seed}{An optional integer seed for reproducibility. Default is \code{NULL}.}
 
-\item{maxit}{The maximum number of iterations for the Broyden or Newton methods used in the method of moments estimation.}
+\item{maxit}{The maximum number of iterations for the nonlinear solvers used in the 
+method of moments estimation during initialization.}
 }
 \value{
-The PMLE of the parameters with order = m0 (mixing proportions, mixing alphas
-         and mixing betas), log-likelihood value at the PMLE and the penalized log-likelihood
-         value at the PMLE, classification on which subpopulation does the observed value belong to.
+A list with the following components:
+\item{mix_porp}{Estimated mixing proportions.}
+\item{alpha}{Estimated \eqn{\alpha} parameters for each component.}
+\item{beta}{Estimated \eqn{\beta} parameters for each component.}
+\item{loglik}{Log-likelihood at the PMLE.}
+\item{ploglik}{Penalized log-likelihood at the PMLE.}
+\item{iter.n}{Number of EM iterations performed after initialization.}
+\item{classification}{Component assignment for each observation based on posterior probabilities.}
 }
 \description{
-This function computes the PMLE of the parameters under a mixture of betas.
+This function computes the penalized maximum likelihood estimate (PMLE) of the 
+parameters under a finite mixture of beta distributions.
 }
 \examples{
- 
-data <- c(rbeta(50,10,2),rbeta(50,3,18))
-pmle.beta(data,2)
+data <- c(rbeta(50, 10, 2), rbeta(50, 3, 18))
+pmle.beta(data, 2)
 }

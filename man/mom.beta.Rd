@@ -7,9 +7,14 @@
 mom.beta(data)
 }
 \arguments{
-\item{data}{The input data.}
+\item{data}{A numeric vector assumed to be sampled from a beta distribution.}
+}
+\value{
+A list with components:
+\item{alpha}{The estimated alpha parameter.}
+\item{beta}{The estimated beta parameter.}
 }
 \description{
-A sub function for mom.calculation, calculates the MoM for the beta distribution.
-It is used in the mom.calculation function.
+A sub-function for \code{mom.calculation}, estimates the parameters of a single beta 
+             distribution using the method of moments.
 }
