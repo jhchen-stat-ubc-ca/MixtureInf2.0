@@ -11,10 +11,8 @@
 #'
 #' @return A numeric value representing the squared Hellinger distance.
 #' @export
-
 beta.Hellinger <- function(a1, b1, a2, b2) {
-  H2b <- 1 - beta((a1 + a2) / 2, (b1 + b2) / 2) / sqrt(beta(a1, b1) * beta(a2, b2))
-  return(H2b)  
+  return(1 - beta((a1 + a2) / 2, (b1 + b2) / 2) / sqrt(beta(a1, b1) * beta(a2, b2)))  
 }
 
 #' beta.barycenter
@@ -30,9 +28,8 @@ beta.Hellinger <- function(a1, b1, a2, b2) {
 #' @return A numeric vector of length two containing the estimated \code{(alpha, beta)} parameters 
 #'         of the barycenter.
 #' @export
-
-
 beta.barycenter <- function(cluster_weights, cluster_alphas, cluster_betas) {
+  
   eval_f_grad <- function(par) {
     a <- par[1]
     b <- par[2]
@@ -48,14 +45,13 @@ beta.barycenter <- function(cluster_weights, cluster_alphas, cluster_betas) {
     dG_da <- 0.5 * sqrt(beta(a, b)) * (digamma(a) - digamma(a + b))
     dG_db <- 0.5 * sqrt(beta(a, b)) * (digamma(b) - digamma(a + b))
     
-    
     dT_da <- (dB_da * sqrt(beta(a, b)) - beta(u, v) * dG_da) / (beta(a, b))
     dT_db <- (dB_db * sqrt(beta(a, b)) - beta(u, v) * dG_db) / (beta(a, b))
     
     grad_a <- -sum(cluster_weights * dT_da / sqrt(beta(cluster_alphas, cluster_betas)))
     grad_b <- -sum(cluster_weights * dT_db / sqrt(beta(cluster_alphas, cluster_betas)))
     
-    return(list(objective = obj, gradient = c(grad_a, grad_b)))
+    return(list("objective" = obj, "gradient" = c(grad_a, grad_b)))
   }
   
   w_mean <- sum(cluster_weights * (cluster_alphas / (cluster_alphas + cluster_betas)))
@@ -63,16 +59,19 @@ beta.barycenter <- function(cluster_weights, cluster_alphas, cluster_betas) {
   b0 <- 1 - w_mean
   init_par <- c(a0, b0)
   
-  res <- optim(
-    par = init_par,
-    fn = function(x) eval_f_grad(x)$objective,
-    gr = function(x) eval_f_grad(x)$gradient,
-    method = "L-BFGS-B",
-    lower = c(1e-6, 1e-6),
-    control = list(maxit = 1000, factr = 1e6)
+  res <- nloptr::nloptr(
+    x0 = init_par,
+    eval_f = function(x) eval_f_grad(x)$objective,
+    eval_grad_f = function(x) eval_f_grad(x)$gradient,
+    lb = c(1e-6, 1e-6),
+    opts = list(
+      algorithm = "NLOPT_LD_LBFGS",
+      xtol_rel = 1e-6,
+      maxeval = 5000
+    )
   )
   
-  return(c(res$par[1], res$par[2]))
+  return(res$solution)
 }
 
 
@@ -91,7 +90,6 @@ beta.barycenter <- function(cluster_weights, cluster_alphas, cluster_betas) {
 #' @return A list containing the initialized \code{alphas}, \code{betas}, and \code{weights} 
 #'         for the reduced Beta mixture.
 #' @export
-
 init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 10000) {
   samples <- rmix.beta(n_sample, weights, alphas, betas)
   km <- kmeans(samples, centers = M)
@@ -148,7 +146,6 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
 #' curve({dmix.beta(x,result$reduced_weights,result$reduced_alphas,result$reduced_betas)}, 
 #' add = TRUE, col = "red", lwd = 2, lty = 2)
 #' @export
-
 BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M, 
                     max_iter = 100, tol = 1e-6, n_sample = 10000) {
   N <- length(orig_weights)
