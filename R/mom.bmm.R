@@ -3,9 +3,6 @@
 #' @description A sub-function for \code{pmle.beta}, performs the method of moments (MoM) estimation 
 #'              for the beta mixture model.
 #'
-#' This function solves the moment-matching system using nonlinear solvers to obtain valid initial
-#' estimates for mixture proportions and beta parameters. It attempts multiple configurations until 
-#' convergence and feasibility are achieved.
 #'
 #' @param x The input data, assumed to follow a beta mixture distribution.
 #' @param m0 The number of components in the mixture model.

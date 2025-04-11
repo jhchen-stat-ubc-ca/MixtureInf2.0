@@ -21,8 +21,4 @@ A matrix of estimated initial parameters with valid solutions.
 \description{
 A sub-function for \code{pmle.beta}, performs the method of moments (MoM) estimation 
              for the beta mixture model.
-
-This function solves the moment-matching system using nonlinear solvers to obtain valid initial
-estimates for mixture proportions and beta parameters. It attempts multiple configurations until 
-convergence and feasibility are achieved.
 }
