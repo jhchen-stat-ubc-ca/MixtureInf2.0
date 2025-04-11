@@ -103,7 +103,6 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
     cluster_mean <- mean(cluster_samples)
     cluster_var  <- var(cluster_samples)
     s <- cluster_mean * (1 - cluster_mean) / cluster_var - 1
-    if(s <= 0) s <- 5
     init_alphas[m] <- cluster_mean * s
     init_betas[m] <- (1 - cluster_mean) * s
     init_weights[m] <- length(cluster_samples) / n_sample
