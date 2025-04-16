@@ -31,7 +31,6 @@
 #' data <- c(rbeta(50, 10, 2), rbeta(50, 3, 18))
 #' pmle.beta(data, 2)
 #' @export
-
 pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6, epsilon = 1, 
                       an = NULL, seed = NULL, maxit = 5000) {
   
@@ -48,7 +47,7 @@ pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6, epsilon =
                uniq_init_params[i, m0:(3 * m0 - 1)])
     for (j in 1:n.iter) {
       outpara <- pmle.beta.sub(x, m0, para0, an, epsilon)
-      para0 <- outpara[1:(3 * m0)]
+      para0 <- outpara[1:(3 * m0)]  
     }
     output_list[[i]] <- outpara
   }
@@ -56,21 +55,23 @@ pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6, epsilon =
   output_mat <- do.call(rbind, output_list)
   best_index <- which.max(output_mat[, (3 * m0 + 2)])
   para0 <- output_mat[best_index, 1:(3 * m0)]
-  ploglike0 <- output_mat[best_index, (3 * m0 + 2)]
   
-  tt <- 0
-  repeat {
-    outpara <- pmle.beta.sub(x, m0, para0, an, epsilon)
-    para0 <- outpara[1:(3 * m0)]
-    ploglike1 <- outpara[3 * m0 + 2]
-    tt <- tt + 1
-    if ((ploglike1 - ploglike0) <= tol || tt >= max.iter) break
-    ploglike0 <- ploglike1
-  }
+  squarem_res <- SQUAREM::squarem(
+    par = para0,
+    fixptfn = function(p) {
+      ret <- pmle.beta.sub(x, m0, p, an, epsilon)
+      ret[1:(3 * m0)]
+    },
+    control = list(tol = tol, maxiter = max.iter)
+  )
   
-  mix_porp <- para0[1:m0]
-  alpha <- para0[(m0 + 1):(2 * m0)]
-  beta <- para0[(2 * m0 + 1):(3 * m0)]
+  para0 <- squarem_res$par
+  
+  outpara <- pmle.beta.sub(x, m0, para0, an, epsilon)
+  
+  mix_porp <- outpara[1:m0]
+  alpha <- outpara[(m0 + 1):(2 * m0)]
+  beta  <- outpara[(2 * m0 + 1):(3 * m0)]
   
   pdf.sub <- t(mapply(function(pp, aa, bb) pp * dbeta(x, aa, bb),
                       mix_porp, alpha, beta))
@@ -82,6 +83,6 @@ pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6, epsilon =
        beta = rousignif(beta),
        loglik = rousignif(outpara[3 * m0 + 1]),
        ploglik = rousignif(outpara[3 * m0 + 2]),
-       iter.n = tt,
+       iter.n = squarem_res$iter,
        classification = apply(t(ww), 1, which.max))
 }

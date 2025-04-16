@@ -145,6 +145,7 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
 #' curve({dmix.beta(x,result$reduced_weights,result$reduced_alphas,result$reduced_betas)}, 
 #' add = TRUE, col = "red", lwd = 2, lty = 2)
 #' @export
+
 BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M, 
                     max_iter = 100, tol = 1e-6, n_sample = 10000) {
   N <- length(orig_weights)
@@ -154,50 +155,60 @@ BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M,
   red_betas  <- init_res$betas
   red_weights <- init_res$weights
   
-  cost_history <- numeric(max_iter)  
-  converged <- FALSE
-  assignment <- rep(NA_integer_, N)
+  p0 <- c(red_alphas, red_betas, red_weights)
   
-  for(iter in 1:max_iter) {
-    # Majorization step
+  fixedPointMap <- function(p) {
+    red_alphas <- p[1:M]
+    red_betas  <- p[(M + 1):(2 * M)]
+    red_weights <- p[(2 * M + 1):(3 * M)]
+    
+    #Majorization Step
     cost_matrix <- sapply(1:M, function(m) {
       beta.Hellinger(orig_alphas, orig_betas, red_alphas[m], red_betas[m])
     })
-    assignment <- max.col(-cost_matrix)  
-    cost_vec <- apply(cost_matrix, 1, min)
-    total_cost <- sum(orig_weights * cost_vec)
-    cost_history[iter] <- total_cost
+    assignment <- max.col(-cost_matrix)
     
     new_red_weights <- sapply(1:M, function(m) sum(orig_weights[assignment == m]))
     
+    #Minimization Step
     new_red_alphas <- red_alphas
     new_red_betas  <- red_betas
-    for(m in 1:M) {
+    for (m in 1:M) {
       idx <- which(assignment == m)
-      if(length(idx) > 0) {
-        # Minimization step
+      if (length(idx) > 0) {
         new_params <- beta.barycenter(orig_weights[idx], orig_alphas[idx], orig_betas[idx])
         new_red_alphas[m] <- new_params[1]
         new_red_betas[m]  <- new_params[2]
       }
     }
     
-    if(iter > 1 && abs(cost_history[iter-1] - total_cost) < tol) {
-      converged <- TRUE
-      cost_history <- cost_history[1:iter]
-      break
-    }
-    
-    red_alphas <- new_red_alphas
-    red_betas  <- new_red_betas
-    red_weights <- new_red_weights
+    c(new_red_alphas, new_red_betas, new_red_weights)
   }
   
-  return(list(reduced_alphas = red_alphas,
-              reduced_betas  = red_betas,
-              reduced_weights = red_weights,
-              cost_history   = cost_history,
+  squarem_res <- SQUAREM::squarem(par = p0, fixptfn = fixedPointMap,
+                                  control = list(tol = tol, maxiter = max_iter))
+  
+  p_final <- squarem_res$par
+  final_iter <- squarem_res$iter
+  
+  final_red_alphas <- p_final[1:M]
+  final_red_betas  <- p_final[(M + 1):(2 * M)]
+  final_red_weights <- p_final[(2 * M + 1):(3 * M)]
+  
+
+  cost_matrix <- sapply(1:M, function(m) {
+    beta.Hellinger(orig_alphas, orig_betas, final_red_alphas[m], final_red_betas[m])
+  })
+  assignment <- max.col(-cost_matrix)
+  cost_vec <- apply(cost_matrix, 1, min)
+  total_cost <- sum(orig_weights * cost_vec)
+  
+  return(list(reduced_alphas = final_red_alphas,
+              reduced_betas  = final_red_betas,
+              reduced_weights = final_red_weights,
+              total_cost     = total_cost,
               assignments    = assignment,
-              n_iter         = iter,
-              converged      = converged))
+              n_iter         = final_iter,
+              converged      = (final_iter < max_iter)))
 }
+
