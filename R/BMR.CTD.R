@@ -81,12 +81,10 @@ beta.barycenter <- function(assignments, M, cluster_weights, cluster_alphas,
       lower = c(1e-6, 1e-6),
       control = list(maxit = 1000, factr = 1e6)
     )
-    
     result[m, ] <- res$par
   }
   result
 }
-
 
 #' init_reduced_beta_mixture
 #'
@@ -105,28 +103,25 @@ beta.barycenter <- function(assignments, M, cluster_weights, cluster_alphas,
 #' @export
 init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 10000) {
   samples <- rmix.beta(n_sample, weights, alphas, betas)
-  km <- kmeans(samples, centers = M)
-  
-  cluster_ids <- km$cluster
-  proportions <- tabulate(cluster_ids, nbins = M) / n_sample
+  km <- ClusterR::KMeans_rcpp(data = matrix(samples, ncol = 1), clusters  = M,
+                              initializer = "kmeans++")
+  cluster_ids  <- km$clusters
+  proportions  <- tabulate(cluster_ids, nbins = M) / n_sample
   
   init_params <- vapply(seq_len(M), function(m) {
-    cluster_samples <- samples[cluster_ids == m]
-    mu <- mean(cluster_samples)
-    v  <- var(cluster_samples)
+    xi <- samples[cluster_ids == m]
+    mu <- mean(xi)
+    v  <- var(xi)
     s <- mu * (1 - mu) / v - 1
     alpha <- max(mu * s, 1e-3)
     beta  <- max((1 - mu) * s, 1e-3)
-    
     c(alpha, beta)
   }, numeric(2))
   
-  list(
-    alphas  = init_params[1, ],
-    betas   = init_params[2, ],
-    weights = proportions
-  )
+  list(alphas  = init_params[1, ], betas   = init_params[2, ],
+       weights = proportions)
 }
+
 
 
 #' BMR.CTD
@@ -168,7 +163,6 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
 #' @export
 BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M, zeta = NULL, 
                     max_iter  = 100, tol = 1e-6, n_sample  = 10000) {
-  
   compute_cost_matrix <- function(ra, rb, z) {
     hell <- beta.Hellinger(orig_alphas, orig_betas, 
                            matrix(rep(ra, each = length(orig_alphas)), ncol = M),
@@ -188,7 +182,7 @@ BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M, zeta = NULL,
       rb <- p_old[(M + 1):(2 * M)]
       
       cost_matrix <- compute_cost_matrix(ra, rb, z)
-      assignment  <- max.col(-cost_matrix)
+      assignment  <- apply(-cost_matrix, 1, which.max)
       
       new_rw <- tabulate(assignment, nbins = M)
       new_rw <- as.numeric(sapply(seq_len(M), function(m) sum(orig_weights[assignment == m])))
@@ -227,7 +221,7 @@ BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M, zeta = NULL,
   rw <- pf[(2 * M + 1):(3 * M)]
   
   cost_matrix <- compute_cost_matrix(ra, rb, zeta)
-  assignment  <- max.col(-cost_matrix)
+  assignment  <- apply(-cost_matrix, 1, which.max)
   total_cost  <- sum(orig_weights * apply(cost_matrix, 1, min))
   
   list(
