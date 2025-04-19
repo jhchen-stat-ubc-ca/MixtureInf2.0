@@ -15,9 +15,9 @@ beta.Hellinger <- function(a1, b1, a2, b2) {
   return(1 - beta((a1 + a2) / 2, (b1 + b2) / 2) / sqrt(beta(a1, b1) * beta(a2, b2)))  
 }
 
-#' beta.JS
+#' beta.SKL
 #'
-#' @description Computes the Jensen–Shannon divergence between two beta distributions with 
+#' @description Computes the symmetrized KL divergence between two beta distributions with 
 #' parameters \code{(a1, b1)} and \code{(a2, b2)}. It is a sub function used in the beta.barycenter function.
 #'
 #'
@@ -26,9 +26,9 @@ beta.Hellinger <- function(a1, b1, a2, b2) {
 #' @param a2 First shape parameter of the second beta distribution.
 #' @param b2 Second shape parameter of the second beta distribution.
 #'
-#' @return A numeric value representing the Jensen–Shannon divergence.
+#' @return A numeric value representing the symmetrized KL divergence.
 #' @export
-beta.JS <- function(a1, b1, a2, b2) {
+beta.SKL <- function(a1, b1, a2, b2) {
   kl12 <- lbeta(a2,b2) - lbeta(a1,b1) +
     (a1-a2)*digamma(a1) + (b1-b2)*digamma(b1) -
     ((a1-a2)+(b1-b2))*digamma(a1+b1)
@@ -75,8 +75,8 @@ beta.barycenter <- function(assignments, M, cluster_weights, cluster_alphas,
       par = init_par,
       fn = function(par) {
         hd  <- beta.Hellinger(a, b, par[1], par[2])
-        jsd <- beta.JS       (a, b, par[1], par[2])
-        sum(w * (zeta * hd + (1 - zeta) * jsd))
+        skl <- beta.SKL(a, b, par[1], par[2])
+        sum(w * (zeta * hd + (1 - zeta) * skl))
       },
       method = "L-BFGS-B",
       lower = c(1e-6, 1e-6),
@@ -174,10 +174,10 @@ BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M, zeta = NULL,
     hell <- beta.Hellinger(orig_alphas, orig_betas, 
                            matrix(rep(ra, each = length(orig_alphas)), ncol = M),
                            matrix(rep(rb, each = length(orig_alphas)), ncol = M))
-    js   <- beta.JS(orig_alphas, orig_betas,
-                    matrix(rep(ra, each = length(orig_alphas)), ncol = M),
-                    matrix(rep(rb, each = length(orig_alphas)), ncol = M))
-    z * hell + (1 - z) * js
+    sk <- beta.SKL(orig_alphas, orig_betas,
+                   matrix(rep(ra, each = length(orig_alphas)), ncol = M),
+                   matrix(rep(rb, each = length(orig_alphas)), ncol = M))
+    z * hell + (1 - z) * sk
   }
   
   reduction_phase <- function(z) {
