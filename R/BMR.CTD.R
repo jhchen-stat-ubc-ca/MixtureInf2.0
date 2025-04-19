@@ -42,8 +42,7 @@ beta.SKL <- function(a1, b1, a2, b2) {
 #'
 #' @description Computes the barycenter of a collection of beta distributions 
 #' with respect to a hybrid divergence—a convex combination of the squared Hellinger distance 
-#' and the Jensen–Shannon divergence—using a gradient-free optimization method.
-#' This function is a subroutine used in \code{BMR.CTD}.
+#' and the symmetrized KL divergence. This function is a subroutine used in \code{BMR.CTD}.
 #'
 #' @param assignments An integer vector indicating the cluster assignment of each original beta component.
 #' @param M The number of target clusters (components) in the reduced mixture.
@@ -51,7 +50,7 @@ beta.SKL <- function(a1, b1, a2, b2) {
 #' @param cluster_alphas A numeric vector of \eqn{\alpha} parameters for each original beta component.
 #' @param cluster_betas A numeric vector of \eqn{\beta} parameters for each original beta component.
 #' @param zeta A scalar between 0 and 1 representing the weight on the squared Hellinger distance 
-#'        (with \code{1 - zeta} on the Jensen–Shannon divergence).
+#'        (with \code{1 - zeta} on the symmetrized KL divergence).
 #'
 #' @return A matrix with \code{M} rows and 2 columns, where each row contains the estimated 
 #'         \code{(alpha, beta)} parameters of the corresponding cluster's barycenter.
@@ -134,7 +133,7 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
 #'
 #' @description Performs beta mixture reduction (BMR) via Composite Transportation Divergence (CTD),
 #' which iteratively reassigns components based on a hybrid divergence (a convex combination of the 
-#' squared Hellinger distance and Jensen–Shannon divergence), and recomputes cluster barycenters 
+#' squared Hellinger distance and symmetrized KL divergence), and recomputes cluster barycenters 
 #' to minimize total cost.
 #'
 #' @param orig_weights A numeric vector of original mixture weights.

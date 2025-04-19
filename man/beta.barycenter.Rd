@@ -25,7 +25,7 @@ beta.barycenter(
 \item{cluster_betas}{A numeric vector of \eqn{\beta} parameters for each original beta component.}
 
 \item{zeta}{A scalar between 0 and 1 representing the weight on the squared Hellinger distance 
-(with \code{1 - zeta} on the Jensen–Shannon divergence).}
+(with \code{1 - zeta} on the symmetrized KL divergence).}
 }
 \value{
 A matrix with \code{M} rows and 2 columns, where each row contains the estimated 
@@ -34,6 +34,5 @@ A matrix with \code{M} rows and 2 columns, where each row contains the estimated
 \description{
 Computes the barycenter of a collection of beta distributions 
 with respect to a hybrid divergence—a convex combination of the squared Hellinger distance 
-and the Jensen–Shannon divergence—using a gradient-free optimization method.
-This function is a subroutine used in \code{BMR.CTD}.
+and the symmetrized KL divergence. This function is a subroutine used in \code{BMR.CTD}.
 }
