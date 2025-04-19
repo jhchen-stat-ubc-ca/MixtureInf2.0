@@ -15,63 +15,77 @@ beta.Hellinger <- function(a1, b1, a2, b2) {
   return(1 - beta((a1 + a2) / 2, (b1 + b2) / 2) / sqrt(beta(a1, b1) * beta(a2, b2)))  
 }
 
+#' beta.JS
+#'
+#' @description Computes the Jensen–Shannon divergence between two beta distributions with 
+#' parameters \code{(a1, b1)} and \code{(a2, b2)}. It is a sub function used in the beta.barycenter function.
+#'
+#'
+#' @param a1 First shape parameter of the first beta distribution.
+#' @param b1 Second shape parameter of the first beta distribution.
+#' @param a2 First shape parameter of the second beta distribution.
+#' @param b2 Second shape parameter of the second beta distribution.
+#'
+#' @return A numeric value representing the Jensen–Shannon divergence.
+#' @export
+beta.JS <- function(a1, b1, a2, b2) {
+  kl12 <- lbeta(a2,b2) - lbeta(a1,b1) +
+    (a1-a2)*digamma(a1) + (b1-b2)*digamma(b1) -
+    ((a1-a2)+(b1-b2))*digamma(a1+b1)
+  kl21 <- lbeta(a1,b1) - lbeta(a2,b2) +
+    (a2-a1)*digamma(a2) + (b2-b1)*digamma(b2) -
+    ((a2-a1)+(b2-b1))*digamma(a2+b2)
+  return(0.5 * (kl12 + kl21))
+}
+
 #' beta.barycenter
 #'
 #' @description Computes the barycenter of a collection of beta distributions 
-#' with respect to the Hellinger distance, using a gradient-based optimization method.
-#' It is a sub function used in the BMR.CTD function.
+#' with respect to a hybrid divergence—a convex combination of the squared Hellinger distance 
+#' and the Jensen–Shannon divergence—using a gradient-free optimization method.
+#' This function is a subroutine used in \code{BMR.CTD}.
 #'
-#' @param cluster_weights A numeric vector of weights associated with each beta distribution.
-#' @param cluster_alphas A numeric vector of shape parameters \eqn{\alpha} for each beta distribution.
-#' @param cluster_betas A numeric vector of shape parameters \eqn{\beta} for each beta distribution.
+#' @param assignments An integer vector indicating the cluster assignment of each original beta component.
+#' @param M The number of target clusters (components) in the reduced mixture.
+#' @param cluster_weights A numeric vector of weights for each original beta component.
+#' @param cluster_alphas A numeric vector of \eqn{\alpha} parameters for each original beta component.
+#' @param cluster_betas A numeric vector of \eqn{\beta} parameters for each original beta component.
+#' @param zeta A scalar between 0 and 1 representing the weight on the squared Hellinger distance 
+#'        (with \code{1 - zeta} on the Jensen–Shannon divergence).
 #'
-#' @return A numeric vector of length two containing the estimated \code{(alpha, beta)} parameters 
-#'         of the barycenter.
+#' @return A matrix with \code{M} rows and 2 columns, where each row contains the estimated 
+#'         \code{(alpha, beta)} parameters of the corresponding cluster's barycenter.
 #' @export
-beta.barycenter <- function(cluster_weights, cluster_alphas, cluster_betas) {
+beta.barycenter <- function(assignments, M, cluster_weights, cluster_alphas, 
+                            cluster_betas, zeta) {
+  result <- matrix(NA_real_, nrow = M, ncol = 2)
   
-  eval_f_grad <- function(par) {
-    a <- par[1]
-    b <- par[2]
+  for (m in seq_len(M)) {
+    idx <- which(assignments == m)
+    if (length(idx) == 0) next
     
-    obj <- sum(cluster_weights * beta.Hellinger(cluster_alphas, cluster_betas, a, b))
+    w <- cluster_weights[idx]
+    a <- cluster_alphas[idx]
+    b <- cluster_betas[idx]
     
-    u <- (cluster_alphas + a) / 2
-    v <- (cluster_betas  + b) / 2
+    mu0 <- sum(w * (a / (a + b)))
+    init_par <- c(mu0, 1 - mu0)
     
-    dB_da <- 0.5 * beta(u, v) * (digamma(u) - digamma(u + v))
-    dB_db <- 0.5 * beta(u, v) * (digamma(v) - digamma(u + v))
-    
-    dG_da <- 0.5 * sqrt(beta(a, b)) * (digamma(a) - digamma(a + b))
-    dG_db <- 0.5 * sqrt(beta(a, b)) * (digamma(b) - digamma(a + b))
-    
-    dT_da <- (dB_da * sqrt(beta(a, b)) - beta(u, v) * dG_da) / (beta(a, b))
-    dT_db <- (dB_db * sqrt(beta(a, b)) - beta(u, v) * dG_db) / (beta(a, b))
-    
-    grad_a <- -sum(cluster_weights * dT_da / sqrt(beta(cluster_alphas, cluster_betas)))
-    grad_b <- -sum(cluster_weights * dT_db / sqrt(beta(cluster_alphas, cluster_betas)))
-    
-    return(list("objective" = obj, "gradient" = c(grad_a, grad_b)))
-  }
-  
-  w_mean <- sum(cluster_weights * (cluster_alphas / (cluster_alphas + cluster_betas)))
-  a0 <- w_mean 
-  b0 <- 1 - w_mean
-  init_par <- c(a0, b0)
-  
-  res <- nloptr::nloptr(
-    x0 = init_par,
-    eval_f = function(x) eval_f_grad(x)$objective,
-    eval_grad_f = function(x) eval_f_grad(x)$gradient,
-    lb = c(1e-6, 1e-6),
-    opts = list(
-      algorithm = "NLOPT_LD_LBFGS",
-      xtol_rel = 1e-6,
-      maxeval = 5000
+    res <- optim(
+      par = init_par,
+      fn = function(par) {
+        hd  <- beta.Hellinger(a, b, par[1], par[2])
+        jsd <- beta.JS       (a, b, par[1], par[2])
+        sum(w * (zeta * hd + (1 - zeta) * jsd))
+      },
+      method = "L-BFGS-B",
+      lower = c(1e-6, 1e-6),
+      control = list(maxit = 1000, factr = 1e6)
     )
-  )
-  
-  return(res$solution)
+    
+    result[m, ] <- res$par
+  }
+  result
 }
 
 
@@ -94,121 +108,137 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
   samples <- rmix.beta(n_sample, weights, alphas, betas)
   km <- kmeans(samples, centers = M)
   
-  init_alphas <- numeric(M)
-  init_betas  <- numeric(M)
-  init_weights <- numeric(M)
+  cluster_ids <- km$cluster
+  proportions <- tabulate(cluster_ids, nbins = M) / n_sample
   
-  for(m in 1:M) {
-    cluster_samples <- samples[km$cluster == m]
-    cluster_mean <- mean(cluster_samples)
-    cluster_var  <- var(cluster_samples)
-    s <- cluster_mean * (1 - cluster_mean) / cluster_var - 1
-    init_alphas[m] <- cluster_mean * s
-    init_betas[m] <- (1 - cluster_mean) * s
-    init_weights[m] <- length(cluster_samples) / n_sample
-  }
-  return(list(alphas = init_alphas, betas = init_betas, weights = init_weights))
+  init_params <- vapply(seq_len(M), function(m) {
+    cluster_samples <- samples[cluster_ids == m]
+    mu <- mean(cluster_samples)
+    v  <- var(cluster_samples)
+    s <- mu * (1 - mu) / v - 1
+    alpha <- max(mu * s, 1e-3)
+    beta  <- max((1 - mu) * s, 1e-3)
+    
+    c(alpha, beta)
+  }, numeric(2))
+  
+  list(
+    alphas  = init_params[1, ],
+    betas   = init_params[2, ],
+    weights = proportions
+  )
 }
 
 
 #' BMR.CTD
 #'
-#' @description performs beta mixture reduction by iteratively assigning components based on Hellinger distance 
-#' and recomputing cluster barycenters.
+#' @description Performs beta mixture reduction (BMR) via Composite Transportation Divergence (CTD),
+#' which iteratively reassigns components based on a hybrid divergence (a convex combination of the 
+#' squared Hellinger distance and Jensen–Shannon divergence), and recomputes cluster barycenters 
+#' to minimize total cost.
 #'
 #' @param orig_weights A numeric vector of original mixture weights.
 #' @param orig_alphas A numeric vector of \eqn{\alpha} parameters for the original beta components.
 #' @param orig_betas A numeric vector of \eqn{\beta} parameters for the original beta components.
 #' @param M The number of components in the reduced mixture.
-#' @param max_iter Maximum number of iterations for the algorithm. Default is 100.
-#' @param tol Tolerance for convergence based on change in total cost. Default is 1e-6.
-#' @param n_sample Number of samples to use for initialization. Default is 10000.
+#' @param zeta Optional scalar between 0 and 1 specifying the relative weight on the Hellinger distance.
+#'        If \code{NULL}, the optimal \code{zeta} is automatically selected to minimize the total cost.
+#' @param max_iter Maximum number of iterations for the reduction algorithm. Default is 100.
+#' @param tol Tolerance threshold for convergence based on parameter change. Default is \code{1e-6}.
+#' @param n_sample Number of samples used for initial reduction parameter estimation. Default is 10000.
 #'
-#' @return A list with elements:
-#' \item{reduced_alphas}{Estimated \eqn{\alpha} parameters of the reduced mixture.}
-#' \item{reduced_betas}{Estimated \eqn{\beta} parameters of the reduced mixture.}
-#' \item{reduced_weights}{Weights of the reduced mixture components.}
-#' \item{cost_history}{Vector of objective costs at each iteration.}
-#' \item{assignments}{Cluster assignment for each original component.}
-#' \item{n_iter}{Number of iterations run.}
+#' @return A list with the following components:
+#' \item{reduced_alphas}{Estimated \eqn{\alpha} parameters for the reduced mixture.}
+#' \item{reduced_betas}{Estimated \eqn{\beta} parameters for the reduced mixture.}
+#' \item{reduced_weights}{Estimated weights of the reduced components.}
+#' \item{total_cost}{Total cost of the final clustering solution.}
+#' \item{assignments}{Cluster assignments of original components.}
+#' \item{n_iter}{Number of iterations until convergence.}
 #' \item{converged}{Logical indicating whether convergence was achieved.}
-#' 
+#' \item{zeta_used}{The value of \code{zeta} used (either supplied or optimized).}
+#'
 #' @examples
 #' orig_weights <- c(0.3, 0.3, 0.3, 0.1)
 #' orig_alphas <- c(3, 4, 3.5, 7)
 #' orig_betas  <- c(5, 6, 5.5, 2)
-#' result <- BMR.CTD(orig_weights, orig_alphas, orig_betas, M = 2,
-#' max_iter = 100, tol = 1e-6, n_sample = 10000)
-#' curve({dmix.beta(x,orig_weights,orig_alphas,orig_betas)}, from = 0, to = 1, col = "blue", lwd = 2,
-#' xlab = "x", ylab = "Density", main = "Original vs Reduced Beta Mixture")
-#' 
-#' curve({dmix.beta(x,result$reduced_weights,result$reduced_alphas,result$reduced_betas)}, 
-#' add = TRUE, col = "red", lwd = 2, lty = 2)
+#' result <- BMR.CTD(orig_weights, orig_alphas, orig_betas, M = 2)
+#' curve({dmix.beta(x, orig_weights, orig_alphas, orig_betas)}, from = 0, to = 1,
+#'       col = "blue", lwd = 2, xlab = "x", ylab = "Density", main = "Original vs Reduced Mixture")
+#' curve({dmix.beta(x, result$reduced_weights, result$reduced_alphas, result$reduced_betas)},
+#'       add = TRUE, col = "red", lwd = 2, lty = 2)
 #' @export
-
-BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M, 
-                    max_iter = 100, tol = 1e-6, n_sample = 10000) {
-  N <- length(orig_weights)
+BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M, zeta = NULL, 
+                    max_iter  = 100, tol = 1e-6, n_sample  = 10000) {
   
-  init_res <- init_reduced_beta_mixture(orig_weights, orig_alphas, orig_betas, M, n_sample)
-  red_alphas <- init_res$alphas
-  red_betas  <- init_res$betas
-  red_weights <- init_res$weights
-  
-  p0 <- c(red_alphas, red_betas, red_weights)
-  
-  fixedPointMap <- function(p) {
-    red_alphas <- p[1:M]
-    red_betas  <- p[(M + 1):(2 * M)]
-    red_weights <- p[(2 * M + 1):(3 * M)]
-    
-    #Majorization Step
-    cost_matrix <- sapply(1:M, function(m) {
-      beta.Hellinger(orig_alphas, orig_betas, red_alphas[m], red_betas[m])
-    })
-    assignment <- max.col(-cost_matrix)
-    
-    new_red_weights <- sapply(1:M, function(m) sum(orig_weights[assignment == m]))
-    
-    #Minimization Step
-    new_red_alphas <- red_alphas
-    new_red_betas  <- red_betas
-    for (m in 1:M) {
-      idx <- which(assignment == m)
-      if (length(idx) > 0) {
-        new_params <- beta.barycenter(orig_weights[idx], orig_alphas[idx], orig_betas[idx])
-        new_red_alphas[m] <- new_params[1]
-        new_red_betas[m]  <- new_params[2]
-      }
-    }
-    
-    c(new_red_alphas, new_red_betas, new_red_weights)
+  compute_cost_matrix <- function(ra, rb, z) {
+    hell <- beta.Hellinger(orig_alphas, orig_betas, 
+                           matrix(rep(ra, each = length(orig_alphas)), ncol = M),
+                           matrix(rep(rb, each = length(orig_alphas)), ncol = M))
+    js   <- beta.JS(orig_alphas, orig_betas,
+                    matrix(rep(ra, each = length(orig_alphas)), ncol = M),
+                    matrix(rep(rb, each = length(orig_alphas)), ncol = M))
+    z * hell + (1 - z) * js
   }
   
-  squarem_res <- SQUAREM::squarem(par = p0, fixptfn = fixedPointMap,
-                                  control = list(tol = tol, maxiter = max_iter))
+  reduction_phase <- function(z) {
+    init   <- init_reduced_beta_mixture(orig_weights, orig_alphas, orig_betas, M, n_sample)
+    p_old  <- c(init$alphas, init$betas, init$weights)
+    
+    for (i in seq_len(max_iter)) {
+      ra <- p_old[1:M]
+      rb <- p_old[(M + 1):(2 * M)]
+      
+      cost_matrix <- compute_cost_matrix(ra, rb, z)
+      assignment  <- max.col(-cost_matrix)
+      
+      new_rw <- tabulate(assignment, nbins = M)
+      new_rw <- as.numeric(sapply(seq_len(M), function(m) sum(orig_weights[assignment == m])))
+      
+      ab_mat <- beta.barycenter(assignment, M, orig_weights, orig_alphas, orig_betas, z)
+      new_ra <- ab_mat[, 1]
+      new_rb <- ab_mat[, 2]
+      
+      if (anyNA(new_ra)) new_ra[is.na(new_ra)] <- ra[is.na(new_ra)]
+      if (anyNA(new_rb)) new_rb[is.na(new_rb)] <- rb[is.na(new_rb)]
+      
+      p_new <- c(new_ra, new_rb, new_rw)
+      if (anyNA(p_new) || max(abs(p_new - p_old)) < tol) break
+      
+      p_old <- p_new
+    }
+    
+    list(par = p_old, iter = i, converged = (i < max_iter))
+  }
   
-  p_final <- squarem_res$par
-  final_iter <- squarem_res$iter
+  if (is.null(zeta)) {
+    zeta <- optimize(function(z) {
+      res <- reduction_phase(z)
+      ra  <- res$par[1:M]
+      rb  <- res$par[(M + 1):(2 * M)]
+      cost_matrix <- compute_cost_matrix(ra, rb, z)
+      sum(orig_weights * apply(cost_matrix, 1, min))
+    }, interval = c(0, 1))$minimum
+  }
   
-  final_red_alphas <- p_final[1:M]
-  final_red_betas  <- p_final[(M + 1):(2 * M)]
-  final_red_weights <- p_final[(2 * M + 1):(3 * M)]
+  res <- reduction_phase(zeta)
+  pf  <- res$par
   
-
-  cost_matrix <- sapply(1:M, function(m) {
-    beta.Hellinger(orig_alphas, orig_betas, final_red_alphas[m], final_red_betas[m])
-  })
-  assignment <- max.col(-cost_matrix)
-  cost_vec <- apply(cost_matrix, 1, min)
-  total_cost <- sum(orig_weights * cost_vec)
+  ra <- pf[1:M]
+  rb <- pf[(M + 1):(2 * M)]
+  rw <- pf[(2 * M + 1):(3 * M)]
   
-  return(list(reduced_alphas = final_red_alphas,
-              reduced_betas  = final_red_betas,
-              reduced_weights = final_red_weights,
-              total_cost     = total_cost,
-              assignments    = assignment,
-              n_iter         = final_iter,
-              converged      = (final_iter < max_iter)))
+  cost_matrix <- compute_cost_matrix(ra, rb, zeta)
+  assignment  <- max.col(-cost_matrix)
+  total_cost  <- sum(orig_weights * apply(cost_matrix, 1, min))
+  
+  list(
+    reduced_alphas  = ra,
+    reduced_betas   = rb,
+    reduced_weights = rw,
+    total_cost      = total_cost,
+    assignments     = assignment,
+    n_iter          = res$iter,
+    converged       = res$converged,
+    zeta_used       = zeta
+  )
 }
-

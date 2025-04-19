@@ -4,21 +4,36 @@
 \alias{beta.barycenter}
 \title{beta.barycenter}
 \usage{
-beta.barycenter(cluster_weights, cluster_alphas, cluster_betas)
+beta.barycenter(
+  assignments,
+  M,
+  cluster_weights,
+  cluster_alphas,
+  cluster_betas,
+  zeta
+)
 }
 \arguments{
-\item{cluster_weights}{A numeric vector of weights associated with each beta distribution.}
+\item{assignments}{An integer vector indicating the cluster assignment of each original beta component.}
 
-\item{cluster_alphas}{A numeric vector of shape parameters \eqn{\alpha} for each beta distribution.}
+\item{M}{The number of target clusters (components) in the reduced mixture.}
 
-\item{cluster_betas}{A numeric vector of shape parameters \eqn{\beta} for each beta distribution.}
+\item{cluster_weights}{A numeric vector of weights for each original beta component.}
+
+\item{cluster_alphas}{A numeric vector of \eqn{\alpha} parameters for each original beta component.}
+
+\item{cluster_betas}{A numeric vector of \eqn{\beta} parameters for each original beta component.}
+
+\item{zeta}{A scalar between 0 and 1 representing the weight on the squared Hellinger distance 
+(with \code{1 - zeta} on the Jensen–Shannon divergence).}
 }
 \value{
-A numeric vector of length two containing the estimated \code{(alpha, beta)} parameters 
-        of the barycenter.
+A matrix with \code{M} rows and 2 columns, where each row contains the estimated 
+        \code{(alpha, beta)} parameters of the corresponding cluster's barycenter.
 }
 \description{
 Computes the barycenter of a collection of beta distributions 
-with respect to the Hellinger distance, using a gradient-based optimization method.
-It is a sub function used in the BMR.CTD function.
+with respect to a hybrid divergence—a convex combination of the squared Hellinger distance 
+and the Jensen–Shannon divergence—using a gradient-free optimization method.
+This function is a subroutine used in \code{BMR.CTD}.
 }

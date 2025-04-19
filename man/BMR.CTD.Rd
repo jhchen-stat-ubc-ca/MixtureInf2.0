@@ -9,6 +9,7 @@ BMR.CTD(
   orig_alphas,
   orig_betas,
   M,
+  zeta = NULL,
   max_iter = 100,
   tol = 1e-06,
   n_sample = 10000
@@ -23,35 +24,39 @@ BMR.CTD(
 
 \item{M}{The number of components in the reduced mixture.}
 
-\item{max_iter}{Maximum number of iterations for the algorithm. Default is 100.}
+\item{zeta}{Optional scalar between 0 and 1 specifying the relative weight on the Hellinger distance.
+If \code{NULL}, the optimal \code{zeta} is automatically selected to minimize the total cost.}
 
-\item{tol}{Tolerance for convergence based on change in total cost. Default is 1e-6.}
+\item{max_iter}{Maximum number of iterations for the reduction algorithm. Default is 100.}
 
-\item{n_sample}{Number of samples to use for initialization. Default is 10000.}
+\item{tol}{Tolerance threshold for convergence based on parameter change. Default is \code{1e-6}.}
+
+\item{n_sample}{Number of samples used for initial reduction parameter estimation. Default is 10000.}
 }
 \value{
-A list with elements:
-\item{reduced_alphas}{Estimated \eqn{\alpha} parameters of the reduced mixture.}
-\item{reduced_betas}{Estimated \eqn{\beta} parameters of the reduced mixture.}
-\item{reduced_weights}{Weights of the reduced mixture components.}
-\item{cost_history}{Vector of objective costs at each iteration.}
-\item{assignments}{Cluster assignment for each original component.}
-\item{n_iter}{Number of iterations run.}
+A list with the following components:
+\item{reduced_alphas}{Estimated \eqn{\alpha} parameters for the reduced mixture.}
+\item{reduced_betas}{Estimated \eqn{\beta} parameters for the reduced mixture.}
+\item{reduced_weights}{Estimated weights of the reduced components.}
+\item{total_cost}{Total cost of the final clustering solution.}
+\item{assignments}{Cluster assignments of original components.}
+\item{n_iter}{Number of iterations until convergence.}
 \item{converged}{Logical indicating whether convergence was achieved.}
+\item{zeta_used}{The value of \code{zeta} used (either supplied or optimized).}
 }
 \description{
-performs beta mixture reduction by iteratively assigning components based on Hellinger distance 
-and recomputing cluster barycenters.
+Performs beta mixture reduction (BMR) via Composite Transportation Divergence (CTD),
+which iteratively reassigns components based on a hybrid divergence (a convex combination of the 
+squared Hellinger distance and Jensen–Shannon divergence), and recomputes cluster barycenters 
+to minimize total cost.
 }
 \examples{
 orig_weights <- c(0.3, 0.3, 0.3, 0.1)
 orig_alphas <- c(3, 4, 3.5, 7)
 orig_betas  <- c(5, 6, 5.5, 2)
-result <- BMR.CTD(orig_weights, orig_alphas, orig_betas, M = 2,
-max_iter = 100, tol = 1e-6, n_sample = 10000)
-curve({dmix.beta(x,orig_weights,orig_alphas,orig_betas)}, from = 0, to = 1, col = "blue", lwd = 2,
-xlab = "x", ylab = "Density", main = "Original vs Reduced Beta Mixture")
-
-curve({dmix.beta(x,result$reduced_weights,result$reduced_alphas,result$reduced_betas)}, 
-add = TRUE, col = "red", lwd = 2, lty = 2)
+result <- BMR.CTD(orig_weights, orig_alphas, orig_betas, M = 2)
+curve({dmix.beta(x, orig_weights, orig_alphas, orig_betas)}, from = 0, to = 1,
+      col = "blue", lwd = 2, xlab = "x", ylab = "Density", main = "Original vs Reduced Mixture")
+curve({dmix.beta(x, result$reduced_weights, result$reduced_alphas, result$reduced_betas)},
+      add = TRUE, col = "red", lwd = 2, lty = 2)
 }
