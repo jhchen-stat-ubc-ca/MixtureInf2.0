@@ -12,65 +12,50 @@
 #' @return A matrix of estimated initial parameters with valid solutions.
 #' @export
 mom.bmm <- function(x, m0, seed, maxit) {
+  MM_BMM <- function(params) {
+    m <- (length(params) + 1) / 3
+    mix_porp <- params[1:(m - 1)]
+    alpha <- params[m:(2 * m - 1)]
+    beta  <- params[(2 * m):(3 * m - 1)]
+    observed <- vapply(1:(3 * m - 1), function(k) mean(x^k), numeric(1))
+    mm <- numeric(3 * m - 1)
+    
+    for (i in seq_along(mm)) {
+      for (j in 1:(m - 1)) {
+        mm[i] <- mm[i] + mix_porp[j] * prod((alpha[j] + 0:(i - 1)) / (alpha[j] + beta[j] + 0:(i - 1)))
+      }
+      mm[i] <- mm[i] + (1 - sum(mix_porp)) * prod((alpha[m] + 0:(i - 1)) / (alpha[m] + beta[m] + 0:(i - 1)))
+    }
+    (observed - mm)^2
+  }
+  
   repeat {
     mix_porp <- sort(kmeans(x, m0)$size) / length(x)
     theta <- mom.calculation(x, mix_porp, seed)
     
-    MM_BMM <- function(params) {
-      m0 <- (length(params) + 1) / 3
-      mix_porp <- params[1:(m0 - 1)]
-      alpha <- params[m0:(2 * m0 - 1)]
-      beta <- params[(2 * m0):(3 * m0 - 1)]
-      mm <- numeric(3 * m0 - 1)
-      
-      for (i in 1:(3 * m0 - 1)) {
-        for (j in 1:(m0 - 1)) {
-          mm[i] <- mm[i] + mix_porp[j] * prod((alpha[j] + 0:(i - 1)) / (alpha[j] + beta[j] + 0:(i - 1)))
-        }
-        mm[i] <- mm[i] + (1 - sum(mix_porp)) * prod((alpha[m0] + 0:(i - 1)) / (alpha[m0] + beta[m0] + 0:(i - 1)))
-      }
-      
-      observed_sample <- sapply(1:(3 * m0 - 1), function(k) mean(x^k))
-      (observed_sample - mm)^2
-    }
+    test_out <- nleqslv::testnslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM, control = list(maxit = maxit))$out
+    valid <- test_out$termcd < 4
+    if (!any(valid)) next
     
-    test_result <- nleqslv::testnslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM, control = list(maxit = maxit))
-    valid <- test_result$out$termcd < 4
-    method <- test_result$out$Method[valid]
-    global <- test_result$out$Global[valid]
+    methods <- test_out$Method[valid]
+    globals <- test_out$Global[valid]
     
-    if (length(method) > 0 && length(global) > 0) break
-  }
-  
-  possible_soln <- lapply(seq_along(method), function(i) {
-    nleqslv::nleqslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM,
-                     method = method[i], global = global[i],
-                     control = list(maxit = maxit))
-  })
-  
-  valid_soln <- sapply(possible_soln, function(sol) {
-    (sum(sol$x[1:(m0 - 1)]) < 1) && all(sol$x > 0)
-  })
-  
-  if (!any(valid_soln)) {
-    repeat {
-      mix_porp <- sort(kmeans(x, m0)$size) / length(x)
-      theta <- MoM_Calculation(x, mix_porp, seed)
-      possible_soln <- lapply(seq_along(method), function(i) {
-        nleqslv::nleqslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM,
-                         method = method[i], global = global[i],
-                         control = list(maxit = maxit))
-      })
-      valid_soln <- sapply(possible_soln, function(sol) {
-        (sum(sol$x[1:(m0 - 1)]) < 1) && all(sol$x > 0)
-      })
-      if (any(valid_soln)) break
+    solns <- lapply(seq_along(methods), function(i) {
+      nleqslv::nleqslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM,
+                       method = methods[i], global = globals[i],
+                       control = list(maxit = maxit))
+    })
+    
+    valid_solns <- vapply(solns, function(sol) {
+      sum(sol$x[1:(m0 - 1)]) < 1 && all(sol$x > 0)
+    }, logical(1))
+    
+    if (any(valid_solns)) {
+      return(do.call(cbind, solns[valid_solns]))
     }
   }
-  
-  init_params <- do.call(cbind, possible_soln[valid_soln])
-  return(init_params)
 }
+
 
 #' mom.calculation
 #'
