@@ -4,14 +4,14 @@
 \alias{mom.calculation}
 \title{mom.calculation}
 \usage{
-mom.calculation(x, mix_porp, seed)
+mom.calculation(x, cluster_assignments, m0)
 }
 \arguments{
 \item{x}{The input data, assumed to be from a beta mixture.}
 
-\item{mix_porp}{A numeric vector of mixing proportions for each component.}
+\item{cluster_assignments}{A vector of component identity that identifies which subpopulation that this observed value belongs to.}
 
-\item{seed}{An optional integer seed for reproducibility.}
+\item{m0}{The number of components in the mixture.}
 }
 \value{
 A numeric vector containing concatenated alpha and beta estimates for each component.

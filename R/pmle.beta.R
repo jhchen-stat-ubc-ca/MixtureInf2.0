@@ -14,7 +14,6 @@
 #' @param epsilon A regularization parameter controlling the smoothing in the E-step. Default is \code{1}.
 #' @param an A size control parameter that determines the severity of the penalty. 
 #'           The recommended value is \eqn{n^{-3/2}}. If \code{NULL}, it is set to \code{length(x)^(3/2)}.
-#' @param seed An optional integer seed for reproducibility. Default is \code{NULL}.
 #' @param maxit The maximum number of iterations for the nonlinear solvers used in the 
 #'              method of moments estimation during initialization.
 #'
@@ -32,13 +31,13 @@
 #' pmle.beta(data, 2)
 #' @export
 pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6, epsilon = 1, 
-                      an = NULL, seed = NULL, maxit = 5000) {
+                      an = NULL, maxit = 5000) {
   
   if (is.null(an)) {
     an <- length(x)^(3/2)
   }
   
-  init_params <- mom.bmm(x, m0, seed, maxit)
+  init_params <- mom.bmm(x, m0, maxit)
   uniq_init_params <- unique(do.call(rbind, lapply(seq_len(ncol(init_params)), function(i) init_params[, i]$x)))
   n_init <- nrow(uniq_init_params)
   

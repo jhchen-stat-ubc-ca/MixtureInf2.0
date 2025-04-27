@@ -12,7 +12,6 @@ pmle.beta(
   tol = 1e-06,
   epsilon = 1,
   an = NULL,
-  seed = NULL,
   maxit = 5000
 )
 }
@@ -33,8 +32,6 @@ Default is \code{1e-6}.}
 
 \item{an}{A size control parameter that determines the severity of the penalty. 
 The recommended value is \eqn{n^{-3/2}}. If \code{NULL}, it is set to \code{length(x)^(3/2)}.}
-
-\item{seed}{An optional integer seed for reproducibility. Default is \code{NULL}.}
 
 \item{maxit}{The maximum number of iterations for the nonlinear solvers used in the 
 method of moments estimation during initialization.}

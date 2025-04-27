@@ -5,13 +5,12 @@
 #'
 #'
 #' @param x The input data, assumed to follow a beta mixture distribution.
-#' @param m0 The number of components in the mixture model.
-#' @param seed An optional integer seed for reproducibility.
+#' @param m0 The number of components in the mixture.
 #' @param maxit Maximum number of iterations allowed in the nonlinear solver.
 #'
 #' @return A matrix of estimated initial parameters with valid solutions.
 #' @export
-mom.bmm <- function(x, m0, seed, maxit) {
+mom.bmm <- function(x, m0, maxit) {
   MM_BMM <- function(params) {
     m <- (length(params) + 1) / 3
     mix_porp <- params[1:(m - 1)]
@@ -30,8 +29,11 @@ mom.bmm <- function(x, m0, seed, maxit) {
   }
   
   repeat {
-    mix_porp <- sort(kmeans(x, m0)$size) / length(x)
-    theta <- mom.calculation(x, mix_porp, seed)
+    kmeans_init <- ClusterR::KMeans_rcpp(matrix(x,ncol=1),m0)
+    cluster_assignments <- kmeans_init$clusters
+    mix_porp <- table(cluster_assignments) / length(cluster_assignments)
+    
+    theta <- mom.calculation(x, cluster_assignments, m0)
     
     test_out <- nleqslv::testnslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM, control = list(maxit = maxit))$out
     valid <- test_out$termcd < 4
@@ -63,22 +65,19 @@ mom.bmm <- function(x, m0, seed, maxit) {
 #'              of moments estimation of a beta mixture. 
 #'
 #' @param x The input data, assumed to be from a beta mixture.
-#' @param mix_porp A numeric vector of mixing proportions for each component.
-#' @param seed An optional integer seed for reproducibility.
+#' @param cluster_assignments A vector of component identity that identifies which subpopulation that this observed value belongs to.
+#' @param m0 The number of components in the mixture.
 #'
 #' @return A numeric vector containing concatenated alpha and beta estimates for each component.
 #' @export
 
-mom.calculation <- function(x, mix_porp, seed) {
-  if (!is.null(seed)) set.seed(seed)
+mom.calculation <- function(x, cluster_assignments, m0) {
+  alpha <- numeric(m0)
+  beta <- numeric(m0)
   
-  n_comp <- length(mix_porp)
-  alpha <- numeric(n_comp)
-  beta <- numeric(n_comp)
-  
-  for (i in seq_along(mix_porp)) {
-    temp_data <- sample(x, size = length(x) * mix_porp[i])
-    temp <- mom.beta(temp_data)
+  for (i in 1:m0) {
+    cluster_data <- x[cluster_assignments == i]
+    temp <- mom.beta(cluster_data)
     alpha[i] <- temp$alpha
     beta[i]  <- temp$beta
   }

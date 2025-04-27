@@ -4,14 +4,12 @@
 \alias{mom.bmm}
 \title{mom.bmm}
 \usage{
-mom.bmm(x, m0, seed, maxit)
+mom.bmm(x, m0, maxit)
 }
 \arguments{
 \item{x}{The input data, assumed to follow a beta mixture distribution.}
 
-\item{m0}{The number of components in the mixture model.}
-
-\item{seed}{An optional integer seed for reproducibility.}
+\item{m0}{The number of components in the mixture.}
 
 \item{maxit}{Maximum number of iterations allowed in the nonlinear solver.}
 }
