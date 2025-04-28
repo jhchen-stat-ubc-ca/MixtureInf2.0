@@ -18,7 +18,6 @@ mom.bmm <- function(x, m0, maxit) {
     beta  <- params[(2 * m):(3 * m - 1)]
     observed <- vapply(1:(3 * m - 1), function(k) mean(x^k), numeric(1))
     mm <- numeric(3 * m - 1)
-    
     for (i in seq_along(mm)) {
       for (j in 1:(m - 1)) {
         mm[i] <- mm[i] + mix_porp[j] * prod((alpha[j] + 0:(i - 1)) / (alpha[j] + beta[j] + 0:(i - 1)))
@@ -28,34 +27,35 @@ mom.bmm <- function(x, m0, maxit) {
     (observed - mm)^2
   }
   
-  repeat {
-    kmeans_init <- ClusterR::KMeans_rcpp(matrix(x,ncol=1),m0)
-    cluster_assignments <- kmeans_init$clusters
-    mix_porp <- table(cluster_assignments) / length(cluster_assignments)
-    
-    theta <- mom.calculation(x, cluster_assignments, m0)
-    
-    test_out <- nleqslv::testnslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM, control = list(maxit = maxit))$out
-    valid <- test_out$termcd < 4
-    if (!any(valid)) next
-    
-    methods <- test_out$Method[valid]
-    globals <- test_out$Global[valid]
-    
-    solns <- lapply(seq_along(methods), function(i) {
-      nleqslv::nleqslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM,
-                       method = methods[i], global = globals[i],
-                       control = list(maxit = maxit))
-    })
-    
-    valid_solns <- vapply(solns, function(sol) {
-      sum(sol$x[1:(m0 - 1)]) < 1 && all(sol$x > 0)
-    }, logical(1))
-    
-    if (any(valid_solns)) {
-      return(do.call(cbind, solns[valid_solns]))
-    }
+  kmeans_init <- kmeans(x, m0)
+  cluster_assignments <- kmeans_init$cluster
+  mix_porp <- kmeans_init$size / sum(kmeans_init$size)
+  theta <- mom.calculation(x, cluster_assignments, m0)
+  
+  test_out <- nleqslv::testnslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM, 
+                                control = list(maxit = maxit))$out
+  valid <- test_out$termcd < 4
+  if (!any(valid)) {
+    out   <- nleqslv::testnslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM,
+                               control = list(maxit = maxit, allowSingular = TRUE))$out
+    valid <- out$termcd < 4
+    ctrl  <- list(maxit = maxit, allowSingular = TRUE)
+  } else {
+    ctrl <- list(maxit = maxit)
   }
+  
+  methods <- test_out$Method[valid]
+  globals <- test_out$Global[valid]
+  
+  solns <- mapply(
+    function(m, g) {nleqslv::nleqslv(c(mix_porp[1:(m0 - 1)], theta), MM_BMM,
+                                     method  = m,global  = g,control = ctrl)},
+    methods, globals, SIMPLIFY = FALSE)
+  valid_solns <- vapply(solns, function(sol) {
+    sum(sol$x[1:(m0 - 1)]) < 1 && all(sol$x > 0)
+  }, logical(1))
+  
+  do.call(cbind, lapply(solns[valid_solns], `[[`, "x"))
 }
 
 

@@ -32,13 +32,12 @@
 #' @export
 pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6, epsilon = 1, 
                       an = NULL, maxit = 5000) {
-  
   if (is.null(an)) {
     an <- length(x)^(3/2)
   }
   
   init_params <- mom.bmm(x, m0, maxit)
-  uniq_init_params <- unique(do.call(rbind, lapply(seq_len(ncol(init_params)), function(i) init_params[, i]$x)))
+  uniq_init_params <- unique(t(init_params))
   n_init <- nrow(uniq_init_params)
   
   output <- matrix(NA_real_, nrow = n_init, ncol = 3 * m0 + 2)
