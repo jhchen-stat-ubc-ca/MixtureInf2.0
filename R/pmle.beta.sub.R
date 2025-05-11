@@ -39,7 +39,7 @@ pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
   
   dens <- dmix.beta(x, mix_porp, alpha, beta)
   loglike <- sum(log(dens + 1e-100))
-  ploglik <- sum(log(dens) + 1e-100) + sum((log(alpha) - alpha) + (log(beta) - beta)) / an
+  ploglik <- sum(log(dens + 1e-100)) + sum((log(alpha) - alpha) + (log(beta) - beta)) / an
   
   ind <- order(alpha)
   
@@ -71,7 +71,11 @@ Pen.M.Step <- function(x, ww, mix_porp, theta, an) {
     if (any(theta <= 0)) return(NA)
     alpha <- theta[1:k]
     beta  <- theta[(k + 1):(2 * k)]
-    ll <- sum(ww * log(dmix.beta(x, mix_porp, alpha, beta))) +
+    logpdf <- vapply(seq_len(k), function(j) {
+      log(mix_porp[j]) + dbeta(x, alpha[j], beta[j], log = TRUE)
+    }, numeric(length(x)))
+    
+    ll <- sum(ww * logpdf) +
       sum((log(alpha) - alpha) + (log(beta) - beta)) / an
     ll
   }
