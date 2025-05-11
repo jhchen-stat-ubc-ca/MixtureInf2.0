@@ -72,8 +72,8 @@ Pen.M.Step <- function(x, ww, mix_porp, theta, an) {
     alpha <- theta[1:k]
     beta  <- theta[(k + 1):(2 * k)]
     logpdf <- vapply(seq_len(k), function(j) {
-      log(mix_porp[j]) + dbeta(x, alpha[j], beta[j], log = TRUE)
-    }, numeric(length(x)))
+      log(dbeta(x, alpha[j], beta[j]))
+    }, numeric(length(x)))      
     
     ll <- sum(ww * logpdf) +
       sum((log(alpha) - alpha) + (log(beta) - beta)) / an

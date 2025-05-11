@@ -30,70 +30,61 @@
 #' data <- c(rbeta(50, 10, 2), rbeta(50, 3, 18))
 #' pmle.beta(data, 2)
 #' @export
-pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6, epsilon = 1, 
-                      an = NULL, maxit = 5000) {
-  if (is.null(an)) {
-    an <- length(x)^(3/2)
-  }
-  
-  init_params <- mom.bmm(x, m0, maxit)
-  uniq_init_params <- unique(t(init_params))
-  n_init <- nrow(uniq_init_params)
-  
-  output <- matrix(NA_real_, nrow = n_init, ncol = 3 * m0 + 2)
-  
-  for (i in seq_len(n_init)) {
+pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6,
+                      epsilon = 1, an = NULL, maxit = 5000) {
+  if (is.null(an)) an <- length(x)^(3/2)
+  uniq_init_params <- unique(t(mom.bmm(x, m0, maxit)))
+  safe.pmle.beta.sub <- function(para0) suppressWarnings(
+    tryCatch(pmle.beta.sub(x, m0, para0, an, epsilon), error = function(e) NULL)
+  )
+  results <- vector("list", nrow(uniq_init_params))
+  for (i in seq_len(nrow(uniq_init_params))) {
     para0 <- c(
       uniq_init_params[i, 1:(m0 - 1)],
       1 - sum(uniq_init_params[i, 1:(m0 - 1)]),
       uniq_init_params[i, m0:(3 * m0 - 1)]
     )
-    
+    out <- NULL
     for (j in seq_len(n.iter)) {
-      outpara <- pmle.beta.sub(x, m0, para0, an, epsilon)
-      para0 <- outpara[1:(3 * m0)]
+      step <- safe.pmle.beta.sub(para0)
+      if (is.null(step)) break
+      para0 <- step[1:(3 * m0)]
+      out   <- step
     }
-    
-    output[i, ] <- outpara
+    results[[i]] <- out
   }
-  
+  results <- Filter(Negate(is.null), results)
+  if (!length(results)) stop("All initializations failed")
+  output <- do.call(rbind, results)
   index <- which.max(output[, 3 * m0 + 2])
   para0 <- output[index, 1:(3 * m0)]
-  ploglike0 <- output[index, 3 * m0 + 2]
-  
+  ploglik <- output[index, 3 * m0 + 2]
   increment <- Inf
   tt <- 0
-  
   while (increment > tol && tt < max.iter) {
-    outpara <- pmle.beta.sub(x, m0, para0, an, epsilon)
-    new_para <- outpara[1:(3 * m0)]
-    ploglike1 <- outpara[3 * m0 + 2]
-    
-    increment <- ploglike1 - ploglike0
-    para0 <- new_para
-    ploglike0 <- ploglike1
+    step <- safe.pmle.beta.sub(para0)
+    if (is.null(step)) break
+    para0 <- step[1:(3 * m0)]
+    increment <- step[3 * m0 + 2] - ploglik
+    ploglik <- step[3 * m0 + 2]
     tt <- tt + 1
   }
-  
   mix_porp <- para0[1:m0]
   alpha <- para0[(m0 + 1):(2 * m0)]
-  beta  <- para0[(2 * m0 + 1):(3 * m0)]
-  
+  beta <- para0[(2 * m0 + 1):(3 * m0)]
   pdf.sub <- matrix(NA_real_, nrow = m0, ncol = length(x))
-  for (k in seq_len(m0)) {
-    pdf.sub[k, ] <- mix_porp[k] * dbeta(x, alpha[k], beta[k])
-  }
-  
+  for (k in seq_len(m0)) pdf.sub[k, ] <- mix_porp[k] * dbeta(x, alpha[k], beta[k])
   pdf.mixture <- colSums(pdf.sub) + 1e-100
   ww <- sweep(pdf.sub, 2, pdf.mixture, "/")
-  
+  classification <- apply(t(ww), 1, which.max)
+  loglik <- sum(log(dmix.beta(x, mix_porp, alpha, beta) + 1e-100))
   list(
     mix_porp = rousignif(mix_porp),
     alpha = rousignif(alpha),
     beta = rousignif(beta),
-    loglik = rousignif(outpara[3 * m0 + 1]),
-    ploglik = rousignif(outpara[3 * m0 + 2]),
+    loglik = rousignif(loglik),
+    ploglik = rousignif(ploglik),
     iter.n = tt,
-    classification = apply(t(ww), 1, which.max)
+    classification = classification
   )
 }
