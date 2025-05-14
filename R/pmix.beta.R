@@ -1,6 +1,6 @@
-#' pmix.norm
+#' pmix.beta
 #'
-#' @param x The cdf value of the Normal mixture at x.
+#' @param x The cdf value of the beta mixture at x.
 #' @param mix_porp A vector of the mixing proportions.
 #' @param alpha A vector of the component alphas.
 #' @param beta A vector of the component betas.
