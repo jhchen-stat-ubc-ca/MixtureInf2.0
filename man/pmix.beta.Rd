@@ -20,5 +20,5 @@ pmix.beta
 }
 \examples{
 x = c(rbeta(50,1,10),rbeta(50,9,0.5))
-pmix_beta(x,c(.5,.5),c(1,9),c(10,0.5))
+pmix.beta(x,c(.5,.5),c(1,9),c(10,0.5))
 }
