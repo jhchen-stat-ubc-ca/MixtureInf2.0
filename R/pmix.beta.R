@@ -8,7 +8,7 @@
 #'
 #' @examples 
 #' x = c(rbeta(50,1,10),rbeta(50,9,0.5))
-#' pmix_beta(x,c(.5,.5),c(1,9),c(10,0.5))
+#' pmix.beta(x,c(.5,.5),c(1,9),c(10,0.5))
 #' @export
 pmix.beta <- function(x, mix_porp, alpha, beta) {
   cdf_matrix <- sapply(seq_along(mix_porp), function(i) {
