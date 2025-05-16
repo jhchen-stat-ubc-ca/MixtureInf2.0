@@ -38,7 +38,7 @@ method of moments estimation during initialization.}
 }
 \value{
 A list with the following components:
-\item{mix_porp}{Estimated mixing proportions.}
+\item{mix_prop}{Estimated mixing proportions.}
 \item{alpha}{Estimated \eqn{\alpha} parameters for each component.}
 \item{beta}{Estimated \eqn{\beta} parameters for each component.}
 \item{loglik}{Log-likelihood at the PMLE.}

@@ -4,12 +4,12 @@
 \alias{dmix.beta}
 \title{dmix.beta}
 \usage{
-dmix.beta(x, mix_porp, alpha, beta)
+dmix.beta(x, mix_prop, alpha, beta)
 }
 \arguments{
 \item{x}{The uni-variate mixture density at x.}
 
-\item{mix_porp}{A vector of the mixing proportions.}
+\item{mix_prop}{A vector of the mixing proportions.}
 
 \item{alpha}{A vector of the component alphas.}
 

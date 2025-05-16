@@ -4,7 +4,7 @@
 \alias{Pen.M.Step}
 \title{Pen.M.Step}
 \usage{
-Pen.M.Step(x, ww, mix_porp, theta, an)
+Pen.M.Step(x, ww, mix_prop, theta, an)
 }
 \arguments{
 \item{x}{A numeric vector of observed values assumed to follow a beta mixture distribution.}
@@ -12,7 +12,7 @@ Pen.M.Step(x, ww, mix_porp, theta, an)
 \item{ww}{A matrix of posterior probabilities with dimensions \code{n x m0}, representing 
 the probability that each observation belongs to each mixture component.}
 
-\item{mix_porp}{A numeric vector of mixing proportions for each component.}
+\item{mix_prop}{A numeric vector of mixing proportions for each component.}
 
 \item{theta}{A numeric vector of current estimates for \eqn{\alpha} and \eqn{\beta} 
 parameters for all components.}

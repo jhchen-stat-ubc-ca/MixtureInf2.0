@@ -4,12 +4,12 @@
 \alias{pmix.beta}
 \title{pmix.beta}
 \usage{
-pmix.beta(x, mix_porp, alpha, beta)
+pmix.beta(x, mix_prop, alpha, beta)
 }
 \arguments{
 \item{x}{The cdf value of the beta mixture at x.}
 
-\item{mix_porp}{A vector of the mixing proportions.}
+\item{mix_prop}{A vector of the mixing proportions.}
 
 \item{alpha}{A vector of the component alphas.}
 

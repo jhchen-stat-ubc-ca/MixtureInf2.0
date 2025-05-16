@@ -17,7 +17,7 @@
 #' @export
 
 pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
-  mix_porp <- para0[1:m0]
+  mix_prop <- para0[1:m0]
   alpha    <- para0[(m0 + 1):(2 * m0)]
   beta     <- para0[(2 * m0 + 1):(3 * m0)]
   theta    <- para0[(m0 + 1):(3 * m0)]  
@@ -26,24 +26,24 @@ pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
   
   # E-step
   pdf.sub     <- t(mapply(function(pp, aa, bb) pp * dbeta(x, aa, bb),
-                          mix_porp, alpha, beta))
+                          mix_prop, alpha, beta))
   pdf.mixture <- colSums(pdf.sub) + 1e-100
   ww          <- sweep(pdf.sub, 2, pdf.mixture, FUN = "/")
   
-  mix_porp <- (rowSums(ww) + epsilon) / (n + m0 * epsilon)
+  mix_prop <- (rowSums(ww) + epsilon) / (n + m0 * epsilon)
   
   # M-step
-  theta <- Pen.M.Step(x, t(ww), mix_porp, theta, an)
+  theta <- Pen.M.Step(x, t(ww), mix_prop, theta, an)
   alpha <- theta[1:m0]
   beta  <- theta[(m0 + 1):(2 * m0)]
   
-  dens <- dmix.beta(x, mix_porp, alpha, beta)
+  dens <- dmix.beta(x, mix_prop, alpha, beta)
   loglike <- sum(log(dens + 1e-100))
   ploglik <- sum(log(dens + 1e-100)) + sum((log(alpha) - alpha) + (log(beta) - beta)) / an
   
   ind <- order(alpha)
   
-  c(mix_porp[ind], alpha[ind], beta[ind], loglike, ploglik)
+  c(mix_prop[ind], alpha[ind], beta[ind], loglike, ploglik)
 }
 
 #' Pen.M.Step
@@ -55,7 +55,7 @@ pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
 #' @param x A numeric vector of observed values assumed to follow a beta mixture distribution.
 #' @param ww A matrix of posterior probabilities with dimensions \code{n x m0}, representing 
 #'           the probability that each observation belongs to each mixture component.
-#' @param mix_porp A numeric vector of mixing proportions for each component.
+#' @param mix_prop A numeric vector of mixing proportions for each component.
 #' @param theta A numeric vector of current estimates for \eqn{\alpha} and \eqn{\beta} 
 #'              parameters for all components.
 #' @param an A penalty control parameter, typically \eqn{n^{-3/2}}, that influences the strength 
@@ -64,8 +64,8 @@ pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
 #' @return A numeric vector of updated parameter estimates for \eqn{\alpha} and \eqn{\beta}.
 #' @export
 
-Pen.M.Step <- function(x, ww, mix_porp, theta, an) {
-  k <- length(mix_porp)
+Pen.M.Step <- function(x, ww, mix_prop, theta, an) {
+  k <- length(mix_prop)
   
   ploglikelihood <- function(theta, x) {
     if (any(theta <= 0)) return(NA)

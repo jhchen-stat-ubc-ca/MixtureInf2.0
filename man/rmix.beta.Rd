@@ -4,12 +4,12 @@
 \alias{rmix.beta}
 \title{rmix.beta}
 \usage{
-rmix.beta(n, porp, alpha, beta)
+rmix.beta(n, mix_prop, alpha, beta)
 }
 \arguments{
 \item{n}{The sample size.}
 
-\item{porp}{A vector of the mixing proportions.}
+\item{mix_prop}{A vector of the mixing proportions.}
 
 \item{alpha}{A vector of the component alphas.}
 
@@ -23,8 +23,8 @@ This function generates the iid samples from the finite beta mixture
 }
 \examples{
 n = 1000
-porp = c(.5, .3, .2)
+mix_prop = c(.5, .3, .2)
 alpha = c(1,20,3)
 beta = c(10,0.5,2)
-rmix.beta(n, porp, alpha,beta)
+rmix.beta(n, mix_prop, alpha,beta)
 }

@@ -7,7 +7,7 @@
 plotmix.beta(
   x,
   xx.grid = NULL,
-  porp,
+  mix_prop,
   alpha,
   beta,
   m0,
@@ -24,7 +24,7 @@ plotmix.beta(
 
 \item{xx.grid}{The grid of the histogram.}
 
-\item{porp}{A vector of the mixing proportions.}
+\item{mix_prop}{A vector of the mixing proportions.}
 
 \item{alpha}{A vector of the component alphas.}
 
@@ -54,10 +54,10 @@ when the data generated from this density is given.
 }
 \examples{
 n=2000
-porp = c(.2, .5, .3)
+mix_prop = c(.2, .5, .3)
 alpha = c(3, 2, 5)
 beta = c(3, 5.1, 1.1)
-x = rmix.beta(n, porp, alpha, beta)
-plotmix.beta(x, xx.grid=NULL, porp, alpha, beta, m0=3,
+x = rmix.beta(n, mix_prop, alpha, beta)
+plotmix.beta(x, xx.grid=NULL, mix_prop, alpha, beta, m0=3,
 main="", xlab="Observed values", ylab="Density/Histogram")
 }
