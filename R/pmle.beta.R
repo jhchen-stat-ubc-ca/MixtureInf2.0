@@ -32,7 +32,7 @@
 #' @export
 pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6,
                       epsilon = 1, an = NULL, maxit = 5000) {
-  if (is.null(an)) an <- length(x)^(3/2)
+  if (is.null(an)) an <- length(x)^(1/2)
   uniq_init_params <- unique(t(mom.bmm(x, m0, maxit)))
   safe.pmle.beta.sub <- function(para0) suppressWarnings(
     tryCatch(pmle.beta.sub(x, m0, para0, an, epsilon), error = function(e) NULL)

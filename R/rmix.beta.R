@@ -16,6 +16,9 @@
 #' @export
 rmix.beta <- function(n, mix_prop, alpha, beta) {
   nindex <- as.vector(rmultinom(1, n, mix_prop))
-  data <- unlist(mapply(rbeta, n = nindex, shape1 = alpha, shape2 = beta, SIMPLIFY = FALSE))
-  sample(data)
+  data <- vector("list", length(mix_prop))
+  for (j in seq_len(length(mix_prop))) {
+    data[[j]] <- rbeta(nindex[j], alpha[j], beta[j])
+  }
+  sample(unlist(data, use.names = FALSE))
 }

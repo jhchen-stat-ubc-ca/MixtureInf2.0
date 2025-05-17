@@ -11,12 +11,5 @@
 #' pmix.beta(x,c(.5,.5),c(1,9),c(10,0.5))
 #' @export
 pmix.beta <- function(x, mix_prop, alpha, beta) {
-  cdf_matrix <- sapply(seq_along(mix_prop), function(i) {
-    mix_prop[i] * pbeta(x, alpha[i], beta[i])
-  })
-  if (length(x) == 1) {
-    sum(cdf_matrix)
-  } else {
-    rowSums(cdf_matrix)
-  }
+  vapply(x, function(xx) sum(mix_prop * pbeta(xx, alpha, beta)), numeric(1))
 }

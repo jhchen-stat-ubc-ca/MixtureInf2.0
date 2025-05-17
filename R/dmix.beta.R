@@ -14,7 +14,12 @@
 #' @note In order to plot the mixture density together with its subpopulation density, one can use the plotmix.beta function.
 
 dmix.beta <- function(x, mix_prop, alpha, beta) {
-  matrix_density <- mapply(function(a, b) dbeta(x, a, b), alpha, beta)
-  colSums(t(matrix_density) * mix_prop)
+  dens <- vapply(
+    seq_len(length(mix_prop)),
+    function(j) mix_prop[j] * dbeta(x, alpha[j], beta[j]),
+    numeric(length(x))
+  )
+  rowSums(dens)
 }
+
 
