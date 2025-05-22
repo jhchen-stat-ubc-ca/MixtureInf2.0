@@ -79,11 +79,11 @@ pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6,
   classification <- apply(t(ww), 1, which.max)
   loglik <- sum(log(dmix.beta(x, mix_prop, alpha, beta) + 1e-100))
   list(
-    mix_prop = rousignif(mix_prop),
-    alpha = rousignif(alpha),
-    beta = rousignif(beta),
-    loglik = rousignif(loglik),
-    ploglik = rousignif(ploglik),
+    mix_prop = unname(rousignif(mix_prop)),
+    alpha = unname(rousignif(alpha)),
+    beta = unname(rousignif(beta)),
+    loglik = unname(rousignif(loglik)),
+    ploglik = unname(rousignif(ploglik)),
     iter.n = tt,
     classification = classification
   )
