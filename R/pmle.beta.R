@@ -6,6 +6,7 @@
 #'
 #' @param x A numeric vector of observed values.
 #' @param m0 The number of components (order) in the beta mixture model.
+#' @param n.init A computer generated n.init initials value.
 #' @param n.iter The number of EM iterations to perform for each initial value. The initialization 
 #'               yielding the highest penalized log-likelihood will be further optimized.
 #' @param max.iter The maximum number of iterations allowed in the final EM optimization phase.
@@ -30,31 +31,35 @@
 #' data <- c(rbeta(50, 10, 2), rbeta(50, 3, 18))
 #' pmle.beta(data, 2)
 #' @export
-pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6,
+pmle.beta <- function(x, m0, n.init = 10, n.iter = 10, max.iter = 5000, tol = 1e-6,
                       epsilon = 1, an = NULL, maxit = 5000) {
   if (is.null(an)) an <- length(x)^(1/2)
-  uniq_init_params <- unique(t(mom.bmm(x, m0, maxit)))
+  uniq_init_params <- unique(t(as.matrix(mom.bmm(x, m0, maxit))))
+  rownames(uniq_init_params) <- NULL
+  all_init_params <- uniq_init_params
+  for (i in seq_len(n.init)) {
+    group_assign <- sample(1:m0, size = length(x), replace = TRUE)
+    mix_prop <- as.numeric(table(factor(group_assign, levels = 1:m0))) / length(x)
+    shapes <- mom.calculation(x, group_assign, m0)
+    all_init_params <- rbind(all_init_params, c(mix_prop[-m0], shapes))
+  }
   safe.pmle.beta.sub <- function(para0) suppressWarnings(
     tryCatch(pmle.beta.sub(x, m0, para0, an, epsilon), error = function(e) NULL)
   )
-  results <- vector("list", nrow(uniq_init_params))
-  for (i in seq_len(nrow(uniq_init_params))) {
-    para0 <- c(
-      uniq_init_params[i, 1:(m0 - 1)],
-      1 - sum(uniq_init_params[i, 1:(m0 - 1)]),
-      uniq_init_params[i, m0:(3 * m0 - 1)]
-    )
+  results <- vector("list", nrow(all_init_params))
+  for (i in seq_len(nrow(all_init_params))) {
+    mix_prop <- c(all_init_params[i, 1:(m0 - 1)], 1 - sum(all_init_params[i, 1:(m0 - 1)]))
+    para0 <- c(mix_prop, all_init_params[i, m0:(3 * m0 - 1)])
     out <- NULL
     for (j in seq_len(n.iter)) {
       step <- safe.pmle.beta.sub(para0)
       if (is.null(step)) break
       para0 <- step[1:(3 * m0)]
-      out   <- step
+      out <- step
     }
     results[[i]] <- out
   }
   results <- Filter(Negate(is.null), results)
-  if (!length(results)) stop("All initializations failed")
   output <- do.call(rbind, results)
   index <- which.max(output[, 3 * m0 + 2])
   para0 <- output[index, 1:(3 * m0)]
@@ -79,11 +84,11 @@ pmle.beta <- function(x, m0, n.iter = 10, max.iter = 5000, tol = 1e-6,
   classification <- apply(t(ww), 1, which.max)
   loglik <- sum(log(dmix.beta(x, mix_prop, alpha, beta) + 1e-100))
   list(
-    mix_prop = unname(rousignif(mix_prop)),
-    alpha = unname(rousignif(alpha)),
-    beta = unname(rousignif(beta)),
-    loglik = unname(rousignif(loglik)),
-    ploglik = unname(rousignif(ploglik)),
+    mix_prop = rousignif(mix_prop),
+    alpha = rousignif(alpha),
+    beta = rousignif(beta),
+    loglik = rousignif(loglik),
+    ploglik = rousignif(ploglik),
     iter.n = tt,
     classification = classification
   )
