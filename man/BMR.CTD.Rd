@@ -9,7 +9,7 @@ BMR.CTD(
   orig_alphas,
   orig_betas,
   M,
-  zeta = NULL,
+  divergence = "Hellinger",
   max_iter = 100,
   tol = 1e-06,
   n_sample = 10000
@@ -24,8 +24,7 @@ BMR.CTD(
 
 \item{M}{The number of components in the reduced mixture.}
 
-\item{zeta}{Optional scalar between 0 and 1 specifying the relative weight on the Hellinger distance.
-If \code{NULL}, the optimal \code{zeta} is automatically selected to minimize the total cost.}
+\item{divergence}{Character string, either "Hellinger" (default) or "SKL"}
 
 \item{max_iter}{Maximum number of iterations for the reduction algorithm. Default is 100.}
 
@@ -57,6 +56,6 @@ orig_betas  <- c(5, 6, 5.5, 2)
 result <- BMR.CTD(orig_weights, orig_alphas, orig_betas, M = 2)
 curve({dmix.beta(x, orig_weights, orig_alphas, orig_betas)}, from = 0, to = 1,
       col = "blue", lwd = 2, xlab = "x", ylab = "Density", main = "Original vs Reduced Mixture")
-curve({dmix.beta(x, result$reduced_weights, result$reduced_alphas, result$reduced_betas)},
+curve({dmix.beta(x, result$mix_prop, result$alpha, result$beta)},
       add = TRUE, col = "red", lwd = 2, lty = 2)
 }

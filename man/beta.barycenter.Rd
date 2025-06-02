@@ -10,13 +10,13 @@ beta.barycenter(
   cluster_weights,
   cluster_alphas,
   cluster_betas,
-  zeta
+  divergence = "Hellinger"
 )
 }
 \arguments{
 \item{assignments}{An integer vector indicating the cluster assignment of each original beta component.}
 
-\item{M}{The number of target clusters (components) in the reduced mixture.}
+\item{M}{The number of target components in the reduced mixture.}
 
 \item{cluster_weights}{A numeric vector of weights for each original beta component.}
 
@@ -24,8 +24,7 @@ beta.barycenter(
 
 \item{cluster_betas}{A numeric vector of \eqn{\beta} parameters for each original beta component.}
 
-\item{zeta}{A scalar between 0 and 1 representing the weight on the squared Hellinger distance 
-(with \code{1 - zeta} on the symmetrized KL divergence).}
+\item{divergence}{Character string, either "Hellinger" (default) or "SKL"}
 }
 \value{
 A matrix with \code{M} rows and 2 columns, where each row contains the estimated 
