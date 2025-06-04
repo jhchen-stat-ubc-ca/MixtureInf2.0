@@ -157,9 +157,13 @@ BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M,
   orig_weights <- orig_weights / sum(orig_weights)
   
   make_cost <- function(ra, rb) {
-    outer(seq_along(orig_alphas), seq_len(M),
-          Vectorize(function(i, j)
-            dist_fun(orig_alphas[i], orig_betas[i], ra[j], rb[j])))
+    m <- length(ra)
+    n <- length(orig_alphas)
+    cost <- matrix(0, nrow = n, ncol = m)
+    for (j in seq_len(m)) {
+      cost[, j] <- dist_fun(orig_alphas, orig_betas, ra[j], rb[j])
+    }
+    cost
   }
   
   init <- init_reduced_beta_mixture(orig_weights, orig_alphas, orig_betas, M, n_sample)
@@ -191,10 +195,18 @@ BMR.CTD <- function(orig_weights, orig_alphas, orig_betas, M,
   rb <- p_old[(2 * M + 1):(3 * M)]
   mw <- mw / sum(mw)
   
+  cost <- outer(seq_along(orig_alphas), seq_len(M),
+                Vectorize(function(i, j)
+                  dist_fun(orig_alphas[i], orig_betas[i], ra[j], rb[j])))
+  assign <- max.col(-cost)
+  total_cost <- sum(orig_weights * cost[cbind(seq_along(assign), assign)])
+  
   list(
-    mix_prop = mw,
-    alpha = ra,
-    beta = rb,
+    mix_prop = rousignif(mw),
+    alpha = rousignif(ra),
+    beta = rousignif(rb),
+    total_cost = total_cost,
+    assignments = assign,
     n_iter = iter,
     converged = (iter < max_iter),
     divergence_used = divergence
