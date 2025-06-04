@@ -130,14 +130,14 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
 #' @param n_sample Number of samples used for initial reduction parameter estimation. Default is 10000.
 #'
 #' @return A list with the following components:
+#' \item{reduced_weights}{Estimated weights of the reduced components.}
 #' \item{reduced_alphas}{Estimated \eqn{\alpha} parameters for the reduced mixture.}
 #' \item{reduced_betas}{Estimated \eqn{\beta} parameters for the reduced mixture.}
-#' \item{reduced_weights}{Estimated weights of the reduced components.}
 #' \item{total_cost}{Total cost of the final clustering solution.}
 #' \item{assignments}{Cluster assignments of original components.}
 #' \item{n_iter}{Number of iterations until convergence.}
 #' \item{converged}{Logical indicating whether convergence was achieved.}
-#' \item{zeta_used}{The value of \code{zeta} used (either supplied or optimized).}
+#' \item{divergence_used}{The choice of the distance/divergence used}
 #'
 #' @examples
 #' orig_weights <- c(0.3, 0.3, 0.3, 0.1)

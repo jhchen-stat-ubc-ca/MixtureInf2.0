@@ -34,14 +34,14 @@ BMR.CTD(
 }
 \value{
 A list with the following components:
+\item{reduced_weights}{Estimated weights of the reduced components.}
 \item{reduced_alphas}{Estimated \eqn{\alpha} parameters for the reduced mixture.}
 \item{reduced_betas}{Estimated \eqn{\beta} parameters for the reduced mixture.}
-\item{reduced_weights}{Estimated weights of the reduced components.}
 \item{total_cost}{Total cost of the final clustering solution.}
 \item{assignments}{Cluster assignments of original components.}
 \item{n_iter}{Number of iterations until convergence.}
 \item{converged}{Logical indicating whether convergence was achieved.}
-\item{zeta_used}{The value of \code{zeta} used (either supplied or optimized).}
+\item{divergence_used}{The choice of the distance/divergence used}
 }
 \description{
 Performs beta mixture reduction (BMR) via Composite Transportation Divergence (CTD),
