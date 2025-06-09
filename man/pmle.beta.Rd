@@ -7,7 +7,7 @@
 pmle.beta(
   x,
   m0,
-  n.init = 10,
+  n.init = 5,
   n.iter = 10,
   max.iter = 5000,
   tol = 1e-06,
@@ -21,7 +21,7 @@ pmle.beta(
 
 \item{m0}{The number of components (order) in the beta mixture model.}
 
-\item{n.init}{A computer generated n.init initials value.}
+\item{n.init}{The number of additional random initializations to generate. Default is 5.}
 
 \item{n.iter}{The number of EM iterations to perform for each initial value. The initialization 
 yielding the highest penalized log-likelihood will be further optimized.}
