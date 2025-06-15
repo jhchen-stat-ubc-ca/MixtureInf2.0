@@ -34,9 +34,6 @@ Default is \code{1e-6}.}
 
 \item{an}{A size control parameter that determines the severity of the penalty. 
 The recommended value is \eqn{n^{-1/2}}. If \code{NULL}, it is set to \code{length(x)^(1/2)}.}
-
-\item{maxit}{The maximum number of iterations for the nonlinear solvers used in the 
-method of moments estimation during initialization.}
 }
 \value{
 A list with the following components:

@@ -8,7 +8,7 @@
 #' @param m0 The number of components in the finite mixture model.
 #' @param para0 A numeric vector containing initial values for mixing proportions and 
 #'        the \eqn{\alpha} and \eqn{\beta} parameters for all components.
-#' @param an A penalty control parameter, usually chosen as \eqn{n^{-3/2}}, where \eqn{n} is the sample size.
+#' @param an A penalty control parameter, usually chosen as \eqn{n^{-1/2}}, where \eqn{n} is the sample size.
 #' @param epsilon A smoothing parameter for the mixing proportions in the E-step. Default is \code{1}.
 #'
 #' @return A numeric vector containing updated estimates of the mixing proportions, 
@@ -58,7 +58,7 @@ pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
 #' @param mix_prop A numeric vector of mixing proportions for each component.
 #' @param theta A numeric vector of current estimates for \eqn{\alpha} and \eqn{\beta} 
 #'              parameters for all components.
-#' @param an A penalty control parameter, typically \eqn{n^{-3/2}}, that influences the strength 
+#' @param an A penalty control parameter, typically \eqn{n^{-1/2}}, that influences the strength 
 #'           of the regularization.
 #'
 #' @return A numeric vector of updated parameter estimates for \eqn{\alpha} and \eqn{\beta}.

@@ -14,7 +14,7 @@ pmle.beta.sub(x, m0, para0, an, epsilon)
 \item{para0}{A numeric vector containing initial values for mixing proportions and 
 the \eqn{\alpha} and \eqn{\beta} parameters for all components.}
 
-\item{an}{A penalty control parameter, usually chosen as \eqn{n^{-3/2}}, where \eqn{n} is the sample size.}
+\item{an}{A penalty control parameter, usually chosen as \eqn{n^{-1/2}}, where \eqn{n} is the sample size.}
 
 \item{epsilon}{A smoothing parameter for the mixing proportions in the E-step. Default is \code{1}.}
 }

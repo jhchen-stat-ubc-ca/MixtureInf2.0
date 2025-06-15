@@ -15,8 +15,6 @@
 #' @param epsilon A regularization parameter controlling the smoothing in the E-step. Default is \code{1}.
 #' @param an A size control parameter that determines the severity of the penalty. 
 #'           The recommended value is \eqn{n^{-1/2}}. If \code{NULL}, it is set to \code{length(x)^(1/2)}.
-#' @param maxit The maximum number of iterations for the nonlinear solvers used in the 
-#'              method of moments estimation during initialization.
 #'
 #' @return A list with the following components:
 #' \item{mix_prop}{Estimated mixing proportions.}

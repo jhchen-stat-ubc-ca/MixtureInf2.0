@@ -17,7 +17,7 @@ the probability that each observation belongs to each mixture component.}
 \item{theta}{A numeric vector of current estimates for \eqn{\alpha} and \eqn{\beta} 
 parameters for all components.}
 
-\item{an}{A penalty control parameter, typically \eqn{n^{-3/2}}, that influences the strength 
+\item{an}{A penalty control parameter, typically \eqn{n^{-1/2}}, that influences the strength 
 of the regularization.}
 }
 \value{
