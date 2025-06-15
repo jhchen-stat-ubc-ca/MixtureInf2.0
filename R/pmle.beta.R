@@ -14,7 +14,7 @@
 #'            Default is \code{1e-6}.
 #' @param epsilon A regularization parameter controlling the smoothing in the E-step. Default is \code{1}.
 #' @param an A size control parameter that determines the severity of the penalty. 
-#'           The recommended value is \eqn{n^{-3/2}}. If \code{NULL}, it is set to \code{length(x)^(3/2)}.
+#'           The recommended value is \eqn{n^{-1/2}}. If \code{NULL}, it is set to \code{length(x)^(1/2)}.
 #' @param maxit The maximum number of iterations for the nonlinear solvers used in the 
 #'              method of moments estimation during initialization.
 #'
@@ -32,7 +32,7 @@
 #' pmle.beta(data, 2)
 #' @export
 pmle.beta <- function(x, m0, n.init = 5, n.iter = 10, max.iter = 5000, tol = 1e-6,
-                      epsilon = 1, an = NULL, maxit = 5000) {
+                      epsilon = 1, an = NULL) {
   if (is.null(an)) an <- length(x)^(1/2)
   sar_init <- sar.beta.mix(x,m0)
   sam_init <- sam.beta.mix(x,m0)

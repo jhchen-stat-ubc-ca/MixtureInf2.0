@@ -4,12 +4,14 @@
 \alias{sar.beta.mix.sub}
 \title{sar.beta.mix.sub}
 \usage{
-sar.beta.mix.sub(x, w)
+sar.beta.mix.sub(x, w, epsilon)
 }
 \arguments{
 \item{x}{A numeric vector of observations in (0, 1).}
 
-\item{w}{A matrix of component-wise weights (responsibilities), with dimensions components × observations.}
+\item{w}{A matrix of component-wise weights.}
+
+\item{epsilon}{A regularization parameter controlling the smoothing in the E-step. Default is \code{1}.}
 }
 \value{
 A numeric vector of length 3m: concatenated estimates of

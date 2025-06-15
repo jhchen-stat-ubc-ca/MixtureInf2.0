@@ -12,8 +12,7 @@ pmle.beta(
   max.iter = 5000,
   tol = 1e-06,
   epsilon = 1,
-  an = NULL,
-  maxit = 5000
+  an = NULL
 )
 }
 \arguments{
@@ -34,7 +33,7 @@ Default is \code{1e-6}.}
 \item{epsilon}{A regularization parameter controlling the smoothing in the E-step. Default is \code{1}.}
 
 \item{an}{A size control parameter that determines the severity of the penalty. 
-The recommended value is \eqn{n^{-3/2}}. If \code{NULL}, it is set to \code{length(x)^(3/2)}.}
+The recommended value is \eqn{n^{-1/2}}. If \code{NULL}, it is set to \code{length(x)^(1/2)}.}
 
 \item{maxit}{The maximum number of iterations for the nonlinear solvers used in the 
 method of moments estimation during initialization.}

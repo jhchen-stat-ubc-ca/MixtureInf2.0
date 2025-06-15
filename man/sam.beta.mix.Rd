@@ -4,12 +4,22 @@
 \alias{sam.beta.mix}
 \title{sam.beta.mix}
 \usage{
-sam.beta.mix(x, m0)
+sam.beta.mix(x, m0, tol = 1e-06, max.iter = 5000, epsilon = 1, an = NULL)
 }
 \arguments{
 \item{x}{A numeric vector of observations in (0, 1).}
 
 \item{m0}{Integer; the number of components in the mixture.}
+
+\item{tol}{The tolerance threshold for convergence based on change in penalized log-likelihood. 
+Default is \code{1e-6}.}
+
+\item{max.iter}{The maximum number of iterations allowed in the final EM optimization phase.}
+
+\item{epsilon}{A regularization parameter controlling the smoothing in the E-step. Default is \code{1}.}
+
+\item{an}{A size control parameter that determines the severity of the penalty. 
+The recommended value is \eqn{n^{-1/2}}. If \code{NULL}, it is set to \code{length(x)^(1/2)}.}
 }
 \value{
 A list containing:
