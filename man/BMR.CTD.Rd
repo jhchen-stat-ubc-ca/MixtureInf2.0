@@ -45,8 +45,7 @@ A list with the following components:
 }
 \description{
 Performs beta mixture reduction (BMR) via Composite Transportation Divergence (CTD),
-which iteratively reassigns components based on a hybrid divergence (a convex combination of the 
-squared Hellinger distance and symmetrized KL divergence), and recomputes cluster barycenters 
+which iteratively reassigns components based on a divergence (the Hellinger distance or symmetric KL divergence), and recomputes cluster barycenters 
 to minimize total cost.
 }
 \examples{

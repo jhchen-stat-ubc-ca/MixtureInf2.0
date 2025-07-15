@@ -32,6 +32,5 @@ A matrix with \code{M} rows and 2 columns, where each row contains the estimated
 }
 \description{
 Computes the barycenter of a collection of beta distributions 
-with respect to a hybrid divergence—a convex combination of the squared Hellinger distance 
-and the symmetrized KL divergence. This function is a subroutine used in \code{BMR.CTD}.
+with respect to a divergence—the Hellinger distance or the symmetric KL divergence. This function is used in \code{BMR.CTD}.
 }
