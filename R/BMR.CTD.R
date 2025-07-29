@@ -35,7 +35,7 @@ beta.SKL <- function(a1, b1, a2, b2) {
   kl21 <- lbeta(a1,b1) - lbeta(a2,b2) +
     (a2-a1)*digamma(a2) + (b2-b1)*digamma(b2) -
     ((a2-a1)+(b2-b1))*digamma(a2+b2)
-  return(0.5 * (kl12 + kl21))
+  return(kl12 + kl21)
 }
 
 #' beta.barycenter
