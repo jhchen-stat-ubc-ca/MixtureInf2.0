@@ -23,6 +23,6 @@ A list containing the initialized \code{alphas}, \code{betas}, and \code{weights
 }
 \description{
 Generates initial parameters for a reduced beta mixture by sampling from the original 
-mixture and clustering the samples with k-means. The moments of the clustered samples 
+mixture and clustering the samples with k-means. The Score-Adjusted Moment estimation of the clustered samples 
 are then used to estimate the parameters. It is a sub function used in the BMR.CTD function.
 }

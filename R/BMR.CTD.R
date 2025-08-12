@@ -82,7 +82,7 @@ beta.barycenter <- function(assignments, M, cluster_weights,
 #' init_reduced_beta_mixture
 #'
 #' @description Generates initial parameters for a reduced beta mixture by sampling from the original 
-#' mixture and clustering the samples with k-means. The moments of the clustered samples 
+#' mixture and clustering the samples with k-means. The Score-Adjusted Moment estimation of the clustered samples 
 #' are then used to estimate the parameters. It is a sub function used in the BMR.CTD function.
 #'
 #' @param weights A numeric vector of mixture weights.
@@ -100,13 +100,12 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
   ids <- km$clusters
   props <- tabulate(ids, nbins = M) / n_sample
   pars <- vapply(seq_len(M), function(m) {
-    xi <- samples[ids == m]
-    mu <- mean(xi)
-    v  <- var(xi)
-    s  <- mu * (1 - mu) / v - 1
-    c(max(mu * s, 1e-3), max((1 - mu) * s, 1e-3))
+    xj <- samples[ids == m]
+    est <- sam.beta(xj)
+    c(est$alpha, est$beta)
   }, numeric(2))
-  list(weights = props, alphas = pars[1,], betas = pars[2,])
+  
+  list(weights = props, alphas = pars[1, ], betas = pars[2, ])
 }
 
 
