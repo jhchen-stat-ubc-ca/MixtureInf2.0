@@ -70,7 +70,7 @@ sar.calculation <- function(x, cluster_assignments, m0) {
 #' @param epsilon A regularization parameter controlling the smoothing in the E-step. Default is \code{1}.
 #'
 #' @return A numeric vector of length 3m: concatenated estimates of
-#' \item{pi}{Mixing proportions.}
+#' \item{pij}{Mixing proportions.}
 #' \item{alpha}{Component-wise alpha parameters.}
 #' \item{beta}{Component-wise beta parameters.}
 #'
@@ -90,8 +90,8 @@ sar.beta.mix.sub <- function(x, w, epsilon) {
   denom <- mxj * myj - lxj * lyj 
   alpha <- ((1 + mxj) * lyj + (1 + myj) * mxj) / denom
   beta <- ((1 + myj) * lxj + (1 + mxj) * myj) / denom
-  pi <- (Wj+epsilon) / (sum(Wj)+ncol(W)*epsilon)
-  c(pi = pi, alpha = alpha, beta = beta)
+  pij <- (Wj+epsilon) / (sum(Wj)+ncol(W)*epsilon)
+  c(pij = pij, alpha = alpha, beta = beta)
 }
 
 #' sar.beta.mix

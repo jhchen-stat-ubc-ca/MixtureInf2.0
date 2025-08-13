@@ -15,7 +15,7 @@ sam.beta.mix.sub(x, w, epsilon)
 }
 \value{
 A numeric vector of length 3m: concatenated estimates of
-\item{pi}{Mixing proportions.}
+\item{pij}{Mixing proportions.}
 \item{alpha}{Component-wise alpha parameters.}
 \item{beta}{Component-wise beta parameters.}
 }

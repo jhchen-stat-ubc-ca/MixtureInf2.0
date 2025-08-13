@@ -68,7 +68,7 @@ sam.beta.mix <- function(x, m0, tol = 1e-6, max.iter = 5000, epsilon=1, an=NULL)
 #' @param epsilon A regularization parameter controlling the smoothing in the E-step. Default is \code{1}.
 #'
 #' @return A numeric vector of length 3m: concatenated estimates of
-#' \item{pi}{Mixing proportions.}
+#' \item{pij}{Mixing proportions.}
 #' \item{alpha}{Component-wise alpha parameters.}
 #' \item{beta}{Component-wise beta parameters.}
 #'
@@ -90,8 +90,8 @@ sam.beta.mix.sub <- function(x, w, epsilon) {
   denom <- mean_xlogxj - bar_xj * mean_log_xj + mean_ylogyj - bar_yj * mean_log_yj 
   alpha <- bar_xj / denom
   beta <- bar_yj / denom
-  pi <- (Wj+epsilon) / (sum(Wj)+m*epsilon)
-  c(pi = pi, alpha = alpha, beta = beta)
+  pij <- (Wj+epsilon) / (sum(Wj)+m*epsilon)
+  c(pij = pij, alpha = alpha, beta = beta)
 }
 
 #' sam.calculation
