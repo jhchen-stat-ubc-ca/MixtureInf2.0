@@ -68,9 +68,9 @@ beta.barycenter <- function(assignments, M, cluster_weights,
     start <- c(max(mu, 1e-3), max(1 - mu, 1e-3))
     opt <- optim(
       par = start,
-      fn  = function(par) sum(w * dist_fun(a, b, par[1], par[2])),
+      fn = function(par) sum(w * dist_fun(a, b, par[1], par[2])),
       method = "L-BFGS-B",
-      lower  = c(1e-6, 1e-6),
+      lower = c(1e-6, 1e-6),
       control = list(maxit = 1000, factr = 1e6)
     )
     res[m, ] <- opt$par
@@ -139,7 +139,7 @@ init_reduced_beta_mixture <- function(weights, alphas, betas, M, n_sample = 1000
 #' @examples
 #' orig_weights <- c(0.3, 0.3, 0.3, 0.1)
 #' orig_alphas <- c(3, 4, 3.5, 7)
-#' orig_betas  <- c(5, 6, 5.5, 2)
+#' orig_betas <- c(5, 6, 5.5, 2)
 #' result <- BMR.CTD(orig_weights, orig_alphas, orig_betas, M = 2)
 #' curve({dmix.beta(x, orig_weights, orig_alphas, orig_betas)}, from = 0, to = 1,
 #'       col = "blue", lwd = 2, xlab = "x", ylab = "Density", main = "Original vs Reduced Mixture")

@@ -45,18 +45,18 @@ sam.beta.mix <- function(x, m0, tol = 1e-6, max.iter = 5000, epsilon=1, an=NULL)
     diff <- ploglik.new - ploglik
     if (diff > tol) {
       mix_prop <- mix_prop.new
-      alpha    <- alpha.new
-      beta     <- beta.new
-      ploglik  <- ploglik.new
+      alpha <- alpha.new
+      beta <- beta.new
+      ploglik <- ploglik.new
       tt <- tt + 1
     } else break
   }
   o <- order(alpha)
   list(mix_prop = rousignif(unname(mix_prop[o])),
-       alpha    = rousignif(unname(alpha[o])),
-       beta     = rousignif(unname(beta[o])),
-       ploglik  = rousignif(ploglik),
-       iter.n   = tt)
+       alpha = rousignif(unname(alpha[o])),
+       beta = rousignif(unname(beta[o])),
+       ploglik = rousignif(ploglik),
+       iter.n = tt)
 }
 
 #' sam.beta.mix.sub
@@ -89,7 +89,7 @@ sam.beta.mix.sub <- function(x, w, epsilon) {
   mean_ylogyj <- colSums(W * (y * log_y)) / Wj
   denom <- mean_xlogxj - bar_xj * mean_log_xj + mean_ylogyj - bar_yj * mean_log_yj 
   alpha <- bar_xj / denom
-  beta  <- bar_yj / denom
+  beta <- bar_yj / denom
   pi <- (Wj+epsilon) / (sum(Wj)+m*epsilon)
   c(pi = pi, alpha = alpha, beta = beta)
 }
@@ -116,7 +116,7 @@ sam.calculation <- function(x, cluster_assignments, m0) {
     cluster_data <- x[cluster_assignments == i]
     temp <- sam.beta(cluster_data)
     alpha[i] <- temp$alpha
-    beta[i]  <- temp$beta
+    beta[i] <- temp$beta
   }
   
   c(alpha, beta)

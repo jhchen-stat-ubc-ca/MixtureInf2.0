@@ -31,7 +31,7 @@ sar.beta <- function(x) {
   ly <- mean(log_y)
   denom <- mx * my - lx * ly
   alpha <- ((1 + mx) * ly + (1 + my) * mx) / denom
-  beta  <- ((1 + my) * lx + (1 + mx) * my) / denom
+  beta <- ((1 + my) * lx + (1 + mx) * my) / denom
   list(alpha = alpha, beta = beta)
 }
 
@@ -55,7 +55,7 @@ sar.calculation <- function(x, cluster_assignments, m0) {
     cluster_data <- x[cluster_assignments == i]
     temp <- sar.beta(cluster_data)
     alpha[i] <- temp$alpha
-    beta[i]  <- temp$beta
+    beta[i] <- temp$beta
   }
   
   c(alpha, beta)
@@ -89,7 +89,7 @@ sar.beta.mix.sub <- function(x, w, epsilon) {
   lyj <- colSums(W * log_y) / Wj
   denom <- mxj * myj - lxj * lyj 
   alpha <- ((1 + mxj) * lyj + (1 + myj) * mxj) / denom
-  beta  <- ((1 + myj) * lxj + (1 + mxj) * myj) / denom
+  beta <- ((1 + myj) * lxj + (1 + mxj) * myj) / denom
   pi <- (Wj+epsilon) / (sum(Wj)+ncol(W)*epsilon)
   c(pi = pi, alpha = alpha, beta = beta)
 }
@@ -139,16 +139,16 @@ sar.beta.mix <- function(x, m0, tol = 1e-6, max.iter = 5000, epsilon=1, an=NULL)
     diff <- ploglik.new - ploglik
     if (diff > tol) {
       mix_prop <- mix_prop.new
-      alpha    <- alpha.new
-      beta     <- beta.new
-      ploglik  <- ploglik.new
+      alpha <- alpha.new
+      beta <- beta.new
+      ploglik <- ploglik.new
       tt <- tt + 1
     } else break
   }
   o <- order(alpha)
   list(mix_prop = rousignif(unname(mix_prop[o])),
-       alpha    = rousignif(unname(alpha[o])),
-       beta     = rousignif(unname(beta[o])),
-       ploglik  = rousignif(ploglik),
-       iter.n   = tt)
+       alpha = rousignif(unname(alpha[o])),
+       beta = rousignif(unname(beta[o])),
+       ploglik = rousignif(ploglik),
+       iter.n = tt)
 }

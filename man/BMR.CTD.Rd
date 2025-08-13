@@ -51,7 +51,7 @@ to minimize total cost.
 \examples{
 orig_weights <- c(0.3, 0.3, 0.3, 0.1)
 orig_alphas <- c(3, 4, 3.5, 7)
-orig_betas  <- c(5, 6, 5.5, 2)
+orig_betas <- c(5, 6, 5.5, 2)
 result <- BMR.CTD(orig_weights, orig_alphas, orig_betas, M = 2)
 curve({dmix.beta(x, orig_weights, orig_alphas, orig_betas)}, from = 0, to = 1,
       col = "blue", lwd = 2, xlab = "x", ylab = "Density", main = "Original vs Reduced Mixture")

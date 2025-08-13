@@ -18,24 +18,24 @@
 
 pmle.beta.sub <- function(x, m0, para0, an, epsilon) {
   mix_prop <- para0[1:m0]
-  alpha    <- para0[(m0 + 1):(2 * m0)]
-  beta     <- para0[(2 * m0 + 1):(3 * m0)]
-  theta    <- para0[(m0 + 1):(3 * m0)]  
+  alpha <- para0[(m0 + 1):(2 * m0)]
+  beta <- para0[(2 * m0 + 1):(3 * m0)]
+  theta <- para0[(m0 + 1):(3 * m0)]  
   
   n <- length(x)
   
   # E-step
-  pdf.sub     <- t(mapply(function(pp, aa, bb) pp * dbeta(x, aa, bb),
+  pdf.sub <- t(mapply(function(pp, aa, bb) pp * dbeta(x, aa, bb),
                           mix_prop, alpha, beta))
   pdf.mixture <- colSums(pdf.sub) + 1e-100
-  ww          <- sweep(pdf.sub, 2, pdf.mixture, FUN = "/")
+  ww <- sweep(pdf.sub, 2, pdf.mixture, FUN = "/")
   
   mix_prop <- (rowSums(ww) + epsilon) / (n + m0 * epsilon)
   
   # M-step
   theta <- Pen.M.Step(x, t(ww), mix_prop, theta, an)
   alpha <- theta[1:m0]
-  beta  <- theta[(m0 + 1):(2 * m0)]
+  beta <- theta[(m0 + 1):(2 * m0)]
   
   dens <- dmix.beta(x, mix_prop, alpha, beta)
   loglike <- sum(log(dens + 1e-100))
@@ -70,7 +70,7 @@ Pen.M.Step <- function(x, ww, mix_prop, theta, an) {
   ploglikelihood <- function(theta, x) {
     if (any(theta <= 0)) return(NA)
     alpha <- theta[1:k]
-    beta  <- theta[(k + 1):(2 * k)]
+    beta <- theta[(k + 1):(2 * k)]
     logpdf <- vapply(seq_len(k), function(j) {
       log(dbeta(x, alpha[j], beta[j]))
     }, numeric(length(x)))      
@@ -83,7 +83,7 @@ Pen.M.Step <- function(x, ww, mix_prop, theta, an) {
   pgradlik <- function(theta, x) {
     if (any(theta <= 0)) return(NA)
     alpha <- theta[1:k]
-    beta  <- theta[(k + 1):(2 * k)]
+    beta <- theta[(k + 1):(2 * k)]
     
     g1j <- sapply(1:k, function(j) {
       sum(ww[, j] * (log(x) + digamma(alpha[j] + beta[j]) - digamma(alpha[j]))) -
@@ -100,15 +100,15 @@ Pen.M.Step <- function(x, ww, mix_prop, theta, an) {
   phesslik <- function(theta, x) {
     if (any(theta <= 0)) return(NA)
     alpha <- theta[1:k]
-    beta  <- theta[(k + 1):(2 * k)]
-    Hess  <- matrix(0, nrow = 2 * k, ncol = 2 * k)
+    beta <- theta[(k + 1):(2 * k)]
+    Hess <- matrix(0, nrow = 2 * k, ncol = 2 * k)
     for (j in 1:k) {
-      Hess[j, j]         <- sum(ww[, j] * (trigamma(alpha[j] + beta[j]) - trigamma(alpha[j]))) -
+      Hess[j, j] <- sum(ww[, j] * (trigamma(alpha[j] + beta[j]) - trigamma(alpha[j]))) -
         (1 / alpha[j]^2) / an
       Hess[j + k, j + k] <- sum(ww[, j] * (trigamma(alpha[j] + beta[j]) - trigamma(beta[j]))) -
         (1 / beta[j]^2) / an
-      Hess[j, j + k]     <- sum(ww[, j] * trigamma(alpha[j] + beta[j]))
-      Hess[j + k, j]     <- Hess[j, j + k]
+      Hess[j, j + k] <- sum(ww[, j] * trigamma(alpha[j] + beta[j]))
+      Hess[j + k, j] <- Hess[j, j + k]
     }
     Hess
   }
