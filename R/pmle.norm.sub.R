@@ -26,10 +26,13 @@ pmle.norm.sub <- function(x, m0, lambda, an, init.val, n.init,
       tmp = (mu[-1] + mu[-m0])/2
       alpha = rep(1, m0)
       for(ii in 1:(m0-1)) alpha[ii] = sum(x<tmp[ii])/n
-      alpha = alpha - c(0, alpha[-m0])
+      alpha = alpha - c(0, alpha[-m0]) + 0.01
+      alpha = alpha/sum(alpha)  
+      ## the lowest mixing proportion is 0.01/1.01.
       sigma = c(mu, max(x))-c(min(x), mu)
       sigma = (sigma[-1]+sigma[-m0])/4
-      sigma = sigma^2
+      sigma = sigma^2 + sample.var/(10*m0)
+      ### avoid 0 initial sigma value
     }	else {	
       ### if initial mixing distribution is provided
       alpha = init.val[1,]
